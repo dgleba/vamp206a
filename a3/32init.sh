@@ -217,20 +217,28 @@ function onetime1() {
 
 #alias for ls -la
 #
+
 echo "alias ll='ls -la'" >>   ~/.bash_aliases
-# echo "alias lsl='ls -la'" >>   ~/.bashrc
+echo "alias lsl='ls -la'" >>   ~/.bashrc
 sudo chmod ugo+rw  ~/.bash_aliases
 echo "alias psg='ps -ef|grep '" >>   ~/.bash_aliases
 
 echo "alias dkup='docker-compose up'" >>   ~/.bash_aliases
 echo "alias dkd='docker-compose down'" >>   ~/.bash_aliases
 echo "alias dkupd='docker-compose up -d'" >>   ~/.bash_aliases
-echo "alias dkupr='docker-compose  up --build  --force-recreate  '" >>   ~/.bash_aliases
-echo "alias dkupp='docker-compose up -f docker-compose.prod.yml -d'" >>   ~/.bash_aliases
+echo "alias dkupr='docker-compose  up --build  --force-recreate  '" >>  ~/.bash_aliases
+echo "alias dkupp='docker-compose up -f docker-compose.prod.yml -d'" >>  ~/.bash_aliases
 
-echo "alias dkps='set -vx; docker images; docker network ls;	docker volume ls;	docker ps -a;	docker ps; set +vx'" >>   ~/.bash_aliases
+echo "alias dkps='set -vx; docker images; docker network ls; docker volume ls;	docker ps -a; docker ps; set +vx'" >> ~/.bash_aliases
 	
-  
+echo "alias aa='cat ~/.bashrc|grep alias; echo '========'; cat ~/.bash_aliases; '" >> ~/.bash_aliases
+
+echo "alias shx='chmod -R +x *.sh'" >>   ~/.bash_aliases
+ 
+ 
+ 
+ 
+ 
 cat ~/.bash_aliases
 
 
