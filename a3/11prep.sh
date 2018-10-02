@@ -29,6 +29,7 @@ sudo apt-get -y install git mc ncdu
 #
 cd ; git clone https://github.com/dgleba/vamp206a.git shc  ; chmod -R +x  shc/
 
+cd ; cd shc ; git pull
 
 
 
@@ -61,8 +62,6 @@ Step 3
 
 
 
-cd ; cd shc ; git pull
-
 
 # docker example..  32init, custom1 is permissions, then 81docker.sh
 
@@ -92,7 +91,7 @@ cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t custom1 2>&1 | tee -a v20
 
 # or
 
-cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t docker1 2>&1 | tee -a v206_start_log$(date +"__%Y-%m-%d_%H.%M.%S").log
+cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t docker1 2>&1 | tee -a v206_start_log_docker1_${fil}$(date +"__%Y-%m-%d_%H.%M.%S").log
 
 
 # or run pieces individually...
