@@ -84,7 +84,9 @@ sudo debconf-get-selections | grep iptables
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+
 # Functions...
+
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -126,7 +128,9 @@ sudo sed -i "/global]/i # \n# David Gleba kdg54 $nowdg1 invalid handle error, ad
 sudo sed -i 's/.*global].*/[global]\n\nunix extensions = no/g' /etc/samba/smb.conf 
 
 
+
 #~~~~
+
 
 
 sudo cat <<EOF >> /etc/samba/smb.conf 
@@ -185,7 +189,9 @@ valid users = ftpup
 EOF
 
 
+
 #~~~~
+
 
 
 source safe/21env.sh
@@ -213,8 +219,8 @@ sudo sudo service smbd restart
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-
 function onetime1() {
+
 
 source shc/a3/alias.sh
 
