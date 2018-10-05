@@ -23,10 +23,8 @@ cd
 # if need be, get prompt for sudo password...
 sudo ls
 #
-sudo apt-get update
-#
-sudo apt-get -y install git mc ncdu 
-#
+sudo apt-get update && \
+sudo apt-get -y install git mc ncdu && \
 cd ; git clone https://github.com/dgleba/vamp206a.git shc  ; chmod -R +x  shc/
 
 cd ; cd shc ; git pull
@@ -71,11 +69,9 @@ cd ; export fil=31timeshift.sh ; export pth=shc/a3 ;  chmod +x $pth/$fil  ;  $pt
 
 # Logout and login  [or.. exec bash ] after running this next line so that the settings are activated...
 
-cd ; sudo chmod -R +x shc/ ; sudo shc/a3/32init.sh 2>&1 | tee -a 32init_v206_log$(date +"__%Y-%m-%d_%H.%M.%S").log
+cd ; sudo chmod -R +x shc/ ; sudo shc/a3/32init.sh 2>&1 | tee -a 32init_v206_log$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash
 
-
-## ---------------   logout and login again. or  -  exec bash -----------------------
-exec bash
+## ---------------   logout and login again. or  -  exec bash ----------------------- 
 
 
 

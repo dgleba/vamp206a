@@ -9,8 +9,9 @@ Vbox.
 
 
 export vm1=ubu381_1
-export vbm="/c/Program Files/Oracle/VirtualBox/VBoxManage.exe"
+export vm1=ubu398
 export vbm="/cygdrive/c/p2/Oracle/VirtualBox/VBoxManage.exe"
+export vbm="/c/Program Files/Oracle/VirtualBox/VBoxManage.exe"
 
 for i in {3000..3100}; do
   "${vbm}" modifyvm "${vm1}" --natpf1 "tcp-port$i,tcp,,$i,,$i";

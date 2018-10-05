@@ -222,7 +222,8 @@ sudo sudo service smbd restart
 function onetime1() {
 
 
-source shc/a3/alias.sh
+source shc/a3/alias21.sh
+
 
 }
 
@@ -232,7 +233,8 @@ source shc/a3/alias.sh
 
 rsnap() {
 
-cp shc/bin1/histb.sh  $HOME/bin
+mkdir -p  $HOME/bin/
+cp shc/bin1/histb.sh  $HOME/bin/
 source bin/histb.sh
 sudo mkdir -p /var/www/html
 
