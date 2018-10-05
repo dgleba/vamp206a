@@ -87,7 +87,7 @@ cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t custom1 2>&1 | tee -a v20
 
 # or
 
-cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t docker1 2>&1 | tee -a v206_start_log_docker1_${fil}$(date +"__%Y-%m-%d_%H.%M.%S").log
+cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t docker1 2>&1 | tee -a v206_start_log_docker1_${fil}$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash 
 
 
 # or run pieces individually...
@@ -116,6 +116,13 @@ Step 6
 
 # paste commands from  apps/mcs/mariadbcolumnstore-step2.sh
 
+
+
+
+Step 7
+
+# logout and log back in again to ensure all settings are in effect.
+# eg: groups will take effect after login.
 
 
 done
