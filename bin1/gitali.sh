@@ -102,4 +102,4 @@ source ~/.bashrc
 
 set +vx
  
-sleep 3
+# sleep 3

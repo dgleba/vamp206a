@@ -78,8 +78,7 @@ cd ; sudo chmod -R +x shc/ ; sudo shc/a3/32init.sh 2>&1 | tee -a 32init_v206_log
 
 Step 4
 
-
-cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t regularmysqlserver 2>&1 | tee -a v206_start_log$(date +"__%Y-%m-%d_%H.%M.%S").log
+cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t docker1 2>&1 | tee -a v206_start_log_docker1_${fil}$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash 
 
 # or
 
@@ -87,7 +86,9 @@ cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t custom1 2>&1 | tee -a v20
 
 # or
 
-cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t docker1 2>&1 | tee -a v206_start_log_docker1_${fil}$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash 
+cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t regularmysqlserver 2>&1 | tee -a v206_start_log$(date +"__%Y-%m-%d_%H.%M.%S").log
+
+
 
 
 # or run pieces individually...
