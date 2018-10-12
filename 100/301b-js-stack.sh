@@ -55,6 +55,9 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | 
 
 source ~/.profile
 source ~/.bashrc
+tail -n+10 ~/.bashrc |bash
+
+
 
 nvm --version
 #http://www.liquidweb.com/kb/how-to-install-nvm-node-version-manager-for-node-js-on-ubuntu-14-04-lts/
