@@ -29,13 +29,13 @@ cd ; date ; set +vx  ; set -vx ; # echo off, then echo on
 sudo ls
 
 # remove it...
- npm uninstall -g sails 
- npm uninstall -g ember-cli 
- npm uninstall -g sane-cli 
+ # npm uninstall -g sails 
+ # npm uninstall -g ember-cli 
+ # npm uninstall -g sane-cli 
 # remove...
-sudo npm uninstall -g sails 
-sudo npm uninstall -g ember-cli 
-sudo npm uninstall -g syane-cli 
+# sudo npm uninstall -g sails 
+# sudo npm uninstall -g ember-cli 
+# sudo npm uninstall -g syane-cli 
 sudo apt-get remove nodejs
 sudo apt-get remove npm
 sudo apt-get purge nodejs npm
@@ -54,6 +54,8 @@ sudo apt-get -y install build-essential libssl-dev
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 
 source ~/.profile
+source ~/.bashrc
+
 nvm --version
 #http://www.liquidweb.com/kb/how-to-install-nvm-node-version-manager-for-node-js-on-ubuntu-14-04-lts/
 
@@ -68,12 +70,14 @@ sudo apt-get -y install python-software-properties python g++ make
 
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 
+
 #https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04
 nvm install 8.9.0
 
 nvm use 8.9.0
 
 nvm ls
+
 
 
 #curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
@@ -89,9 +93,9 @@ nvm ls
 #nonoworks:
 #sudo npm install -g node 
 
-npm install -g sails 
+# npm install -g sails 
 #sudo npm install -g ember-cli 
-npm install -g sane-cli 
+# npm install -g sane-cli 
 
 
 #https://askubuntu.com/questions/786272/why-does-installing-node-6-x-on-ubuntu-16-04-actually-install-node-4-2-6
@@ -102,6 +106,8 @@ node -v
 nvm --version
 npm -v
 sails -v
+
+npm install -g marked --save
 
 
 

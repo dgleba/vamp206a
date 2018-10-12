@@ -1,0 +1,30 @@
+
+----------------------------------------------------
+Title:  .
+-----------------------2018-10-04[Oct-Thu]22-57PM
+
+virtualbox nat ubuntu 16.04 dns not working
+
+ping google.ca
+  results in no response.
+
+https://superuser.com/questions/641933/how-to-get-virtualbox-vms-to-use-hosts-dns
+
+
+works..
+
+VBoxManage modifyvm "VM name" --natdnshostresolver1 on
+
+
+
+VBoxManage modifyvm "ubu398" --natdnshostresolver1 on
+
+VBoxManage modifyvm "ubu381_2" --natdnshostresolver1 on
+
+
+
+
+
+
+
+----------------------------------------------------
