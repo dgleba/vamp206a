@@ -26,17 +26,48 @@ saynow
 #C:\n\Dropbox\csd\serve\vboxyard\vamp206a\rails\railsinstall-1root.sh
 
 
-update to nodejs 4
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-sudo apt-get install -y nodejs
+# update to nodejs 4
+# curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+# curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 
-sudo apt-get install npm
+# To install the LTS release, use this PPA
+  curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+
+# sudo apt-get install -y nodejs
+
+sudo apt-get -y install npm
 sudo npm install npm@latest -g
 
 
 sudo npm install -g angular-cli
 
 
+
+----------------------------------------------------
+Title:  .
+-----------------------2018-10-12[Oct-Fri]09-07AM
+
+# Downgrade.
+
+# On the Android/Linux stacks
+# Same thing, first uninstall the current version then install the new one. 
+# Using the official one-liners for Debian/Ubuntu 
+# (https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions 172):
+
+
+
+#!/bin/bash
+set -ex
+
+# remove previous version
+sudo apt-get remove -y nodejs
+
+# install older / other version
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+
+----------------------------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Title:  .

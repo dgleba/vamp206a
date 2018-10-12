@@ -67,7 +67,7 @@ sudo crontab -u albe -l | { cat; echo "45 6 * * 1-7  /var/www/html/cmmdb/actions
 sudo crontab -u albe -l  # list
 sudo crontab -u albe -l | grep -v 'import-csv-mysql-cmm.sh'  | sudo crontab -u albe - #remove
 #20
-sudo crontab -u albe -l | { cat; echo "21 1,15 * * 0-6  /var/www/html/cmmdb/actions/import-csv-mysql-cmm.sh 2>&1 | tee -a /home/albe/log/import-csv-mysql-cmm1.log"; } | sudo crontab -u albe -  #add
+sudo crontab -u albe -l | { cat; echo "21 1,18 * * 0-6  /var/www/html/cmmdb/actions/import-csv-mysql-cmm.sh 2>&1 | tee -a /home/albe/log/import-csv-mysql-cmm1.log"; } | sudo crontab -u albe -  #add
 #    temporary for test.......
 #sudo crontab -u albe -l | { cat; echo "13 11 * * 0-6     /var/www/html/cmmdb/actions/import-csv-mysql-cmm.sh >> /home/albe/log/import-csv-mysql-cmm1t.log 2<&1"; } | sudo crontab -u albe -  #add
 sudo crontab -u albe -l  # list
