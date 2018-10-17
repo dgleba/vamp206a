@@ -41,13 +41,15 @@ saynow
  sudo apt-get install git
  git clone https://github.com/dgleba/vamp206a.git shc
  chmod -R 775 shc/
- sudo groupadd www-data
+ sudo groupadd  www-data 
  shc/bin1/nuser.sh albe
  
  # or
  mkdir -p bin
  chmod -R 775 bin/
+ cd $_
  wget -N https://raw.githubusercontent.com/dgleba/vamp206a/master/bin1/nuser.sh
+ chmod +x ./nuser.sh
  sudo ./nuser.sh albe
  
   

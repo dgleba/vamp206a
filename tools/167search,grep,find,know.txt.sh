@@ -18,7 +18,7 @@ search..
 
 21  find newest files
 
-51  grep
+>51.  grep
 
 
 151 find folders named..
@@ -57,7 +57,7 @@ sudo apt-get install  gnome-search-tool
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-11.  locate..
+>11.  locate..
 
 only files..
 
@@ -105,7 +105,7 @@ cat ~/0/lcout99.txt | sort -n | tail -n722 | grep  249
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-21. find new files...
+>21. find new files...
 
 find . -type f | xargs stat --format '%Y :%y %n' | sort -nr | cut -d: -f2- | head
 
@@ -193,7 +193,7 @@ http://stackoverflow.com/questions/5566310/how-to-recursively-find-and-list-the-
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-31.
+>31.
 
 find . -type f \! -name "*.js"  -print0 | xargs -0 grep -i content
 
@@ -206,7 +206,7 @@ find . -type f \! -name "*.js"  \! -name "*mdb.min.css"  ! -path "./tmp/*" ! -pa
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-41.
+>41.
 
 list files recursively by size..
 
@@ -214,9 +214,11 @@ du -ah . | grep -v "/$" | sort -rh > ~/t1.txt
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-51. grep..
+>51. grep..
 
 grep -ri --exclude-dir={tmp,log,vendor} post *  | grep -vi postgres
+
+grep -ri  --include="*.js" --exclude-dir={tmp,log,vendor,node_modules} hood * 
 
 
 eg:

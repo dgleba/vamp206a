@@ -4,6 +4,11 @@ function Purpose() {
 # begin block comment =============================
 : <<'END'
 
+
+#  usage  cd ; 100/303a-js-stack.sh
+
+
+
 #  Purpose:  Install javascript stack(s)
 
 
@@ -36,11 +41,12 @@ sudo ls
 # sudo npm uninstall -g sails 
 # sudo npm uninstall -g ember-cli 
 # sudo npm uninstall -g syane-cli 
-sudo apt-get remove nodejs
-sudo apt-get remove npm
-sudo apt-get purge nodejs npm
-sudo apt-get update
-sudo apt-get autoremove
+sudo apt-get -y update
+sudo apt-get -y remove nodejs
+sudo apt-get -y remove npm
+sudo apt-get -y remove nvm
+sudo apt-get -y purge nodejs npm
+sudo apt-get -y autoremove
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -67,7 +73,7 @@ nvm --version
 date
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
+set +vx
 echo 
 echo 
 echo 

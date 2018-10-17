@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
+
+# this is https://github.com/dgleba/vamp206a/blob/master/bin1/gitali.sh
+
 set -vx
+
 
 git config --global alias.cap '!func(){ git add . && git commit -aqm "$1" &&
     git pull -q --no-progress && git push -q; }; func'
