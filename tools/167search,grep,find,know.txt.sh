@@ -220,6 +220,8 @@ grep -ri --exclude-dir={tmp,log,vendor} post *  | grep -vi postgres
 
 grep -ri  --include="*.js" --exclude-dir={tmp,log,vendor,node_modules} hood * 
 
+grep -ri  --include="*.js" --exclude-dir={tmp,log,vendor,node_modules} dgts * 
+
 
 eg:
 grep -rli --exclude-dir={proc,boot,root,sys} hello /

@@ -5,9 +5,14 @@ function Purpose() {
 : <<'END'
 
 
-#  usage  cd ; 100/303a-js-stack.sh
+#  usage         cd ; shc/100/303a-js-stack.sh ; exec bash
+
+# then..
+                 exec bash 
+                 cd && shc/100/303b-js-stack.sh 
 
 
+                 
 
 #  Purpose:  Install javascript stack(s)
 

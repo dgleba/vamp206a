@@ -51,9 +51,11 @@ nvm --version
 
 
 #https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04
-nvm install 8.9.0
+# nvm install 8.9.0
+nvm install 10.0.0
 
-nvm use 8.9.0
+# nvm use 8.9.0
+nvm use 10.0.0
 
 nvm ls
 
@@ -63,11 +65,13 @@ nvm ls
 node -v
 nvm --version
 npm -v
+npx -v
 sails -v
 
 npm install -g marked --save
 
-
+# Update it..
+npm install npm -g
 
 
 

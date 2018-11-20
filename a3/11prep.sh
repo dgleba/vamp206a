@@ -24,7 +24,7 @@ cd
 sudo ls
 #
 sudo apt-get update && \
-sudo apt-get -y install git mc ncdu  && \
+sudo apt-get -y install git mc ncdu wget curl && \
 cd ; git clone https://github.com/dgleba/vamp206a.git shc  ; chmod -R +x  shc/  && \
 cd ; cd shc ; git pull
 
