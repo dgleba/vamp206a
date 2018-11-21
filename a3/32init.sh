@@ -138,21 +138,21 @@ sudo cat <<EOF >> /etc/samba/smb.conf
 # -------------------------------------------
 # shares
 #
-[home]
-path = /home
-browsable =yes
-writable = no
-guest ok = no
-read only = no
-valid users = $userv,@www-data
-#
-[homefile]
-path = /home/file
-browsable =yes
-writable = yes
-guest ok = no
-read only = no
-valid users = ftpup
+# [home]
+# path = /home
+# browsable =yes
+# writable = no
+# guest ok = no
+# read only = no
+# valid users = $userv,@www-data
+# #
+# [homefile]
+# path = /home/file
+# browsable =yes
+# writable = no
+# guest ok = no
+# read only = no
+# valid users = ftpup
 #
 #[html]
 #path = /var/www/html

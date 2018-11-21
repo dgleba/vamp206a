@@ -6,6 +6,7 @@ date ; set +vx  ; set -vx ; # echo off, then echo on
 
 #alias for ls -la
 #
+
 echo "alias ll='ls -la'" >>   ~/.bash_aliases
 echo "alias lsl='ls -la'" >>   ~/.bashrc
 sudo chmod ugo+rw  ~/.bash_aliases
@@ -19,15 +20,21 @@ echo "alias dkupp='docker-compose up -f docker-compose.prod.yml -d'" >>  ~/.bash
 
 echo "alias dkps='set -vx; docker images; docker network ls; docker volume ls;	docker ps -a; docker ps; set +vx'" >> ~/.bash_aliases
 	
-echo "alias aa='cat ~/.bashrc|grep alias; echo '========'; cat ~/.bash_aliases; '" >> ~/.bash_aliases
-
 echo "alias shx='chmod -R +x *.sh'" >>   ~/.bash_aliases
  
 # a function takes parameters... 
 echo 'dcl() { docker-compose logs "$@" ; }' >>   ~/.bashrc
  
  
+#
+#
+#
+# list aliases....
+echo "alias aa='cat ~/.bashrc|grep alias; echo '========'; cat ~/.bash_aliases; '" >> ~/.bash_aliases
+
+
 cat ~/.bash_aliases
+
 
 
 

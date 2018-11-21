@@ -168,7 +168,7 @@ _____________
 
  
  
-6000  to 6999 - docker series
+6000  to 6999 - docker series - csd
 
 6010	redash docker pmdsdata6 tbd  
 6012 	redash postgres
@@ -214,7 +214,11 @@ _____________
 6161-6169 superset 394superset
 6171-6199 save
 
-6200-6209 opennote
+
+6200-6209 opennote dg.jgleba.com
+
+
+
 
 
 .
@@ -232,6 +236,17 @@ examples..
 
 
 end 6000  to 6999 - docker series
+
+
+_____________
+
+
+
+7000-7999 series dg home docker, and ?
+
+see 6200 for dg.jg opennot
+
+
 
 
 _____________
