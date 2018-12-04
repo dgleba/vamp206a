@@ -220,7 +220,8 @@ grep -ri --exclude-dir={tmp,log,vendor} post *  | grep -vi postgres
 
 grep -ri  --include="*.js" --exclude-dir={tmp,log,vendor,node_modules} hood * 
 
-grep -ri  --include="*.js" --exclude-dir={tmp,log,vendor,node_modules} dgts * 
+
+grep -ri  --include="*.js"  --exclude="openNote.bundle.js" --exclude-dir={tmp,log,vendor,node_modules,data,} functionality * 
 
 
 eg:

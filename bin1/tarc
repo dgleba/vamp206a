@@ -32,10 +32,22 @@ base=$(basename $PWD);export HOSTNAME;cd ..
 fnpath="${PWD////_}" ; echo $fnpath
 
 # OSX, have to have options first, then -f filename.tgz and source files 
-tar -cz \
-  --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/public/assets,$base/nbproject,$base/log,$base/templates_c,$base/tar,node_modules,*.tgz,.hoodie/client.js} \
-  -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S").tgz $base;cd $base
+# tar -cz \
+  # --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/public/assets,$base/nbproject,$base/log,$base/templates_c,$base/tar,node_modules,*.tgz,.hoodie/client.js} \
+  # -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S").tgz $base;cd $base
 
+  
+# this one excludes any folder named.. datasys/
+  
+# OSX, have to have options first, then -f filename.tgz and source files 
+tar -cz --wildcards \
+  --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/public/assets,$base/nbproject,$base/log,$base/templates_c} \
+      --exclude={$base/tar,node_modules/*,*.tgz,.hoodie/client.js} \
+  --exclude={datasys/*} \
+      -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S").tgz $base;cd $base
+  # Careful, this excludes any data folder..
+
+  
 
 #
 date

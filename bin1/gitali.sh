@@ -58,14 +58,19 @@ git config credential.helper store
 #git config --global credential.helper wincred
 
 
+
+
 function userinfo() 
 {
+
   # paste this if needed..
   git config --global user.email "dgleba@gmail.com"
   git config --global user.name "David Gleba"
   git config --global github.user dgleba
   
 }
+
+
 
 function my_aliases()
 {

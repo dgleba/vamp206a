@@ -48,7 +48,25 @@ sudo chmod -R o+r /etc/apache2 # viewable for ..
 cd
 #
 
+# could be.. 2018-11-26.. see below.. # any-folder
+#also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/shared – jris198944 May 13 '14 at 8:43 
+# sudo mkdir -p /srv/web
+# sudo chown -hR root:www-data /srv/web 
+# sudo chmod -R g+rws,o-rw  /srv/web # writable for group # change group to www-data ( apache group. apache already was installed.)
+# sudo find /srv/web -type d -exec chmod g+x {} +
+# was...
+#sudo chgrp -hR www-data /srv/web # change group to www-data ( apache group. apache already was installed.)
+#sudo chmod -R o-rw /srv/web # not viewable for others..
+# make only folders +x so they can be cd into.
+#sudo chmod -R g+rws  /srv/web 
 
+
+
+# to be able to backup web config...
+sudo chmod -R o+r /etc/nginx # viewable for ..
+sudo chmod -R o+r /etc/apache2 # viewable for ..
+cd
+#
 
 #  override - with new concept...  
 #      Just share the whole srv folder, and var/www  with www-data group...   2018-07-06
@@ -68,6 +86,14 @@ sudo find ${fold} -type d -exec chmod g+x {} +
 sudo usermod -a -G www-data  $userv
 
 
+# any-folder
+# Can be.. 2018-11-26.. Just share the whole srv folder, and var/www  with www-data group...
+fold=/srv/dkr/data
+sudo mkdir -p ${fold}
+sudo chown -hR www-data:www-data  ${fold}
+sudo chmod -R g+rws,o-rw  ${fold}  #also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/shared – jris198944 May 13 '14 at 8:43 
+sudo find ${fold} -type d -exec chmod g+x {} +  # make only folders +x so they can be cd into.
+sudo usermod -a -G www-data  $userv  # add the user to the www-data group
 #
 
 
