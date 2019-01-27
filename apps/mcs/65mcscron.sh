@@ -29,7 +29,7 @@ sudo crontab -u albe -l  # list
 
 
 sudo crontab -u albe -l | grep -v '0docs/importscrapgreygold-pd6.sh'  | sudo crontab -u albe - #remove
-sudo crontab -u albe -l | { cat; echo "14 8,10 * * 0-6  /var/www/html/0docs/importscrapgreygold-pd6.sh 2>&1 | tee -a /home/albe/log/importscrapgreygold-pd6.sh.log"; } | sudo crontab -u albe -  #add
+sudo crontab -u albe -l | { cat; echo "10 8,10 * * 0-6  /var/www/html/0docs/importscrapgreygold-pd6.sh 2>&1 | tee -a /home/albe/log/importscrapgreygold-pd6.sh.log"; } | sudo crontab -u albe -  #add
 sudo crontab -u albe -l  # list
 
 

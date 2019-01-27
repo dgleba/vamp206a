@@ -12,11 +12,13 @@ exit 999
 
 search..
 
-
-
 **************   table of contents   ****************
 
 21  find newest files
+
+
+>31. find file excluding some folders
+
 
 >51.  grep
 
@@ -24,9 +26,6 @@ search..
 151 find folders named..
 
 171 find files system wide in the last hour
-
-
-
 
 
 
@@ -55,7 +54,6 @@ sudo apt-get install  gnome-search-tool
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 >11.  locate..
 
@@ -87,10 +85,8 @@ locate -0r  actions.ini   | xargs -r0 ls -ald --time-style=long-iso |  awk {'pri
 
 locate -0   256    | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
 
-
 # too long...
 locate -0   *   | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
-
 
 # 4 lines below  > >  look in 3 folders, list newest last...
 sudo updatedb
@@ -100,7 +96,6 @@ locate -0  /home/albe/share203  | xargs -r0 ls -ald --time-style=long-iso |  awk
 locate -0  /srv        | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n >>~/0/lcout99.txt
 locate -0  /var/www    | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >>~/0/lcout99.txt
 cat ~/0/lcout99.txt | sort -n | tail -n722 | grep  249
-
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -128,11 +123,9 @@ find $1 -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d
 find $1 -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -n | cut -d: -f2- | grep -v tmp/ 
 
 
-
 #list 55 newest files. exclude tmp .git 
 
 find $1 -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -n | cut -d: -f2- | grep -v '.git/' | grep -v tmp/ | tail -n99
-
 
 
 #use other.. worked..
@@ -172,28 +165,39 @@ good..
 find  .  -type f -print0 | xargs -0 stat --printf='%.16y %A %h %U %G %s\t %n\n' | sort -n |  grep -v '.git/' | grep -v tmp/ | tail -n654
 
 
-
+# good
 # last 1 hour modified
 # sudo find  . -mmin -60 -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -n | cut -d: -f2- | grep -v '.git/' | grep -v tmp/  2>&1 | tee -a /home/albe/find21.txt
 # really good.. http://www.liamdelahunty.com/tips/linux_find_exclude_multiple_directories.php
   sudo find  .  -path './sys' -prune -o   -path './proc' -prune -o   -mmin -60 -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -n | cut -d: -f2- | grep -v '.git/' | grep -v tmp/  2>&1 | tee  /home/albe/find21.txt
   or
-  sudo find  .   -path './sys' -prune -o   -path './proc' -prune -o  -mmin -60  -type f -print0 | xargs -0 stat --printf='%Y:%y %A %h %U %G %s \t %n\n'  | sort -n | cut -d: -f2- | grep -v '.git/' | grep -v tmp/  2>&1 | tee  /home/albe/find21.txt
+  # good..
+    sudo find  .   -path './sys' -prune -o   -path './proc' -prune -o  -mmin -110  -type f -print0 | xargs -0 stat --printf='%Y:%y %A %h %U %G %s \t %n\n'  | sort -n | cut -d: -f2- | grep -v '.git/' | grep -v tmp/  2>&1 | tee  /home/albe/find21.txt
 
 
 
 # last 1 day
 find  . -mtime -1 -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -n | cut -d: -f2- | grep -v '.git/' | grep -v tmp/ | tail -n654
+
 # good..
 find  . -mtime -2 -type f -print0 | xargs -0 stat --printf='%.16y %A %h %U\t%G\t%s\t%n\n' | sort -n |  grep -v '.git/' | grep -v tmp/ |grep -v x/ | tail -n154
 
-  
+ 
+
+# grep grav 42 days..
+find  . -mtime -42 -type f -print0 | xargs -0 stat --printf='%.16y %A %h %U\t%G\t%s\t%n\n' | sort -n |  grep -v '.git/' | grep -v tmp/ |grep -v x/ | grep -i grav
+
+no..
+find  . -mtime -82 -type f -print0 -iname *.html | xargs -0 stat --printf='%.16y %A %h %U\t%G\t%s\t%n\n' | sort -n |  grep -v '.git/' | grep -v 'node_modules/' | grep -v tmp/ |grep -v x/ | grep -i searchOnTable
+
+ 
 
 http://stackoverflow.com/questions/5566310/how-to-recursively-find-and-list-the-latest-modified-files-in-a-directory-with-s
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
->31.
+>31.   find file excluding some folders
+
 
 find . -type f \! -name "*.js"  -print0 | xargs -0 grep -i content
 
@@ -201,16 +205,35 @@ find . -type f \! -name "*.js"  -print0 | xargs -0 grep -i content
 #works..
 find . -type f \! -name "*.js"  \! -name "*mdb.min.css"  ! -path "./tmp/*" ! -path "./.git/*" ! -path "./log/*"   -print0 | xargs -0 grep -i content
 
+# works..
+#   find files excluding all folders named tmp, etc...
+find .    ! -name "*.env"  ! -path "*/tmp/*" ! -path "*/.git/*" ! -path "*/log/*" ! -path "*/node_modules/*" | grep mong
+
+# works..
+find .    ! -name "*.env"  ! -path "*/tmp/*" ! -path "*/.git/*" ! -path "*/log/*" ! -path "*node_modules*" ! -path "*92dkr*" | grep mong
+
+#noworky..
+find .    ! -name "*.env"   ! -path {"*node_modules*","*92dkr*"} | grep mong
+
+
+# exclude list of folders from file..   find exclude list of multiple paths
+# https://stackoverflow.com/questions/29652123/excluding-unknown-number-of-multiple-directories-from-find-search-unix
+      # Exclude dirs from file . Just create your find command from the file:
+      # exclude=' ! -path "./'$(paste -s -d'#' dirstoexclude | sed 's/#/\/\*" ! -path "\.\//g')'/*"'
+      # find . -type f ${exclude}
+#
+#vexcludedir=' ! -path "./'${vdirs/,/\/*\" ! -path \"./}'/*"'
+ # vexcludedir=' ! -path "*'${vdirs/,/*\" ! -path \"*}'*"'
+#
+# noworky..
+ vdirs=92dkr,node_modules
+ vexcludedir=' ! -path "*'${vdirs/,/*\" ! -path \"*}'*"'
+echo $vexcludedir
+find .  ! -name "*.env"  $vexcludedir | grep mong
 
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
->41.
-
-list files recursively by size..
-
-du -ah . | grep -v "/$" | sort -rh > ~/t1.txt
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -218,14 +241,26 @@ du -ah . | grep -v "/$" | sort -rh > ~/t1.txt
 
 grep -ri --exclude-dir={tmp,log,vendor} post *  | grep -vi postgres
 
+
+grep -r --exclude-dir={node_modules,tmp,log,vendor} DB *
+grep -r --exclude-dir={node_modules,tmp,log,vendor} localhos *
+
+
+
+grep -r --exclude-dir={node_modules,tmp,log,vendor} DB: * 
+
 grep -ri  --include="*.js" --exclude-dir={tmp,log,vendor,node_modules} hood * 
 
 
 grep -ri  --include="*.js"  --exclude="openNote.bundle.js" --exclude-dir={tmp,log,vendor,node_modules,data,} functionality * 
 
+grep -ri  --include="*.html"  --exclude="openNote.bundle.js" --exclude-dir={tmp,log,vendor,node_modules,data,} searchontable * 
+
 
 eg:
 grep -rli --exclude-dir={proc,boot,root,sys} hello /
+
+grep -r --exclude-dir={node_modules,.git,boot,root,sys} data *
 
 
 
@@ -453,6 +488,15 @@ split --bytes=260M /srv/file/argostat/datatest/in/3/imp_argo_tosql_3_2018.01.01_
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+>132.
+
+list files recursively by size..
+
+du -ah . | grep -v "/$" | sort -rh > ~/t1.txt
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Title:  .
@@ -495,6 +539,7 @@ locate -r 'brail' | grep "brail(.){0,9}$"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Title:  .
 -----------------------2017-07-14[Jul-Fri]23-39PM
@@ -506,6 +551,8 @@ Title:  .
 works..
 
 fnd='*mksh*' ; f1=/tmp/findtmp ; sudo find . -type d -not \( -name tmp -prune \) -iname "$fnd" >"$f1"; echo .;  echo '==== OUTPUT -- FOLDERS LIKE.. ' "$fnd"; cat "$f1" | sort 
+
+  fnd='data' ; f1=/tmp/findtmp ; sudo find . -type d -not \( -name tmp -prune \) -iname "$fnd" >"$f1"; echo .;  echo '==== OUTPUT -- FOLDERS LIKE.. ' "$fnd"; cat "$f1" | sort 
 
 
 

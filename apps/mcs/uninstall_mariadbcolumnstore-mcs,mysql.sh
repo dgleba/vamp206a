@@ -81,6 +81,11 @@ sudo su
 
 # remove list of packages from dpkg --list  --  https://linuxprograms.wordpress.com/tag/dpkg-remove/
 
+
+dpkg -l | grep -i mysq
+
+
+
 # list packages to remove..
   sudo dpkg --list *mysql*
   sudo dpkg --list *mariadb-col* | grep maria | cut -d " " -f 3
@@ -111,6 +116,22 @@ sudo  updatedb
 locate my.cnf
 
 
+
+
+_____________
+
+
+
+ sudo apt-get remove --purge mysql-server mysql-client mysql-common -y
+ sudo apt-get autoremove -y
+ sudo apt-get autoclean
+
+
+
+
+
+
+_____________
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

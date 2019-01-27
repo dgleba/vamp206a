@@ -27,10 +27,17 @@ fold=.
 sudo groupadd www-data ; sudo usermod -a -G www-data  $userv  # add the user to the www-data group
 # sudo mkdir -p ${fold}
 sudo chown -hR www-data:www-data  ${fold}
-sudo chmod -R g+rws,o-rw  ${fold}  #also set the group sticky bit, so group is set for new files. chmod g+s . – jris198944 May 13 '14 8:43 
 sudo find ${fold} -type d -exec chmod g+x {} +  # make only folders +x so they can be cd into.
+sudo chmod -R u+rw,g+rws  ${fold}  #also set the group sticky bit, so group is set for new files. chmod g+s . – jris198944 May 13 '14 8:43 
+# optional..
+sudo chmod -R        o+r  ${fold}  #also set the group sticky bit, so group is set for new files. chmod g+s . – jris198944 May 13 '14 8:43 
+groups
+
 #
 
+#optional..
+
+sudo chmod -R o-w  ${fold}  #also set the group sticky bit, so group is set for new files. chmod g+s . – jris198944 May 13 '14 8:43 
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

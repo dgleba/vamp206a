@@ -53,9 +53,10 @@ sed -i -e '/filemode/ s/true/false/' $target  # turn filemode to false..
   git config core.eol lf
   git config core.autocrlf input
 #
+# Win:
+git config --global credential.helper wincred
+# linux..
 git config credential.helper store
-#Win:
-#git config --global credential.helper wincred
 
 
 

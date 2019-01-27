@@ -52,12 +52,37 @@ nvm --version
 
 #https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04
 # nvm install 8.9.0
-nvm install 8
+nvm install 10
 
 # nvm use 8.9.0
-nvm use 8
+nvm use 10
 
 nvm ls
+
+
+# nosudo
+
+albe@pmdsdata7:/srv/file/listor$ npm config get prefix
+
+
+/home/albe/.nvm/versions/node/v10.15.0
+┌────────────────────────────────────────────────────────┐
+│                npm update check failed                 │
+│          Try running with sudo or get access           │
+│          to the local update config store via          │
+│ sudo chown -R $USER:$(id -gn $USER) /home/albe/.config │
+└────────────────────────────────────────────────────────┘
+albe@pmdsdata7:/srv/file/listor$
+
+
+mkdir ~/.npm-packages
+npm config set prefix ~/.npm-packages
+
+
+sudo chown -R $USER:$(id -gn $USER)  /home/albe/.npm
+
+
+#
 
 
 

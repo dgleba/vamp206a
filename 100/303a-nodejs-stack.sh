@@ -67,6 +67,7 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | 
 source ~/.profile
 source ~/.bashrc
 tail -n+10 ~/.bashrc |bash
+exec bash
 
 
 
@@ -83,7 +84,7 @@ echo
 echo 
 echo 
 echo 
-echo 'next run --  303b-js-stack.sh'
+echo 'next run --  303b-nodejs-stack.sh'
 echo 
 echo 
 echo 

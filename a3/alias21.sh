@@ -14,6 +14,7 @@ echo "alias psg='ps -ef|grep '" >>   ~/.bash_aliases
 
 echo "alias dkup='docker-compose up'" >>   ~/.bash_aliases
 echo "alias dkd='docker-compose down'" >>   ~/.bash_aliases
+echo "alias dkst='docker-compose stop'" >>   ~/.bash_aliases
 echo "alias dkupd='docker-compose up -d'" >>   ~/.bash_aliases
 echo "alias dkupr='docker-compose  up --build  --force-recreate  '" >>  ~/.bash_aliases
 echo "alias dkupp='docker-compose up -f docker-compose.prod.yml -d'" >>  ~/.bash_aliases

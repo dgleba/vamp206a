@@ -1,0 +1,40 @@
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-01-21[Jan-Mon]20-03PM
+
+works..
+
+
+outd='z2' ;  mkdir -p $outd  ;  tar -xpv --atime-preserve --delay-directory-restore -C ./$outd  -f abiodun-todo-vamp398_srv_test__2019.01.21_12.37.33.tgz
+
+
+
+
+
+----------------------------------------------------
+
+
+
+
+# extract to a specified folder...
+
+# outd='02' ;  mkdir -p $outd  ;  tar -xpv --atime-preserve --delay-directory-restore -C ./$outd  -f /home/albe/share203/t/rail260-v206m.local__2016.07.02_12.31.16.tgz 
+
+
+
+
+Unfortunately, I can't get it to preserve the modified timestamp..
+
+outd='03' ;  mkdir -p $outd  ;  tar -xpv  -C ./$outd  -f /home/albe/share203/t/rail260-v206m.local__2016.07.02_12.31.16.tgz 
+
+
+# ? This will keep all files that have a newer timestamp as is.  --no-overwrite-dir
+
+
+
+
+
+
+
+

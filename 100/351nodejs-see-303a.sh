@@ -31,15 +31,17 @@ saynow
 # curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 
 # To install the LTS release, use this PPA
-  curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+# curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
 
-# sudo apt-get install -y nodejs
+curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+
+ sudo apt-get install -y nodejs
 
 sudo apt-get -y install npm
 sudo npm install npm@latest -g
 
 
-sudo npm install -g angular-cli
+#sudo npm install -g angular-cli
 
 
 
@@ -56,15 +58,15 @@ Title:  .
 
 
 
-#!/bin/bash
-set -ex
+# #!/bin/bash
+# set -ex
 
-# remove previous version
-sudo apt-get remove -y nodejs
+# # remove previous version
+# sudo apt-get remove -y nodejs
 
-# install older / other version
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt-get install -y nodejs
+# # install older / other version
+# curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+# sudo apt-get install -y nodejs
 
 
 ----------------------------------------------------
