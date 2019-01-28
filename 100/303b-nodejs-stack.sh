@@ -62,17 +62,17 @@ nvm ls
 
 # nosudo
 
-albe@pmdsdata7:/srv/file/listor$ npm config get prefix
+# albe@pmdsdata7:/srv/file/listor$ npm config get prefix
 
 
-/home/albe/.nvm/versions/node/v10.15.0
-┌────────────────────────────────────────────────────────┐
-│                npm update check failed                 │
-│          Try running with sudo or get access           │
-│          to the local update config store via          │
-│ sudo chown -R $USER:$(id -gn $USER) /home/albe/.config │
-└────────────────────────────────────────────────────────┘
-albe@pmdsdata7:/srv/file/listor$
+# /home/albe/.nvm/versions/node/v10.15.0
+# ┌────────────────────────────────────────────────────────┐
+# │                npm update check failed                 │
+# │          Try running with sudo or get access           │
+# │          to the local update config store via          │
+# │ sudo chown -R $USER:$(id -gn $USER) /home/albe/.config │
+# └────────────────────────────────────────────────────────┘
+# albe@pmdsdata7:/srv/file/listor$
 
 
 mkdir ~/.npm-packages
@@ -93,6 +93,10 @@ npm -v
 npx -v
 sails -v
 
+# test - install something..
+cd 
+mkdir 0
+cd 0
 npm install -g marked --save
 
 # Update it..
