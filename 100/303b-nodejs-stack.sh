@@ -75,14 +75,22 @@ nvm ls
 # albe@pmdsdata7:/srv/file/listor$
 
 
+
+
+
 mkdir ~/.npm-packages
 npm config set prefix ~/.npm-packages
-
+sudo chown -R $USER:$(id -gn $USER)  /home/albe/.npm-packages
 
 sudo chown -R $USER:$(id -gn $USER)  /home/albe/.npm
 
+nvm use --delete-prefix v10.15.1
 
 #
+# albe@ubu381a80705:~$ nvm install 10
+# v10.15.1 is already installed.
+# nvm is not compatible with the npm config "prefix" option: currently set to "/home/albe/.npm-packages"
+# Run `nvm use --delete-prefix v10.15.1` to unset it.
 
 
 

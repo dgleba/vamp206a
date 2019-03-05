@@ -282,6 +282,16 @@ REUSABLE  -  Reusable Series
 7451-   
 
 
+STANDARD PORTS
+
+3100 sqlpad
+3306 mysql
+5432 postgres
+27017 mongodb
+
+
+
+
 
 
 _____________

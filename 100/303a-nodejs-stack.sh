@@ -45,7 +45,7 @@ sudo ls
 # remove...
 # sudo npm uninstall -g sails 
 # sudo npm uninstall -g ember-cli 
-# sudo npm uninstall -g syane-cli 
+# sudo npm uninstall -g sane-cli 
 sudo apt-get -y update
 sudo apt-get -y remove nodejs
 sudo apt-get -y remove npm
@@ -62,7 +62,10 @@ sudo apt-get -y install build-essential libssl-dev
 #   https://github.com/creationix/nvm/releases
 #      edit v0.31.0 .....
 # curl https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+#curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+
 
 source ~/.profile
 source ~/.bashrc

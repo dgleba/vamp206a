@@ -6,6 +6,8 @@ function Purpose() {
 
 #  Purpose:  tar the current folder and give the archive a useful name..
 
+chmod +x ~/bin/tarc4
+
 END
 # end block comment ===============================
 }
@@ -37,19 +39,39 @@ fnpath="${PWD////_}" ; echo $fnpath
   # -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S").tgz $base;cd $base
 
   
-# this one excludes any folder named.. datasys/
-  
-# OSX, have to have options first, then -f filename.tgz and source files 
-tar -cz --wildcards \
-  --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/public/assets,$base/nbproject,$base/log,$base/templates_c} \
-      --exclude={$base/tar,node_modules/*,*.tgz,.hoodie/client.js} \
-  --exclude={datasys/*,data/*} \
-      -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S").tgz $base;cd $base
-  # Careful, this excludes any data folder..
+# this one excludes any folder named.. datasys/ data/
 
+# works..
+# tar -cz --wildcards \
+#   --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/public/assets,$base/nbproject,$base/log} \
+#       --exclude={$base/tar,*.tgz,.hoodie/client.js,templates_c/*} \
+#   --exclude={datasys/*,tmp/*,x/*,log/*,node_modules/*,bower_components/*,dist/assets/*} \
+#       --exclude={data/*,egrav22/backups/*} \
+#     -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S").tgz $base;cd $base
+#   # Careful, this excludes any data folder..
+
+# works..  
+tar -cz --wildcards \
+  --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/public/assets,$base/nbproject,$base/log} \
+    --exclude={$base/tar,templates_c/*} \
+    --exclude=tmp/* \
+    --exclude=x/*  \
+    --exclude=log/* \
+    --exclude=.hoodie/client.js \
+    --exclude=*.tgz \
+    --exclude=dist/assets/* \
+    --exclude=dist/* \
+    --exclude=bower_components/* \
+    --exclude=node_modules/* \
+    --exclude=datasys/* \
+    --exclude=egrav22/backups/* \
+    --exclude=data/* \
+    -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S").tgz $base;cd $base
+  # Careful, this excludes any data folder..
   
 
 #
 date
 #
 set +vx
+

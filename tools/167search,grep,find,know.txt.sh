@@ -31,9 +31,6 @@ search..
 
 
 
-
-
-
 http://askubuntu.com/questions/208030/search-for-files-with-gui
 
 END
@@ -250,6 +247,8 @@ grep -r --exclude-dir={node_modules,tmp,log,vendor} localhos *
 grep -r --exclude-dir={node_modules,tmp,log,vendor} DB: * 
 
 grep -ri  --include="*.js" --exclude-dir={tmp,log,vendor,node_modules} hood * 
+
+grep -ri  --include="*.sh" --exclude-dir={tmp,log,vendor,node_modules} mail * 
 
 
 grep -ri  --include="*.js"  --exclude="openNote.bundle.js" --exclude-dir={tmp,log,vendor,node_modules,data,} functionality * 
