@@ -62,15 +62,13 @@ Step 3
 
 # docker example..  32init, custom1 is permissions, then 81docker.sh
 
- 
-cd ; export fil=31timeshift.sh ; export pth=shc/a3 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 
 
 # Logout and login  [or.. exec bash ] after running this next line so that the settings are activated...
 
-cd ; sudo chmod -R +x shc/ ; sudo shc/a3/32init.sh 2>&1 | tee -a 32init_v206_log$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash
+cd ; sudo chmod -R +x shc/ ; sudo shc/a5/33init.sh 2>&1 | tee -a 33init_v206_log$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash
 
-sudo apt -y install build-essential
+
 
 
 ## ---------------   logout and login again. or  -  exec bash ----------------------- 
@@ -79,16 +77,6 @@ sudo apt -y install build-essential
 
 
 Step 4
-
-cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t docker1 2>&1 | tee -a v206_start_log_docker1_${fil}$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash 
-
-# or
-
-cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t custom1 2>&1 | tee -a v206_start_log$(date +"__%Y-%m-%d_%H.%M.%S").log
-
-# or
-
-cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t regularmysqlserver 2>&1 | tee -a v206_start_log$(date +"__%Y-%m-%d_%H.%M.%S").log
 
 
 
@@ -99,25 +87,6 @@ cd ; sudo chmod -R +x shc/ ; sudo shc/a3/15start.sh -t regularmysqlserver 2>&1 |
 cd ; export fil=81docker.sh ; export pth=shc/a3 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 
 
-
-
-
-Step 5
-
-
-# If you have not used the  mariadb `columnstore` stanza in a3/15start.sh then you can install mariadb columnstore...
-
-# run apps/mcs/mariadbcolumnstore-step1.sh per the usage info at the top of that file..
-
-
-
-
-
-Step 6
-
-
-
-# paste commands from  apps/mcs/mariadbcolumnstore-step2.sh
 
 
 

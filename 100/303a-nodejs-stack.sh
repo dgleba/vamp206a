@@ -87,7 +87,7 @@ echo
 echo 
 echo 
 echo 
-echo 'next run --  303b-nodejs-stack.sh'
+echo 'next run -- exec bash;  303b-nodejs-stack.sh'
 echo 
 echo 
 echo 

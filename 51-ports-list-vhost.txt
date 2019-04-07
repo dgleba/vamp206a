@@ -1,6 +1,13 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-ports:
+Internal / local Network ports:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+older..
 
 ports are defined in these files 
 
@@ -223,9 +230,9 @@ _____________
 6200-6209 opennote dg.jgleba.com     ***
     see 6200 for dg.jg opennot
 
-6211-6209 listo429c  - 2018-12-03    ***
+6211-6299 listo429c  - 2018-12-03    ***
 
-
+6301 phpfpm422 see dkrcol422
 
 
 .
@@ -260,7 +267,10 @@ END >>> end 6000  to 6999 - docker series
 _____________
 
 
-REUSABLE  -  Reusable Series
+
+
+
+REUSABLE  -  Reusable Series dg
 
 
 7000-7199 series dg home docker, and ?
@@ -270,8 +280,11 @@ REUSABLE  -  Reusable Series
 7201-   mysql
 7211-   mongodb
 7221-   couchdb
-7231- 
-7251-   
+7231-   sqlpad
+7241-   postgres
+7242-   
+7243-   
+
   
 7301-   apache
 7341-   php
@@ -279,10 +292,12 @@ REUSABLE  -  Reusable Series
 7361-   django
 
 7401-   nginx
+7412-   nginx rev proxy for non-tls
 7451-   
 
 
-STANDARD PORTS
+STANDARD PORTS by originators.
+
 
 3100 sqlpad
 3306 mysql

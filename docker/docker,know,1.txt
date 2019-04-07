@@ -5,6 +5,67 @@ see also docker know 2
 
 
 
+----------------------------------------------------
+Title:  .
+-----------------------2019-03-18[Mar-Mon]10-38AM
+
+log rotate...
+
+
+works..
+
+https://medium.freecodecamp.org/how-to-setup-log-rotation-for-a-docker-container-a508093912b2
+
+
+Do I need config file???? Is compose enough?
+
+tmpfile9='/etc/docker/daemon.json'
+cat << HEREDOC> $tmpfile9
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "1m",
+    "max-file": "30"
+  }
+}
+
+HEREDOC
+
+cat $tmpfile9
+
+_____________
+
+test...
+
+version: '3.2'
+services:
+  nginx:
+    image: 'nginx:latest'
+    ports:
+      - '54123:80'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "3"
+        
+_____________
+
+
+notes..
+
+/etc/docker/daemon.json
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "1m",
+    "max-file": "30"
+  }
+}
+
+
+----------------------------------------------------
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Title:  .
