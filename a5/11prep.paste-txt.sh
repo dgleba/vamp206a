@@ -12,6 +12,10 @@
   
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Notes:
+
+  Vultr: uses root user for ubuntu 16/18.
+
 
 
 Step 1

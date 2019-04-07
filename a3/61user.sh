@@ -6,9 +6,9 @@ echo "${BASH_SOURCE[@]}"  # echo full bashsource array
 
 #  notes:
 
-# use 61addnewuser.sh to add a user...
+# use `nuser.sh` to interactively add a user after this.  (this was 61addnewuser.sh)
 
-# yes: use www-data group, don't:  add www group and a user
+# yes: use www-data group.  don't:  add `www` group and a user
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
