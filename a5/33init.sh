@@ -100,9 +100,16 @@ source shc/a3/alias21.sh
 
 sudo apt -y install build-essential
 
+
+# add ~/bin to path..
 mkdir -p ~/bin
 PATH="$PATH:$HOME/bin"
-
+sudo cat <<EOF >> $HOME/.bashrc
+# -------------------------------------------------------------------
+#
+PATH="$PATH:$HOME/bin"
+#
+EOF
 
 
 }
