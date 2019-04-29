@@ -71,6 +71,7 @@ Step 3
 # Logout and login  [or.. exec bash ] after running this next line so that the settings are activated...
 
 cd ; sudo chmod -R +x shc/ ; sudo shc/a5/33init.sh 2>&1 | tee -a 33init_v206_log$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash
+cd ; sudo chmod -R +x shc/ ; sudo shc/a3/62grpshare.sh 2>&1 | tee -a 62shr_v206_log$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash
 
 
 

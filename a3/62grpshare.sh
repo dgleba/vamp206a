@@ -50,6 +50,7 @@ sudo chmod -R g+rws  /var/lib/mysql-files
 
 # make a shared folder and allow www-data group to write to it...
 # sudo groupadd www  ..#.. just use www-data group
+sudo groupadd www-data ; sudo usermod -a -G www-data  $userv  # add the user to the www-data group
 sudo mkdir -p /srv/share
 sudo chgrp -hR www-data /srv/share
 sudo chown -R www-data  /srv/share
@@ -177,6 +178,21 @@ sudo find *.sh $folder1 -exec chmod g+x {} +
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# New 2018-07-06 Just share the whole srv folder, and var/www  with www-data group...
+#
+fold=/srv
+sudo groupadd www-data ; sudo usermod -a -G www-data  $userv  # add the user to the www-data group
+sudo usermod -a -G www-data  $USER
+sudo mkdir -p ${fold}
+sudo chgrp -hR www-data ${fold}
+sudo chown -R www-data  ${fold}
+#also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/shared – jris198944 May 13 '14 at 8:43 
+sudo chmod -R g+rws  ${fold}
+sudo chmod -R o-rw ${fold}
+# make only folders +x so they can be cd into.
+sudo find ${fold} -type d -exec chmod g+x {} +
+
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

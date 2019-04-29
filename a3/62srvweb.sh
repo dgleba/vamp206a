@@ -29,6 +29,28 @@ id $userv
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+#  override - with new concept...  
+#      Just share the whole srv folder, and var/www  with www-data group...   2018-07-06
+
+
+# New 2018-07-06 Just share the whole srv folder, and var/www  with www-data group...
+#
+fold=/srv
+sudo groupadd www-data ; sudo usermod -a -G www-data  $userv  # add the user to the www-data group
+sudo mkdir -p ${fold}
+sudo chgrp -hR www-data ${fold}
+sudo chown -R www-data  ${fold}
+#also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/shared – jris198944 May 13 '14 at 8:43 
+sudo chmod -R g+rws  ${fold}
+sudo chmod -R o-rw ${fold}
+# make only folders +x so they can be cd into.
+sudo find ${fold} -type d -exec chmod g+x {} +
+sudo usermod -a -G www-data  $userv
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 # make srv/web folder and change permissions...
 # my standard practice for web apps...
 #
@@ -67,23 +89,6 @@ sudo chmod -R o+r /etc/nginx # viewable for ..
 sudo chmod -R o+r /etc/apache2 # viewable for ..
 cd
 #
-
-#  override - with new concept...  
-#      Just share the whole srv folder, and var/www  with www-data group...   2018-07-06
-
-
-# New 2018-07-06 Just share the whole srv folder, and var/www  with www-data group...
-#
-fold=/srv
-sudo mkdir -p ${fold}
-sudo chgrp -hR www-data ${fold}
-sudo chown -R www-data  ${fold}
-#also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/shared – jris198944 May 13 '14 at 8:43 
-sudo chmod -R g+rws  ${fold}
-sudo chmod -R o-rw ${fold}
-# make only folders +x so they can be cd into.
-sudo find ${fold} -type d -exec chmod g+x {} +
-sudo usermod -a -G www-data  $userv
 
 
 # any-folder

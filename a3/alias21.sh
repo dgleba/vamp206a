@@ -4,6 +4,22 @@ echo "${BASH_SOURCE[@]}"  # echo full bashsource array
 date ; set +vx  ; set -vx ; # echo off, then echo on
 #
 
+
+
+
+#
+# You can just pass paramaters to an alias.
+#    https://unix.stackexchange.com/questions/3773/how-to-pass-parameters-to-an-alias
+#
+# Use a function to get alias like behavior with parameters.
+#    https://stackoverflow.com/questions/7131670/make-a-bash-alias-that-takes-a-parameter
+#      bash$ myfunction() { mv "$1" "$1.bak" && cp -i "$2" "$1"; }
+#
+
+
+
+
+
 #alias for ls -la
 #
 
@@ -35,9 +51,6 @@ echo "alias aa='cat ~/.bashrc|grep alias; echo '========'; cat ~/.bash_aliases; 
 
 
 cat ~/.bash_aliases
-
-
-
 
 
 #~~~~~
@@ -97,3 +110,7 @@ cat ~/bin/blank.sh
 sudo chmod -R +x bin
 sudo chown -R $userv bin
 sudo chgrp -R $userv bin
+
+
+
+

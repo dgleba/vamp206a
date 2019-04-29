@@ -128,6 +128,13 @@ Step 7
 # eg: groups will take effect after login.
 
 
+
+Step 8
+
+open  vamp206a\100\303a-nodejs-stack.sh and paste the command in the usage comment to 
+
+
+
 done
 
 

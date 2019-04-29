@@ -302,6 +302,39 @@ mysql -uroot -p$mysqlrootpassw  -e "revoke ALL PRIVILEGES ON hrdb.* from dg417@l
 mysql -uroot -p$mysqlrootpassw  -e "revoke ALL PRIVILEGES ON hrdb.* from dg417@'%' ;"
 
 
+# ciuser
+
+source ~/safe/21env.sh
+source ~/shc/21env.sh
+user2=ciuser
+array2=( 
+	cilist	      
+	cmmdb	        
+	greygold	    
+	ignition	    
+	leanmfg       
+	lukup_pub	    
+	metabasedb    
+	prod367db	    
+	prodrptdb	    
+	qadata	      
+	qualitydb	    
+	shift_smsmeer 
+	shiftcsd1	    
+	shiftcsd1suprv
+	shiftcsd2	    
+	shiftcsd2suprv
+  prodrptdb_archive
+)  
+for patrn in "${array2[@]}"
+do
+  echo $patrn
+  mysql -uroot -p$mysqlrootpassw  -e "GRANT ALL PRIVILEGES ON $patrn.* TO $user2@'%' ;"
+  mysql -uroot -p$mysqlrootpassw  -e "GRANT ALL PRIVILEGES ON $patrn.* TO $user2@'localhost' ;"
+done 
+
+
+
 
 
 #perms...
@@ -388,7 +421,27 @@ mysql was not installed. it specified ver 5.6 and that is not available in 16.04
 
 _____________ 
 
+ciuser
 
+	cilist	      
+	cmmdb	        
+	greygold	    
+	ignition	    
+	leanmfg       
+	lukup_pub	    
+	metabasedb    
+	prod367db	    
+	prodrptdb	    
+	qadata	      
+	qualitydb	    
+	shift_smsmeer 
+	shiftcsd1	    
+	shiftcsd1suprv
+	shiftcsd2	    
+	shiftcsd2suprv
+  
+
+  
 
 _____________ 
 

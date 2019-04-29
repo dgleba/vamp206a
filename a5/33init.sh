@@ -137,6 +137,8 @@ if [ -f /home/$userv/15ran ]; then
     #   turned off..         runsam         # turned this off 2018-06-11 
     #
     onetime1
+    cd; source shc/a3/62srvweb.sh 
+
     #rsnap
     cd
     # create 15ran to mark that is has been run. Then don't run it again.

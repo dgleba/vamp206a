@@ -230,12 +230,23 @@ _____________
 6200-6209 opennote dg.jgleba.com     ***
     see 6200 for dg.jg opennot
 
+    
 6211-6299 listo429c  - 2018-12-03    ***
+
 
 6301 phpfpm422 see dkrcol422
 
 
-.
+6312-39 ngnx proxy revprox453  
+
+6341   owncloud red451e
+
+
+
+===================================================
+
+JUNK - junk ports for testing.
+
 .
 
 6700-7000  JUNK - junk ports for testing.
