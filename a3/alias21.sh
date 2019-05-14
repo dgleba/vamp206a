@@ -28,6 +28,7 @@ echo "alias lsl='ls -la'" >>   ~/.bashrc
 sudo chmod ugo+rw  ~/.bash_aliases
 echo "alias psg='ps -ef|grep '" >>   ~/.bash_aliases
 
+echo "alias dc='docker-compose'" >>   ~/.bash_aliases
 echo "alias dkup='docker-compose up'" >>   ~/.bash_aliases
 echo "alias dkd='docker-compose down'" >>   ~/.bash_aliases
 echo "alias dkst='docker-compose stop'" >>   ~/.bash_aliases

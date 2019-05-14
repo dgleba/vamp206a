@@ -74,7 +74,7 @@ Step 3
 cd ; sudo chmod -R +x shc/ ; sudo shc/a5/33init.sh 2>&1 | tee -a 33init_v206_log$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash
 
 
-cd ; sudo chmod -R +x shc/ ; sudo shc/a3/62grpshare.sh 2>&1 | tee -a 62shr_v206_log$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash
+cd ; sudo chmod -R +x shc/ ; sudo shc/a3/62grpshare.sh 2>&1 | tee -a 62grpshare_v206_log$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash
 
 
 
@@ -93,8 +93,6 @@ Step 4
 
 
 cd ; export fil=81docker.sh ; export pth=shc/a3 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
-
-
 
 
 
