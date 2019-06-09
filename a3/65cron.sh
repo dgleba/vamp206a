@@ -73,7 +73,14 @@ sudo crontab -u albe -l | { cat; echo "21 1,18 * * 0-6  /var/www/html/cmmdb/acti
 sudo crontab -u albe -l  # list
 
 sudo crontab -u albe -l | grep -v '/0docs-pmdsdata/scrapimport.sh'  | sudo crontab -u albe - #remove
-sudo crontab -u albe -l | { cat; echo "3 7 * * 0-6 /var/www/html/0docs-pmdsdata/scrapimport.sh 2>&1 | tee -a /home/albe/log/scrapimport1.log"; } | sudo crontab -u albe -  #add
+sudo crontab -u albe -l | { cat; echo "50 6 * * 0-6 /var/www/html/0docs-pmdsdata/scrapimport.sh 2>&1 | tee -a /home/albe/log/scrapimport1.log"; } | sudo crontab -u albe -  #add
+
+# test temporary.. 2019-06-07_Fri_11.45-AM
+# sudo crontab -u albe -l | { cat; echo "47 12 * * 0-6 /var/www/html/0docs-pmdsdata/scrapimport.sh 2>&1 | tee -a /home/albe/log/scrapimport1.log"; } | sudo crontab -u albe -  #add
+sudo crontab -u albe -l  # list
+date
+# tail -f /home/albe/log/scrapimport1.log
+
 
 sudo crontab -u albe -l | grep -v '/0docs-pmdsdata/archivedata1.sh'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | { cat; echo "35 2 * * 0-6 /var/www/html/0docs-pmdsdata/archivedata1.sh >> /home/albe/log/archive1.log 2<&1"; } | sudo crontab -u albe -  #add

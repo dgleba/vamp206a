@@ -5,6 +5,8 @@ date ; set +vx  ; set -vx ; # echo off, then echo on
 #
 
 
+# usage on it own..   prg=~/shc/a3/alias21.sh ; chmod +x $prg ; $prg
+
 
 
 #

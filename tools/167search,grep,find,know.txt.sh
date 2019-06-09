@@ -236,7 +236,7 @@ find .  ! -name "*.env"  $vexcludedir | grep mong
 
 >51. grep..
 
-grep -ri --exclude-dir={node_modules,tmp,log,vendor,dist} status *
+grep -ri --exclude-dir={node_modules,tmp,log,vendor,dist} localhost *
 
 
 

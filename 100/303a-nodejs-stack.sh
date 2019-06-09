@@ -27,6 +27,15 @@ I would recommend installing node using Node Version Manager(NVM). That saved a 
 
 https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-an-ubuntu-14-04-server
 
+
+
+2019-05-19
+	I used this.. https://tecadmin.net/install-latest-nodejs-npm-on-ubuntu/
+		sudo apt-get install curl python-software-properties
+		curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+		sudo apt-get install nodejs
+
+
 END
 # end block comment ===============================
 }

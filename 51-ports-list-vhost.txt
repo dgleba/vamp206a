@@ -221,6 +221,9 @@ _____________
 6141-6149 dkr388django dkr
 
 6151-6159 386metabase,  v30 2018-09-28 pmdsdata8. not 396dkrmetabase30 dkr   ***a
+6152      test dkr /srv/dkr/metabase6152 v32.8 2019-06-06 pmdsdata8
+
+
 
 6161-6169 superset 394superset
 6171-6199 save
@@ -242,43 +245,7 @@ _____________
 6341   owncloud red451e
 
 
-
 ===================================================
-
-JUNK - junk ports for testing.
-
-.
-
-6700-7000  JUNK - junk ports for testing.
-
-
-examples..
-
-
-
-6701  mongo   https://hackernoon.com/build-a-crud-api-with-mongodb-express-and-docker-70510c6f706b
-6702  mongo admin
-6703  backend
-6704  
-
-
-6971-6979   sftp://pmdsdata4/srv/dkr/dockerizing-django/docker-compose.yml from https://github.com/realpython/dockerizing-django
-
-6981-6989   albe@pmdsdata4:/srv/dkr/juanjflask$    https://github.com/juanjbrown/flask-nginx-gunicorn-docker-sample.git 
-
-6991-6999  albe@pmdsdata4:/srv/dkr/dkr-wsv-ch3-app$
-
-
-
-
-
-END >>> end 6000  to 6999 - docker series
-
-
-_____________
-
-
-
 
 
 REUSABLE  -  Reusable Series dg
@@ -286,7 +253,7 @@ REUSABLE  -  Reusable Series dg
 
 7000-7199 series dg home docker, and ?
 
-7200-8000 dg  reusable standard ports
+7200-7700 dg  reusable standard ports
 
 7201-   mysql
 7211-   mongodb
@@ -306,6 +273,8 @@ REUSABLE  -  Reusable Series dg
 7412-   nginx rev proxy for non-tls
 7451-   
 
+7501-   egrav22 80
+7502-   egrav22 443
 
 STANDARD PORTS by originators.
 
@@ -314,6 +283,40 @@ STANDARD PORTS by originators.
 3306 mysql
 5432 postgres
 27017 mongodb
+
+
+===================================================
+
+JUNK - junk ports for testing.
+
+.
+
+6700-7000  JUNK - junk ports for testing.
+
+
+examples..
+
+
+6701  mongo   https://hackernoon.com/build-a-crud-api-with-mongodb-express-and-docker-70510c6f706b
+6702  mongo admin
+6703  backend
+6704  
+
+6971-6979   sftp://pmdsdata4/srv/dkr/dockerizing-django/docker-compose.yml from https://github.com/realpython/dockerizing-django
+
+6981-6989   albe@pmdsdata4:/srv/dkr/juanjflask$    https://github.com/juanjbrown/flask-nginx-gunicorn-docker-sample.git 
+
+6991-6999  albe@pmdsdata4:/srv/dkr/dkr-wsv-ch3-app$
+
+
+
+END >>> end 6000  to 6999 - docker series
+
+
+_____________
+
+
+
 
 
 
