@@ -14,7 +14,7 @@ search..
 
 **************   table of contents   ****************
 
-21  find newest files
+>21.  find newest files
 
 
 >31. find file excluding some folders
@@ -27,7 +27,7 @@ search..
 
 171 find files system wide in the last hour
 
-
+181 locate
 
 
 
@@ -50,49 +50,6 @@ sudo apt-get install catfish
 sudo apt-get install  gnome-search-tool
 
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
->11.  locate..
-
-only files..
-
-locate -b0 drail246 | xargs -r0 ls -aldtr
-
-dirs too..
-locate -0 drail246 | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >~/0/lcout.txt
-#awk only cols 6,7,8
-
-dirs too, newest last:
-locate -0   drail246   | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >~/0/lcout2.txt
-
-# find all 237 grep mfile..  show all 237 [projects and just show the Gemfile]
-locate -0   237    | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  |grep mfile
-
-#noworks..
-locate -0   237  | grep mfile  | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
-
-works..
-locate -0r   237.*mfile    | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
-
-locate -0r   mfile    | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
-
-locate and list newest files last...
-
-locate -0r  actions.ini   | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
-
-locate -0   256    | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
-
-# too long...
-locate -0   *   | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
-
-# 4 lines below  > >  look in 3 folders, list newest last...
-sudo updatedb
-ls
-locate -0  /home/albe/web  | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >~/0/lcout99.txt
-locate -0  /home/albe/share203  | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >>~/0/lcout99.txt
-locate -0  /srv        | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n >>~/0/lcout99.txt
-locate -0  /var/www    | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >>~/0/lcout99.txt
-cat ~/0/lcout99.txt | sort -n | tail -n722 | grep  249
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -174,7 +131,9 @@ find  .  -type f -print0 | xargs -0 stat --printf='%.16y %A %h %U %G %s\t %n\n' 
 
 
 # last 1 day
-find  . -mtime -1 -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -n | cut -d: -f2- | grep -v '.git/' | grep -v tmp/ | tail -n654
+find  . -mtime -1 -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -n | cut -d: -f2- | grep -v '.git/' |  grep -vE '(tmp/|log/|vendor/|fonts/|node_modules/)' | tail -n354
+
+
 
 # good..
 find  . -mtime -2 -type f -print0 | xargs -0 stat --printf='%.16y %A %h %U\t%G\t%s\t%n\n' | sort -n |  grep -v '.git/' | grep -v tmp/ |grep -v x/ | tail -n154
@@ -236,11 +195,23 @@ find .  ! -name "*.env"  $vexcludedir | grep mong
 
 >51. grep..
 
-grep -ri --exclude-dir={node_modules,tmp,log,vendor,dist} localhost *
+grep -ri --exclude-dir={node_modules,tmp,log,vendor,dist} ':8080' *
+
+
+grep -ri --exclude-dir={node_modules,tmp,log,vendor,dist} --exclude={yarn.lock*,CHANGELOG.md,bulma.min.css,vendor.js} 'redis' *
+
+#only filenames = -l  -- when the output is too long to see what file to exclude.
+grep -l -ri --exclude-dir={node_modules,tmp,log,vendor,dist} --exclude={yarn.lock*,CHANGELOG.md,bulma.min.css} '3030' *
 
 
 
-grep -ri --exclude-dir={tmp,log,vendor} post *  | grep -vi postgres
+grep -ri --exclude-dir={node_modules,tmp,log,vendor,dist} vue-template-compiler *
+
+grep -ri --exclude-dir={node_modules,tmp,log,vendor,dist} brail *
+
+
+
+grep -ri --exclude-dir={tmp,log,vendor} __1 *   | grep -vi __1
 
 
 
@@ -366,9 +337,11 @@ grep 'mcmaster'  -ria  --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,b
 
 grep 'segeren'  -ria --include={*.php,*.txt} --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2} --exclude={*.sublime-workspace,*.geany,error_log,*.sql,*.msg}  . 
 
-grep 'alc123'  -ria --include={*.php,*.rb,*.yml,*.txt,*.ini} --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2} --exclude={*.sublime-workspace,*.geany,error_log,*.sql,*.msg}  . 
+cd /var/www/html
+cd /srv/web
+grep 'alc123'  -ria --include={*.php,*.rb,*.yml,*.txt,*.ini,*.py,*.con*,*.dbc} --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2} --exclude={*.sublime-workspace,*.geany,error_log,*.sql,*.msg}  .  >~/pas123.txt
 
-grep 'password'  -ria --include={*.php,*.rb,*.yml,*.txt,*.ini} --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2} --exclude={*.sublime-workspace,*.geany,error_log,*.sql,*.msg}  . 
+grep 'password'  -ria --include={*.php,*.rb,*.yml,*.txt,*.ini,*.py,*.con*,*.dbc} --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2} --exclude={*.sublime-workspace,*.geany,error_log,*.sql,*.msg}  . >~/paspas.txt
 
 
 grep 'ude pun'  -ria  --exclude-dir=tmp
@@ -602,7 +575,6 @@ Title:  .
 
 
 
-
 >171.
 
 
@@ -636,5 +608,52 @@ This shows you what to restore to put the system back to the way it was earlier.
   
   
   
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+>181.  locate..
+
+
+only files..
+
+locate -b0 drail246 | xargs -r0 ls -aldtr
+
+dirs too..
+locate -0 drail246 | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >~/0/lcout.txt
+#awk only cols 6,7,8
+
+dirs too, newest last:
+locate -0   drail246   | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >~/0/lcout2.txt
+
+# find all 237 grep mfile..  show all 237 [projects and just show the Gemfile]
+locate -0   237    | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  |grep mfile
+
+#noworks..
+locate -0   237  | grep mfile  | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
+
+works..
+locate -0r   237.*mfile    | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
+
+locate -0r   mfile    | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
+
+locate and list newest files last...
+
+locate -0r  actions.ini   | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
+
+locate -0   256    | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
+
+# too long...
+locate -0   *   | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  
+
+# 4 lines below  > >  look in 3 folders, list newest last...
+sudo updatedb
+ls
+locate -0  /home/albe/web  | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >~/0/lcout99.txt
+locate -0  /home/albe/share203  | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >>~/0/lcout99.txt
+locate -0  /srv        | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n >>~/0/lcout99.txt
+locate -0  /var/www    | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >>~/0/lcout99.txt
+cat ~/0/lcout99.txt | sort -n | tail -n722 | grep  249
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -138,3 +138,104 @@ mysql data host volume folder is not populated after changing compose.yml
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-04-26[Apr-Fri]14-40PM
+
+
+	docker-compose  exec phpp /bin/bash
+
+
+docker mount files from container to host
+
+https://github.com/codycraven/docker-quick-bind-sync
+
+
+https://forums.docker.com/t/how-to-access-containers-data-from-the-host/45453/22
+
+https://stackoverflow.com/questions/42848279/how-to-mount-volume-from-container-to-host-in-docker?rq=1
+
+
+
+
+docker-compose volume folder get all files from container
+
+https://github.com/moby/moby/issues/4361
+
+
+----------------------------------------------------
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-04-26[Apr-Fri]12-28PM
+
+works..
+
+src=listo429c_couchdb_1:/opt/couchdb
+out=/srv/test/0-optcouch
+mkdir -p $out
+docker cp $src $out
+
+
+docker cp <containerId>:/file/path/within/container /host/path/target
+
+
+https://stackoverflow.com/questions/22049212/copying-files-from-docker-container-to-host
+
+
+scratch
+
+src=quick-bind-sync_phpp_1:/var/www
+out=/srv/x/qbp56
+mkdir -p $out
+docker cp $src $out
+
+
+
+----------------------------------------------------
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-04-26[Apr-Fri]12-26PM
+
+
+docker run --rm -iv${PWD}:/host-volume my-image sh -s <<EOF
+chown $(id -u):$(id -g) my-artifact.tar.xz
+cp -a my-artifact.tar.xz /host-volume
+EOF
+
+
+--
+
+
+docker run --rm -iv${PWD}:/host-volume my-image sh -s <<EOF
+chown $(id -u):$(id -g) my-artifact.tar.xz
+cp -a my-artifact.tar.xz /host-volume
+EOF
+
+--
+
+docker copy files out of container
+
+https://stackoverflow.com/questions/22049212/copying-files-from-docker-container-to-host
+
+
+
+----------------------------------------------------
+
