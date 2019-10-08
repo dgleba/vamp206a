@@ -22,6 +22,7 @@ Do NOT run this scrpt as root!!!!!!!!
 
 
 
+
 END
 # end block comment ===============================
 }
@@ -45,9 +46,10 @@ git clone https://github.com/rbenv/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-g
 #rbenv install 2.1.4
 #rbenv global 2.1.4
 # 2016-05-10 i think 2.3.0 will be ok next time... 
-rbenv install 2.3.0
+#rbenv install 2.3.0
+#rbenv global 2.3.0
+
 rbenv install 2.6.3
-rbenv global 2.3.0
 rbenv global 2.6.3
 
 ruby -v
@@ -57,7 +59,7 @@ rbenv rehash
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-gem install rails
+gem install rails -v 5.2.3 --no-ri --no-rdoc
 
 gem install uglifier
 #http://stackoverflow.com/questions/34420554/there-was-an-error-while-trying-to-load-the-gem-uglifier-bundlergemrequire
