@@ -27,8 +27,11 @@ sudo crontab -u albe -l
 sudo crontab -u albe -l | grep -v 'albe/shc/'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | grep -v 'albe/bin/'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | grep -v 'html/cilist/actions/'  | sudo crontab -u albe - #remove
+sudo crontab -u albe -l | grep -v 'cilist/actions/task_email1'  | sudo crontab -u albe - #remove
+sudo crontab -u albe -l | grep -v 'cilist/actions/exceptionrpts.sh'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | grep -v 'html/lukup/actions/'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | grep -v 'html/prodrpt/actions/'  | sudo crontab -u albe - #remove
+sudo crontab -u albe -l | grep -v 'tnopen'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | grep -v 'shiftcsd2sup/'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | grep -v '/0docs-pmdsdata/'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | grep -v '/0docs-pmdsdata/archivedata1.sh'  | sudo crontab -u albe - #remove
@@ -46,7 +49,7 @@ sudo crontab -u albe -l  # list
 
 #  sftp://albe@10.4.1.224/home/albe/bin/metabase_stopstart.sh start a new log daily..
 sudo crontab -u albe -l | grep -v '/home/albe/bin/metabase_stopstart.sh'  | sudo crontab -u albe - #remove
-sudo crontab -u albe -l | { cat; echo "5 0 * * 0-6 source $HOME/.bashrc; sudo /home/albe/bin/metabase_stopstart.sh 2>&1 | tee -a /home/albe/log/metabasestart.log"; } | sudo crontab -u albe -  #add
+# turned off 2019-07-25_Thu_11.13-AM... sudo crontab -u albe -l | { cat; echo "5 0 * * 0-6 source $HOME/.bashrc; sudo /home/albe/bin/metabase_stopstart.sh 2>&1 | tee -a /home/albe/log/metabasestart.log"; } | sudo crontab -u albe -  #add
 sudo crontab -u albe -l  # list
 
 
@@ -73,7 +76,10 @@ sudo crontab -u albe -l | { cat; echo "21 1,18 * * 0-6  /var/www/html/cmmdb/acti
 sudo crontab -u albe -l  # list
 
 sudo crontab -u albe -l | grep -v '/0docs-pmdsdata/scrapimport.sh'  | sudo crontab -u albe - #remove
-sudo crontab -u albe -l | { cat; echo "50 6 * * 0-6 /var/www/html/0docs-pmdsdata/scrapimport.sh 2>&1 | tee -a /home/albe/log/scrapimport1.log"; } | sudo crontab -u albe -  #add
+sudo crontab -u albe -l | { cat; echo "50 4,6 * * 0-6 /var/www/html/0docs-pmdsdata/scrapimport.sh 2>&1 | tee -a /home/albe/log/scrapimport1.log"; } | sudo crontab -u albe -  #add
+
+#   /var/www/html/0docs-pmdsdata/scrapupdate.sh 2>&1 | tee -a /home/albe/log/scrap_update.log
+
 
 # test temporary.. 2019-06-07_Fri_11.45-AM
 # sudo crontab -u albe -l | { cat; echo "47 12 * * 0-6 /var/www/html/0docs-pmdsdata/scrapimport.sh 2>&1 | tee -a /home/albe/log/scrapimport1.log"; } | sudo crontab -u albe -  #add
@@ -209,7 +215,7 @@ _____________
 ...\bash-take-nth-column-in-a-text-file,know.txt
 
 sudo crontab -u albe -l | grep -v SHELL > /tmp/cronl
-awk '{printf "%s ~ %s ~ %s\n", $2,$1,$0}' < /tmp/cronl | sort
+awk '{printf "%s ~ %s !! %s\n", $2,$1,$0}' < /tmp/cronl | sort -n
 #
 
 sample output...

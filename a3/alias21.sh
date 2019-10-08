@@ -19,17 +19,28 @@ date ; set +vx  ; set -vx ; # echo off, then echo on
 #
 
 
+# I'd recommend setting it up as a shell function instead.
+
+# https://www.linuxquestions.org/questions/linux-newbie-8/remove-duplicate-lines-alias-927619/
+
+# Aliases are designed generally for simple command substitutions (if the command name matches the alias, 
+# the designated string is substituted before the line is executed), and are not really appropriate for more 
+# complex commands like this. I'd recommend setting it up as a shell function instead.
+# Code:
+# dup(){
+	# { rm -f "$1" && awk '!( $0 in t ){ t[$0] ; print }' > "$1" ;} <"$1"
+# }
+
 
 
 
 #alias for ls -la
 #
 
-echo "alias ll='ls -la'" >>   ~/.bash_aliases
-echo "alias lsl='ls -la'" >>   ~/.bashrc
-sudo chmod ugo+rw  ~/.bash_aliases
+sudo chmod ugo+r  ~/.bash_aliases
+sudo chmod ug+rw  ~/.bash_aliases
+echo "alias lsl='ls -la'" >>   ~/.bash_aliases
 echo "alias psg='ps -ef|grep '" >>   ~/.bash_aliases
-
 echo "alias dc='docker-compose'" >>   ~/.bash_aliases
 echo "alias dkup='docker-compose up'" >>   ~/.bash_aliases
 echo "alias dkd='docker-compose down'" >>   ~/.bash_aliases
@@ -37,21 +48,32 @@ echo "alias dkst='docker-compose stop'" >>   ~/.bash_aliases
 echo "alias dkupd='docker-compose up -d'" >>   ~/.bash_aliases
 echo "alias dkupr='docker-compose  up --build  --force-recreate  '" >>  ~/.bash_aliases
 echo "alias dkupp='docker-compose up -f docker-compose.prod.yml -d'" >>  ~/.bash_aliases
-
 echo "alias dkps='set -vx; docker images; docker network ls; docker volume ls;	docker ps -a; docker ps; set +vx'" >> ~/.bash_aliases
-	
 echo "alias shx='chmod -R +x *.sh'" >>   ~/.bash_aliases
- 
 # a function takes parameters... 
-echo 'dcl() { docker-compose logs "$@" ; }' >>   ~/.bashrc
- 
- 
+echo "alias ll='ls -la'" >>   ~/.bash_aliases
+echo "alias hi='history'" >>   ~/.bash_aliases
+echo 'dcl() { docker-compose logs "$@" ; }' >> ~/.bash_aliases
+
+# comment out line containing pattern - alias sp=
+sed -i.$(date +"%Y-%m-%d_%H.%M.%S").backup   '/alias.sp=/s/^/# /' ~/.bash_aliases  
+# now add the line we want.. 
+# 'HEREDOC' single quotes means no variable expansion..
+tee -a ~/.bash_aliases <<- 'HEREDOC'
+alias sp='dts=$(date +"%Y-%m-%d_%H.%M.%S"); seq 1 49 | xargs -I{} date ; echo  Just the spacer only __  $dts -=-=-=-=-=-=-=-=-=-=-=-'
+HEREDOC
+#
+# These no worky.. (use above heredoc)
+# echo 'alias sp="dts=$(date +"%Y-%m-%d_%H.%M.%S");seq 1 49 | xargs -I{} date;echo Just a spacer  __ $dts \_\_ -=-=-=-=-=-=-=-=-=-=-=-"'>> ~/.bash_aliases
+# echo 'alias sp=`dts=$(date +"%Y-%m-%d_%H.%M.%S");seq 1 49 | xargs -I{} date;echo Just a spacer  __ $dts \_\_ -=-=-=-=-=-=-=-=-=-=-=-`'>> ~/.bash_aliases
+# echo "'alias sp='dts=$(date +"%Y-%m-%d_%H.%M.%S");seq 1 49 | xargs -I{} date;echo Just a spacer  __ $dts \_\_ -=-=-=-=-=-=-=-=-=-=-=-''">> ~/.bash_aliases
+
+
 #
 #
 #
 # list aliases....
 echo "alias aa='cat ~/.bashrc|grep alias; echo '========'; cat ~/.bash_aliases; '" >> ~/.bash_aliases
-
 
 cat ~/.bash_aliases
 

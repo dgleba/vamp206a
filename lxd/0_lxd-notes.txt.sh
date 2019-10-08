@@ -48,6 +48,8 @@ Reference....
 # lxc stop lx21
 
 # lxc delete lx21
+# lxc delete lxredash
+# lxc stop lxredash
 
   
   

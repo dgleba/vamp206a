@@ -251,6 +251,20 @@ _____________
 
 
 
+6401-6500 data collection series
+
+6402 scadaenergy390d nginx
+6403 scadaenergy390d web
+6404 scadaenergy390d db
+.
+6409 scadaenergy390d tbd
+
+6412 scadaenergy390e nginx
+6413 scadaenergy390e web
+6414 scadaenergy390e db
+.
+6419 scadaenergy390e tbd
+
 
 ===================================================
 

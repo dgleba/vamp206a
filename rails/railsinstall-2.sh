@@ -60,3 +60,6 @@ export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 #http://stackoverflow.com/questions/26595620/how-to-install-ruby-2-1-4-on-ubuntu-14-04
 #https://gorails.com/setup/ubuntu/14.04
 
+# 2019-10-06 need this on pmdsdata4
+sudo apt install ruby-build
+cd /home/albe/.rbenv/plugins/ruby-build && git pull && cd -

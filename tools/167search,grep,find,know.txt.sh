@@ -14,7 +14,7 @@ search..
 
 **************   table of contents   ****************
 
->21.  find newest files
+>21. * find newest files
 
 
 >31. find file excluding some folders
@@ -22,12 +22,15 @@ search..
 
 >51.  grep
 
+>52.  *  grep with find exclude paths..
 
-151 find folders named..
+>71.  *  grep
 
-171 find files system wide in the last hour
+>151  *  find folders named..
 
-181 locate
+>171 find files system wide in the last hour
+
+>181 locate
 
 
 
@@ -36,6 +39,24 @@ http://askubuntu.com/questions/208030/search-for-files-with-gui
 END
 # end block comment ===============================
 }
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+scratch..
+
+command with date seperator spacer
+
+dts=$(date +"%Y-%m-%d_%H.%M.%S"); seq 1 45 | xargs -I{} date ;     \
+   docker-compose logs --tail 999 -t -f db web nginx    \
+            ; seq 1 5 | xargs -I{} date ;  echo Started__ $dts \_\_ -=-=-=-=-=-=-=-=-=-=-=-
+
+
+
+
+dts=$(date +"%Y-%m-%d_%H.%M.%S"); seq 1 49 | xargs -I{} date ; echo  Just the spacer only __ $dts \_\_ -=-=-=-=-=-=-=-=-=-=-=-
+
+      
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 date
@@ -135,16 +156,16 @@ find  . -mtime -1 -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -n
 
 
 
-# good..
-find  . -mtime -2 -type f -print0 | xargs -0 stat --printf='%.16y %A %h %U\t%G\t%s\t%n\n' | sort -n |  grep -v '.git/' | grep -v tmp/ |grep -v x/ | tail -n154
-
- 
 
 # grep grav 42 days..
 find  . -mtime -42 -type f -print0 | xargs -0 stat --printf='%.16y %A %h %U\t%G\t%s\t%n\n' | sort -n |  grep -v '.git/' | grep -v tmp/ |grep -v x/ | grep -i grav
 
 no..
 find  . -mtime -82 -type f -print0 -iname *.html | xargs -0 stat --printf='%.16y %A %h %U\t%G\t%s\t%n\n' | sort -n |  grep -v '.git/' | grep -v 'node_modules/' | grep -v tmp/ |grep -v x/ | grep -i searchOnTable
+
+
+# good..
+find  . -mtime -8 -type f -print0 | xargs -0 stat --printf='%.16y %A %h %U\t%G\t%s\t%n\n' | sort -n |  grep -v '.git/' | grep -v tmp/ |grep -v x/ | tail -n154
 
  
 
@@ -155,7 +176,10 @@ http://stackoverflow.com/questions/5566310/how-to-recursively-find-and-list-the-
 >31.   find file excluding some folders
 
 
+excluding file names..
 find . -type f \! -name "*.js"  -print0 | xargs -0 grep -i content
+
+find . -type f \! -name "*.rb"  -print0 | xargs -0 grep -i stf_empl
 
 
 #works..
@@ -195,6 +219,18 @@ find .  ! -name "*.env"  $vexcludedir | grep mong
 
 >51. grep..
 
+grep -Ri --exclude-dir='public/admin/js'  --exclude-dir={node_modules,tmp,log,vendor,dist,'public/admin/js',jsx} --exclude={yarn.lock*,CHANGELOG.md,bulma.min.css,vendor.js,*.css,s*.sql,chunk*.js,app*.js}  'vpv445' * |less
+
+
+grep -ri  --include={"*.yaml",*.yml} --exclude-dir={tmp,log,vendor,node_modules} '\[' * 
+
+grep -ri  --include={"*.py",*.yml} --exclude-dir={tmp,log,vendor,node_modules} blut * 
+
+grep -ri  --include={"*.rb",*.yml} --exclude-dir={tmp,log,vendor,node_modules} stf_empl * 
+
+grep -ri  --include={"*.php",*.yml} --exclude-dir={tmp,log,vendor,node_modules,templates_c} vw_reportemails * 
+
+
 grep -ri --exclude-dir={node_modules,tmp,log,vendor,dist} ':8080' *
 
 
@@ -223,7 +259,10 @@ grep -r --exclude-dir={node_modules,tmp,log,vendor} DB: *
 
 grep -ri  --include="*.js" --exclude-dir={tmp,log,vendor,node_modules} hood * 
 
-grep -ri  --include="*.sh" --exclude-dir={tmp,log,vendor,node_modules} mail * 
+
+grep -ri  --include="*.yaml" --exclude-dir={tmp,log,vendor,node_modules} mail * 
+
+
 
 
 grep -ri  --include="*.js"  --exclude="openNote.bundle.js" --exclude-dir={tmp,log,vendor,node_modules,data,} functionality * 
@@ -284,11 +323,100 @@ grep -ir --include="*.sql" variab .
 
  
   grep -ri --include="*.sh" -E 'product(s|\s)'  *
-   
+
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-61.
+
+
+>52. grep with find exclude paths..
+
+
+
+##seperator....
+
+dts=$(date +"%Y-%m-%d_%H.%M.%S"); seq 1 45 | xargs -I{} date ;     \
+  docker-compose build  \
+   ;  seq 1 5 | xargs -I{} date ;  echo Started__ $dts \_\_ -=-=-=-=-=-=-=-=-=-=-=-
+
+_____________
+
+
+
+# works..
+#
+# grep files in . folder excluding strings.. 
+#
+# list files..
+find .  -type f -print > /tmp/filelist1
+# exclude these strings using grep..
+cat /tmp/filelist1 | grep -v  \
+    -e 'public/admin/js/' \
+    -e 'public/admin/css/'  \
+    -e '/vendor/'  \
+    -e 'schema.sql'  \
+    -e 'adminer.php' > /tmp/filelist
+cat /tmp/filelist
+# grep list of files shown in the file
+while read filename; do     grep -Hin --color    "book"  \
+   "$filename"; done < /tmp/filelist
+
+
+
+
+_____________
+
+
+# works..  but see last one..
+
+# grep found files which exclude the list of folders and excluded files....
+#
+# exclude folder list..  Folders below this list will be excluded. you have to exclude the files in the first level below..
+exclude_file=/tmp/exclfile
+echo -e "public/admin/js/*" > "$exclude_file"
+echo -e "public/admin/css/*" >> "$exclude_file"
+echo -e "vendor/*" >> "$exclude_file"
+echo -e "xxmigrations/*" >> "$exclude_file"
+cat "$exclude_file"
+#
+#print the files to search..
+find . -type d \( $(printf -- "-path */%s -o " $(cat "$exclude_file")) -false \) -prune    -o -type f -print > /tmp/filelist1
+# exclude these strings using grep..
+cat /tmp/filelist1 | grep -v  \
+-e 'public/admin/js/' \
+-e 'public/admin/css/'  \
+-e '/vendor/'  \
+-e 'schema.sql'  \
+-e 'adminer.php' > /tmp/filelist
+cat /tmp/filelist
+#grep list of files shown in the file
+while read filename; do grep -Hin --color "book" "$filename"; done < /tmp/filelist
+
+
+
+_____________
+
+_____________
+
+# didn't work.. 
+
+# (cat "$exclude_file") -exec  grep --exclude={s*.sql,adminer.php} --color -Hn "book" {} 2>/dev/null \;
+
+# won't exclude files in excluded folder... find . -type d \( $(printf -- "-path */%s -o " $(cat "$exclude_file")) -false \) -prune    -o -type f -print
+# no works...  find . -type d \( $(printf -- "-path */%s -o " $(cat "$exclude_file")) -false \) -prune  $(printf -- "! -name %s " $(cat "$exclude_file"))  -o -type f -print
+# files..  $(printf "! -name %s " $(cat skip_files))
+
+# not used..  grep.. 
+find . -type d \( $(printf -- "-path */%s -o " $(cat "$exclude_file")) -false \) -prune -o -type f  -exec  grep --exclude={s*.sql,adminer.php} --color -Hn "book" {} 2>/dev/null \;
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+>61.
 
  
 Find *.txt file but ignore hidden .txt file such as .vimrc or .data.txt file:
@@ -300,7 +428,7 @@ $ find . -type f \( -iname "*.txt" ! -iname ".*" \)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-71. GREP grep >>
+>71. GREP grep >>
 
 
 
@@ -335,13 +463,38 @@ grep 'DROP Procedure'  -ria  --exclude-dir={tmp,bin,shared,log,nbproject} --excl
 
 grep 'mcmaster'  -ria  --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2} --exclude={*.sublime-workspace,*.geany,error_log,*.sql,*.msg} .
 
+grep 'coderre'  -ria --include={*.php,}  --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2} --exclude={*.sublime-workspace,*.geany,error_log,*.msg,___check.these___,*.sql,java*.*,JAVA*.*,*.csv,*.CSV,*.txt} .
+
+
+grep 'mysql'  -ria   --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2,docs,docsbr} --exclude={*.sublime-workspace,*.geany,error_log,*.msg,___check.these___,*.sql,java*.*,JAVA*.*,*.csv,*.CSV,*.txt} .
+
+grep -ri lib.templates.erb.scaffold.
+
+
 grep 'segeren'  -ria --include={*.php,*.txt} --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2} --exclude={*.sublime-workspace,*.geany,error_log,*.sql,*.msg}  . 
 
-cd /var/www/html
-cd /srv/web
-grep 'alc123'  -ria --include={*.php,*.rb,*.yml,*.txt,*.ini,*.py,*.con*,*.dbc} --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2} --exclude={*.sublime-workspace,*.geany,error_log,*.sql,*.msg}  .  >~/pas123.txt
 
-grep 'password'  -ria --include={*.php,*.rb,*.yml,*.txt,*.ini,*.py,*.con*,*.dbc} --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2} --exclude={*.sublime-workspace,*.geany,error_log,*.sql,*.msg}  . >~/paspas.txt
+grep 'vw_reportemails.*array.*reportname'  -ria --include={*.php,*.txt} --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2} --exclude={*.sublime-workspace,*.geany,error_log,*.sql,*.msg}  . 
+
+./shiftcsd1/actions/ncl_send_email.php:        $el = df_get_records_array('vw_reportemails', array('reportname'=>'=CSD1_Shift_Reports__NCL_Rpt',
+./truenorth/actions/team_leader_send_email.php:        $el = df_get_records_array('vw_reportemails', array('reportname'=>'=true_north_reports__team_leader_rpt',
+./shiftcsd1sup/actions/superv1_send_email.php: 
+
+password.
+al123
+
+cd /var/www/html
+cd /srv/
+grep 'dgleba'  -ria --include={*.php,*.rb,*.yml,*.txt,*.ini,*.py,*.con*,*.dbc,*.sh,*.t} \
+     --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2,datatest,data,xdatax1,xdata1-offline,.git} \
+     --exclude={*.sublime-workspace,*.geany,error_log,*.sql,*.msg,*.sqlite,*.log}  . |sort -n   \
+     >~/pas123-723-c.txt
+
+grep 'password'  -ria --include={*.php,*.rb,*.yml,*.txt,*.ini,*.py,*.con*,*.dbc} --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2} --exclude={*.sublime-workspace,*.geany,error_log,*.sql,*.msg}  . | sort -n >~/paspas.txt
+
+
+# trakberry
+grep 'main_log'  -ria --include={*.php,*.rb,*.yml,*.txt,*.ini,*.py,*.con*,*.dbc,*.htm*} --exclude-dir={tmp,bin,shared,log,nbproject,templates_c,backup,test,test2} --exclude={*.sublime-workspace,*.geany,error_log,*.sql,*.msg}  . | sort -n 
 
 
 grep 'ude pun'  -ria  --exclude-dir=tmp
@@ -367,7 +520,7 @@ cat /home/dg/tmp/ij,2009-01-26-1233001792 |grep '[a-zA-Z0-9]'$
 
 
 
-81. find..
+>81. find..
 
 
 
@@ -400,7 +553,7 @@ find /amn/glebad7/c/d/  -iname *grub* |grep cd
 
 
 
-91. grep..
+>91. grep..
 
 
 
@@ -427,13 +580,14 @@ Title:  .
 -----------------------2017-06-13[Jun-Tue]20-19PM
 
 
-101. grep..
+>101. grep..
 
 
 
 _____________
 
-111. # find folders with this file..
+
+>111. # find folders with this file..
 
 
 # Just show lines matching, no name.
@@ -451,7 +605,7 @@ find . -iname 'database.yml' -type f -exec grep -l ENV '{}' \;
 Title:  .
 -----------------------2018-01-02[Jan-Tue]11-45AM
 
-131.
+>131.
 
 exclude the two lines that have this part_no..
 
@@ -479,7 +633,7 @@ Title:  .
 -----------------------2018-03-02[Mar-Fri]15-45PM
 
 
-141.
+>141.
 
 
 see 151...
@@ -521,12 +675,12 @@ Title:  .
 -----------------------2017-07-14[Jul-Fri]23-39PM
 
 
-151.     find folders named...
+>151.     find folders named...
 
 
 works..
 
-fnd='*mksh*' ; f1=/tmp/findtmp ; sudo find . -type d -not \( -name tmp -prune \) -iname "$fnd" >"$f1"; echo .;  echo '==== OUTPUT -- FOLDERS LIKE.. ' "$fnd"; cat "$f1" | sort 
+fnd='*brail*' ; f1=/tmp/findtmp ; sudo find . -type d -not \( -name tmp -prune \) -iname "$fnd" >"$f1"; echo .;  echo '==== OUTPUT -- FOLDERS LIKE.. ' "$fnd"; cat "$f1" | sort 
 
   fnd='data' ; f1=/tmp/findtmp ; sudo find . -type d -not \( -name tmp -prune \) -iname "$fnd" >"$f1"; echo .;  echo '==== OUTPUT -- FOLDERS LIKE.. ' "$fnd"; cat "$f1" | sort 
 
@@ -615,16 +769,23 @@ This shows you what to restore to put the system back to the way it was earlier.
 >181.  locate..
 
 
+good..
+dirs too, newest last:  need at least 3 character search or it will take a long time....
+locate -0   bashrail  | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -vE '(.git/|tmp/|lxcfs/cgroup|wrecked|cache|node_modules)' | sort -n  
+
+>~/0/lcout2.txt
+
+
+
 only files..
 
 locate -b0 drail246 | xargs -r0 ls -aldtr
 
 dirs too..
-locate -0 drail246 | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >~/0/lcout.txt
+locate -0 brail | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >~/0/lcout.txt
 #awk only cols 6,7,8
 
-dirs too, newest last:
-locate -0   drail246   | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  >~/0/lcout2.txt
+
 
 # find all 237 grep mfile..  show all 237 [projects and just show the Gemfile]
 locate -0   237    | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -v '.git/' | grep -v tmp/ | sort -n  |grep mfile
