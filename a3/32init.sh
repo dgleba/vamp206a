@@ -74,7 +74,7 @@ echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo deb
 sudo apt-get -y install iptables-persistent
 
 # You can verify these fields by installing debconf-utils and searching for iptables values:
-sudo apt install debconf-utils
+sudo apt -y install debconf-utils
 sudo debconf-get-selections | grep iptables
 
 

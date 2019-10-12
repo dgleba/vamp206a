@@ -191,6 +191,7 @@ docker1()
 
 
 cd; source shc/a3/35base.sh 
+cd; # source shc/a3/32init.sh 
 cd; source shc/a3/62grpshare.sh 
 cd; source shc/a3/62srvweb.sh 
 #cd; source shc/a3/61user.sh 
