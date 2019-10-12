@@ -219,7 +219,7 @@ find .  ! -name "*.env"  $vexcludedir | grep mong
 
 >51. grep..
 
-grep -Ri --exclude-dir='public/admin/js'  --exclude-dir={node_modules,tmp,log,vendor,dist,'public/admin/js',jsx} --exclude={yarn.lock*,CHANGELOG.md,bulma.min.css,vendor.js,*.css,s*.sql,chunk*.js,app*.js}  'vpv445' * |less
+grep -Ri --exclude-dir='public/admin/js'  --exclude-dir={node_modules,tmp,log,vendor,dist,'public/admin/js',jsx} --exclude={yarn.lock*,CHANGELOG.md,bulma.min.css,vendor.js,*.css,s*.sql,chunk*.js,app*.js}  '3333' * |less
 
 
 grep -ri  --include={"*.yaml",*.yml} --exclude-dir={tmp,log,vendor,node_modules} '\[' * 
@@ -772,6 +772,9 @@ This shows you what to restore to put the system back to the way it was earlier.
 good..
 dirs too, newest last:  need at least 3 character search or it will take a long time....
 locate -0   bashrail  | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -vE '(.git/|tmp/|lxcfs/cgroup|wrecked|cache|node_modules)' | sort -n  
+
+locate -0   scadaenergy | xargs -r0 ls -ald --time-style=long-iso |  awk {'print $6" " $7" " $1" "  $8" "'} | grep -vE '(.git/|tmp/|lxcfs/cgroup|wrecked|cache|node_modules)' | sort -n  
+
 
 >~/0/lcout2.txt
 

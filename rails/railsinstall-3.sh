@@ -59,7 +59,7 @@ rbenv rehash
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-gem install rails -v 5.2.3 --no-ri --no-rdoc
+gem install rails -v 5.2.3 --no-document
 
 gem install uglifier
 #http://stackoverflow.com/questions/34420554/there-was-an-error-while-trying-to-load-the-gem-uglifier-bundlergemrequire
