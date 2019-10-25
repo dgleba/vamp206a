@@ -24,7 +24,7 @@ git prune --progress # delete all the objects w/o references
 git gc --aggressive # aggressively collect garbage; may take a lot of time on large repos
 
 ###### tar current folder..
-base=$(basename $PWD);export HOSTNAME;cd ..
+base=$(basename $PWD);export HOSTNAME  ; # cd ..
 
 
 # doesn't work on mac osx
@@ -50,10 +50,12 @@ fnpath="${PWD////_}" ; echo $fnpath
 #     -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S").tgz $base;cd $base
 #   # Careful, this excludes any data folder..
 
+mkdir ~/backup7z
+
 # works..  
 dts=$(date +"__%Y.%m.%d_%H.%M.%S")
 tar -cz --wildcards \
-  --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/public/assets,$base/nbproject,$base/log} \
+  --exclude={$base/vendor/assets/javascripts,$base/shared,$base/deployed,public/assets,$base/nbproject,$base/log} \
     --exclude={$base/tar,templates_c/*} \
     --exclude=tmp/* \
     --exclude=x/*  \
@@ -67,10 +69,10 @@ tar -cz --wildcards \
     --exclude=datasys/* \
     --exclude=egrav22/backups/* \
     --exclude=data/* \
-    -f $base-$HOSTNAME$fnpath$dts.tgz $base
+    -f ~/backup7z/srv-dkr-$HOSTNAME$dts.tgz /srv/dkr;
+    # cd $base
   # Careful, this excludes any data folder..
-cp $base-$HOSTNAME$fnpath$dts.tgz $base-$HOSTNAME$fnpath-latest.tgz  
-cd $base
+cp ~/backup7z/srv-dkr-$HOSTNAME$dts.tgz ~/backup7z/srv-dkr-$HOSTNAME-latest.tgz  
 
 #
 date
