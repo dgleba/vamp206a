@@ -49,7 +49,8 @@ sudo crontab -u albe -l  # list
 
 #  sftp://albe@10.4.1.224/home/albe/bin/metabase_stopstart.sh start a new log daily..
 sudo crontab -u albe -l | grep -v '/home/albe/bin/metabase_stopstart.sh'  | sudo crontab -u albe - #remove
-# turned off 2019-07-25_Thu_11.13-AM... sudo crontab -u albe -l | { cat; echo "5 0 * * 0-6 source $HOME/.bashrc; sudo /home/albe/bin/metabase_stopstart.sh 2>&1 | tee -a /home/albe/log/metabasestart.log"; } | sudo crontab -u albe -  #add
+# turned back on 2019-11-04_Mon_08.49-AM . turned off 2019-07-25_Thu_11.13-AM... 
+sudo crontab -u albe -l | { cat; echo "5 0 * * 0-6 source $HOME/.bashrc; sudo /home/albe/bin/metabase_stopstart.sh 2>&1 | tee -a /home/albe/log/metabasestart.log"; } | sudo crontab -u albe -  #add
 sudo crontab -u albe -l  # list
 
 
@@ -107,7 +108,7 @@ sudo crontab -u albe -l | { cat; echo "22 15 * * 0-6 /var/www/html/0docs-pmdsdat
 sudo crontab -u albe -l | grep -v 'lukup/actions/imp-lukup.sh'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | { cat; echo "43 15 * * 1-5 /var/www/html/lukup/actions/imp-lukup.sh >> /home/albe/log/lukupimp.log 2<&1"; } | sudo crontab -u albe -  #add
 
-# no longer enterprise.
+# no longer NO-enterprise.
 sudo crontab -u albe -l | { cat; echo "49 15 * * 1-5 /var/www/html/cilist/actions/import-csv-mysql-ceridian-enterprise.sh >> /home/albe/log/importcerenterp1.log 2<&1"; } | sudo crontab -u albe -  #add
 
 sudo crontab -u albe -l  # list

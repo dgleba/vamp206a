@@ -107,7 +107,7 @@ sudo sed -i "s@;sendmail_path =@sendmail_path = /usr/sbin/sendmail -t@g"  /etc/p
 # see also mail man page.  -r=reply -s=subject 
 sudo apt-get -y install mailutils
  
-echo "Test mail 3 from postfix" | mail -v -r dgleba@stackpole.com -s "Test Postfix"  dgleba@stackpole.com dgleba@stackpole.ca
+echo "Test mail 3 from .." | mail -v -r dgleba@stackpole.com -s "Test sending mail"  dgleba@stackpole.com dgleba@stackpole.ca
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

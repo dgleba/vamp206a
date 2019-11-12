@@ -1,3 +1,58 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+see   hosts-8,hosts.8,portstrials.computer,port numbers.gsht    ggl drive sheet 2019-10-28
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Internal / local Network ports:
@@ -263,7 +318,7 @@ _____________
 6413 scadaenergy390e web
 6414 scadaenergy390e db
 .
-6419 scadaenergy390e tbd
+6429 scadaenergy390j tbd
 
 
 ===================================================
@@ -312,10 +367,11 @@ JUNK - junk ports for testing.
 
 .
 
-6700-7000  JUNK - junk ports for testing.
+8300-8699  JUNK - junk ports for testing.
 
 
-examples..
+
+old junk examples..
 
 
 6701  mongo   https://hackernoon.com/build-a-crud-api-with-mongodb-express-and-docker-70510c6f706b
