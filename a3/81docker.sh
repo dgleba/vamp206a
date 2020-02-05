@@ -18,6 +18,24 @@ timeout1=5 ; read -t "${timeout1}" -p "Press ENTER or wait $timeout1 seconds..."
 }
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# 2019-12-12
+
+# Latest install articles..
+
+# Use convenience-script
+
+# https://docs.docker.com/install/linux/docker-ce/ubuntu/
+  # Install using the convenience script
+
+# Compose
+
+# https://docs.docker.com/compose/install/
+
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function blockcomment21() {
 : <<'BLOCKCOMMENT'
 
@@ -95,7 +113,7 @@ sudo sh get-docker.sh
 
 sudo apt-get -y remove docker-compose
 # then install the newest version on the release page at GitHub with
-sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
 sudo chmod +x /usr/bin/docker-compose
 docker-compose -v
 

@@ -278,7 +278,7 @@ END
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#blank one...
+# blank one ...
 
 # Edit this file to introduce tasks to be run by cron.
 #
@@ -320,11 +320,45 @@ albe     11656 11413  0 08:15 pts/0    00:00:00 tee -a /home/albe/log/sczzrapimp
 albe     11848 11655 19 08:17 pts/0    00:00:15 mysql -uroot -px xxxxx
 
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  re-process some csv files 
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-01-31[Jan-Fri]09-54AM 
+
+
+# set permissions so ftp user permissions doesn't interfere
+
+cd /home/file;  chmod 777 -R cmm
+
+cd     /home/file;   chmod 777 -R cmm_wrong_tabcount/
+
+
+  cd /home/file
+  cm=ST-8LYZLN1
+  rsync  --remove-source-files -azv /home/file/cmm_wrong_tabcount/$cm/   /home/file/cmm/$cm 
+  chmod 777 -R cmm
+
+  # example.. rsync  --remove-source-files -azv /home/file/cmm/ /home/file/cmm_archive 
+
+  # no.....  touch /home/file/cmm/.keep
+  touch /home/file/cmmtmp/conradlmovecompletedmarker.txt
+
+  # run once
+  edit me.....  /var/www/html/cmmdb/actions/import-csv-mysql-cmm.sh 2>&1 | tee -a /home/albe/log/import-csv-mysql-cmm131c___EDITME____.log
+
+    chmod +x /var/www/html/cmmdb/actions/import-csv-mysql-cmm2.sh 
+    /var/www/html/cmmdb/actions/import-csv-mysql-cmm2.sh 2>&1 | tee -a /home/albe/log/import-csv-mysql-cmm2_204a.log
+
+    /var/www/html/cmmdb/actions/import-csv-mysql-cmm.sh 2>&1 | tee -a /home/albe/log/import-csv-mysql-cmm_204c.log
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 }
 #
 date
+
