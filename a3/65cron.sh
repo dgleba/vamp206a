@@ -102,7 +102,8 @@ sudo crontab -u albe -l | { cat; echo "1 9 * * 3   /var/www/html/cilist/actions/
 # true north open issues list..
 sudo crontab -u albe -l | { cat; echo "31 11 * * 4   /var/www/html/shiftcsd2sup/actions/email_tnopen_script.sh >> /home/albe/log/emailtnopen1.log 2<&1"; } | sudo crontab -u albe -  #add
 
-sudo crontab -u albe -l | { cat; echo "22 15 * * 0-6 /var/www/html/0docs-pmdsdata/backup2.sh >> /home/albe/log/backup2.log 2<&1"; } | sudo crontab -u albe -  #add
+sudo crontab -u albe -l | grep -v '0docs-pmdsdata/backup2.sh'  | sudo crontab -u albe - #remove
+sudo crontab -u albe -l | { cat; echo "11 15 * * 0-6 /var/www/html/0docs-pmdsdata/backup2.sh >> /home/albe/log/backup2.log 2<&1"; } | sudo crontab -u albe -  #add
 
 # lukup... eam assets , enterprise...
 sudo crontab -u albe -l | grep -v 'lukup/actions/imp-lukup.sh'  | sudo crontab -u albe - #remove
@@ -332,9 +333,11 @@ albe     11848 11655 19 08:17 pts/0    00:00:15 mysql -uroot -px xxxxx
 
 # set permissions so ftp user permissions doesn't interfere
 
-cd /home/file;  chmod 777 -R cmm
+mkdir /home/file/cmm/DURAMAX-139321
+cd /home/file;  sudo chmod 777 -R cmm
 
-cd     /home/file;   chmod 777 -R cmm_wrong_tabcount/
+
+cd    /home/file;   chmod 777 -R cmm_wrong_tabcount/
 
 
   cd /home/file
@@ -353,8 +356,21 @@ cd     /home/file;   chmod 777 -R cmm_wrong_tabcount/
     chmod +x /var/www/html/cmmdb/actions/import-csv-mysql-cmm2.sh 
     /var/www/html/cmmdb/actions/import-csv-mysql-cmm2.sh 2>&1 | tee -a /home/albe/log/import-csv-mysql-cmm2_204a.log
 
-    /var/www/html/cmmdb/actions/import-csv-mysql-cmm.sh 2>&1 | tee -a /home/albe/log/import-csv-mysql-cmm_204c.log
+    /var/www/html/cmmdb/actions/import-csv-mysql-cmm.sh 2>&1 | tee -a /home/albe/log/import-csv-mysql-cmm_209b.log
 
+
+# test.ok...   find . -maxdepth 1 -type f | sort | tail -n 1500 | while read -r file; do mv "$file" /home/file/tmp/tmp2; done
+
+
+# move qty of tail -n 2000 files ...
+#
+mkdir /home/file/cmm/DURAMAX-139321
+cd    /home/file/cmm/DURAMAX-139321
+cd    /home/file/cmm_wrong_tabcount/DURAMAX-139321
+find . -maxdepth 1 -type f | sort | tail -n 2000 | while read -r file; do mv "$file" /home/file/cmm/DURAMAX-139321; done
+cd /home/file;  sudo chmod 777 -R cmm
+    
+    
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
