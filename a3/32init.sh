@@ -25,7 +25,7 @@ sudo chown -R  "${userv}"  tmp01
 sudo groupadd www-data
 
 #copy env supplied with package first..
-cp shc/a2/21env.sh safe/21env.sh
+cp shc/a3/21env.sh safe/21env.sh
 
 # then overwrite it with mine. Which won't happen if it's not there.
 cp safe/vne.sh safe/21env.sh
@@ -33,7 +33,7 @@ cp safe/vne.sh safe/21env.sh
 
 source shc/root.sh
 set +vx
-source safe/21env.sh
+source /home/$userv/safe/21env.sh
 set -vx
 
 

@@ -16,8 +16,16 @@
 
 Step 1
 
+# the following is done as user albe in my situation. The code may need adjustment if it's not user albe.
+
+
 # edit a3/15start.sh. 
 #     use the mariadb `columnstore`  stanza or the `regularmysqlserver` stanza. Or edit as you wish.
+
+# for debian 10.. 
+su root; 
+apt install sudo;
+
 
 cd
 # if need be, get prompt for sudo password...
@@ -27,7 +35,7 @@ sudo apt-get update && \
 sudo apt-get -y install git mc ncdu wget curl && \
 cd ; git clone https://github.com/dgleba/vamp206a.git shc  ; chmod -R +x  shc/  && \
 cd ; cd shc ; git pull
-
+export userv=$USER
 
 
 
