@@ -37,8 +37,8 @@ date ; set +vx  ; set -vx ; # echo off, then echo on
 #alias for ls -la
 #
 
-sudo chmod ugo+r  ~/.bash_aliases
-sudo chmod ug+rw  ~/.bash_aliases
+ chmod ugo+r  ~/.bash_aliases
+ chmod ug+rw  ~/.bash_aliases
 echo "alias lsl='ls -la'" >>   ~/.bash_aliases
 echo "alias psg='ps -ef|grep '" >>   ~/.bash_aliases
 echo "alias dc='docker-compose'" >>   ~/.bash_aliases
@@ -84,7 +84,7 @@ echo "alias aa='cat ~/.bashrc|grep alias; echo '========'; cat ~/.bash_aliases; 
 # http://askubuntu.com/questions/67283/is-it-possible-to-make-writing-to-bash-history-immediate
 # https://askubuntu.com/questions/391082/how-to-see-time-stamps-in-bash-history
 # https://askubuntu.com/questions/885531/half-of-bash-history-is-missing?rq=1
-sudo cat <<EOF >> $HOME/.bashrc
+cat <<EOF >> $HOME/.bashrc
 # -------------------------------------------------------------------
 #
 shopt -s histappend

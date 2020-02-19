@@ -32,9 +32,9 @@ set -vx
 #  /ipsum/ selects lines containing "ipsum" and only on these lines the command(s) that follow are executed. You can use braces to run more commands
 #   /ipsum/{s/#//g;s/@/-at-/g;}
 file22=/etc/fstab
-sudo cp $file22 $file22.bk.$(date +"__%Y-%m-%d_%a_%k.%M.%S-%Z").txt
-sudo cp $file22 $file22.bk.txt
-sudo sed -i '/\ \/\ /{s/errors=remount-ro/errors=remount-ro,acl/g;}' $file22
+ cp $file22 $file22.bk.$(date +"__%Y-%m-%d_%a_%k.%M.%S-%Z").txt
+ cp $file22 $file22.bk.txt
+ sed -i '/\ \/\ /{s/errors=remount-ro/errors=remount-ro,acl/g;}' $file22
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -43,16 +43,16 @@ sudo sed -i '/\ \/\ /{s/errors=remount-ro/errors=remount-ro,acl/g;}' $file22
 # New 2018-07-06 Just share the whole srv folder, and var/www  with www-data group...
 #
 fold=/srv
-sudo mkdir -p ${fold}
-sudo chgrp -hR www-data ${fold}
-sudo chown -R www-data  ${fold}
+ mkdir -p ${fold}
+ chgrp -hR www-data ${fold}
+ chown -R www-data  ${fold}
 #also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/shared – jris198944 May 13 '14 at 8:43 
-sudo chmod -R g+rws  ${fold}
-sudo chmod -R o-rw ${fold}
+ chmod -R g+rws  ${fold}
+ chmod -R o-rw ${fold}
 # make only folders +x so they can be cd into.
-sudo find ${fold} -type d -exec chmod g+x {} +
-sudo usermod -a -G www-data  $userv
-sudo setfacl -R -m group:www-data:rwx  ${fold}
+ find ${fold} -type d -exec chmod g+x {} +
+ usermod -a -G www-data  $userv
+ setfacl -R -m group:www-data:rwx  ${fold}
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,16 +63,16 @@ sudo setfacl -R -m group:www-data:rwx  ${fold}
 # New 2018-07-06 Just share the whole srv folder, and var/www  with www-data group...
 #
 fold=/srv
-sudo groupadd www-data ; sudo usermod -a -G www-data  $userv  # add the user to the www-data group
-sudo usermod -a -G www-data  $USER
-sudo mkdir -p ${fold}
-sudo chgrp -hR www-data ${fold}
-sudo chown -R www-data  ${fold}
+ groupadd www-data ;  usermod -a -G www-data  $userv  # add the user to the www-data group
+ usermod -a -G www-data  $USER
+ mkdir -p ${fold}
+ chgrp -hR www-data ${fold}
+ chown -R www-data  ${fold}
 #also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/shared – jris198944 May 13 '14 at 8:43 
-sudo chmod -R g+rws  ${fold}
-sudo chmod -R o-rw ${fold}
+ chmod -R g+rws  ${fold}
+ chmod -R o-rw ${fold}
 # make only folders +x so they can be cd into.
-sudo find ${fold} -type d -exec chmod g+x {} +
+ find ${fold} -type d -exec chmod g+x {} +
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -82,7 +82,7 @@ groups $userv
 id $userv
 
 
-sudo usermod -a -G www-data  $userv
+ usermod -a -G www-data  $userv
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
