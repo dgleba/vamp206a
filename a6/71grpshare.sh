@@ -51,7 +51,7 @@ fold=/srv
  chmod -R o-rw ${fold}
 # make only folders +x so they can be cd into.
  find ${fold} -type d -exec chmod g+x {} +
- usermod -a -G www-data  $userv
+ /usr/sbin/usermod -a -G www-data  $userv
  setfacl -R -m group:www-data:rwx  ${fold}
 
 
@@ -63,8 +63,8 @@ fold=/srv
 # New 2018-07-06 Just share the whole srv folder, and var/www  with www-data group...
 #
 fold=/srv
- groupadd www-data ;  usermod -a -G www-data  $userv  # add the user to the www-data group
- usermod -a -G www-data  $USER
+ groupadd www-data ;  /usr/sbin/usermod -a -G www-data  $userv  # add the user to the www-data group
+ /usr/sbin/usermod -a -G www-data  $USER
  mkdir -p ${fold}
  chgrp -hR www-data ${fold}
  chown -R www-data  ${fold}
@@ -82,7 +82,7 @@ groups $userv
 id $userv
 
 
- usermod -a -G www-data  $userv
+ /usr/sbin/usermod -a -G www-data  $userv
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

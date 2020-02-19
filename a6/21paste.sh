@@ -33,8 +33,9 @@ Step 2 as root
 # if need be, get prompt for  password...
  ls
 #
- apt-get update && \
- apt-get -y install git mc ncdu wget curl  locate acl make  build-essential autoremove purge && \
+ apt-get update 
+ apt-get -y install git mc ncdu wget curl  locate acl make  build-essential 
+ apt-get -y install  autoremove purge
 
  groupadd www-data
 
@@ -58,7 +59,7 @@ export fil=71grpshare.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil
 
 cd /home/$userv
 export fil=82docker.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
-echo 'exit this shell now and login to get new settings.
+echo 'exit this shell now and login to get new settings.'
 sleep 4
 exit # logout to get a fresh env by loging back in.
 
@@ -94,7 +95,7 @@ mkdir -p bin
 
 
 cd ; export fil=33alias.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
-echo 'exit this shell now and login to get new settings.
+echo 'exit this shell now and login to get new settings.'
 sleep 4
 exit # logout to get a fresh env by loging back in.
 
