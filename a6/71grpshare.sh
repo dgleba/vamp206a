@@ -54,6 +54,8 @@ fold=/srv
  chmod -R o-rw ${fold}
 # make only folders +x so they can be cd into.
  find ${fold} -type d -exec chmod g+x {} +
+ /usr/sbin/usermod -a -G www-data  $userv
+ setfacl -R -m group:www-data:rwx  ${fold}
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

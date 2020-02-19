@@ -1,15 +1,18 @@
 cd#!/usr/bin/env bash
 
 
-#  paste this into the command prompt on the new server..
-#    use putty or some ssh client that you can paste text into..
+#  paste commands below into the command prompt on the new server.
+#    The server will need open-ssh-server installed. You can connect with username and password.
+#    use putty or some ssh client that you can paste text into.
+#     Other clients are mremote, windows ssh in command prompt. There are many others. 
 
-#    use filezilla - connection over ssh to put files on the server
-#      to edit files on the server right click on a file and select edit.
+#    Use filezilla - connection over ssh to put files on the server.
+#      To edit files on the server right click on a file and select edit.
 #      if you need to edit files as root, copy it to writable folder and then   
-#         copy it over after editing, or just use  sed etc to edit the files.
+#         copy it back after editing, or just use sed or nano to edit the files.
+#      Another option is cyberduck.
 
-  
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -36,11 +39,13 @@ Step 2 as root
 
 
 
-# if need be, get prompt for  password...
+# if need be, get prompt for  password by - sudo ls...
  ls
 #
- apt-get update 
- apt-get -y install git mc ncdu wget curl  locate acl make  build-essential 
+# use && \ to avoid command not running because the one above prevents further execution when pasting several commands at once.
+ apt-get update  && \
+ apt-get -y install git mc ncdu wget curl locate acl make build-essential  && \ 
+ apt-get -y install build-essential 
  apt-get -y install  autoremove purge
 
 
@@ -71,6 +76,9 @@ Step 2b as root
 cd /home/$userv
 export fil=71grpshare.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 
+cd /home/$userv
+export fil=64user.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+
 
 cd /home/$userv
 export fil=82docker.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
@@ -86,7 +94,7 @@ exit # logout to get a fresh env by loging back in.
 # ---------------------------------------------------
 
 Step 3  as user albe
-  
+
 
 
 
@@ -111,8 +119,9 @@ mkdir -p bin
 
 mkdir -p /srv/dkr
 mkdir -p /srv/test
-#mkdir -p /srv/web
 mkdir -p /srv/file
+mkdir -p /srv/web
+mkdir -p /srv/share
 
 
 cd ; export fil=33alias.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
