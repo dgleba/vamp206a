@@ -17,7 +17,13 @@ Step 1  as user albe
  
 
 export userv=$USER
+# or
+# just set it explictly..
+export userv=albe
+#
 echo $userv
+
+
 su root;
 
 
@@ -92,6 +98,11 @@ mkdir -p bin
   cd
   cp shc/bin1/* bin
   chmod -R +x bin
+
+mkdir -p /srv/dkr
+mkdir -p /srv/test
+#mkdir -p /srv/web
+mkdir -p /srv/file
 
 
 cd ; export fil=33alias.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
