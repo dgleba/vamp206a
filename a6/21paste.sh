@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+cd#!/usr/bin/env bash
 
 
 #  paste this into the command prompt on the new server..
@@ -58,6 +58,8 @@ export fil=71grpshare.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil
 
 cd /home/$userv
 export fil=82docker.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+echo 'exit this shell now and login to get new settings.
+sleep 4
 exit # logout to get a fresh env by loging back in.
 
 
@@ -92,6 +94,8 @@ mkdir -p bin
 
 
 cd ; export fil=33alias.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+echo 'exit this shell now and login to get new settings.
+sleep 4
 exit # logout to get a fresh env by loging back in.
 
 
