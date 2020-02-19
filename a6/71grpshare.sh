@@ -36,6 +36,27 @@ file22=/etc/fstab
  cp $file22 $file22.bk.txt
  sed -i '/\ \/\ /{s/errors=remount-ro/errors=remount-ro,acl/g;}' $file22
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# New 2018-07-06 Just share the whole srv folder, and var/www  with www-data group...
+#
+fold=/srv
+ /usr/sbin/groupadd www-data ;  
+ /usr/sbin/usermod -a -G www-data  $userv  # add the user to the www-data group
+ /usr/sbin/usermod -a -G www-data  $USER
+ mkdir -p ${fold}
+ chgrp -hR www-data ${fold}
+ chown -R www-data  ${fold}
+#also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/shared – jris198944 May 13 '14 at 8:43 
+ chmod -R g+rws  ${fold}
+ chmod -R o-rw ${fold}
+# make only folders +x so they can be cd into.
+ find ${fold} -type d -exec chmod g+x {} +
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -58,24 +79,6 @@ fold=/srv
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# New 2018-07-06 Just share the whole srv folder, and var/www  with www-data group...
-#
-fold=/srv
- groupadd www-data ;  /usr/sbin/usermod -a -G www-data  $userv  # add the user to the www-data group
- /usr/sbin/usermod -a -G www-data  $USER
- mkdir -p ${fold}
- chgrp -hR www-data ${fold}
- chown -R www-data  ${fold}
-#also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/shared – jris198944 May 13 '14 at 8:43 
- chmod -R g+rws  ${fold}
- chmod -R o-rw ${fold}
-# make only folders +x so they can be cd into.
- find ${fold} -type d -exec chmod g+x {} +
-
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 groups
 groups $userv

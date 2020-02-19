@@ -43,9 +43,18 @@ Step 2 as root
  apt-get -y install git mc ncdu wget curl  locate acl make  build-essential 
  apt-get -y install  autoremove purge
 
- groupadd www-data
 
 
+
+
+
+
+Step 2b as root
+
+
+
+
+# groupadd www-data
 
  git clone https://github.com/dgleba/vamp206a.git shc  ; chmod -R +x  shc/  && \
  cd shc ; git pull
@@ -68,6 +77,7 @@ export fil=82docker.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil  
 echo 'exit this shell now and login to get new settings.'
 sleep 4
 exit # logout to get a fresh env by loging back in.
+
 
 
 
