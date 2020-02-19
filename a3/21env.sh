@@ -45,7 +45,7 @@ export pw4="a"
 
 
 mkdir -p tmp01
-tmp01="/home/$userv/tmp01"
+export tmp01="/home/$userv/tmp01"
 
 mkdir -p  /home/$userv/_this-vamp206b
 

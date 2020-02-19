@@ -65,6 +65,8 @@ sudo apt-get -y install p7zip-full
 sudo apt-get -y install unzip 
 sudo apt-get -y install mc
 sudo apt-get -y install locate acl make
+sudo apt -y install build-essential
+
 #sudo apt-get -y install curl libcurl3 libcurl3-dev php5-curl
 
 
