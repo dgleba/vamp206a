@@ -29,26 +29,22 @@ echo $userv, $hpath
 
 
 
-su root;
-
-
-
 # ---------------------------------------------------
 
 
-Step 2 as root
+Step 2  as user albe
 
 
 
 
 # if need be, get prompt for  password by - sudo ls...
- ls
+sudo ls
 #
 # use && \ to avoid command not running because the one above prevents further execution when pasting several commands at once.
- apt-get update  && \
- apt-get -y install git mc ncdu wget curl locate acl make build-essential  && \ 
- apt-get -y install build-essential 
- apt-get -y install  autoremove purge
+sudo  apt-get update  && \
+sudo  apt-get -y install git mc ncdu wget curl locate acl make build-essential  && \
+sudo  apt-get -y install build-essential 
+# sudo  apt-get -y install  autoremove purge
 
 
 
@@ -56,7 +52,7 @@ Step 2 as root
 
 
 
-Step 2b as root
+Step 2b  as user albe
 
 
 
@@ -79,22 +75,22 @@ cd shc ; git pull
 # timedatectl
 
 cd /home/$userv
-export fil=71grpshare.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+export fil=71grpshare.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 
 cd /home/$userv
-export fil=64user.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+export fil=64user.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 
 
 cd /home/$userv
-export fil=82docker.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+export fil=82docker.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 echo 'exit this shell now and login to get new settings.'
 sleep 4
 exit # logout to get a fresh env by loging back in.
 
-chmod -R 775 $hpath/shc
-chmod -R 775 $hpath/bin2
-chown -R $userv $hpath
-chgrp -R $userv $hpath
+sudo chmod -R 775 $hpath/shc
+sudo chmod -R 775 $hpath/bin2
+sudo chown -R $userv $hpath
+sudo chgrp -R $userv $hpath
 
 
 
@@ -120,12 +116,12 @@ Step 3  as user albe
   z
   z
 
-mkdir -p bin
-  chown -R $userv bin
-  chgrp -R $userv bin
+sudo mkdir -p bin
+sudo   chown -R $userv bin
+sudo   chgrp -R $userv bin
   cd
   cp shc/bin1/* bin
-  chmod -R +x bin
+sudo   chmod -R +x bin
 
 mkdir -p /srv/dkr
 mkdir -p /srv/test
@@ -134,7 +130,7 @@ mkdir -p /srv/web
 mkdir -p /srv/share
 
 
-cd ; export fil=33alias.sh ; export pth=shc/a6 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+cd ; export fil=33alias.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 echo 'exit this shell now and login to get new settings.'
 sleep 4
 exit # logout to get a fresh env by loging back in.

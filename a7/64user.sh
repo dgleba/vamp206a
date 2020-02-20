@@ -24,12 +24,12 @@ export pw1=a
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #adduser asks questions and does more...
-/usr/sbin/adduser dg --gecos "david gleba,RM,wPhone,hPhone" --disabled-password
-echo "dg:$pw1" |  /usr/sbin/chpasswd
+sudo /usr/sbin/adduser dg --gecos "david gleba,RM,wPhone,hPhone" --disabled-password
+echo "dg:$pw1" |  sudo /usr/sbin/chpasswd
 #sudo useradd -d /home/dg -m dg
 #  no home dir... sudo useradd dg
 #  sudo passwd dg
-/usr/sbin/usermod -a -G adm,dialout,plugdev,www-data  dg
+sudo /usr/sbin/usermod -a -G adm,dialout,plugdev,www-data  dg
 #sudo usermod -a -G sudo  dg
 
 #sudo smbpasswd -a dg
