@@ -1,5 +1,7 @@
 cd#!/usr/bin/env bash
 
+# ---------------------------------------------------
+
 
 #  paste commands below into the command prompt on the new server.
 #    The server will need open-ssh-server installed. You can connect with username and password.
@@ -13,11 +15,14 @@ cd#!/usr/bin/env bash
 #      Another option is cyberduck.
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ---------------------------------------------------
 
 
 Step 1  as user albe
  
+
+# User settings: run these with every new shell.
+
 
 export userv=$USER
 # or
@@ -32,7 +37,7 @@ echo $userv, $hpath
 # ---------------------------------------------------
 
 
-Step 2  as user albe
+Step 2  as user albe - root stuff
 
 
 
@@ -51,8 +56,11 @@ sudo  apt-get -y install build-essential
 
 
 
+# ---------------------------------------------------
 
-Step 2b  as user albe
+
+
+Step 3  as user albe - root stuff
 
 
 
@@ -69,10 +77,11 @@ cd shc ; git pull
 #
 # unneeded??
 #
-# timedatectl list-timezones | grep -i toronto
- # unlink /etc/localtime
- # ln -s /usr/share/zoneinfo/America/Toronto /etc/localtime
-# timedatectl
+timedatectl list-timezones | grep -i toronto
+ sudo unlink /etc/localtime
+ sudo ln -s /usr/share/zoneinfo/America/Toronto /etc/localtime
+timedatectl
+
 
 cd /home/$userv
 export fil=71grpshare.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
@@ -87,24 +96,40 @@ echo 'exit this shell now and login to get new settings.'
 sleep 4
 exit # logout to get a fresh env by loging back in.
 
+
+
+
+Step 3a
+
+# new shell, run step 1, then this.
+
+
 sudo chmod -R 775 $hpath/shc
-sudo chmod -R 775 $hpath/bin2
+# sudo chmod -R 775 $hpath/bin2
 sudo chown -R $userv $hpath
 sudo chgrp -R $userv $hpath
 
 
+
+sudo mkdir -p bin
+sudo   chown -R $userv bin
+sudo   chgrp -R $userv bin
+cd
+cp shc/bin1/* bin
+sudo   chmod -R +x bin
 
 
 
 
 # ---------------------------------------------------
 
-Step 3  as user albe
+
+Step 4  as user albe - non-root
 
 
 
 
-# install z-jump
+# install rupa/z - z-jump
   cd $HOME
   mkdir -p $HOME/bin
   git clone https://github.com/dgleba/z.git  bin/zjump
@@ -115,13 +140,6 @@ Step 3  as user albe
   cd
   z
   z
-
-sudo mkdir -p bin
-sudo   chown -R $userv bin
-sudo   chgrp -R $userv bin
-  cd
-  cp shc/bin1/* bin
-sudo   chmod -R +x bin
 
 mkdir -p /srv/dkr
 mkdir -p /srv/test
@@ -141,20 +159,11 @@ exit # logout to get a fresh env by loging back in.
 
 # ---------------------------------------------------
 
-Step 4
+Step 5
 
 
 
 
-
-Step 6
-
-
-
-
-
-
-Step 7
 
 # logout and log back in again to ensure all settings are in effect.
 # eg: groups will take effect after login.
@@ -166,4 +175,4 @@ Step 7
 done
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ---------------------------------------------------
