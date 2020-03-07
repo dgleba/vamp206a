@@ -28,10 +28,27 @@ export userv=$USER
 # or
 # just set it explictly..
 export userv=albe
+#
 export hpath=/home/$userv
 echo $userv, $hpath
-timeout1=15 > /dev/null 2>&1; read -t "${timeout1}" -p "Press ENTER or wait $timeout1 seconds..."  || true   
-umask 002 # make group writable.
+
+
+
+# ---------------------------------------------------
+
+
+
+# for debian 10.. 	# for debian 10.. 
+
+su root; 	
+
+apt install sudo;	
+
+/usr/sbin/usermod -aG sudo albe
+
+exit
+
+
 
 
 
@@ -100,30 +117,17 @@ exit # logout to get a fresh env by loging back in.
 
 
 
-
-Step 3b
-
-
-
+Step 3a
 
 # new shell, run step 1, then this.
-#
-echo $* # echo off?
-export userv=albe
-export hpath=/home/$userv
-echo $userv, $hpath
-umask 002 # make group writable.
-#
-#
-set +x; 
-seq 1 19 | xargs -I{} echo .; echo 'did you run step 1 again?'; echo
-echo $userv, $hpath
-sleep 9
-#
+
+
 sudo chmod -R 775 $hpath/shc
 # sudo chmod -R 775 $hpath/bin2
 sudo chown -R $userv $hpath
 sudo chgrp -R $userv $hpath
+
+
 
 sudo mkdir -p bin
 sudo   chown -R $userv bin

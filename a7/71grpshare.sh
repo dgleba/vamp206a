@@ -44,6 +44,7 @@ sudo  sed -i '/\ \/\ /{s/errors=remount-ro/errors=remount-ro,acl/g;}' $file22
 # New 2018-07-06 Just share the whole srv folder, and var/www  with www-data group...
 #
 fold=/srv
+id $userv
 sudo  /usr/sbin/groupadd www-data ;  
 sudo  /usr/sbin/usermod -a -G www-data  $userv  # add the user to the www-data group
 sudo  /usr/sbin/usermod -a -G www-data  $USER

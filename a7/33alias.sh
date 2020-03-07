@@ -87,6 +87,8 @@ echo "alias aa='cat ~/.bashrc|grep alias; echo '========'; cat ~/.bash_aliases; 
 cat <<EOF >> $HOME/.bashrc
 # -------------------------------------------------------------------
 #
+umask 002 # make group writable.
+#
 shopt -s histappend
 # PROMPT_COMMAND="history -a;history -r;$PROMPT_COMMAND"
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
@@ -95,7 +97,6 @@ PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 export HISTTIMEFORMAT="%y-%m-%d %T "
 export HISTSIZE=10000
 export HISEFILESIZE=30000
-#
 EOF
 
 
