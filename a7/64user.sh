@@ -17,9 +17,9 @@ echo "${BASH_SOURCE[@]}"  # echo full bashsource array
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-set -x
+. ~/12settings.sh
 
-export pw1=a
+set -x
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

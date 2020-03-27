@@ -19,6 +19,8 @@ cd ; date ; set +vx  ; set -vx ; # echo off, then echo on
 #
 set -vx
 
+. ~/12settings.sh
+
 
 # 2017-09-20
 #allow export to this folder due to..
