@@ -25,6 +25,11 @@ cd#!/usr/bin/env bash
 
 # get prompt for sudo. This will avoid sending pasted characters to the password prompt, which leads to them missing when they are needed.
 
+# They way I paste commands, it usually has extra characters, like new lines. This can end up in the password prompt.
+#   I need to backspace before entering my password.
+
+
+
 sudo ls
 
 
@@ -113,18 +118,11 @@ cd ;
 export    fil=33alias.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  .  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 
 
-echo .;
-echo .;
-echo 'exit this shell now and login to get new settings.';
-echo .;
-sleep 9;
-# exit # logout to get a fresh env by loging back in.;
-
 
 # sudo chmod -R 775 $hpath/shc
 # sudo chmod -R 775 $hpath/bin2
- chown -R $userv $hpath
- chgrp -R $userv $hpath
+  chown -R $userv $hpath
+  chgrp -R $userv $hpath
 
 # copy scripts to home bin folder..
 mkdir -p bin
@@ -139,10 +137,18 @@ cp shc/bin1/* bin
   mkdir -p $HOME/bin
   # git clone https://github.com/dgleba/z.git  bin/zjump
   git clone https://github.com/rupa/z.git  bin/zjump
-  echo  export _Z_MAX_SCORE=11000>>$HOME/.bashrc
+  echo  export _Z_MAX_SCORE=12000>>$HOME/.bashrc
   echo . $HOME/bin/zjump/z.sh>>$HOME/.bashrc
   source $HOME/.bashrc
  
+
+echo .;
+echo .;
+echo 'exit this shell now and login to get new settings.';
+echo .;
+sleep 9;
+# exit # logout to get a fresh env by loging back in.;
+
  
 EOF
 
@@ -153,10 +159,16 @@ export fil=provision01.sh ; export pth=~ ;  chmod +x $pth/$fil  ;  $pth/$fil   2
 
 
 
+
+
+
+
+
+
 # ---------------------------------------------------
 
 
-## Step 4 -  Get new shell and...
+## Step 3 -  Get new shell and...
 
 
 cd;
@@ -170,7 +182,7 @@ export fil=91set.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  . $pth/$fil   
 
 # ---------------------------------------------------
 
-##  Step 5
+##  Step 4
 
 
 # logout and log back in again to ensure all settings are in effect.
