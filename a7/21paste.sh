@@ -18,10 +18,25 @@ cd#!/usr/bin/env bash
 # ---------------------------------------------------
 
 
+
+
 ##  Step 1  as user albe - settings.
+
+
+# get prompt for sudo. This will avoid sending pasted characters to the password prompt, which leads to them missing when they are needed.
+
+sudo ls
+
+
+
+
+
+# ---------------------------------------------------
+
+
+
+##  Step 2  as user albe - settings.
  
-
-
 cd
 tee ./12settings.sh <<- 'EOF'
 # User settings: run these with every new shell.
@@ -78,33 +93,38 @@ timedatectl list-timezones | grep -i toronto
  sudo ln -s /usr/share/zoneinfo/America/Toronto /etc/localtime
 timedatectl
 
+
+cd;
+
+export fil=71grpshare.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  . $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+
+
+cd;
+
+export     fil=64user.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  . $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+
+
+cd;
+
+export   fil=82docker.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  . $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+
+
+cd ; 
+export    fil=33alias.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  .  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+
+
+echo .;
+echo .;
+echo 'exit this shell now and login to get new settings.';
+echo .;
+sleep 9;
+# exit # logout to get a fresh env by loging back in.;
+
 EOF
 
 export fil=provision01.sh ; export pth=~ ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 
 
-# ---------------------------------------------------
-
-
-## Step 2 - paste these..
-
-
-cd 
-export fil=71grpshare.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
-
-cd 
-export fil=64user.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
-
-cd 
-export fil=82docker.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
-echo .
-echo .
-echo 'exit this shell now and login to get new settings.'
-echo .
-sleep 9
-exit # logout to get a fresh env by loging back in.
-
-
 
 
 
@@ -112,11 +132,11 @@ exit # logout to get a fresh env by loging back in.
 # ---------------------------------------------------
 
 
-## Step 3 -  Get new shell and...
+## Step 4 -  Get new shell and...
 
 
-cd 
-export fil=91set.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+cd;
+export fil=91set.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  . $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 
 
 
@@ -126,7 +146,7 @@ export fil=91set.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  $pth/$fil   2>
 
 # ---------------------------------------------------
 
-##  Step 4
+##  Step 5
 
 
 # logout and log back in again to ensure all settings are in effect.

@@ -36,14 +36,16 @@ mkdir -p /srv/web
 mkdir -p /srv/share
 
 
-sudo  apt-get -y install git mc ncdu wget curl locate acl make build-essential  && \
-sudo  apt-get -y install build-essential 
-# sudo  apt-get -y install  autoremove purge
-
-
 cd ; export fil=33alias.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  .  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 echo 'exit this shell now and login to get new settings.'
 sleep 4
 # exit # logout to get a fresh env by loging back in.
+
+
+
+sudo  apt-get -y install git  && \
+sudo  apt-get -y install git mc ncdu curl locate acl make build-essential  && \
+sudo  apt-get -y install build-essential 
+# sudo  apt-get -y install  autoremove purge
 
 
