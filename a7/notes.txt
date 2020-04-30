@@ -1,7 +1,7 @@
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #@  
-#@  
+#@  get repo and unzip
 #@  
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-03-27[Mar-Fri]16-31PM 
 
@@ -19,7 +19,7 @@ unzip master.zip
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #@  
-#@  
+#@  commands to get  github
 #@  
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-03-27[Mar-Fri]16-31PM 
 
@@ -27,7 +27,7 @@ unzip master.zip
 
 ./a1/04prep-iso.sh:
 wget -N https://raw.githubusercontent.com/dgleba/vamp206a/master/05create-unattended-iso.sh
-.
+
 
 
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -41,11 +41,8 @@ wget -N https://raw.githubusercontent.com/dgleba/vamp206a/master/05create-unatte
 .
 
 $ grep -ri wget.*gith .
-./a1/04prep-iso.sh:wget -N https://raw.githubusercontent.com/dgleba/vamp206a/master/05create-unattended-iso.sh
 ./a1/05create-unattended-iso.sh:late_command="chroot /target wget -N -O /home/$username/11get.sh https://github.com/dgleba/vamp206a/raw/master/11get.sh ;\
 ./a1/11get.sh:wget -N --output-document=vamp206a-mast.zip https://codeload.github.com/dgleba/vamp206a/zip/master
 ./a1/log-misc-commands.sh:wget -N https://codeload.github.com/dgleba/vamp203/zip/master
-./apps/prod364-copy2/21kashmirisetup1.paste.txt.sh: wget -N https://raw.githubusercontent.com/dgleba/vamp206a/master/bin1/nuser.sh
-./tmp/11prep-oldCopy.sh:wget -N --output-document=vamp206a-mast.zip https://codeload.github.com/dgleba/vamp206a/zip/master
 
 

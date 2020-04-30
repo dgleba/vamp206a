@@ -40,7 +40,7 @@ sudo ls
 
 
 
-##  Step 2  as user albe - settings.
+##  Step 2  as user albe - settings and create provision01.sh.
  
 cd
 tee ./12settings.sh <<- 'EOF'
@@ -139,8 +139,10 @@ cp shc/bin1/* bin
   git clone https://github.com/rupa/z.git  bin/zjump
   echo  export _Z_MAX_SCORE=12000>>$HOME/.bashrc
   echo . $HOME/bin/zjump/z.sh>>$HOME/.bashrc
-  source $HOME/.bashrc
- 
+  # execute .bashrc excluding the code that prevents running it again.
+  # tail -n+10 ~/.bashrc | bash
+
+
 
 echo .;
 echo .;
@@ -188,6 +190,7 @@ export fil=91set.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  . $pth/$fil   
 # logout and log back in again to ensure all settings are in effect.
 # eg: groups will take effect after login.
 
+You could run hostp.sh <newhostname> to give it a unique host name.
 
 
 done
