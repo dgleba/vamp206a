@@ -103,7 +103,7 @@ sudo crontab -u albe -l | { cat; echo "1 9 * * 3   /var/www/html/cilist/actions/
 sudo crontab -u albe -l | { cat; echo "31 11 * * 4   /var/www/html/shiftcsd2sup/actions/email_tnopen_script.sh >> /home/albe/log/emailtnopen1.log 2<&1"; } | sudo crontab -u albe -  #add
 
 sudo crontab -u albe -l | grep -v '0docs-pmdsdata/backup2.sh'  | sudo crontab -u albe - #remove
-sudo crontab -u albe -l | { cat; echo "11 15 * * 0-6 /var/www/html/0docs-pmdsdata/backup2.sh >> /home/albe/log/backup2.log 2<&1"; } | sudo crontab -u albe -  #add
+sudo crontab -u albe -l | { cat; echo "18 03 * * 0-6 /var/www/html/0docs-pmdsdata/backup2.sh >> /home/albe/log/backup2.log 2<&1"; } | sudo crontab -u albe -  #add
 
 # lukup... eam assets , enterprise...
 sudo crontab -u albe -l | grep -v 'lukup/actions/imp-lukup.sh'  | sudo crontab -u albe - #remove
