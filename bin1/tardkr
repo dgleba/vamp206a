@@ -4,7 +4,7 @@ function Purpose() {
 # begin block comment =============================
 : <<'END'
 
-#  Purpose:  tar the current folder and give the archive a useful name..
+#  Purpose:  tar dkr folder. smaller.
 
 chmod +x ~/bin/tarc4
 
@@ -19,59 +19,38 @@ date ; set +vx  ; set -vx ; # echo off, then echo on
 # mkdir -p tmp/dglog
 mv log/development.log log/development.log.$(date +"__%Y.%m.%d_%H.%M.%S").log
 
-# The following 2 commands are optional - they keep your git repo in good shape.
-git prune --progress # delete all the objects w/o references
-git gc --aggressive # aggressively collect garbage; may take a lot of time on large repos
-
 ###### tar current folder..
 base=$(basename $PWD);export HOSTNAME  ; # cd ..
-
-
-# doesn't work on mac osx
-#tar -czf $base-$HOSTNAME$(date +"__%Y.%m.%d_%H.%M.%S").tgz  $base --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/public/assets,$base/nbproject,$base/log};cd $base
-
-# get the current path and replace / with _
-fnpath="${PWD////_}" ; echo $fnpath
-
-# OSX, have to have options first, then -f filename.tgz and source files 
-# tar -cz \
-  # --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/public/assets,$base/nbproject,$base/log,$base/templates_c,$base/tar,node_modules,*.tgz,.hoodie/client.js} \
-  # -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S").tgz $base;cd $base
-
-  
-# this one excludes any folder named.. datasys/ data/
-
-# works..
-# tar -cz --wildcards \
-#   --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/public/assets,$base/nbproject,$base/log} \
-#       --exclude={$base/tar,*.tgz,.hoodie/client.js,templates_c/*} \
-#   --exclude={datasys/*,tmp/*,x/*,log/*,node_modules/*,bower_components/*,dist/assets/*} \
-#       --exclude={data/*,egrav22/backups/*} \
-#     -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S").tgz $base;cd $base
-#   # Careful, this excludes any data folder..
 
 mkdir ~/backup7z
 
 # works..  
 tar -cz --wildcards \
-  --exclude={$base/vendor/assets/javascripts,$base/shared,$base/deployed,public/assets,$base/nbproject,$base/log} \
+  --exclude={$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/nbproject,$base/log} \
     --exclude={$base/tar,templates_c/*} \
     --exclude=tmp/* \
     --exclude=x/*  \
     --exclude=log/* \
-    --exclude=.hoodie/client.js \
     --exclude=*.tgz \
-    --exclude=dist/assets/* \
-    --exclude=dist/* \
     --exclude=bower_components/* \
     --exclude=node_modules/* \
     --exclude=egrav22/backups/* \
     --exclude=datasys/* \
+    --exclude=sysdata/* \
     --exclude=data/* \
-    -f ~/backup7z/srv-dkr-$HOSTNAME-$(date +"__%Y.%m.%d_%H.%M.%S").tgz /srv/dkr;
+    -f ~/backup7z/srv-dkr-$HOSTNAME-nopkg$(date +"__%Y.%m.%d_%H.%M.%S").tgz /srv/dkr;
+	
+		cp ~/backup7z/srv-dkr-$HOSTNAME-nopkg$(date +"__%Y.%m.%d_%H.%M.%S").tgz  ~/backup7z/srv-dkr-nopkg-$HOSTNAME-latest.tgz  
+		
     # cd $base
   # Careful, this excludes any data folder..
   
+
+    # public/assets,
+    # --exclude=dist/assets/* \
+    # --exclude=.hoodie/client.js \
+    # --exclude=dist/* \
+
 
 #
 date

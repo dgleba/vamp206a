@@ -53,25 +53,29 @@ fnpath="${PWD////_}" ; echo $fnpath
 # works..  
 dts=$(date +"__%Y.%m.%d_%H.%M.%S")
 tar -cz --wildcards \
-  --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/public/assets,$base/nbproject,$base/log} \
+  --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/nbproject,$base/log} \
     --exclude={$base/tar,templates_c/*} \
     --exclude=tmp/* \
     --exclude=x/*  \
     --exclude=log/* \
     --exclude=.hoodie/client.js \
-    --exclude=*.tgz \
-    --exclude=dist/assets/* \
-    --exclude=dist/* \
     --exclude=bower_components/* \
     --exclude=node_modules/* \
     --exclude=egrav22/backups/* \
+    --exclude=*.tgz \
     --exclude=datasys/* \
     --exclude=sysdata/* \
     --exclude=data/* \
     -f $base-$HOSTNAME$fnpath$dts.tgz $base
-  # Careful, this excludes any data folder..
+  # Careful, the above excludes any data folder..
 cp $base-$HOSTNAME$fnpath$dts.tgz $base-$HOSTNAME$fnpath-latest.tgz  
 cd $base
+
+    # --exclude=dist/* \
+    # --exclude=dist/assets/* \
+    # --exclude=$base/public/assets \
+
+
 
 #
 date
