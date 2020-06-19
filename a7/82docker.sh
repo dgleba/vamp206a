@@ -97,7 +97,7 @@ apt-cache policy docker-ce
 
 
 sudo  apt-get update
-sudo  apt-get -y remove docker docker-engine docker.io
+sudo  apt-get -y remove docker docker-engine docker.io  containerd runc docker-ce docker-ce-cli containerd.io
 
 # Uninstall the Docker CE package:
 sudo  apt-get -y purge docker-ce
@@ -111,9 +111,20 @@ sudo  sh get-docker.sh
 # Client:
 # Version:      18.05.0-ce
 
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+# google :  docker-compose install
+
+
+# https://docs.docker.com/compose/install/
+
+
 sudo  apt-get -y remove docker-compose
 # then install the newest version on the release page at GitHub with
-sudo curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
 sudo  chmod +x /usr/bin/docker-compose
 docker-compose -v
 

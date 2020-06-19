@@ -64,8 +64,9 @@ tar -cz --wildcards \
     --exclude=dist/* \
     --exclude=bower_components/* \
     --exclude=node_modules/* \
-    --exclude=datasys/* \
     --exclude=egrav22/backups/* \
+    --exclude=datasys/* \
+    --exclude=sysdata/* \
     --exclude=data/* \
     -f $base-$HOSTNAME$fnpath$dts.tgz $base
   # Careful, this excludes any data folder..
