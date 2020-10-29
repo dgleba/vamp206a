@@ -74,7 +74,7 @@ Step 3
 cd ; sudo chmod -R +x shc/ ; sudo shc/a5/33init.sh 2>&1 | tee -a 33init_v206_log$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash
 
 
-cd ; sudo chmod -R +x shc/ ; sudo shc/a3/62grpshare.sh 2>&1 | tee -a 62grpshare_v206_log$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash
+cd ; sudo chmod -R +x shc/ ; sudo shc/a7/71grpshare.sh 2>&1 | tee -a 62grpshare_v206_log$(date +"__%Y-%m-%d_%H.%M.%S").log && exec bash
 
 
 

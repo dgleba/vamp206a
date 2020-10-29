@@ -47,6 +47,7 @@ sudo crontab -u albe -l  # list
 
 # add...
 
+#metabase
 #  sftp://albe@10.4.1.224/home/albe/bin/metabase_stopstart.sh start a new log daily..
 sudo crontab -u albe -l | grep -v '/home/albe/bin/metabase_stopstart.sh'  | sudo crontab -u albe - #remove
 # turned back on 2019-11-04_Mon_08.49-AM . turned off 2019-07-25_Thu_11.13-AM... 
@@ -54,17 +55,7 @@ sudo crontab -u albe -l | { cat; echo "5 0 * * 0-6 source $HOME/.bashrc; sudo /h
 sudo crontab -u albe -l  # list
 
 
-
-#import sc_production..
-sudo crontab -u albe -l  |grep sc_pro # list 
-sudo crontab -u albe -l | grep -v 'prodrpt/actions/import-sc_production.sh'  | sudo crontab -u albe - #remove
-sudo crontab -u albe -l | { cat; echo "10,25,40,55 * * * 0-6 source $HOME/.profile; /var/www/html/prodrpt/actions/import-sc_production.sh 2>&1 | tee -a /home/albe/log/sc_production_import.log"; } | sudo crontab -u albe -  #add
-sudo crontab -u albe -l  |grep sc_pro # list 
-
-
 sudo crontab -u albe -l | { cat; echo "55 6,18 * * 1-7  /var/www/html/prodrpt/actions/sendemail_recentdowntime_cron.sh >> /home/albe/log/sendrecentdowntime_cron.log 2<&1"; } | sudo crontab -u albe -  #add
-
-sudo crontab -u albe -l | { cat; echo "01 7 * * 1-5  /var/www/html/cilist/actions/exceptionrpts.sh >> /home/albe/log/exceptionrpts1.log 2<&1"; } | sudo crontab -u albe -  #add
 
 sudo crontab -u albe -l | { cat; echo "45 6 * * 1-7  /var/www/html/cmmdb/actions/email_rows_imported.sh >> /home/albe/log/cmmdb.reports.log 2<&1"; } | sudo crontab -u albe -  #add
 
@@ -72,21 +63,11 @@ sudo crontab -u albe -l  # list
 sudo crontab -u albe -l | grep -v 'import-csv-mysql-cmm.sh'  | sudo crontab -u albe - #remove
 #20
 sudo crontab -u albe -l | { cat; echo "21 1,18 * * 0-6  /var/www/html/cmmdb/actions/import-csv-mysql-cmm.sh 2>&1 | tee -a /home/albe/log/import-csv-mysql-cmm1.log"; } | sudo crontab -u albe -  #add
-#    temporary for test.......
-#sudo crontab -u albe -l | { cat; echo "13 11 * * 0-6     /var/www/html/cmmdb/actions/import-csv-mysql-cmm.sh >> /home/albe/log/import-csv-mysql-cmm1t.log 2<&1"; } | sudo crontab -u albe -  #add
 sudo crontab -u albe -l  # list
+
 
 sudo crontab -u albe -l | grep -v '/0docs-pmdsdata/scrapimport.sh'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | { cat; echo "50 4,6 * * 0-6 /var/www/html/0docs-pmdsdata/scrapimport.sh 2>&1 | tee -a /home/albe/log/scrapimport1.log"; } | sudo crontab -u albe -  #add
-
-#   /var/www/html/0docs-pmdsdata/scrapupdate.sh 2>&1 | tee -a /home/albe/log/scrap_update.log
-
-
-# test temporary.. 2019-06-07_Fri_11.45-AM
-# sudo crontab -u albe -l | { cat; echo "47 12 * * 0-6 /var/www/html/0docs-pmdsdata/scrapimport.sh 2>&1 | tee -a /home/albe/log/scrapimport1.log"; } | sudo crontab -u albe -  #add
-sudo crontab -u albe -l  # list
-date
-# tail -f /home/albe/log/scrapimport1.log
 
 
 sudo crontab -u albe -l | grep -v '/0docs-pmdsdata/archivedata1.sh'  | sudo crontab -u albe - #remove
@@ -94,10 +75,6 @@ sudo crontab -u albe -l | { cat; echo "35 2 * * 0-6 /var/www/html/0docs-pmdsdata
 
 sudo crontab -u albe -l | grep -v 'greygold/actions/email_scrap1_script'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | { cat; echo "50 8 * * 0-6 /var/www/html/greygold/actions/email_scrap1_script.sh >> /home/albe/log/scrap1email.log 2<&1"; } | sudo crontab -u albe -  #add
-
-# email leaders owners originators spreadsheets..
-sudo crontab -u albe -l | grep -v 'html/cilist/actions/task_email'  | sudo crontab -u albe - #remove
-sudo crontab -u albe -l | { cat; echo "1 9 * * 3   /var/www/html/cilist/actions/task_email1.sh >> /home/albe/log/taskemail1.log 2<&1"; } | sudo crontab -u albe -  #add
 
 # true north open issues list..
 sudo crontab -u albe -l | { cat; echo "31 11 * * 4   /var/www/html/shiftcsd2sup/actions/email_tnopen_script.sh >> /home/albe/log/emailtnopen1.log 2<&1"; } | sudo crontab -u albe -  #add
@@ -109,10 +86,56 @@ sudo crontab -u albe -l | { cat; echo "18 03 * * 0-6 /var/www/html/0docs-pmdsdat
 sudo crontab -u albe -l | grep -v 'lukup/actions/imp-lukup.sh'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | { cat; echo "43 15 * * 1-5 /var/www/html/lukup/actions/imp-lukup.sh >> /home/albe/log/lukupimp.log 2<&1"; } | sudo crontab -u albe -  #add
 
-# no longer NO-enterprise.
+# just ceridian - no longer NO-enterprise.
 sudo crontab -u albe -l | { cat; echo "49 15 * * 1-5 /var/www/html/cilist/actions/import-csv-mysql-ceridian-enterprise.sh >> /home/albe/log/importcerenterp1.log 2<&1"; } | sudo crontab -u albe -  #add
 
+sudo crontab -u albe -l |grep ent # list
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-06-19[Jun-Fri]11-32AM 
+
+
+#not used.
+
+#   /var/www/html/0docs-pmdsdata/scrapupdate.sh 2>&1 | tee -a /home/albe/log/scrap_update.log
+
+sudo crontab -u albe -l | { cat; echo "01 7 * * 1-5  /var/www/html/cilist/actions/exceptionrpts.sh >> /home/albe/log/exceptionrpts1.log 2<&1"; } | sudo crontab -u albe -  #add
+
+
+# email leaders owners originators spreadsheets..
+sudo crontab -u albe -l | grep -v 'html/cilist/actions/task_email'  | sudo crontab -u albe - #remove
+sudo crontab -u albe -l | { cat; echo "1 9 * * 3   /var/www/html/cilist/actions/task_email1.sh >> /home/albe/log/taskemail1.log 2<&1"; } | sudo crontab -u albe -  #add
+
+
+#import sc_production..
+sudo crontab -u albe -l  |grep sc_pro # list 
+sudo crontab -u albe -l | grep -v 'prodrpt/actions/import-sc_production.sh'  | sudo crontab -u albe - #remove
+sudo crontab -u albe -l | { cat; echo "10,25,40,55 * * * 0-6 source $HOME/.profile; /var/www/html/prodrpt/actions/import-sc_production.sh 2>&1 | tee -a /home/albe/log/sc_production_import.log"; } | sudo crontab -u albe -  #add
+sudo crontab -u albe -l  |grep sc_pro # list 
+
+
+#    temporary for test.......
+#sudo crontab -u albe -l | { cat; echo "13 11 * * 0-6     /var/www/html/cmmdb/actions/import-csv-mysql-cmm.sh >> /home/albe/log/import-csv-mysql-cmm1t.log 2<&1"; } | sudo crontab -u albe -  #add
+
+# test temporary.. 2019-06-07_Fri_11.45-AM
+# sudo crontab -u albe -l | { cat; echo "47 12 * * 0-6 /var/www/html/0docs-pmdsdata/scrapimport.sh 2>&1 | tee -a /home/albe/log/scrapimport1.log"; } | sudo crontab -u albe -  #add
 sudo crontab -u albe -l  # list
+date
+# tail -f /home/albe/log/scrapimport1.log
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-06-19[Jun-Fri]11-32AM 
+
 
 
 

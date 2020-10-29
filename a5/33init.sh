@@ -39,7 +39,7 @@ set -vx
 
 #~~~~~~
 
-file1="shc/a2/21env.sh"
+file1="shc/a3/21env.sh"
 # back it up with a unique name using a timestamp..
 cp -a $file1 $file1$(date +"__%Y.%m.%d_%H.%M.%S").bak.txt
 
@@ -61,18 +61,31 @@ cp -a $file1 $file1$(date +"__%Y.%m.%d_%H.%M.%S").bak.txt
 #get a few software to help get things started...   # moved to netson.seed
 sudo apt-get update
 # sudo apt-get -y install openssh-server p7zip-full unzip locate acl make
-sudo apt-get -y install mc
+sudo apt-get -y install mc ufw fail2ban
 # sudo apt-get -y install curl libcurl3 libcurl3-dev php5-curl
 
 
-echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
-echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
 
-sudo apt-get -y install iptables-persistent
-
+# echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
+# echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
+# sudo apt-get -y install iptables-persistent
 # You can verify these fields by installing debconf-utils and searching for iptables values:
-sudo apt install debconf-utils
-sudo debconf-get-selections | grep iptables
+# sudo apt install debconf-utils
+# sudo debconf-get-selections | grep iptables
+
+
+
+sudo ufw enable
+sudo ufw logging low
+sudo ufw allow 80/tcp # http
+sudo ufw allow 443/tcp # https
+sudo ufw allow 46281 # ssh
+sudo ufw limit 22/tcp # limit ssh attempts
+sudo ufw status
+
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+sudo service fail2ban restart
+
 
 
 
@@ -137,12 +150,18 @@ if [ -f /home/$userv/15ran ]; then
     #   turned off..         runsam         # turned this off 2018-06-11 
     #
     onetime1
-    cd; source shc/a3/62srvweb.sh 
+    cd; source shc/a5/72user.sh 
+    cd; source shc/a7/33alias.sh 
 
     #rsnap
     cd
     # create 15ran to mark that is has been run. Then don't run it again.
     touch /home/$userv/15ran
+	
+	# change ssh port
+	echo Port 46281>>/etc/ssh/sshd_config
+	sudo service sshd restart
+	
  fi
 
 }

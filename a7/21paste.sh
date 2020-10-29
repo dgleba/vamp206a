@@ -184,6 +184,9 @@ export fil=provision01.sh ; export pth=~ ;  chmod +x $pth/$fil  ;  $pth/$fil   2
 ## Step 3 -  Get new shell and...
 
 
+Get new shell!!!!!
+exit
+
 cd;
 export fil=91set.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  . $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 

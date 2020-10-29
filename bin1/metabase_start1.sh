@@ -13,11 +13,19 @@ export MB_DB_DBNAME=metabasedb
 export MB_DB_PORT=3306
 export MB_DB_USER=sysuser
 export MB_DB_PASS=$mysql_lukup_pass
-export MB_DB_HOST=localhost
+#export MB_DB_HOST=127.0.0.1
+export MB_DB_HOST=10.4.1.224
 
-exec java -jar metabase.jar  >> /home/albe/log/metabasebi.log 2<&1 &
+mkdir -p /home/albe/log2
+
+set -vx
+sleep 30
 
 
+# disabled. 2020-07-15_Wed_12.47-PM. dgleba.     exec java -jar metabase.jar  >> /home/albe/log2/metabasebi.log 2<&1 &
+
+
+date
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

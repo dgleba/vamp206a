@@ -39,8 +39,11 @@ function saynow {
 date1=$(date +"__%Y.%m.%d_%H.%M.%S")
 echo $date1
 # good I think. can use many times.
-s=6 ; date ; read -t $s -p "press Enter or wait $s seconds" ; echo ; date;
+s=2 ; date ; read -t $s -p "press Enter or wait $s seconds" ; echo ; date;
 s=3 ; date ; read -t $s -p "press Enter or wait $s seconds" ; echo ; date;
+read -rsp $'Wait xx seconds or press Escape-key to continue...' -t 2 -d $'\e'
+s=9 ; read  -rsp $"Wait $s seconds or press Escape-key or Arrow key to continue..." -t $s -d $'\e'; echo;echo;
+
 #
 # can only use once.. timeout1=5 ; read -t "${timeout1}" -p "Press ENTER or wait $timeout1 seconds..." || true ;  echo ;
 # I think with lib.trap.sh the read prompt doesn't show. so..   timeout1=111 ; echo "Press ENTER or wait ${timeout1} seconds...." ; read -t "${timeout1}" -p "Press ENTER or wait $timeout1 seconds..." || true ;  echo ;

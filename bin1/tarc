@@ -20,12 +20,15 @@ date ; set +vx  ; set -vx ; # echo off, then echo on
 mv log/development.log log/development.log.$(date +"__%Y.%m.%d_%H.%M.%S").log
 
 # The following 2 commands are optional - they keep your git repo in good shape.
-git prune --progress # delete all the objects w/o references
-git gc --aggressive # aggressively collect garbage; may take a lot of time on large repos
+# git prune --progress # delete all the objects w/o references
+# git gc --aggressive # aggressively collect garbage; may take a lot of time on large repos
 
 ###### tar current folder..
-base=$(basename $PWD);export HOSTNAME;cd ..
+base=$(basename $PWD);export HOSTNAME;
+curfolder=${PWD##*/}
+echo base=$base    hostname=$HOSTNAME  curfolder=$curfolder
 
+cd ..
 
 # doesn't work on mac osx
 #tar -czf $base-$HOSTNAME$(date +"__%Y.%m.%d_%H.%M.%S").tgz  $base --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/public/assets,$base/nbproject,$base/log};cd $base
@@ -55,6 +58,8 @@ dts=$(date +"__%Y.%m.%d_%H.%M.%S")
 tar -cz --wildcards \
   --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/nbproject,$base/log} \
     --exclude={$base/tar,templates_c/*} \
+    --exclude=public/assets/* \ 
+    --exclude=shared/sockets/* \
     --exclude=tmp/* \
     --exclude=x/*  \
     --exclude=log/* \

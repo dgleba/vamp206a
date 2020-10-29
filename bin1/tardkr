@@ -35,13 +35,12 @@ tar -cz --wildcards \
     --exclude=bower_components/* \
     --exclude=node_modules/* \
     --exclude=egrav22/backups/* \
+    --exclude=data-moved-from-data/* \
     --exclude=datasys/* \
     --exclude=sysdata/* \
     --exclude=data/* \
     -f ~/backup7z/srv-dkr-$HOSTNAME-nopkg$(date +"__%Y.%m.%d_%H.%M.%S").tgz /srv/dkr;
-	
-		cp ~/backup7z/srv-dkr-$HOSTNAME-nopkg$(date +"__%Y.%m.%d_%H.%M.%S").tgz  ~/backup7z/srv-dkr-nopkg-$HOSTNAME-latest.tgz  
-		
+	cp ~/backup7z/srv-dkr-$HOSTNAME-nopkg$(date +"__%Y.%m.%d_%H.%M.%S").tgz  ~/backup7z/srv-dkr-nopkg-$HOSTNAME-latest.tgz  
     # cd $base
   # Careful, this excludes any data folder..
   

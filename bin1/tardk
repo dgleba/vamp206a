@@ -33,6 +33,7 @@ tar -cz --wildcards \
     --exclude=bower_components/* \
     --exclude=egrav22/backups/* \
     --exclude=*.tgz \
+    --exclude=public/assets/* \
     --exclude=datasys/* \
     --exclude=sysdata/* \
     --exclude=data/* \
