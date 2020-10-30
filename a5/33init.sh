@@ -75,17 +75,31 @@ sudo apt-get -y install mc ufw fail2ban
 
 
 
-sudo ufw enable
-sudo ufw logging low
+#Command may disrupt existing ssh connections. Proceed with operation (y|n)? n
+#sudo ufw enable
+
+sudo ufw logging low 
 sudo ufw allow 80/tcp # http
 sudo ufw allow 443/tcp # https
-sudo ufw allow 46281 # ssh
+sudo ufw allow 46281/tcp  # ssh
 sudo ufw limit 22/tcp # limit ssh attempts
+# sudo ufw allow ssh
 sudo ufw status
+
 
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 sudo service fail2ban restart
 
+
+
+# change ssh port
+# echo "Port 46281">>/etc/ssh/sshd_config
+sed -i '1iPort 46281' /etc/ssh/sshd_config
+cat /etc/ssh/sshd_config
+#    nano /etc/ssh/sshd_config
+# extend ssh timeout to 24 hours. 120 sec * 720
+echo "ClientAliveInterval 120">>/etc/ssh/sshd_config
+echo "ClientAliveCountMax 360">>/etc/ssh/sshd_config
 
 
 
@@ -108,7 +122,10 @@ sudo service fail2ban restart
 function onetime1() {
 
 
-source shc/a3/alias21.sh
+# source shc/a3/alias21.sh
+
+cd; source shc/a5/72user.sh 
+cd; source shc/a7/33alias.sh 
 
 
 sudo apt -y install build-essential
@@ -150,16 +167,14 @@ if [ -f /home/$userv/15ran ]; then
     #   turned off..         runsam         # turned this off 2018-06-11 
     #
     onetime1
-    cd; source shc/a5/72user.sh 
-    cd; source shc/a7/33alias.sh 
 
     #rsnap
     cd
     # create 15ran to mark that is has been run. Then don't run it again.
     touch /home/$userv/15ran
 	
-	# change ssh port
-	echo Port 46281>>/etc/ssh/sshd_config
+
+	sudo systemctl restart ssh
 	sudo service sshd restart
 	
  fi

@@ -64,6 +64,7 @@ dkps () {
 	set +vx;date;echo;
 }
 HEREDOC
+
 	#
 	# docker ps -a --format "table {{.Names}}\t{{.Ports}}\t{{.Status}}\t{{.RunningFor}}" | sort;  
 
