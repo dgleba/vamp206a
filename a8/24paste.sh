@@ -91,6 +91,9 @@ tee ./provision01.sh <<- 'EOF'
 # use && \ to avoid command not running because the one above prevents further execution when pasting several commands at once.
 
 
+# might need some software...
+
+
 command -v git >/dev/null 2>&1 ||
 { echo >&2 "Git is not installed. Installing..";
   sudo  apt-get update  && sudo  apt-get -y install git 
@@ -108,15 +111,55 @@ command -v $pkgtoin >/dev/null 2>&1 ||
   sudo  apt-get update  && sudo  apt-get -y install $pkgtoin 
 }
 
+pkgtoin=docker
+command -v $pkgtoin >/dev/null 2>&1 ||
+{ echo >&2 "$pkgtoin   is not installed. Installing..";
+  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin 
+}
+
+pkgtoin=docker-compose
+command -v $pkgtoin >/dev/null 2>&1 ||
+{ echo >&2 "$pkgtoin   is not installed. Installing..";
+  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin 
+}
+
 
 
 # ---------------------------------------------------
 
-## Step 3  as user albe - root stuff
+## get scripts and setup user helpers..
 
 #
 git clone https://github.com/dgleba/vamp206a.git shc  ; chmod -R +x  shc/  && \
 cd shc ; git pull
+
+
+
+cd ; 
+export    fil=33alias.sh ; export pth=shc/acom ;  chmod +x $pth/$fil  ;  .  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+
+
+# install github..rupa/z - z-jump
+
+  cd $HOME
+  mkdir -p $HOME/bin
+  # git clone https://github.com/dgleba/z.git  bin/zjump
+  git clone https://github.com/rupa/z.git  bin/zjump
+  echo  export _Z_MAX_SCORE=12000>>$HOME/.bashrc
+  echo . $HOME/bin/zjump/z.sh>>$HOME/.bashrc
+  # execute .bashrc excluding the code that prevents running it again.
+  # tail -n+10 ~/.bashrc | bash
+
+# copy scripts to home bin folder..
+mkdir -p bin
+  chown -R $userv bin
+  chgrp -R $userv bin
+cd
+cp shc/bin1/* bin
+  chmod -R +x bin
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #
 # tz
@@ -127,25 +170,12 @@ timedatectl list-timezones | grep -i toronto
 timedatectl
 
 
-cd;
-
-cd ; 
-export    fil=33alias.sh ; export pth=shc/acom ;  chmod +x $pth/$fil  ;  .  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
-
-
 
 # sudo chmod -R 775 $hpath/shc
 # sudo chmod -R 775 $hpath/bin2
   chown -R $userv $hpath
   chgrp -R $userv $hpath
 
-# copy scripts to home bin folder..
-mkdir -p bin
-  chown -R $userv bin
-  chgrp -R $userv bin
-cd
-cp shc/bin1/* bin
-  chmod -R +x bin
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -180,18 +210,6 @@ echo "ClientAliveCountMax 360" | sudo tee -a /etc/ssh/sshd_config
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-# install github..rupa/z - z-jump
-
-  cd $HOME
-  mkdir -p $HOME/bin
-  # git clone https://github.com/dgleba/z.git  bin/zjump
-  git clone https://github.com/rupa/z.git  bin/zjump
-  echo  export _Z_MAX_SCORE=12000>>$HOME/.bashrc
-  echo . $HOME/bin/zjump/z.sh>>$HOME/.bashrc
-  # execute .bashrc excluding the code that prevents running it again.
-  # tail -n+10 ~/.bashrc | bash
 
 
 sudo apt  -y install  docker
