@@ -25,6 +25,7 @@ cd#!/usr/bin/env bash
 
 # get prompt for sudo. This will avoid sending pasted characters to the password prompt, which leads to them missing when they are needed.
 
+
 # They way I paste commands, it usually has extra characters, like new lines. This can end up in the password prompt.
 #   I need to backspace before entering my password.
 
@@ -40,7 +41,10 @@ sudo ls
 
 
 
-##  Step 2  as user albe - settings and create provision01.sh.
+##  Step 2  as root or albe - settings and create provision01.sh.
+ 
+# copy paste step 2 into vps terminal.
+ 
  
 cd
 tee ./12settings.sh <<- 'EOF'
@@ -55,7 +59,7 @@ tee ./12settings.sh <<- 'EOF'
 #
 
 # password for user:
-export pw1=a
+##############export pw1=a
 
 # save user to avoid any change user root is substituted:
 export userv=$USER
@@ -86,23 +90,36 @@ tee ./provision01.sh <<- 'EOF'
 
 # use && \ to avoid command not running because the one above prevents further execution when pasting several commands at once.
 
+
 command -v git >/dev/null 2>&1 ||
 { echo >&2 "Git is not installed. Installing..";
   sudo  apt-get update  && sudo  apt-get -y install git 
 }
+
+pkgtoin=ufw
+command -v $pkgtoin >/dev/null 2>&1 ||
+{ echo >&2 "$pkgtoin   is not installed. Installing..";
+  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin 
+}
+
+pkgtoin=fail2ban
+command -v $pkgtoin >/dev/null 2>&1 ||
+{ echo >&2 "$pkgtoin   is not installed. Installing..";
+  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin 
+}
+
 
 
 # ---------------------------------------------------
 
 ## Step 3  as user albe - root stuff
 
-# unneeded?  groupadd www-data
 #
 git clone https://github.com/dgleba/vamp206a.git shc  ; chmod -R +x  shc/  && \
 cd shc ; git pull
 
 #
-# unneeded??
+# tz
 #
 timedatectl list-timezones | grep -i toronto
  sudo unlink /etc/localtime
@@ -112,21 +129,8 @@ timedatectl
 
 cd;
 
-export fil=71grpshare.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  . $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
-
-
-cd;
-
-export     fil=64user.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  . $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
-
-
-cd;
-
-export   fil=82docker.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  . $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
-
-
 cd ; 
-export    fil=33alias.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  .  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+export    fil=33alias.sh ; export pth=shc/acom ;  chmod +x $pth/$fil  ;  .  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 
 
 
@@ -146,6 +150,38 @@ cp shc/bin1/* bin
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+sudo ufw logging low 
+sudo ufw allow 80/tcp # http
+sudo ufw allow 443/tcp # https
+sudo ufw allow 46281/tcp  # ssh
+sudo ufw limit 22/tcp # limit ssh attempts
+# sudo ufw allow 25
+# sudo ufw allow ssh
+sudo ufw enable
+sudo ufw status
+
+
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+sudo service fail2ban restart
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+# change ssh port
+# echo "Port 46281">>/etc/ssh/sshd_config
+# sed -i '1iPort 46281' /etc/ssh/sshd_config
+cat /etc/ssh/sshd_config
+#    nano /etc/ssh/sshd_config
+# extend ssh timeout to 24 hours. 120 sec * 720
+echo "ClientAliveInterval 120" | sudo tee -a /etc/ssh/sshd_config
+echo "ClientAliveCountMax 360" | sudo tee -a /etc/ssh/sshd_config
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 # install github..rupa/z - z-jump
 
   cd $HOME
@@ -157,6 +193,9 @@ cp shc/bin1/* bin
   # execute .bashrc excluding the code that prevents running it again.
   # tail -n+10 ~/.bashrc | bash
 
+
+sudo apt  -y install  docker
+sudo apt  -y install  docker-compose 
 
 
 echo .;
@@ -182,33 +221,22 @@ export fil=provision01.sh ; export pth=~ ;  chmod +x $pth/$fil  ;  $pth/$fil   2
 
 
 
-# ---------------------------------------------------
-
-
-## Step 3 -  Get new shell and...
-
-
-Get new shell!!!!!
-exit
-
-cd;
-export fil=91set.sh ; export pth=shc/a7 ;  chmod +x $pth/$fil  ;  . $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
-
-
-
 
 
 
 
 # ---------------------------------------------------
 
-##  Step 4
+##  Step 3
 
+exec bash
 
-# logout and log back in again to ensure all settings are in effect.
-# eg: groups will take effect after login.
+nuser.sh albe
 
-You could run hostp.sh <newhostname> to give it a unique host name.
+sudo adduser albe sudo
+sudo mkdir /ap
+sudo chown albe:albe /ap
+
 
 
 done

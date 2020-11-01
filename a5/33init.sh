@@ -12,6 +12,12 @@ cd ; date ; set +vx  ; set -vx ; # echo off, then echo on
 #
 #
 
+source shc/root.sh
+set +vx
+source safe/21env.sh
+set -vx
+
+
 # copy vne.sh over. IT is where I edit 21env.sh for my personal settings...
 mkdir -p tmp01
 mkdir -p safe
@@ -29,12 +35,6 @@ cp shc/a3/21env.sh safe/21env.sh
 
 # then overwrite it with mine. Which won't happen if it's not there.
 cp safe/vne.sh safe/21env.sh
-
-
-source shc/root.sh
-set +vx
-source safe/21env.sh
-set -vx
 
 
 #~~~~~~
@@ -83,6 +83,7 @@ sudo ufw allow 80/tcp # http
 sudo ufw allow 443/tcp # https
 sudo ufw allow 46281/tcp  # ssh
 sudo ufw limit 22/tcp # limit ssh attempts
+# sudo ufw allow 25
 # sudo ufw allow ssh
 sudo ufw status
 
