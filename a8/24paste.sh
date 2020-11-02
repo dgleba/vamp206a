@@ -114,14 +114,10 @@ command -v $pkgtoin >/dev/null 2>&1 ||
 pkgtoin=docker
 command -v $pkgtoin >/dev/null 2>&1 ||
 { echo >&2 "$pkgtoin   is not installed. Installing..";
-  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin 
+  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin  make docker-compose
 }
 
-pkgtoin=docker-compose
-command -v $pkgtoin >/dev/null 2>&1 ||
-{ echo >&2 "$pkgtoin   is not installed. Installing..";
-  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin 
-}
+
 
 
 
