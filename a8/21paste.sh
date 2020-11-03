@@ -1,40 +1,4 @@
-cd#!/usr/bin/env bash
-
-# ---------------------------------------------------
-
-
-#  paste commands below into the command prompt on the new server.
-#    The server will need open-ssh-server installed. You can connect with username and password.
-#    use putty or some ssh client that you can paste text into.
-#     Other clients are mremote, windows ssh in command prompt. There are many others. 
-
-#    Use filezilla - connection over ssh to put files on the server.
-#      To edit files on the server right click on a file and select edit.
-#      if you need to edit files as root, copy it to writable folder and then   
-#         copy it back after editing, or just use sed or nano to edit the files.
-#      Another option is cyberduck.
-
-
-# ---------------------------------------------------
-
-
-
-
-##  Step 1  as user albe - settings.
-
-
-# get prompt for sudo. This will avoid sending pasted characters to the password prompt, which leads to them missing when they are needed.
-
-
-# They way I paste commands, it usually has extra characters, like new lines. This can end up in the password prompt.
-#   I need to backspace before entering my password.
-
-
-
-sudo ls
-
-
-
+#!/usr/bin/env bash
 
 
 # ---------------------------------------------------
@@ -96,25 +60,31 @@ tee ./provision01.sh <<- 'EOF'
 
 command -v git >/dev/null 2>&1 ||
 { echo >&2 "Git is not installed. Installing..";
-  sudo  apt-get update  && sudo  apt-get -y install git 
+  sudo  apt-get update  && sudo  apt-get -y install git
 }
 
 pkgtoin=ufw
 command -v $pkgtoin >/dev/null 2>&1 ||
 { echo >&2 "$pkgtoin   is not installed. Installing..";
-  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin 
+  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin
 }
 
 pkgtoin=fail2ban
 command -v $pkgtoin >/dev/null 2>&1 ||
 { echo >&2 "$pkgtoin   is not installed. Installing..";
-  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin 
+  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin
 }
 
 pkgtoin=docker
 command -v $pkgtoin >/dev/null 2>&1 ||
 { echo >&2 "$pkgtoin   is not installed. Installing..";
-  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin  make docker-compose
+  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin  docker-compose
+}
+
+pkgtoin=make
+command -v $pkgtoin >/dev/null 2>&1 ||
+{ echo >&2 "$pkgtoin   is not installed. Installing..";
+  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin 
 }
 
 
@@ -123,7 +93,9 @@ command -v $pkgtoin >/dev/null 2>&1 ||
 
 # ---------------------------------------------------
 
+
 ## get scripts and setup user helpers..
+
 
 #
 git clone https://github.com/dgleba/vamp206a.git shc  ; chmod -R +x  shc/  && \
@@ -158,8 +130,10 @@ cp shc/bin1/* bin
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #
-# tz
+# set timezone
 #
+
+
 timedatectl list-timezones | grep -i toronto
  sudo unlink /etc/localtime
  sudo ln -s /usr/share/zoneinfo/America/Toronto /etc/localtime
@@ -175,6 +149,8 @@ timedatectl
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#  set firewall
 
 
 sudo ufw logging low 
@@ -195,6 +171,8 @@ sudo service fail2ban restart
 
 
 # change ssh port
+
+
 # echo "Port 46281">>/etc/ssh/sshd_config
 # sed -i '1iPort 46281' /etc/ssh/sshd_config
 cat /etc/ssh/sshd_config
@@ -206,10 +184,6 @@ echo "ClientAliveCountMax 360" | sudo tee -a /etc/ssh/sshd_config
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-sudo apt  -y install  docker
-sudo apt  -y install  docker-compose 
 
 
 echo .;
@@ -227,33 +201,3 @@ export fil=provision01.sh ; export pth=~ ;  chmod +x $pth/$fil  ;  $pth/$fil   2
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-# ---------------------------------------------------
-
-##  Step 3
-
-exec bash
-
-nuser.sh albe
-
-sudo adduser albe sudo
-sudo mkdir /ap
-sudo chown albe:albe /ap
-
-
-
-done
-
-
-# ---------------------------------------------------
