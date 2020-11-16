@@ -11,6 +11,28 @@ set -vx
 #  set hostname with   ** paramter **  usage 68hostp.sh [hostname2set]  ( .local will be added )
 
 
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+echo
+echo
+echo Usage hostp.sh  newhostname
+echo
+echo
+echo Careful with this. Dont use it on digitalocean.
+echo It completely replaces /etc/hosts. 
+echo
+echo For DO, use this.. https://www.digitalocean.com/community/questions/how-do-i-change-hostname
+echo
+echo
+echo
+
+if [ $# -eq 0 ]; then
+    echo "No arguments provided - specify username"
+    exit 1
+fi
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # hostv example redekv12

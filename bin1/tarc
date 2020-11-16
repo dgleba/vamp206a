@@ -59,7 +59,7 @@ tar1() {
     #   # Careful, this excludes any data folder..
 
     # works..  
-	# but if a exclude folder is missing, it seems to complain and fail. see tarf() function.
+	# but if an exclude folder is missing, it seems to complain and fail. see tarf() function.
     tarex(){
       tar -cz --wildcards \
       --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/nbproject,$base/log} \
@@ -92,14 +92,14 @@ tar1() {
       tar -czf $base-$HOSTNAME$fnpath$dts.tgz -T $tfile
     }
 
-    tarf1() {
+    tarf-one() {
       tfile=/tmp/tmpfilefindtar23234.txt; 
       find . -type f |  grep -Ev  \
         'tmp/|data/|sysdata|datasys|public/assets|x/|.tgz|node_modules' > $tfile
       tar -czf ../$HOSTNAME$fnpath$dts.tgz -T $tfile
     }
 
-    # run on of the above..
+    # run one of the above..
 
     tarf
     

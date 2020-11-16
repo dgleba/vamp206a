@@ -50,7 +50,7 @@ tee ./provision01.sh <<- 'EOF'
 
 # ---------------------------------------------------
 
-## Step 2  as user albe - root stuff get code
+## Step 2   - root stuff get code
 
 # use && \ to avoid command not running because the one above prevents further execution when pasting several commands at once.
 
@@ -141,8 +141,6 @@ timedatectl
 
 
 
-# sudo chmod -R 775 $hpath/shc
-# sudo chmod -R 775 $hpath/bin2
   chown -R $userv $hpath
   chgrp -R $userv $hpath
 
