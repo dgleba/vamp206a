@@ -6,6 +6,11 @@ function Purpose() {
 
 #  Purpose:  tar the current folder and give the archive a useful name..
 
+
+#  VERSION info
+	v23 - 2020-11-17 -- find files grep exclude then tar
+
+
 chmod +x ~/bin/tarc4
 
 END
