@@ -7,7 +7,7 @@
 
 exec bash
 
-nuser.sh albe
+shc/bin1/nuser.sh albe
 
 sudo adduser albe sudo
 sudo adduser albe docker
@@ -18,6 +18,12 @@ sudo chown albe:www-data /ap
 exec bash
 
 # done
+
+
+cd;
+export   fil=82docker.sh ; export pth=shc/acom ;  chmod +x $pth/$fil  ;  . $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+
+
 
 
 # ---------------------------------------------------
