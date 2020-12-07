@@ -149,6 +149,23 @@ sed -i.$(date +"%Y-%m-%d_%H.%M.%S").backup   '/alias.sp=/s/^/# /' ~/.bash_aliase
 tee -a ~/.bash_aliases <<- 'HEREDOC'
 alias sp='dts=$(date +"%Y-%m-%d_%H.%M.%S"); seq 1 149 | xargs -I{} date ; echo  Just the spacer only __  $dts -=-=-=-=-=-=-=-=-=-=-=-'
 HEREDOC
+
+
+tee -a ~/.bash_aliases <<- 'HEREDOC'
+
+gra() {
+  grep -rLZE ".{599}" --exclude-dir={tmp,log,vendor,node_modules} --exclude={*.lock,*lock*} . | xargs -r0 grep -in --color  "${1}" 
+  echo
+}
+
+HEREDOC
+
+
+
+
+
+# =================================================
+
 #
 # These no worky.. (use above heredoc)
 # echo 'alias sp="dts=$(date +"%Y-%m-%d_%H.%M.%S");seq 1 49 | xargs -I{} date;echo Just a spacer  __ $dts \_\_ -=-=-=-=-=-=-=-=-=-=-=-"'>> ~/.bash_aliases

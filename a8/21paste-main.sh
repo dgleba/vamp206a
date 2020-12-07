@@ -151,19 +151,37 @@ timedatectl
 #  set firewall
 
 
+sudo ufw disable
 sudo ufw logging low 
 sudo ufw allow 80/tcp # http
 sudo ufw allow 443/tcp # https
 sudo ufw allow 46281/tcp  # ssh
 sudo ufw limit 22/tcp # limit ssh attempts
+
+sudo ufw deny 2375
+sudo ufw deny 2376
+
+# sudo ufw allow 6031/tcp # http
+# sudo ufw allow 16123/tcp # http
+# sudo ufw allow 16125/tcp # http
+# sudo ufw allow 16126/tcp # http
+
+sudo ufw deny 6031/tcp # http
+sudo ufw deny 16123/tcp # http
+sudo ufw deny 16125/tcp # http
+sudo ufw deny 16126/tcp # http
+
 # sudo ufw allow 25
 # sudo ufw allow ssh
+
+sudo ufw default deny incoming
+
 sudo ufw enable
 sudo ufw status
 
+sudo service ufw stop
+sudo service ufw start
 
-sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-sudo service fail2ban restart
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -175,12 +193,50 @@ sudo service fail2ban restart
 # sed -i '1iPort 46281' /etc/ssh/sshd_config
 cat /etc/ssh/sshd_config
 #    nano /etc/ssh/sshd_config
-# extend ssh timeout to 24 hours. 120 sec * 720
+# extend ssh timeout to 24 hours. 120 sec * 720 or 12 hours = 120 sec * 360 ..
 echo "ClientAliveInterval 120" | sudo tee -a /etc/ssh/sshd_config
 echo "ClientAliveCountMax 360" | sudo tee -a /etc/ssh/sshd_config
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# https://askubuntu.com/questions/652556/uncomplicated-firewall-ufw-is-not-blocking-anything-when-using-docker
+
+sudo tee -a /etc/docker/daemon.json <<- 'HEREDOC'
+{
+    "iptables": false
+}
+HEREDOC
+cat /etc/docker/daemon.json
+
+echo 'DOCKER_OPTS="--iptables=false"' | sudo tee -a /etc/default/docker
+cat /etc/default/docker
+# sudo nano /etc/default/docker
+sudo service docker stop
+sudo service docker start
+
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+# albe@pmsdo545:/ap/tmp$ diff jail.local  jail.conf
+# ---
+# uncomment < bantime.increment = true
+# uncomment and set 100 < bantime.rndtime = 100
+
+
+sudo tee -a /etc/fail2ban/jail.local <<- 'HEREDOC'
+
+bantime.increment = true
+bantime.rndtime = 100
+HEREDOC
+
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+sudo service fail2ban restart
+
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
