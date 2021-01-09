@@ -52,10 +52,10 @@ nvm --version
 
 #https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-16-04
 # nvm install 8.9.0
-nvm install 10
+nvm install 14
 
 # nvm use 8.9.0
-nvm use 10
+nvm use 14
 
 nvm ls
 
