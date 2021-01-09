@@ -243,6 +243,12 @@ sudo service fail2ban restart
 echo .;
 echo .;
 echo 'exit this shell now and login to get new settings.';
+echo .;echo .;
+echo .;
+echo 'again.. exit this shell now and login to get new settings.';
+echo .;echo .;
+echo .;
+echo 'again... EXIT THIS SHELL now and login to get new settings.';
 echo .;
 sleep 9;
 # exit # logout to get a fresh env by loging back in.;
