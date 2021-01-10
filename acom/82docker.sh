@@ -95,6 +95,8 @@ apt-cache policy docker-ce
 
 # https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-convenience-script
 
+sudo snap remove docker
+
 
 sudo  apt-get update
 sudo  apt-get -y remove docker docker-engine docker.io  containerd runc docker-ce docker-ce-cli containerd.io
@@ -124,7 +126,7 @@ sudo  sh get-docker.sh
 
 sudo  apt-get -y remove docker-compose
 # then install the newest version on the release page at GitHub with
-sudo curl -L https://github.com/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
 sudo  chmod +x /usr/bin/docker-compose
 docker-compose -v
 
