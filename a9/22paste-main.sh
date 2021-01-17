@@ -7,7 +7,7 @@
 
 ##  Step 2b  as albe - settings and create provision01.sh.
  
-# copy paste step 2 into vps terminal.
+# copy paste step 2 into vps terminal. Just ctrl-A select all and paste all of this file.
  
  
 cd
