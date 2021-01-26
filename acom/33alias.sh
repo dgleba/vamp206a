@@ -154,7 +154,7 @@ HEREDOC
 tee -a ~/.bash_aliases <<- 'HEREDOC'
 
 gra() {
-  grep -rLZE ".{599}" --exclude-dir={tmp,log,vendor,node_modules} --exclude={*.lock,*lock*} . | xargs -r0 grep -in --color  "${1}" 
+  grep -rLZE ".{599}" --exclude-dir={tmp,log,vendor,node_modules,datasys,sysdata} --exclude={*.lock,*lock*,*tmp*} . | xargs -r0 grep -in --color  "${1}" 
   echo
 }
 
