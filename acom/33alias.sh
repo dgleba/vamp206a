@@ -143,7 +143,7 @@ echo "alias hi='history'" >>   ~/.bash_aliases
 echo 'dcl() { docker-compose logs "$@" ; }' >> ~/.bash_aliases
 
 # comment out line containing pattern - alias sp=
-sed -i.$(date +"%Y-%m-%d_%H.%M.%S").backup   '/alias.sp=/s/^/# /' ~/.bash_aliases  
+sed -i.$(date +"%Y-%m-%d_%H.%M.%S").sedbackup   '/alias.sp=/s/^/# /' ~/.bash_aliases  
 # now add the line we want.. 
 # 'HEREDOC' single quotes means no variable expansion..
 tee -a ~/.bash_aliases <<- 'HEREDOC'

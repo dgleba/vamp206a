@@ -4,21 +4,26 @@
 
 set -vx
 
+git config --global alias.pu 'pull'
+git config --global alias.s 'status'
+git config --global alias.lds 'log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short'
 
 git config --global alias.cap '!func(){ git add . && git commit -aqm "$1" &&
     git pull -q --no-progress && git push -q; }; func'
 
 git config --global alias.ca '!func(){ git add . && git commit -aqm "$1" ; }; func'
 
-git config --global alias.psa "push --all origin"
-
 git config --global alias.d 'diff'
-git config --global alias.pu 'pull'
+git config --global alias.r 'remote -v'
 
+# ----------
+
+
+
+git config --global alias.psa "push --all origin"
 
 git config --global alias.l 'log -p -n 1'
 git config --global alias.ld 'log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --graph'
-git config --global alias.lds 'log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short'
 git config --global alias.tre "log --oneline --decorate --all --graph"
 git config --global alias.ldt 'log --pretty=format:"%C(yellow)%h\\ %C(green)%ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short --all --graph'
 
@@ -30,9 +35,7 @@ git config --global alias.ll 'log --name-status HEAD^..HEAD' # list last commit 
 # git log --name-status HEAD^..HEAD > diff1
 # git diff HEAD^ HEAD>>diff1
 
-git config --global alias.r 'remote -v'
 
-git config --global alias.s 'status'
 
 git config --global alias.b 'branch'
 
