@@ -180,13 +180,10 @@ sudo ufw deny 16126/tcp # http
 
 sudo ufw default deny incoming
 
-<<<<<<< HEAD
-=======
 # vnc
 # sudo ufw allow from any to any port 5900 proto tcp
 
 
->>>>>>> 1e37eba (2021-04-15)
 sudo ufw enable
 sudo ufw status
 
