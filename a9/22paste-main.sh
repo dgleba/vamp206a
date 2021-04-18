@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
-
-
 # ---------------------------------------------------
-
+# ---------------------------------------------------
 
 
 ##  Step 2b  as albe - settings and create provision01.sh.
  
 # copy paste step 2 into vps terminal. Just ctrl-A select all and paste all of this file.
  
- 
+echo starting to paste 22paste-main.sh 
 cd
 tee ./12settings.sh <<- 'EOF'
 # ---------------------------------------------------
@@ -182,7 +180,8 @@ sudo ufw default deny incoming
 
 # vnc
 # sudo ufw allow from any to any port 5900 proto tcp
-
+# rdp
+# sudo ufw allow from any to any port 3389 proto tcp
 
 sudo ufw enable
 sudo ufw status
@@ -275,8 +274,8 @@ sleep 9;
  
 EOF
 
-export fil=provision01.sh ; export pth=~ ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
-
+export fil=22paste-main.sh ; export pth=~ ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+# ---------------------------------------------------
 
 
 
