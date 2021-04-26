@@ -55,7 +55,16 @@ echo ""
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # remove user from a group
 #       sudo gpasswd -d username group
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
+# $nuser=dg
+# sudo adduser $nuser --gecos "$nuser,..,..,.."
+# sudo usermod -a -G sudo  $nuser
+#
+#
+#
+#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 date
 #

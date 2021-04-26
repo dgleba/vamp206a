@@ -47,7 +47,7 @@ chmod +x ~/12settings.sh;
 
 
 cd
-tee ./provision01.sh <<- 'EOF'
+tee ./setup206-01.sh <<- 'EOF'
 . ~/12settings.sh
 
 # ---------------------------------------------------
@@ -77,11 +77,11 @@ command -v $pkgtoin >/dev/null 2>&1 ||
   sudo  apt-get update  && sudo  apt-get -y install $pkgtoin
 }
 
-pkgtoin=docker
-command -v $pkgtoin >/dev/null 2>&1 ||
-{ echo >&2 "$pkgtoin   is not installed. Installing..";
-  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin  docker-compose
-}
+# pkgtoin=docker
+# command -v $pkgtoin >/dev/null 2>&1 ||
+# { echo >&2 "$pkgtoin   is not installed. Installing..";
+  # sudo  apt-get update  && sudo  apt-get -y install $pkgtoin  docker-compose
+# }
 
 pkgtoin=make
 command -v $pkgtoin >/dev/null 2>&1 ||
@@ -150,48 +150,6 @@ timedatectl
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#  set firewall
-
-
-sudo ufw disable
-sudo ufw logging low 
-sudo ufw allow 80/tcp # http
-sudo ufw allow 443/tcp # https
-sudo ufw allow 46281/tcp  # ssh
-sudo ufw limit 22/tcp # limit ssh attempts
-
-sudo ufw deny 2375
-sudo ufw deny 2376
-
-# sudo ufw allow 6031/tcp # http
-# sudo ufw allow 16123/tcp # http
-# sudo ufw allow 16125/tcp # http
-# sudo ufw allow 16126/tcp # http
-
-sudo ufw deny 6031/tcp # http
-sudo ufw deny 16123/tcp # http
-sudo ufw deny 16125/tcp # http
-sudo ufw deny 16126/tcp # http
-
-# sudo ufw allow 25
-# sudo ufw allow ssh
-
-sudo ufw default deny incoming
-
-# vnc
-# sudo ufw allow from any to any port 5900 proto tcp
-# rdp
-# sudo ufw allow from any to any port 3389 proto tcp
-
-sudo ufw enable
-sudo ufw status
-
-sudo service ufw stop
-sudo service ufw start
-
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 # change ssh port
 
@@ -201,9 +159,10 @@ sudo service ufw start
 cat /etc/ssh/sshd_config
 #    nano /etc/ssh/sshd_config
 # extend ssh timeout to 24 hours. 120 sec * 720 or 12 hours = 120 sec * 360 ..
-echo "ClientAliveInterval 120" | sudo tee -a /etc/ssh/sshd_config
-echo "ClientAliveCountMax 360" | sudo tee -a /etc/ssh/sshd_config
+echo "ClientAliveInterval 120"  | sudo tee  /etc/ssh/sshd_config.d/clientactive.conf
+echo "ClientAliveCountMax 720" | sudo tee -a /etc/ssh/sshd_config.d/clientactive.conf
 
+sudo systemctl reload sshd
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -274,7 +233,7 @@ sleep 9;
  
 EOF
 
-export fil=22paste-main.sh ; export pth=~ ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
+export fil=setup206-01.sh ; export pth=~ ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 # ---------------------------------------------------
 
 
