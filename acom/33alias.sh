@@ -39,6 +39,7 @@ date ; set +vx  ; set -vx ; # echo off, then echo on
 
 chmod ugo+r  ~/.bash_aliases
 chmod ug+rw  ~/.bash_aliases
+echo "alias ll='ls -la'" >>   ~/.bash_aliases
 echo "alias lsl='ls -la'" >>   ~/.bash_aliases
 echo "alias psg='ps -ef|grep '" >>   ~/.bash_aliases
 echo "alias dc='docker-compose'" >>   ~/.bash_aliases
@@ -101,9 +102,9 @@ HEREDOC
 # no works. see function below..
 # echo "alias drmv='docker volume rm $(docker volume ls -qf dangling=true)'" >>   ~/.bash_aliases
 #
-# rm dangling vol..
+# rm dangling vol. careful it may be better to delete vol by name. see below..
 tee -a ~/.bash_aliases <<- 'HEREDOC'
-drmvol () {
+drmvoldang () {
 	set -vx; 
 	docker volume rm $(docker volume ls -qf dangling=true) 
 	set +vx;echo;
@@ -114,6 +115,7 @@ HEREDOC
 tee -a ~/.bash_aliases <<- 'HEREDOC'
 dvn () {
 	set -vx; 
+	vname=xxxxxx
 	vname=$1
 	docker volume rm -f $( docker volume ls |    grep $vname      | awk '{print $2}' )
 	set +vx;echo;
@@ -129,7 +131,6 @@ dclean () {
 	docker rm $(docker ps -qa --no-trunc --filter "status=exited") 
 	# remove tagged <none> 
 	docker rmi $(docker images | grep "^<none>" | awk '{ print $3 }') 
- 
 	set +vx;echo;
 }
 HEREDOC

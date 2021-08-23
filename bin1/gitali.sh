@@ -2,6 +2,16 @@
 
 # this is https://github.com/dgleba/vamp206a/blob/master/bin1/gitali.sh
 
+# 	/cygdrive/c/n/sfile/knowtes/serve/vamp206a/bin1/gitali.sh
+
+
+# initial repo helps.
+
+# git branch --set-upstream-to=origin/main main
+
+#   git pull origin main
+
+
 set -vx
 
 git config --global alias.pu 'pull'
@@ -18,6 +28,19 @@ git config --global alias.r 'remote -v'
 
 # ----------
 
+
+
+function userinfo() 
+{
+
+  # paste this if needed..
+  git config --global user.email "dgleba@gmail.com"
+  git config --global user.name "David Gleba"
+  git config --global github.user dgleba
+  
+}
+
+# =================================================
 
 
 git config --global alias.psa "push --all origin"
@@ -63,16 +86,6 @@ git config credential.helper store
 
 
 
-
-function userinfo() 
-{
-
-  # paste this if needed..
-  git config --global user.email "dgleba@gmail.com"
-  git config --global user.name "David Gleba"
-  git config --global github.user dgleba
-  
-}
 
 
 
