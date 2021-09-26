@@ -91,7 +91,7 @@ tar1() {
       # 
       tfile=./tmp-file-find-for-tar_${USER}_2324.txt; 
       find $base -type f |  grep -Ev  \
-        'data/|sysdata/|public/assets/|/x/|.tgz|log/|tmp/|certs/|node_modules' > $tfile
+        'data/|sysdata/|public/assets/|/x/|.tgz|log/|tmp/|certs/|node_modules|site/static/' > $tfile
       # Careful, the above excludes any data string|folder..
       # cat $tfile
       tar -czf $base-$HOSTNAME$fnpath$dts.tgz -T $tfile

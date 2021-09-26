@@ -47,6 +47,19 @@ sudo crontab -u albe -l  # list
 
 # add...
 
+
+
+# lukup... eam assets , enterprise...
+sudo crontab -u albe -l | grep -v 'lukup/actions/imp-lukup.sh'  | sudo crontab -u albe - #remove
+sudo crontab -u albe -l | { cat; echo "43 15 * * 1-5 /var/www/html/lukup/actions/imp-lukup.sh >> /home/albe/log/lukupimp.log 2<&1"; } | sudo crontab -u albe -  #add
+
+# just ceridian - no longer NO-enterprise.
+sudo crontab -u albe -l | { cat; echo "49 15 * * 1-5 /var/www/html/cilist/actions/import-csv-mysql-ceridian-enterprise.sh >> /home/albe/log/importcerenterp1.log 2<&1"; } | sudo crontab -u albe -  #add
+
+sudo crontab -u albe -l |grep ent # list
+
+
+
 #metabase
 #  sftp://albe@10.4.1.224/home/albe/bin/metabase_stopstart.sh start a new log daily..
 sudo crontab -u albe -l | grep -v '/home/albe/bin/metabase_stopstart.sh'  | sudo crontab -u albe - #remove
@@ -82,14 +95,6 @@ sudo crontab -u albe -l | { cat; echo "31 11 * * 4   /var/www/html/shiftcsd2sup/
 sudo crontab -u albe -l | grep -v '0docs-pmdsdata/backup2.sh'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | { cat; echo "18 03 * * 0-6 /var/www/html/0docs-pmdsdata/backup2.sh >> /home/albe/log/backup2.log 2<&1"; } | sudo crontab -u albe -  #add
 
-# lukup... eam assets , enterprise...
-sudo crontab -u albe -l | grep -v 'lukup/actions/imp-lukup.sh'  | sudo crontab -u albe - #remove
-sudo crontab -u albe -l | { cat; echo "43 15 * * 1-5 /var/www/html/lukup/actions/imp-lukup.sh >> /home/albe/log/lukupimp.log 2<&1"; } | sudo crontab -u albe -  #add
-
-# just ceridian - no longer NO-enterprise.
-sudo crontab -u albe -l | { cat; echo "49 15 * * 1-5 /var/www/html/cilist/actions/import-csv-mysql-ceridian-enterprise.sh >> /home/albe/log/importcerenterp1.log 2<&1"; } | sudo crontab -u albe -  #add
-
-sudo crontab -u albe -l |grep ent # list
 
 
 
