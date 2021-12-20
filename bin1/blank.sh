@@ -36,6 +36,8 @@ BLOCKCOMMENT
 
 function saynow {
 
+echo $(date +%s) # unix timestamp
+
 date1=$(date +"__%Y.%m.%d_%H.%M.%S")
 echo $date1
 # good I think. can use many times.

@@ -49,7 +49,7 @@ sudo crontab -u albe -l  # list
 
 
 
-# lukup... eam assets , enterprise...
+# lukup... eam assets , enterprise... dayforce..
 sudo crontab -u albe -l | grep -v 'lukup/actions/imp-lukup.sh'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | { cat; echo "43 15 * * 1-5 /var/www/html/lukup/actions/imp-lukup.sh >> /home/albe/log/lukupimp.log 2<&1"; } | sudo crontab -u albe -  #add
 

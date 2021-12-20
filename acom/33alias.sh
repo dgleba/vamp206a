@@ -91,7 +91,8 @@ HEREDOC
 tee -a ~/.bash_aliases <<- 'HEREDOC'
 dil () {
 	set -vx; 
-	# docker delete images by wildcard 
+	# docker 
+	images by wildcard 
 	# patrn=adminer.*4.6
 	patrn=$1
 	  docker images | grep "${patrn}" 

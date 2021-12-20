@@ -6,6 +6,15 @@
 
 # Latest usage instructions...
 
+Lately, I have been using a trimmed down provisioning routine.
+It is in `\a9\` folder.
+
+It is mostly to setup docker, a few aliases, some security software, and not much more.
+
+
+
+# `\a3\` usage instructions...
+
 See `a3\11prep.sh` for the latest setup scripts.
 
 I have been recently doing things in steps.

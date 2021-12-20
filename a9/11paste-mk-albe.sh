@@ -12,3 +12,32 @@ sudo ls \
 
 # then logout and login as albe user.
 
+
+=================================================
+
+or
+
+
+ls \
+&& nuser=alb2 \
+&&  adduser $nuser --gecos "$nuser,..,..,.."  \
+&&  adduser $nuser sudo
+
+
+=================================================
+
+problem:
+
+
+on enwebhost: 
+
+problem:
+
+sudo: /usr/bin/sudo must be owned by uid 0 and have the setuid bit set
+
+ans.
+
+as root..
+chmod u+s /usr/bin/sudo
+
+=================================================
