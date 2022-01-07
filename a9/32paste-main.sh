@@ -5,7 +5,7 @@
 
 ##  Step 2b  as albe - settings and create provision01.sh.
  
-# copy paste step 2 into vps terminal. Just ctrl-A select all and paste all of this file.
+# copy paste step 2b into vps terminal. Just ctrl-A select all and paste all of this file.
  
 echo starting to paste 22paste-main.sh 
 cd
@@ -67,34 +67,35 @@ tee ./setup206-01.sh <<- 'EOF'
 # might need some software...
 
 
-command -v git >/dev/null 2>&1 ||
-{ echo >&2 "Git is not installed. Installing..";
-  sudo  apt-get update  && sudo  apt-get -y install git
-}
 
-pkgtoin=ufw
-command -v $pkgtoin >/dev/null 2>&1 ||
-{ echo >&2 "$pkgtoin   is not installed. Installing..";
-  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin
-}
+#
+##### Install packages listed in array2....
+#
+array2=( 
+git  make  locate
+ufw
+curl  wget  rsync
+)
+#
+for a3 in "${array2[@]}" ; do  
+  echo $a3 ; 
+  pkgtoin=$a3
+  command -v $pkgtoin >/dev/null 2>&1 ||
+  { echo >&2 " ~*~*~*~*~   $pkgtoin   is not installed. Installing..";
+    sudo  apt-get update  && sudo  apt-get -y install $pkgtoin
+  }
+done
+
+ 
+ 
+##fail2ban
 
 pkgtoin=fail2ban
-command -v $pkgtoin >/dev/null 2>&1 ||
+command -v fail2ban-client >/dev/null 2>&1 ||
 { echo >&2 "$pkgtoin   is not installed. Installing..";
   sudo  apt-get update  && sudo  apt-get -y install $pkgtoin
 }
 
-# pkgtoin=docker
-# command -v $pkgtoin >/dev/null 2>&1 ||
-# { echo >&2 "$pkgtoin   is not installed. Installing..";
-  # sudo  apt-get update  && sudo  apt-get -y install $pkgtoin  docker-compose
-# }
-
-pkgtoin=make
-command -v $pkgtoin >/dev/null 2>&1 ||
-{ echo >&2 "$pkgtoin   is not installed. Installing..";
-  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin 
-}
 
 
 
@@ -237,6 +238,7 @@ HEREDOC
 
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 sudo service fail2ban restart
+sudo fail2ban-client status
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function Purpose() {
+# begin block comment =============================
+: <<'END'
+
+#  Purpose:  tar some of the files in the current folder and give the archive a useful name..
+
+
+#  VERSION info
+	
+	v 2022-01-07b
+
+
+END
+# end block comment ===============================
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#cd ; 
+date ; set +vx  ; set -vx ; # echo off, then echo on
+#
+
+###### tar current folder..
+base=$(basename $PWD);export HOSTNAME;
+curfolder=${PWD##*/}
+echo 2389
+echo base=$base    hostname=$HOSTNAME  curfolder=$curfolder
+
+dts=$(date +"__%Y.%m.%d_%H.%M.%S")
+
+
+tar1() {
+    cd ..
+    # get the current path and replace / with _
+    fnpath="${PWD////_}" ; echo $fnpath
+    
+
+    tarex(){
+      tar -cz --wildcards \
+        --exclude={$base/log,templates_c/*} \
+        --exclude="x/*"  \
+        --exclude="node_modules/*" \
+        --exclude="/certs/*" \
+        -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S")_allnonode.tgz $base
+    }
+
+    tarex
+
+    # cp $base-$HOSTNAME$fnpath$dts.tgz $base-$HOSTNAME$fnpath-latest.tgz  
+    cd $base
+}
+
+tar1
+
+#
+set +vx
+

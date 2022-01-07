@@ -89,7 +89,7 @@ tar1() {
       #
       # notice the grep exclude list. Check to see nothing important is excluded.
       # 
-      tfile=./tmp-file-find-for-tar_${USER}_2324.txt; 
+      tfile=/tmp/tmp-file-find-for-tar_${USER}_2324.txt; 
       find $base -type f |  grep -Ev  \
         'data/|sysdata/|public/assets/|/x/|.tgz|log/|tmp/|certs/|node_modules|site/static/|baserow605c/backend/templates' > $tfile
       # Careful, the above excludes any data string|folder..
