@@ -7,7 +7,12 @@
 sudo ls \
 && nuser=albe \
 && sudo adduser $nuser --gecos "$nuser,..,..,.."  \
-&& sudo adduser $nuser sudo
+&& sudo adduser $nuser sudo 
+
+sudo usermod -a -G www-data $nuser; 
+sudo usermod -a -G docker  $nuser;
+
+groups $nuser;
 
 
 # then logout and login as albe user.
@@ -41,3 +46,4 @@ as root..
 chmod u+s /usr/bin/sudo
 
 =================================================
+

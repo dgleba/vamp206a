@@ -8,7 +8,7 @@ function Purpose() {
 tarcap = tarc ap folder. tars current folder without using parent folder.
 This avoids the need to be able to write to the parent folder.
 
-Usage:   cd /ap; tarcap
+Usage:   tarcap
 
 #  Purpose:  tar the current folder and give the archive a useful name..
 
@@ -20,6 +20,7 @@ Could work for other folders if you review the excluded items.
 
 #  VERSION info
 	
+	v27 - 2021-12-20 -- hard code /ap folder and zip folder
 	v26 - 2021-06-30 -- find files grep exclude then tar
 
 
@@ -38,6 +39,9 @@ date ; set +vx  ; set -vx ; # echo off, then echo on
 base=$(basename $PWD);export HOSTNAME;
 curfolder=${PWD##*/}
 echo base=$base    hostname=$HOSTNAME  curfolder=$curfolder
+
+mkdir -p /ap/zip
+cd /ap
 
 dts=$(date +"__%Y.%m.%d_%H.%M.%S")
 
@@ -59,16 +63,16 @@ tar1() {
       tar -czf $base-$HOSTNAME$fnpath$dts.tgz -T $tfile
     }
 
-    tarf-one() {
+    tarfone() {
       tfile=/tmp/tmpfilefindtar23234.txt; 
       find . -type f |  grep -Ev  \
         'data/|sysdata/|datasys/|public/assets/|x/|.tgz|node_modules/|zip/|static/|log/|tmp/' > $tfile
-      tar -czf $HOSTNAME$fnpath$dts.tgz -T $tfile
+      tar -czf /ap/zip/$HOSTNAME$fnpath$dts.tgz -T $tfile
     }
 
     # run one of the above..
 
-    tarf-one
+    tarfone
     
 
 }

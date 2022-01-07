@@ -84,6 +84,7 @@ git config --global credential.helper wincred
 # linux..
 git config credential.helper store
 
+git config --global credential.helper store
 
 
 

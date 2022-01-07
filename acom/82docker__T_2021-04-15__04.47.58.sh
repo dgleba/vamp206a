@@ -125,35 +125,9 @@ sudo  sh get-docker.sh
 
 
 sudo  apt-get -y remove docker-compose
-sudo  rm  /usr/bin/docker-compose
-sudo  rm  /usr/local/bin/docker-compose
-
 # then install the newest version on the release page at GitHub with
-# sudo curl -L https://github.com/docker/compose/releases/download/1.29.4/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
-#
-# Docker Compose
-# noworky...  sudo wget --output-document=/usr/local/bin/docker-compose "https://github.com/docker/compose/releases/download/$(wget --quiet --output-document=- https://api.github.com/repos/docker/compose/releases/latest | grep --perl-regexp --only-matching '"tag_name": "\K.*?(?=")')/run.sh"
-# sudo wget --output-document=/etc/bash_completion.d/docker-compose "https://raw.githubusercontent.com/docker/compose/$(docker-compose version --short)/contrib/completion/bash/docker-compose"
-# printf '\nDocker Compose installed. Please check the version...\n\n'
-
-
-# # Docker Compose noworky..
-# compose_release() {
-  # curl --silent "https://api.github.com/repos/docker/compose/releases/latest" |   grep -Po '"tag_name": "\K.*?(?=")'| sed 's/[^0-9.]//g'
- # #curl          "https://api.github.com/repos/docker/compose/releases/latest" |   grep -Po '"tag_name": "\K.*?(?=")'
-# }
-# compose_release
-# if ! [ -x "$(command -v docker-compose)" ]; then
-  # sudo curl -L https://github.com/docker/compose/releases/download/$(compose_release)/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose 
-  # sudo chmod +x /usr/bin/docker-compose
-# fi
-
-
-#works..
-sudo curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
-sudo chmod +x /usr/bin/docker-compose
-ls -la /usr/bin/docker-compose
-
+sudo curl -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
+sudo  chmod +x /usr/bin/docker-compose
 docker-compose -v
 
 

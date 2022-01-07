@@ -1,4 +1,6 @@
 
+# WAS  stripsecretenv.sh  NOW  stripdsecretenv.sh
+
 # ssenv
 
 stripsecret(){

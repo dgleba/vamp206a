@@ -13,7 +13,9 @@ tee ./12settings.sh <<- 'EOF'
 # ---------------------------------------------------
 
 
+#
 # This `12settings.sh`  may not be needed.
+#
 
 
 # - after getting a new shell
@@ -52,7 +54,12 @@ tee ./setup206-01.sh <<- 'EOF'
 
 # ---------------------------------------------------
 
+
+#
+#
 ## Step 2   - root stuff get code
+#
+#
 
 # use && \ to avoid command not running because the one above prevents further execution when pasting several commands at once.
 
@@ -95,8 +102,11 @@ command -v $pkgtoin >/dev/null 2>&1 ||
 
 # ---------------------------------------------------
 
-
+#
+#
 ## get scripts and setup user helpers..
+#
+#
 
 
 #
@@ -150,23 +160,41 @@ timedatectl
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
+#
+#
 # change ssh port
+#
+#
 
 
-# echo "Port 46281">>/etc/ssh/sshd_config
-# sed -i '1iPort 46281' /etc/ssh/sshd_config
+### echo "Port 46281">>/etc/ssh/sshd_config
+# backup the file..
+file1=/etc/ssh/sshd_config
+cp $file1 $file1$(date +"__%Y.%m.%d_%H.%M.%S").bak.txt     # do you need sudo cp?
+ 
+ sed -i '1iPort 46281' /etc/ssh/sshd_config
 cat /etc/ssh/sshd_config
 #    nano /etc/ssh/sshd_config
+
+file1=/etc/ssh/sshd_config.d/clientactive.conf
+cp $file1 $file1$(date +"__%Y.%m.%d_%H.%M.%S").bak.txt     # do you need sudo cp?
 # extend ssh timeout to 24 hours. 120 sec * 720 or 12 hours = 120 sec * 360 ..
 echo "ClientAliveInterval 120"  | sudo tee  /etc/ssh/sshd_config.d/clientactive.conf
-echo "ClientAliveCountMax 720" | sudo tee -a /etc/ssh/sshd_config.d/clientactive.conf
+echo "ClientAliveCountMax 500" | sudo tee -a /etc/ssh/sshd_config.d/clientactive.conf
 
 sudo systemctl reload sshd
 
+
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# https://askubuntu.com/questions/652556/uncomplicated-firewall-ufw-is-not-blocking-anything-when-using-docker
+#
+#
+#  ufw
+#       https://askubuntu.com/questions/652556/uncomplicated-firewall-ufw-is-not-blocking-anything-when-using-docker
+#
+#
+
 
 sudo tee -a /etc/docker/daemon.json <<- 'HEREDOC'
 {
@@ -187,6 +215,14 @@ sudo service docker start
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+#
+#
+#  fail2ban
+# 
+#
+#
+
+
 # albe@pmsdo545:/ap/tmp$ diff jail.local  jail.conf
 # ---
 # uncomment < bantime.increment = true
@@ -204,6 +240,14 @@ sudo service fail2ban restart
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+#
+#
+#  docker group and git shortcuts..
+# 
+#
+#
 
 sudo adduser albe docker
 sudo mkdir -p /ap

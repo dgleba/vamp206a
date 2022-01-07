@@ -51,6 +51,7 @@ echo "alias dksp='docker-compose stop'" >>   ~/.bash_aliases
 echo "alias dkupd='docker-compose up -d'" >>   ~/.bash_aliases
 echo "alias dkupr='docker-compose  up --build  --force-recreate  '" >>  ~/.bash_aliases
 echo "alias dkupp='docker-compose up -f docker-compose.prod.yml -d'" >>  ~/.bash_aliases
+echo "alias dss='docker stats'" >>  ~/.bash_aliases
 
 echo "alias dkps1='set -vx; docker images; docker network ls; docker volume ls;	docker ps -a; docker ps; set +vx'" >> ~/.bash_aliases
 
