@@ -139,6 +139,12 @@ HEREDOC
 
 
 
+tee -a ~/.bash_aliases <<- 'HEREDOC'
+	dsc() { echo dsc-v3 -- stop container by name  ; 	docker ps | grep $1 | awk '{print $1}' | xargs docker stop; }
+HEREDOC
+
+
+
 echo "alias shx='chmod -R +x *.sh'" >>   ~/.bash_aliases
 # a function takes parameters... 
 echo "alias ll='ls -la'" >>   ~/.bash_aliases

@@ -34,7 +34,6 @@ while true; do
 done
 
 
-
 # (echo "$pwnu1"; echo "$pwnu1") | sudo smbpasswd -s -a $nuser
 # sudo mkdir /home/$nuser/bin
 # sudo chown  $nuser:$nuser /home/$nuser/bin
@@ -45,6 +44,8 @@ echo user: "$nuser"
 echo password: "$pwnu1"
 echo groups:
 groups $nuser
+id $nuser
+
 
 # show smb users..
 # sudo pdbedit -L -v
@@ -61,6 +62,14 @@ echo ""
 # $nuser=dg
 # sudo adduser $nuser --gecos "$nuser,..,..,.."
 # sudo usermod -a -G sudo  $nuser
+#
+#
+#  works..
+#    nuser=duser
+#    sudo useradd -m  -G docker,www-data,sudo  $nuser
+#    id $nuser
+#    sudo passwd $nuser
+#
 #
 #
 #
