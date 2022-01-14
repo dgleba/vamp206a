@@ -26,6 +26,13 @@ git config --global alias.ca '!func(){ git add . && git commit -aqm "$1" ; }; fu
 git config --global alias.d 'diff'
 git config --global alias.r 'remote -v'
 
+
+
+# list untracked  (--excl..) and tracked files..
+git config --global alias.lsu 'ls-files --others --exclude-standard'
+git config --global alias.lst 'ls-files'
+
+
 # ----------
 
 

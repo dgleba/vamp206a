@@ -39,6 +39,7 @@ date ; set +vx  ; set -vx ; # echo off, then echo on
 
 chmod ugo+r  ~/.bash_aliases
 chmod ug+rw  ~/.bash_aliases
+
 echo "alias ll='ls -la'" >>   ~/.bash_aliases
 echo "alias lsl='ls -la'" >>   ~/.bash_aliases
 echo "alias psg='ps -ef|grep '" >>   ~/.bash_aliases
@@ -52,6 +53,9 @@ echo "alias dkupd='docker-compose up -d'" >>   ~/.bash_aliases
 echo "alias dkupr='docker-compose  up --build  --force-recreate  '" >>  ~/.bash_aliases
 echo "alias dkupp='docker-compose up -f docker-compose.prod.yml -d'" >>  ~/.bash_aliases
 echo "alias dss='docker stats'" >>  ~/.bash_aliases
+
+echo "alias ba='bash'" >>  ~/.bash_aliases
+
 
 echo "alias dkps1='set -vx; docker images; docker network ls; docker volume ls;	docker ps -a; docker ps; set +vx'" >> ~/.bash_aliases
 
@@ -140,7 +144,7 @@ HEREDOC
 
 
 tee -a ~/.bash_aliases <<- 'HEREDOC'
-	dsc() { echo dsc-v3 -- stop container by name  ; 	docker ps | grep $1 | awk '{print $1}' | xargs docker stop; }
+	dsc() { echo dsc-v3 ~ stop container by name  ; 	docker ps | grep $1 | awk '{print $1}' | xargs docker stop; }
 HEREDOC
 
 
