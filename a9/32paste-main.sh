@@ -82,7 +82,7 @@ for a3 in "${array2[@]}" ; do
   pkgtoin=$a3
   command -v $pkgtoin >/dev/null 2>&1 ||
   { echo >&2 " ~*~*~*~*~   $pkgtoin   is not installed. Installing..";
-    sudo  apt-get update  && sudo  apt-get -y install $pkgtoin
+    sudo  apt-get -y install $pkgtoin
   }
 done
 
@@ -93,7 +93,7 @@ done
 pkgtoin=fail2ban
 command -v fail2ban-client >/dev/null 2>&1 ||
 { echo >&2 "$pkgtoin   is not installed. Installing..";
-  sudo  apt-get update  && sudo  apt-get -y install $pkgtoin
+   sudo  apt-get -y install $pkgtoin
 }
 
 

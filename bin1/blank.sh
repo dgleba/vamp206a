@@ -38,7 +38,7 @@ function saynow {
 
 echo $(date +%s) # unix timestamp
 
-date1=$(date +"__%Y.%m.%d_%H.%M.%S")
+date1=$(date +"__%Y.%m.%d_%b-%a_%H.%M.%S")
 echo $date1
 # good I think. can use many times.
 s=2 ; date ; read -t $s -p "press Enter or wait $s seconds" ; echo ; date;
