@@ -45,7 +45,7 @@ echo password: "$pwnu1"
 echo groups:
 groups $nuser
 id $nuser
-
+echo "Access the server using apps that use ssh access like:   cyberduck, ssh, mremoteng, filezilla etc.."
 
 # show smb users..
 # sudo pdbedit -L -v

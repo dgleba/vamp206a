@@ -46,6 +46,7 @@ function userinfo()
   git config --global github.user dgleba
   
 }
+userinfo
 
 # =================================================
 

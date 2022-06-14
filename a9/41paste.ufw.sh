@@ -13,10 +13,13 @@
 
 sudo ufw disable
 sudo ufw logging low 
+sudo ufw limit 22/tcp # limit ssh attempts
+
+sudo ufw default deny incoming
+
 sudo ufw allow 80/tcp # http
 sudo ufw allow 443/tcp # https
 sudo ufw allow 46281/tcp  # ssh
-sudo ufw limit 22/tcp # limit ssh attempts
 
 # sudo ufw deny 2375
 # sudo ufw deny 2376
@@ -34,7 +37,6 @@ sudo ufw limit 22/tcp # limit ssh attempts
 # sudo ufw allow 25
 # sudo ufw allow ssh
 
-sudo ufw default deny incoming
 
 # vnc
 # sudo ufw allow from any to any port 5900 proto tcp

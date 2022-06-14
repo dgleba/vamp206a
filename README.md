@@ -1,15 +1,25 @@
-# Virtualbox Server - Ubuntu Apache MySQL PHP Python Django - Windows host, Linux guest.
+# Virtual Server Setup Scripts - Docker Ubuntu Apache MySQL PHP Python Django etc..
+
+Scripts to setup a Server, usually virtual, for Docker, Ubuntu, Python, Ruby, Node, PHP, etc. 
+
+It originally started as Script to create a Virtualbox Web Server - Ubuntu Apache MySQL PHP Python Django - Windows host, Linux guest.
 
 [https://github.com/dgleba/vamp206a](https://github.com/dgleba/vamp206a)
 
 ---
 
-# Latest usage instructions...
+# Latest usage instructions  (see \a9\...
 
 Lately, I have been using a trimmed down provisioning routine.
 It is in `\a9\` folder.
 
 It is mostly to setup docker, a few aliases, some security software, and not much more.
+
+
+
+# OTHER INSTRUCTIONS..
+
+These are older, but they show some perspective of the change over time. Some stuff at the beginning may be out of date, but the ideas may be useful in understanding the current status and how to use this project.
 
 
 
@@ -42,6 +52,8 @@ That code is in the `a1` folder now.
 
 
 ---
+
+# Virtualbox Server - Ubuntu Apache MySQL PHP Python Django - Windows host, Linux guest.
 
 
 # Version `A1`
