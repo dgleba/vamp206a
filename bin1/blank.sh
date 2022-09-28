@@ -39,7 +39,9 @@ function saynow {
 echo $(date +%s) # unix timestamp
 
 date1=$(date +"__%Y.%m.%d_%b-%a_%H.%M.%S")
-echo $date1
+echo $(( RANDOM % 999 )) 
+date2=$(date +"%Y%m%d_%H_")$((RANDOM % 999))
+echo $date1,$date2
 # good I think. can use many times.
 s=2 ; date ; read -t $s -p "press Enter or wait $s seconds" ; echo ; date;
 s=3 ; date ; read -t $s -p "press Enter or wait $s seconds" ; echo ; date;

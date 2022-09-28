@@ -43,16 +43,19 @@ sudo crontab -u albe -l | grep -v 'sendemail_recentdowntime_cron.sh'  | sudo cro
 sudo crontab -u albe -l | grep -v 'import-csv-mysql-cmm.sh'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | grep -v '/email_scrap1_script.sh'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | grep -v '/usr/bin/env'  | sudo crontab -u albe - #remove
+
+
+
 sudo crontab -u albe -l  # list
 
-# add...
 
+# add...
 
 
 # lukup... eam assets , enterprise... dayforce..
 sudo crontab -u albe -l | grep -v 'lukup/actions/imp-lukup.sh'  | sudo crontab -u albe - #remove
 #sudo crontab -u albe -l | { cat; echo "43 15 * * 1-5 /var/www/html/lukup/actions/imp-lukup.sh >> /home/albe/log/lukupimp.log 2<&1"; } | sudo crontab -u albe -  #add
-sudo crontab -u albe -l | { cat; echo "43 15 * * 1-6 /var/www/html/lukup/actions/imp-lukup.sh 2>&1 | tee -a  /home/albe/log/lukupimp.log"; } | sudo crontab -u albe -  #add
+sudo crontab -u albe -l | { cat; echo "15 15 * * 1-6 /var/www/html/lukup/actions/imp-lukup.sh 2>&1 | tee -a  /home/albe/log/lukupimp.log"; } | sudo crontab -u albe -  #add
 
 # just ceridian - no longer NO-enterprise.
 sudo crontab -u albe -l | { cat; echo "49 15 * * 1-5 /var/www/html/cilist/actions/import-csv-mysql-ceridian-enterprise.sh >> /home/albe/log/importcerenterp1.log 2<&1"; } | sudo crontab -u albe -  #add
@@ -94,7 +97,7 @@ sudo crontab -u albe -l | { cat; echo "50 8 * * 0-6 /var/www/html/greygold/actio
 sudo crontab -u albe -l | { cat; echo "31 11 * * 4   /var/www/html/shiftcsd2sup/actions/email_tnopen_script.sh >> /home/albe/log/emailtnopen1.log 2<&1"; } | sudo crontab -u albe -  #add
 
 sudo crontab -u albe -l | grep -v '0docs-pmdsdata/backup2.sh'  | sudo crontab -u albe - #remove
-sudo crontab -u albe -l | { cat; echo "18 03 * * 0-6 /var/www/html/0docs-pmdsdata/backup2.sh >> /home/albe/log/backup2.log 2<&1"; } | sudo crontab -u albe -  #add
+sudo crontab -u albe -l | { cat; echo "18 03 2 * * /var/www/html/0docs-pmdsdata/backup2.sh >> /home/albe/log/backup2.log 2<&1"; } | sudo crontab -u albe -  #add
 
 
 
