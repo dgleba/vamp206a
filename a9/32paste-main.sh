@@ -74,7 +74,8 @@ tee ./setup206-01.sh <<- 'EOF'
 array2=( 
 git  make  locate
 ufw
-curl  wget  rsync
+curl  wget  rsync mc
+openssh-server
 )
 #
 for a3 in "${array2[@]}" ; do  
@@ -177,11 +178,20 @@ cp $file1 $file1$(date +"__%Y.%m.%d_%H.%M.%S").bak.txt     # do you need sudo cp
 cat /etc/ssh/sshd_config
 #    nano /etc/ssh/sshd_config
 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#
+#
+# change ssh connection timeout
+#
+#
+
+
 file1=/etc/ssh/sshd_config.d/clientactive.conf
 cp $file1 $file1$(date +"__%Y.%m.%d_%H.%M.%S").bak.txt     # do you need sudo cp?
 # extend ssh timeout to 24 hours. 120 sec * 720 or 12 hours = 120 sec * 360 ..
 echo "ClientAliveInterval 120"  | sudo tee  /etc/ssh/sshd_config.d/clientactive.conf
-echo "ClientAliveCountMax 500" | sudo tee -a /etc/ssh/sshd_config.d/clientactive.conf
+echo "ClientAliveCountMax 700" | sudo tee -a /etc/ssh/sshd_config.d/clientactive.conf
 
 sudo systemctl reload sshd
 

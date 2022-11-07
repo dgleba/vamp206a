@@ -1,0 +1,31 @@
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  setfacl
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2022-10-07[Oct-Fri]22-30PM 
+
+https://www.2daygeek.com/how-to-configure-access-control-lists-acls-setfacl-getfacl-linux/
+
+
+done on pmadata01 2022-10-07:
+
+#set default acl on folder /ap   d: = default ..
+  sudo setfacl -m d:g:www-data:rwx /ap/
+#set for current folders..  
+  sudo setfacl -Rm g:www-data:rwx /ap/
+
+
+eg:
+Configuring Default ACLs
+Default ACL can only be configured for a directory. To set a default ACL, add 'd:' before the rule and specify a directory instead of a file name.
+# setfacl -m d:o:rwx /etc/apache2/sites-available/
+
+_____________
+
+
+eg:
+setfacl -Rm u:magi:rwx /etc/apache2/sites-available/
+
+=================================================
+
