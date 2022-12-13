@@ -1,0 +1,38 @@
+
+=================================================
+
+
+# Remote desktop
+
+1.
+in ubu 20.04 settings gui 
+-sharing, screen, enable
+password: xx
+
+
+2.
+-from bash command line:
+
+gsettings reset org.gnome.Vino network-interface 
+gsettings set org.gnome.Vino require-encryption false
+
+
+3.
+-use tigntvnc for windows client as we do for windows pc's with tightvncserver installed.
+
+
+4.
+enable autologin for albe user.
+  gnome may not allow logging in from vnc. 
+  It's an unaddressed shortcoming. I think XFCE does allow login from vnc.
+
+
+---
+
+ref. 
+This file has some good tips on setting up ubuntu with remote access.
+D:\n\sfile\corp-sf\projects\vi641_vision_image_archiving\README__vi641_visionimages-archive-to-hdd-dock.txt
+
+
+=================================================
+

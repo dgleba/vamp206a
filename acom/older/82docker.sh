@@ -150,11 +150,15 @@ sudo  rm  /usr/local/bin/docker-compose
 
 
 #works..
-sudo curl -L https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
+# pre2022-11-24 sudo curl -L https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
+
+#  i did this...  sudo mv /usr/bin/docker-compose /usr/bin/docker-compose001
+sudo curl -SL https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-linux-x86_64 -o /usr/bin/docker-compose
 sudo chmod +x /usr/bin/docker-compose
-ls -la /usr/bin/docker-compose
+ls -la /usr/bin/docker-compose*
 
 docker-compose -v
+
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
