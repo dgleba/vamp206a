@@ -22,6 +22,12 @@ sudo crontab -u albe -l  # list
 
 
 sudo crontab -u albe -l  # list
+sudo crontab -u albe -l | grep -v '0docs/gfxprod-insert-pd3-to-pd6.sh'  | sudo crontab -u albe - #remove
+sudo crontab -u albe -l | { cat; echo "* * * * 0-6  bash /var/www/html/0docs/gfxprod-insert-pd3-to-pd6.sh 2>&1 | tee -a /home/albe/log/gfxprod-insert-pd3-to-pd6_sh.log"; } | sudo crontab -u albe -  #add
+sudo crontab -u albe -l  # list
+
+
+sudo crontab -u albe -l  # list
 sudo crontab -u albe -l | grep -v 'ocs/importcmmdata.sh'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | grep -v '0docs/cmmimportdata-pd6.sh'  | sudo crontab -u albe - #remove
 sudo crontab -u albe -l | { cat; echo "1 6,8,10,16 * * 0-6  /var/www/html/0docs/cmmimportdata-pd6.sh 2>&1 | tee -a /home/albe/log/importnewercmmdata-pd6.log"; } | sudo crontab -u albe -  #add

@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+function Purpose() {
+# begin block comment =============================
+: <<'END'
+
+#  Purpose:  tar the folder and give the archive a useful name..
+
+END
+# end block comment ===============================
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+date ; set +vx  ; set -vx ; # echo off, then echo on
+dts=$(date +"__%Y.%m.%d_%H.%M.%S")
+
+###### tar current folder. base and curfolder are the same result.
+base=$(basename $PWD);export HOSTNAME; curfolder=${PWD##*/}
+echo base=$base    hostname=$HOSTNAME  curfolder=$curfolder
+
+# get the current path and replace / with _
+fnpath="${PWD////_}" ; echo $fnpath
+
+tfile=/tmp/tmpfilefindtar23234recnt-size.txt; 
+
+tar1() {
+  #	include data dir for this project..
+  find . -type f |  grep -Ev '/sysdata/|/datasys/|/public/assets/|/x/|.tgz|node_modules/|/zip/|static/|/log/|/tmp/' > $tfile
+  tar -czf $HOSTNAME$fnpath$dts.tgz -T $tfile
+}
+
+tar2() {
+  find . -type f -size -290k   -mtime -120 |  grep -Ev  '/sysdata/|/datasys/|/public/assets/|/x/|.tgz|node_modules/|/zip/|static/|/log/|/tmp/'   > $tfile
+  tar -czf ${HOSTNAME}${fnpath}_recentsize_${dts}.tgz -T $tfile
+}
+
+tar2
+
+date
+set +vx

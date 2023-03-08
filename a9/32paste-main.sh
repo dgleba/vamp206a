@@ -265,6 +265,10 @@ sudo adduser albe docker
 sudo mkdir -p /ap
 sudo chown albe:albe /ap
 sudo chown albe:www-data /ap
+sudo mkdir -p /acrib
+sudo chown albe:albe /acrib
+sudo chown albe:www-data /acrib
+
 
 
 cd && bash shc/bin1/gitali.sh

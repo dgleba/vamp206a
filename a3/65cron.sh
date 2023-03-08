@@ -55,12 +55,12 @@ sudo crontab -u albe -l  # list
 # lukup... eam assets , enterprise... dayforce..
 sudo crontab -u albe -l | grep -v 'lukup/actions/imp-lukup.sh'  | sudo crontab -u albe - #remove
 #sudo crontab -u albe -l | { cat; echo "43 15 * * 1-5 /var/www/html/lukup/actions/imp-lukup.sh >> /home/albe/log/lukupimp.log 2<&1"; } | sudo crontab -u albe -  #add
-sudo crontab -u albe -l | { cat; echo "11 12 * * 1-6 /var/www/html/lukup/actions/imp-lukup.sh 2>&1 | tee -a  /home/albe/log/lukupimp.log"; } | sudo crontab -u albe -  #add
+sudo crontab -u albe -l | { cat; echo "33 12 * * 1-6 /var/www/html/lukup/actions/imp-lukup.sh 2>&1 | tee -a  /home/albe/log/lukupimp.log"; } | sudo crontab -u albe -  #add
 
 # just ceridian - no longer NO-enterprise.
 sudo crontab -u albe -l | { cat; echo "49 15 * * 1-5 /var/www/html/cilist/actions/import-csv-mysql-ceridian-enterprise.sh >> /home/albe/log/importcerenterp1.log 2<&1"; } | sudo crontab -u albe -  #add
 
-sudo crontab -u albe -l |grep ent # list
+# error-prone...  sudo crontab -u albe -l |grep ent # list
 
 
 
