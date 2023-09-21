@@ -59,20 +59,21 @@ echo ""
 # remove user from a group
 #       sudo gpasswd -d username group
 #
-# $nuser=dg
+# add a user..
+# nuser=albe
 # sudo adduser $nuser --gecos "$nuser,..,..,.."
 # sudo usermod -a -G sudo  $nuser
 #
 #
-#  works..
+#  hmm. why useradd? is this to add a user and to groups to?  
 #    nuser=duser
 #    sudo useradd -m  -G docker,www-data,sudo  $nuser
 #    id $nuser
 #    sudo passwd $nuser
 #
-#
-#
-#
+# add user to a group.
+#  
+#   nuser=albe&&  sudo usermod -a -G docker  $nuser; 
 #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

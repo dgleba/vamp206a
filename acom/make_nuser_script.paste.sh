@@ -1,5 +1,7 @@
 # copy and paste this entire file to create nuser.sh. Then use it by typing nuser.sh to create a new user.
-fil=~/bin/nuser.sh
+dir=~/bin
+mkdir -p $dir
+fil=$dir/nuser.sh
 tee  $fil <<- 'HEREDOC'
 #!/usr/bin/env bash
 echo ~----------~----------Startingb $HOSTNAME, pwd: `pwd`, "${BASH_SOURCE[0]}" $(date +" %Y-%m-%d_%H.%M.%S")
@@ -53,7 +55,7 @@ echo "Access the server using apps that use ssh access like:   cyberduck, ssh, m
 # sudo pdbedit -L -v
 
 echo ""
-echo "sudo adduser username sudo  - to add user to sudo"
+echo "sudo adduser $USER sudo  - to add user to sudo"
 echo ""
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

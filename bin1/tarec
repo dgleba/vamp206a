@@ -1,0 +1,38 @@
+# Usage: 'cd to folder with this file' ;  bash tarec
+
+#!/bin/bash
+
+cd ~/crib/tf1678
+
+# Get the current folder name
+current_folder=$(basename "$PWD")
+curfolder=${PWD##*/}
+fnpath="${PWD////_}" 
+echo  hostname=$HOSTNAME fnpath=$fnpath   current_folder=$current_folder :: curfolder=$curfolder
+
+# Set the output filename with the current folder and timestamp
+# output_filename="${current_folder}_$(date +%Y-%m-%d_%s).tar.gz"
+timestamp=$(date +"%Y-%m-%d_%H.%M.%S")
+output_filename="${HOSTNAME}${fnpath}_${timestamp}.tgz"
+
+# Find files in the current folder excluding archives, /sysdata, /log, and /tmp
+find . -type f   -newermt 2022-10-15   \
+    ! -name "*.tar.gz" ! -name "*.tgz"  ! -name "*.zip" \
+    ! -path "*/sysdata/*" ! -path "*/log/*" ! -path "*/tmp/*" ! -path "*/zip/*"  ! -path "*/x/*"  \
+    ! -path "*/datasys/*"   \
+    ! -path "*/djangosite/static/*"   \
+    ! -path "*/training/*"   \
+    ! -path "*/training_g0/*"   \
+    ! -path "*/training_g1/*"   \
+    ! -name "*.record"  ! -name "*.pyc" \
+  -print0 | \
+  tar --null -czvf "$output_filename" --files-from -
+  
+
+
+# older:
+# cd ~/crib/tf1678
+# tar -czvf tf1678_recent_$(date +"%Y-%m-%d-%H.%M.%S_%Z").tgz  \
+# $(  find  . -newermt 2022-10-15 -type f |  grep -v '.git/' | grep -v tmp/ |grep -v x/ |grep -v '.pyc'  |grep -v '.tgz' |grep -v '.zip' |grep -v '.record' \
+    # |grep -v 'training/'   |grep -v 'training_g0/'  |grep -v 'training_g1/' |grep -v 'training_g2/'  |grep -v 'fancontrol-gui/'  |grep -v 'ngc688a/'  )  
+

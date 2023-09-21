@@ -188,8 +188,8 @@ cat /etc/ssh/sshd_config
 
 
 file1=/etc/ssh/sshd_config.d/clientactive.conf
-cp $file1 $file1$(date +"__%Y.%m.%d_%H.%M.%S").bak.txt     # do you need sudo cp?
-# extend ssh timeout to 24 hours. 120 sec * 720 or 12 hours = 120 sec * 360 ..
+sudo cp $file1 $file1$(date +"__%Y.%m.%d_%H.%M.%S").bak.txt     # do you need sudo cp?
+# extend ssh timeout to 24 hours = 120 sec * 720 .  --  12 hours = 120 sec * 360 ..
 echo "ClientAliveInterval 120"  | sudo tee  /etc/ssh/sshd_config.d/clientactive.conf
 echo "ClientAliveCountMax 700" | sudo tee -a /etc/ssh/sshd_config.d/clientactive.conf
 
@@ -206,21 +206,7 @@ sudo systemctl reload sshd
 #
 #
 
-
-sudo tee -a /etc/docker/daemon.json <<- 'HEREDOC'
-{
-    "iptables": false
-}
-HEREDOC
-cat /etc/docker/daemon.json
-
-echo 'DOCKER_OPTS="--iptables=false"' | sudo tee -a /etc/default/docker
-cat /etc/default/docker
-# sudo nano /etc/default/docker
-sudo service docker stop
-sudo service docker start
-
-
+# removed  /etc/docker/daemon.json  stanza 2023-05-12
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

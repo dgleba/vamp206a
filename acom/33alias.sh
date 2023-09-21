@@ -68,6 +68,7 @@ dkps () {
 	docker images; 
 	docker ps --format "table {{.Names}}\t{{.Ports}}\t{{.Status}}\t{{.Size}}" | sort; 	echo;
 	docker ps -a --format "table {{.Names}}\t{{.Ports}}\t{{.Status}}" | sort;  
+	docker ps -a --format "table {{.Names}}\t{{.Status}}" | sort;  
 	set +vx;date;echo;
 }
 HEREDOC
