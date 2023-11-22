@@ -5,6 +5,7 @@
 mkdir -p $HOME/bin
 f=$HOME/bin/tarcg
 tee $f <<- 'HEREDOC'
+
 #!/bin/bash
 
 # Get the current folder name
@@ -30,5 +31,6 @@ find . -type f      \
 
 
 echo -e "\n Files archived as $output_filename"
+
 HEREDOC
 bash $f

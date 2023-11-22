@@ -73,6 +73,16 @@ dkps () {
 }
 HEREDOC
 
+
+tee -a ~/.bash_aliases <<- 'HEREDOC'
+dps () {
+	date; set -vx;	
+	docker ps -a --format "table {{.Names}}\t{{.Ports}}\t{{.Status}}" | sort;  
+	set +vx;date;echo;
+}
+HEREDOC
+
+
 	#
 	# docker ps -a --format "table {{.Names}}\t{{.Ports}}\t{{.Status}}\t{{.RunningFor}}" | sort;  
 
@@ -137,6 +147,7 @@ dclean () {
 	# careful removing volumes. if mysql data is in a volume i would not want to remove it inadvertently.
 	# docker volume rm $(docker volume ls -qf dangling=true) 
 	docker rm $(docker ps -qa --no-trunc --filter "status=exited") 
+	docker rm $(docker ps -qa --no-trunc --filter "status=created") 
 	# remove tagged <none> 
 	docker rmi $(docker images | grep "^<none>" | awk '{ print $3 }') 
 	set +vx;echo;
