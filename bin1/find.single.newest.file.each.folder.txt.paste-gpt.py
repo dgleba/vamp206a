@@ -1,12 +1,14 @@
 # purpose: find single newest file in each path recursevly.
+
+# settings / arguments :  check time threshold below...
+
 #    python, starting from current folder, find files recursively. list only the one newest modified file for each path. 
 #    show the file modified timestamp, path, and filename.
 # usage: cd to within the folder you want, then paste all this...
 
 mkdir -p $HOME/bin
-f=$HOME/bin/tmp991
+f=$HOME/bin/zheredoc-single-newest-file-each-folder.py
 tee $f <<- 'HEREDOC'
-
 
 
 import os
@@ -35,7 +37,12 @@ def get_newest_file(path, threshold_date):
 def find_newest_files(starting_folder, threshold_date):
     files_info = []
     for root, dirs, files in os.walk(starting_folder):
-        if all(folder_name not in ['x', 'tmp', 'log', '.git'] for folder_name in root.split(os.path.sep)):
+      
+      
+        # filter out folders named....
+        
+        
+        if all(folder_name not in ['x', 'tmp', 'log', '.git', 'rembg' ] for folder_name in root.split(os.path.sep)):
             if files:
                 try:
                     newest_file_info = get_newest_file(root, threshold_date)

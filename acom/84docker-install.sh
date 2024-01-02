@@ -35,3 +35,30 @@ sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plug
 sudo usermod -aG docker $USER ; \
  docker --version ;
 
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# https://askubuntu.com/questions/652556/uncomplicated-firewall-ufw-is-not-blocking-anything-when-using-docker
+
+# sudo tee -a /etc/docker/daemon.json <<- 'HEREDOC'
+# {
+    
+  # "custom": {
+   # "runtimeArgs": [
+    # "--ip=192.168.88.69"
+   # ]
+  # }
+# }
+# HEREDOC
+# #    "iptables": false
+# cat /etc/docker/daemon.json
+
+# echo 'DOCKER_OPTS="--iptables=false"' | sudo tee -a /etc/default/docker
+# cat /etc/default/docker
+# # sudo nano /etc/default/docker
+# sudo service docker stop
+# sudo service docker start
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+

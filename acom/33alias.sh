@@ -78,6 +78,7 @@ tee -a ~/.bash_aliases <<- 'HEREDOC'
 dps () {
 	date; set -vx;	
 	docker ps -a --format "table {{.Names}}\t{{.Ports}}\t{{.Status}}" | sort;  
+	docker ps -a --format "table {{.Names}}\t{{.Status}}" | sort;  
 	set +vx;date;echo;
 }
 HEREDOC
@@ -232,8 +233,15 @@ export HISEFILESIZE=30000
 # -------------------------------------------------------------------
 EOF
 
+cat <<EOF >> $HOME/.bashrc
+# 
+# include commands with leading spaces in history. Solves lines pasted missing from history. 2024-01-02.
+export HISTCONTROL=""
+# 
+#
+EOF
 
-#~~~~~~
+# ~~~~~~
 
 
 
