@@ -44,7 +44,7 @@ tar1() {
       # 
 
       # tar -cz --exclude={node_modulesz,x/} -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S")allex.tgz $base;cd $base
-      tar -cz  -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S")allex.tgz $base;cd $base
+      tar -cz  -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S")all.tgz $base;cd $base
 
     }
 
