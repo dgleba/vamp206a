@@ -22,10 +22,14 @@ output_filename="${HOSTNAME}${fnpath}_${timestamp}.tgz"
 # Find files in the current folder excluding archives, /sysdata, /log, and /tmp, etc.
 find . -type f      \
     ! -name "*.tar.gz" ! -name "*.tgz"  ! -name "*.zip" \
-    ! -path "*/sysdata/*" ! -path "*/log/*" ! -path "*/tmp/*" ! -path "*/zip/*"  ! -path "*/x/*"  \
+    ! -path "*/sysdata/*"  ! -path "*/tmp/*" ! -path "*/zip/*"  ! -path "*/x/*"  \
+    ! -path "*/log/*" ! -path "*/logs/*"   \
     ! -path "*/djangosite/static/*"   \
     ! -path "*/datasys/*"   \
     ! -path "*/node_modules/*"   \
+    ! -path "*_pic/*"   \
+    ! -path "*/upload/images/*"   \
+    ! -path "*/stacks/data/*"   \
   -print0 | \
   tar --null -czvf "$output_filename" --files-from -
 

@@ -75,6 +75,8 @@ echo ""
 #  
 #   nuser=albe&&  sudo usermod -a -G docker  $nuser; 
 #
+#
+#  adminuser reguser
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
