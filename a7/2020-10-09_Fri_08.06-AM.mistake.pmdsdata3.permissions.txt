@@ -1,0 +1,185 @@
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@   i meant to do fold=*  ... but i didn't...     oh no...
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-10-09[Oct-Fri]08-05AM 
+
+
+
+fold=/*
+id $userv
+sudo  /usr/sbin/groupadd www-data ;  
+sudo  /usr/sbin/usermod -a -G www-data  $userv  # add the user to the www-data group
+sudo  /usr/sbin/usermod -a -G www-data  $USER
+sudo  mkdir -p ${fold}
+sudo  chgrp -hR www-data ${fold}
+sudo  chown -R www-data  ${fold}
+#also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/shared – jris198944 May 13 '14 at 8:43 
+sudo  chmod  g+rws  ${fold}
+sudo  chmod -R g+rws  ${fold}
+sudo  chmod  o-rw ${fold}
+sudo  chmod -R o-rw ${fold}
+# make only folders +x so they can be cd into.
+ find ${fold} -type d -exec sudo chmod g+x {} +
+sudo  /usr/sbin/usermod -a -G www-data  $userv
+sudo  setfacl -R -m group:www-data:rwx  ${fold}
+
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-10-09[Oct-Fri]08-05AM 
+
+
+root@pmdsdata3:/var/www/html/prodhours# fold=/*
+root@pmdsdata3:/var/www/html/prodhours# id $userv
+uid=0(root) gid=0(root) groups=0(root)
+root@pmdsdata3:/var/www/html/prodhours# sudo  /usr/sbin/groupadd www-data ;
+groupadd: group 'www-data' already exists
+root@pmdsdata3:/var/www/html/prodhours# sudo  /usr/sbin/usermod -a -G www-data  $userv  # add the user to the www-data group
+Usage: usermod [options] LOGIN
+
+Options:
+  -c, --comment COMMENT         new value of the GECOS field
+  -d, --home HOME_DIR           new home directory for the user account
+  -e, --expiredate EXPIRE_DATE  set account expiration date to EXPIRE_DATE
+  -f, --inactive INACTIVE       set password inactive after expiration
+                                to INACTIVE
+  -g, --gid GROUP               force use GROUP as new primary group
+  -G, --groups GROUPS           new list of supplementary GROUPS
+  -a, --append                  append the user to the supplemental GROUPS
+                                mentioned by the -G option without removing
+                                him/her from other groups
+  -h, --help                    display this help message and exit
+  -l, --login NEW_LOGIN         new value of the login name
+  -L, --lock                    lock the user account
+  -m, --move-home               move contents of the home directory to the
+                                new location (use only with -d)
+  -o, --non-unique              allow using duplicate (non-unique) UID
+  -p, --password PASSWORD       use encrypted password for the new password
+  -R, --root CHROOT_DIR         directory to chroot into
+  -s, --shell SHELL             new login shell for the user account
+  -u, --uid UID                 new UID for the user account
+  -U, --unlock                  unlock the user account
+  -v, --add-subuids FIRST-LAST  add range of subordinate uids
+  -V, --del-subuids FIRST-LAST  remvoe range of subordinate uids
+  -w, --add-subgids FIRST-LAST  add range of subordinate gids
+  -W, --del-subgids FIRST-LAST  remvoe range of subordinate gids
+  -Z, --selinux-user SEUSER     new SELinux user mapping for the user account
+
+root@pmdsdata3:/var/www/html/prodhours# sudo  /usr/sbin/usermod -a -G www-data  $USER
+root@pmdsdata3:/var/www/html/prodhours# sudo  mkdir -p ${fold}
+mkdir: cannot create directory ‘/initrd.img’: File exists
+mkdir: cannot create directory ‘/initrd.img.old’: File exists
+mkdir: cannot create directory ‘/vmlinuz’: File exists
+mkdir: cannot create directory ‘/vmlinuz.old’: File exists
+root@pmdsdata3:/var/www/html/prodhours# sudo  chgrp -hR www-data ${fold}
+^C^Croot@pmdsdata3:/var/www/html/prodhours# ^C
+root@pmdsdata3:/var/www/html/prodhours# ^C
+root@pmdsdata3:/var/www/html/prodhours#
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@   assess the damage...
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-10-09[Oct-Fri]08-11AM 
+
+notice group below...
+
+drwxr-xr-x   2 root     www-data   4096 Apr  9  2019 bin
+drwxr-xr-x   4 root     www-data   1024 Jun 19 08:43 boot
+drwxr-xr-x  15 root     www-data   4180 Sep 29 01:45 dev
+drwxr-xr-x 114 root     www-data  12288 Oct  9 08:02 etc
+
+
+whole listing..
+
+
+albe@pmdsdata3:/$ ll
+total 209
+drwxr-xr-x  22 root     root       4096 Jun 19 08:43 .
+drwxr-xr-x  22 root     root       4096 Jun 19 08:43 ..
+drwxr-xr-x   2 root     www-data   4096 Apr  9  2019 bin
+drwxr-xr-x   4 root     www-data   1024 Jun 19 08:43 boot
+drwxr-xr-x  15 root     www-data   4180 Sep 29 01:45 dev
+drwxr-xr-x 114 root     www-data  12288 Oct  9 08:02 etc
+drwxr-xr-x  11 root     root       4096 Nov 15  2018 home
+lrwxrwxrwx   1 root     root         33 Jul 31  2017 initrd.img -> boot/initrd.img-3.19.0-80-generic
+lrwxrwxrwx   1 root     root         33 Oct  7  2015 initrd.img.old -> boot/initrd.img-3.19.0-25-generic
+drwxr-xr-x  21 root     root       4096 Jun  7  2017 lib
+drwxr-xr-x   2 root     root       4096 Apr  4  2019 lib64
+drwx------   2 root     root      16384 Oct  7  2015 lost+found
+drwxr-xr-x   5 root     root       4096 Jul 14  2016 media
+drwxr-xr-x   2 root     root       4096 Apr 10  2014 mnt
+drwxr-xr-x   4 root     root       4096 Apr 16 21:00 opt
+dr-xr-xr-x 215 root     root          0 Oct  1 10:26 proc
+drwx------   7 root     root       4096 Jun  7  2017 root
+drwxr-xr-x  23 root     root        820 Oct  9 08:07 run
+drwxr-xr-x   2 root     root      12288 Apr 11  2019 sbin
+drwxrws--x   8 www-data www-data   4096 Oct  6 18:52 srv
+dr-xr-xr-x  13 root     root          0 Oct  1 10:26 sys
+drwxrwxrwt   7 root     root     114688 Oct  9 08:09 tmp
+drwxr-xr-x  10 root     root       4096 Oct  7  2015 usr
+drwxr-xr-x  13 root     root       4096 Nov  3  2015 var
+lrwxrwxrwx   1 root     root         30 Jul 31  2017 vmlinuz -> boot/vmlinuz-3.19.0-80-generic
+lrwxrwxrwx   1 root     root         30 Oct  7  2015 vmlinuz.old -> boot/vmlinuz-3.19.0-25-generic
+albe@pmdsdata3:/$
+
+
+It was working on home folder when i stopped it...
+
+
+total 44
+drwxr-xr-x  11 root      root     4096 Nov 15  2018 .
+drwxr-xr-x  22 root      root     4096 Jun 19 08:43 ..
+drwxr-x---  29 albe      albe     4096 Oct  9 08:13 albe
+drwxr-xr-x   8 cstrutton www-data 4096 Mar  3  2020 cstrutton
+drwxr-xr-x   9 dclark    www-data 4096 Aug  6  2018 dclark
+drwxr-xr-x   7 dgleba    dgleba   4096 Sep 22  2016 dgleba
+drwxr-xr-x   8 dmiller   dmiller  4096 Mar 26  2019 dmiller
+drwxrws--x+ 14 root      www-data 4096 Aug  9 12:48 file
+drwxr-xr-x   7 ftpup     ftpup    4096 Feb 16  2018 ftpup
+drwxr-xr-x   3 nturner   www-data 4096 Mar 11  2017 nturner
+drwxr-xr-x   2 pmdsu     www-data 4096 Jan 11  2016 pmdsu
+albe@pmdsdata3:/home$
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-10-09[Oct-Fri]08-20AM 
+
+
+proposed fix.
+
+did it 2020-10-09_Fri_08.47-AM.
+
+
+sudo  chgrp -hR root /etc
+sudo  chgrp -hR root /dev
+sudo  chgrp -hR root /boot
+sudo  chgrp -hR root /bin
+
+
+cd /home
+sudo  chgrp -hR cstrutton  cstrutton
+sudo  chgrp -hR dclark     dclark
+sudo  chgrp -hR dgleba     dgleba
+sudo  chgrp -hR dmiller    dmiller
+# sudo  chgrp -hR file       file
+sudo  chgrp -hR ftpup      ftpup
+sudo  chgrp -hR nturner    nturner
+sudo  chgrp -hR pmdsu      pmdsu
+
+
+

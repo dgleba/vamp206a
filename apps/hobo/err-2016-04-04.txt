@@ -1,0 +1,304 @@
+
+on v206c csd vm fresh ruby after 24start.sh
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+albe@v206c:~/web$ cd trinote
+albe@v206c:~/web/trinote$ ls
+app  bin  config  config.ru  db  Gemfile  Gemfile.lock  lib  log  public  Rakefile  README.rdoc  test  tmp  vendor
+albe@v206c:~/web/trinote$ rails s
+=> Booting WEBrick
+=> Rails 4.2.6 application starting in development on http://localhost:3000
+=> Run `rails server -h` for more startup options
+=> Ctrl-C to shutdown server
+[2016-04-04 14:14:13] INFO  WEBrick 1.3.1
+[2016-04-04 14:14:13] INFO  ruby 2.1.4 (2014-10-27) [x86_64-linux]
+[2016-04-04 14:14:13] INFO  WEBrick::HTTPServer#start: pid=23556 port=3000
+
+
+Started GET "/tnotes" for ::1 at 2016-04-04 14:14:29 -0400
+  ActiveRecord::SchemaMigration Load (0.1ms)  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by TnotesController#index as HTML
+  User Load (0.2ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Tnote Load (0.2ms)  SELECT  "tnotes".* FROM "tnotes" LIMIT 30 OFFSET 0
+  
+  
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 0.2ms)
+
+
+NoMethodError (protected method `render' called for #<TnotesController:0x007fa6316e0ff8>):
+  responders (2.1.2) lib/action_controller/responder.rb:238:in `default_render'
+  responders (2.1.2) lib/action_controller/responder.rb:170:in `to_html'
+  responders (2.1.2) lib/action_controller/responder.rb:163:in `respond'
+  responders (2.1.2) lib/action_controller/responder.rb:156:in `call'
+  responders (2.1.2) lib/action_controller/respond_with.rb:205:in `respond_with'
+  hobo (2.2.5) lib/hobo/controller/model.rb:534:in `index_response'
+  hobo (2.2.5) lib/hobo/controller/model.rb:486:in `hobo_index'
+  hobo (2.2.5) lib/hobo/controller/model.rb:162:in `index'
+  actionpack (4.2.6) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.6) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.6) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.6) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /home/albe/.rbenv/versions/2.1.4/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /home/albe/.rbenv/versions/2.1.4/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /home/albe/.rbenv/versions/2.1.4/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.3ms)
+  Rendered /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (17.5ms)
+  Rendered /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (3.5ms)
+  Rendered /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (21.2ms)
+  Rendered /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (28.2ms)
+
+ActionView::Template::Error: undefined method `normalize_args' for #<WebConsole::View:0x007fa631a30b68>
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/hobo-2.2.5/lib/hobo/extensions/action_view/translation_helper.rb:12:in `translate'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/view.rb:34:in `t'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb:95:in `__home_albe__rbenv_versions_______lib_ruby_gems_______gems_web_console_______lib_web_console_templates_console_js_erb___4030122338693179168_70175886772620'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/template.rb:145:in `block in render'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/activesupport-4.2.6/lib/active_support/notifications.rb:166:in `instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/template.rb:333:in `instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/template.rb:143:in `render'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/activesupport-4.2.6/lib/active_support/notifications.rb:164:in `block in instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/activesupport-4.2.6/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/activesupport-4.2.6/lib/active_support/notifications.rb:164:in `instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/template_renderer.rb:14:in `render'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/renderer.rb:46:in `render_template'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/renderer.rb:27:in `render'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/helpers/rendering_helper.rb:32:in `render'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/view.rb:17:in `render_javascript'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb:3:in `__home_albe__rbenv_versions_______lib_ruby_gems_______gems_web_console_______lib_web_console_templates_index_html_erb__1787177586036710224_70175887028600'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/template.rb:145:in `block in render'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/activesupport-4.2.6/lib/active_support/notifications.rb:166:in `instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/template.rb:333:in `instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/template.rb:143:in `render'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/activesupport-4.2.6/lib/active_support/notifications.rb:164:in `block in instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/activesupport-4.2.6/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/activesupport-4.2.6/lib/active_support/notifications.rb:164:in `instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/template_renderer.rb:14:in `render'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/renderer.rb:46:in `render_template'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/renderer/renderer.rb:27:in `render'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionview-4.2.6/lib/action_view/helpers/rendering_helper.rb:32:in `render'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/template.rb:20:in `render'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/middleware.rb:42:in `block in call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/middleware.rb:18:in `catch'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/web-console-2.3.0/lib/web_console/middleware.rb:18:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/railties-4.2.6/lib/rails/rack/logger.rb:38:in `call_app'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/railties-4.2.6/lib/rails/rack/logger.rb:20:in `block in call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/activesupport-4.2.6/lib/active_support/tagged_logging.rb:68:in `block in tagged'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/activesupport-4.2.6/lib/active_support/tagged_logging.rb:26:in `tagged'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/activesupport-4.2.6/lib/active_support/tagged_logging.rb:68:in `tagged'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/railties-4.2.6/lib/rails/rack/logger.rb:20:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/quiet_assets-1.1.0/lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/request_id.rb:21:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/rack-1.6.4/lib/rack/methodoverride.rb:22:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/rack-1.6.4/lib/rack/runtime.rb:18:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/activesupport-4.2.6/lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/rack-1.6.4/lib/rack/lock.rb:17:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/static.rb:120:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/rack-1.6.4/lib/rack/sendfile.rb:113:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/railties-4.2.6/lib/rails/engine.rb:518:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/railties-4.2.6/lib/rails/application.rb:165:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/rack-1.6.4/lib/rack/lock.rb:17:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/rack-1.6.4/lib/rack/content_length.rb:15:in `call'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/rack-1.6.4/lib/rack/handler/webrick.rb:88:in `service'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-04-04[Apr-Mon]14-15PM
+
+albe@v206c:~/web/trinote$ history
+    1  ifconfig
+    2  ls
+    3  df
+    4  history
+    5  ls
+    6  history
+    7  ./11get.sh
+    8  sudo shc/24start.sh
+    9  history
+   10  hostname
+   11  python
+   12  history
+   13  shc/68hostp.sh
+   14  shc/68hostp.sh v206c
+   15  locate flask
+   16  cd ..
+   17  pip install -r 'examples/auth/requirements.txt'
+   18  sudo pip install -r 'examples/auth/requirements.txt'
+   19  python examples/auth/app.py
+   20  history
+   21  blank.sh
+   22  hostname
+   23  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+   24  echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+   25  exec $SHELL
+   26  exit
+   27  tmp.sh
+   28  exit
+   29  git clone https://github.com/rbenv/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+   30  rbenv install 2.1.4
+   31  rbenv global 2.1.4
+   32  ruby -v
+   33  gem install bundler
+   34  rbenv rehash
+   35  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   36  gem install hobo
+   37  echo $HOBODEV
+   38  echo $(date +"%Y.%m.%d_%H.%M.%S")>> ~/hoboenv.info.dg.txt
+   39  echo $HOBODEV >> ~/hoboenv.info.dg.txt
+   40  # unset HOBODEV
+   41  gem install uglifier
+   42  #http://stackoverflow.com/questions/34420554/there-was-an-error-while-trying-to-load-the-gem-uglifier-bundlergemrequire
+   43  sudo apt-get -y install nodejs
+   44  git clone https://github.com/rbenv/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+   45  rbenv install 2.1.4
+   46  rbenv global 2.1.4
+   47  ruby -v
+   48  gem install bundler
+   49  rbenv rehash
+   50  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   51  gem install hobo
+   52  echo $HOBODEV
+   53  echo $(date +"%Y.%m.%d_%H.%M.%S")>> ~/hoboenv.info.dg.txt
+   54  echo $HOBODEV >> ~/hoboenv.info.dg.txt
+   55  # unset HOBODEV
+   56  gem install uglifier
+   57  #http://stackoverflow.com/questions/34420554/there-was-an-error-while-trying-to-load-the-gem-uglifier-bundlergemrequire
+   58  sudo apt-get -y install nodejs
+   59  cd ~ ;  mkdir -p web ; cd web
+   60  hobo new trinote --setup
+   61  cd
+   62  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+   63  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+   64  echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+   65  exec $SHELL
+   66  git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+   67  echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+   68  exec $SHELL
+   69  git clone https://github.com/rbenv/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+   70  rbenv install 2.1.4
+   71  rbenv global 2.1.4
+   72  ruby -v
+   73  gem install bundler
+   74  rbenv rehash
+   75  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   76  gem install hobo
+   77  echo $HOBODEV
+   78  echo $(date +"%Y.%m.%d_%H.%M.%S")>> ~/hoboenv.info.dg.txt
+   79  echo $HOBODEV >> ~/hoboenv.info.dg.txt
+   80  # unset HOBODEV
+   81  gem install uglifier
+   82  #http://stackoverflow.com/questions/34420554/there-was-an-error-while-trying-to-load-the-gem-uglifier-bundlergemrequire
+   83  sudo apt-get -y install nodejs
+   84  cd ~ ;  mkdir -p web ; cd web
+   85  hobo new trinote --setup
+   86  #see video...  http://www.hobocentral.net/tutorials/screencast
+   87  cd trinote
+   88  rails s
+   89  hobo g resource tnote name:string body:text
+   90  hobo g migration
+   91  rails s
+   92  cd web
+   93  lis
+   94  ls
+   95  cd trinote
+   96  ls
+   97  history
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

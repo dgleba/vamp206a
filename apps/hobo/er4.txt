@@ -1,0 +1,63 @@
+
+Newbe alert!
+I am new to rails/hobo. I have used other frameworks.
+
+I see the post "Upgrade to Hobo 2.2.4 triggers render exception in all controllers". It was replied to on March 29/2016.
+
+I am getting the following error. It seems the same.
+
+NoMethodError (protected method `render' called for #<TnotesController:0x007fa6316e0ff8>):
+
+I am following the video  http://www.hobocentral.net/tutorials/screencast
+
+I installed Hobo per the following on a ubuntu 14.04 server virtualbox.
+
+I see the home screen after i create and login as admin.
+
+Can I install specifying versions that might work?
+
+Can someone help?
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#so.. follow...
+#http://stackoverflow.com/questions/26595620/how-to-install-ruby-2-1-4-on-ubuntu-14-04
+#https://gorails.com/setup/ubuntu/14.04
+sudo apt-get update
+sudo apt-get install -y git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+cd
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+exec $SHELL
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+exec $SHELL
+git clone https://github.com/rbenv/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+rbenv install 2.1.4
+rbenv global 2.1.4
+ruby -v
+gem install bundler
+rbenv rehash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+railsgem uninstall hobo 
+gem install hobo -v 2.2.3
+
+echo $HOBODEV
+echo $(date +"%Y.%m.%d_%H.%M.%S")>> ~/hoboenv.info.dg.txt
+echo $HOBODEV >> ~/hoboenv.info.dg.txt
+# unset HOBODEV
+
+sudo apt-get -y install nodejs
+cd ~ ;  mkdir -p web ; cd web
+hobo new trinote --setup
+#see video...  http://www.hobocentral.net/tutorials/screencast
+cd trinote
+rails s
+# visit http://localhost:3000
+# make admin user using the form...
+
+hobo g resource tnote name:string body:text
+hobo g migration
+#...Respond to the prompt with 'm'
+#...then press enter to chose the default filename
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,75 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  . clean up disk...
+
+-----------------------2016-01-13[Jan-Wed]13-38PM
+
+clean up - reduce .vdi file size
+
+
+1) Analyze your disk usage
+2) Clear duplicate files and broken symlinks
+3) Clean up your package installation
+4) Get rid of old residual config package
+5) Remove orphaned package
+6) Keep track of what you have installed
+7) Remove locale files
+8) Clean up grub menu
+
+I imagine that these techniques can be applied to any Debian-based installation. 
+Certainly the apt-get options can; and I'd expect fslint, gtkorphan/deborphan (menu - orphaner), 
+debfoster, and localepurge to be available on distros other than Ubuntu 
+(I've seen debfoster mentioned a few times lately). I don't know how much 
+space you'd recover by removing locale files; and cleaning up the grub menu 
+is purely cosmetic -- it won't affect speed or disk space. But the others 
+sound useful.
+
+
+sudo apt-get install zerofree
+
+boot to recovery mode.
+
+service rsyslog stop
+service network-manager stop
+killall dhclient
+
+mount -n -o remount,ro -t ext3 /dev/sda1 /
+zerofree -v /dev/sda1
+#shutdown -h now
+
+
+VboxManage modifyvdi /path/to/your/VM.vdi compact
+# i used...
+VboxManage modifyhd /path/to/your/VM.vdi compact
+
+
+
+https://www.maketecheasier.com/shrink-your-virtualbox-vm/
+
+_____________
+
+
+clean out linux ubuntu..
+
+http://ubuntuforums.org/archive/index.php/t-2123550.html
+
+ubucleaner:
+http://ubuntuforums.org/showthread.php?t=2120319&page=2&p=12533994#post12533994
+
+zero out unused space...
+
+https://www.google.ca/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=ubuntu+fill+unused+space+with+zeros
+
+http://unix.stackexchange.com/questions/44234/clear-unused-space-with-zeros-ext3-ext4
+
+
+#
+http://superuser.com/questions/19326/how-to-wipe-free-disk-space-in-linux
+sudo apt-get install secure-delete
+
+
+bleachbit...
+http://bleachbit.sourceforge.net/download/file/t?file=bleachbit_1.10_all_ubuntu1404.deb&c=ppt
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!--
+To ..
+<table cellpadding="5" cellspacing="0" border="1"   bgcolor="#FFFFFF">
+-->
+<html>
+    <head>
+        <title>Email.</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            table {   border-collapse: collapse; }
+            th, td {  text-align: left;  padding: 6px; spacing: 0px; border: 1px solid black; background-color: #ecffe5; }
+            tr:nth-child(even) {background-color: #f2f2f2}
+
+            dt, dd { display: block; float: left; margin-top: 7px; }
+            dt { clear: both; }
+        </style>
+
+    </head>
+
+    <body>
+
+        <strong><%= SrCsd1Sinter.human_attribute_name :report_date %>  </strong> :&nbsp;  <%= @sr_csd1_sinter.report_date %> &nbsp;&nbsp;&nbsp;
+        <strong><%= SrCsd1Sinter.human_attribute_name :shift %>  </strong> :&nbsp; <%= @sr_csd1_sinter.shift %> &nbsp;&nbsp;&nbsp;
+        <strong> Reported by:  </strong> :&nbsp;  <%= @sr_csd1_sinter.sr_staff %> &nbsp;&nbsp;&nbsp;
+
+        <hr />
+
+
+        <h4><strong>Furnace 305</strong></h4>
+
+        <dl>
+            <dt>
+            <strong>Production_counts</strong>  (Part, Good Pieces Made, Runtime)
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.furnace305_production_counts) %>
+            </dd>
+            <dt>
+            <strong> Scrap_issues</strong>
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.furnace305_scrap_issues) %>
+            </dd>
+            <dt>
+            <strong>Comment </strong>
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.furnace305_comment) %>
+            </dd>
+            <dt>
+        </dl>
+        <hr />
+
+
+        <h4><strong>Furnace 314</strong></h4>
+
+        <dl>
+            <dt>
+            <strong>Production_counts</strong>  (Part, Good Pieces Made, Runtime)
+            </dt>
+            <dd>
+                <%= simple_format(@sr_csd1_sinter.furnace314_production_counts , {}, {wrapper_tag: "div"}) %>
+            </dd>
+            <dt>
+            <strong> Scrap_issues</strong>
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.furnace314_scrap_issues) %>
+            </dd>
+            <dt>
+            <strong>Comment </strong>
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.furnace314_comment) %>
+            </dd>
+            <dt>
+        </dl>
+
+        <hr />
+
+        <h4><strong>Furnace 316</strong></h4>
+
+        <dl>    
+            <dt>
+            <strong>Production_counts</strong>  (Part, Good Pieces Made, Runtime)
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.furnace316_production_counts) %>
+            </dd>
+            <dt>
+            <strong> Scrap_issues</strong>
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.furnace316_scrap_issues) %>
+            </dd>
+            <dt>
+            <strong>Comment </strong>
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.furnace316_comment) %>
+            </dd>
+            <dt>
+        </dl>
+
+
+        <hr />
+
+        <h4><strong>Furnace 349</strong></h4>
+
+        <dl>
+            <dt>
+            <strong>Production_counts</strong>  (Part, Good Pieces Made, Runtime)
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.furnace349_production_counts) %>
+            </dd>
+            <dt>
+            <strong> Scrap_issues</strong>
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.furnace349_scrap_issues) %>
+            </dd>
+            <dt>
+            <strong>Comment </strong>
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.furnace349_comment) %>
+            </dd>
+            <dt>
+        </dl>
+
+        <hr />
+
+        <dl>
+            <dt>
+            <strong>Generators</strong>
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.generators) %>
+            </dd>
+        </dl>
+        <hr />
+        <dl>
+            <dt>
+            <strong>Containment and Sorting</strong>
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.containment) %>
+            </dd>
+        </dl>
+
+        <hr />
+
+        <dl>
+            <dt>
+            <strong> Work Orders </strong> (WO#, Supervisor Notified?, Open/Closed?, Issue description)
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.workorders) %>
+            </dd>
+        </dl>
+        <hr />
+        <dl>
+            <dt>
+            <strong> <%= SrCsd1Sinter.human_attribute_name :miscellaneous %> </strong>
+            </dt>
+            <dd>
+                <%= dgtexts(@sr_csd1_sinter.miscellaneous) %>
+            </dd>
+        </dl>
+
+        <hr />
+
+        <table>
+            <tbody>
+                <tr>
+                    <td> <strong> Supervisor discussion took place? </strong> </td>
+                    <td><%= @sr_csd1_sinter.shift_handoff %></td>
+                </tr>
+                <tr>
+                    <td> <strong> Shift Handoff discussion took place? </strong> </td>
+                    <td><%= @sr_csd1_sinter.shift_handoff %></td>
+                </tr>
+                <tr>
+                    <td> <strong> Furnace Log completed? </strong> </td>
+                    <td><%= @sr_csd1_sinter.furnace_log_completed %></td>
+                </tr>
+                <tr>
+                    <td> <strong> Whirlpool WIP Tracebility verified? </strong> </td>
+                    <td><%= @sr_csd1_sinter.whirlpool_wip_tracebility_verified %></td>
+                </tr>
+            </tbody>
+        </table> 
+
+        <p>
+            Contact David Gleba, x232, if you have any questions about this automated email.
+        </p>
+    </body>
+</html>
+

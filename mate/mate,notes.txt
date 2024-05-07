@@ -1,0 +1,94 @@
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-01-13[Jan-Wed]16-55PM
+
+a mate...
+
+start with v206b...
+
+history
+./11get.sh
+sudo/24start.sh
+sudo shc/24start.sh
+sudo apt-add-repository -y ppa:ubuntu-mate-dev/ppa
+sudo apt-add-repository -y ppa:ubuntu-mate-dev/trusty-mate
+sudo apt-get update 
+sudo apt-get upgrade
+sudo apt-get -y install --no-install-recommends ubuntu-mate-core ubuntu-mate-desktop
+
+shc/68hostp.sh v206csd1b
+
+sudo apt-get install catfish
+sudo apt-get install gnome-search-tool
+gnome-search-tool
+find /  -name *ci* | grep list
+sudo find /  -name *ci* | grep list
+sudo find /  -name *ci* | grep list | xls
+sudo find /  -name *ci* | grep list | grep xls
+catfish --help
+
+
+result: 
+
+looks like mate
+vbox disk is 7.5gb size.
+C:\Users\dgleba\VirtualBox VMs\vamp206b-csd1b\vamp206b-csd1b-disk1.vdi
+df reports 4.6gb disk.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  . mate
+-----------------------2015-12-13[Dec-Sun]22-59PM
+
+http://www.omgubuntu.co.uk/2014/08/install-mate-desktop-ubuntu-14-04-lts
+
+sudo apt-add-repository -y ppa:ubuntu-mate-dev/ppa
+sudo apt-add-repository -y ppa:ubuntu-mate-dev/trusty-mate
+sudo apt-get update 
+sudo apt-get upgrade
+sudo apt-get -y install --no-install-recommends ubuntu-mate-core ubuntu-mate-desktop
+
+
+Which to choose??
+LightDM — Cross-desktop display manager, can use various front-ends written in any toolkit. http://www.freedesktop.org/wiki/Software/LightDM || lightdm
+LXDM — LXDE display manager. Can be used independent of the LXDE desktop environment.
+csd1b, i choose lightdm 2015-12-15_Tue_15.05-PM.
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  . disable auto login logon
+
+-----------------------2016-01-13[Jan-Wed]22-51PM
+
+Hi guys.
+I want to know if anyone can tell me how to disable the automatic login in Ubuntu Mate 14.04.
+Thanks.
+
+Open a terminal.
+
+sudo nano /etc/lightdm/lightdm.conf
+It displays some text as follows:
+
+[SeatDefaults]  
+greeter-session=lightdm-gtk-greeter  
+user-session=mate
+autologin-user=username
+Solution
+
+This would be your particular user name that is automatically logged in with or without password. Delete this username and type in the administrative username or leave it blank.
+
+Shut down the system. It will go back to the login selection screen. Just power down the system and put it on again.
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+a

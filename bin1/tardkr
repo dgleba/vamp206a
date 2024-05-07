@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function Purpose() {
+# begin block comment =============================
+: <<'END'
+
+#  Purpose:  tar dkr folder. smaller.
+
+chmod +x ~/bin/tarc4
+
+END
+# end block comment ===============================
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#cd ; 
+date ; set +vx  ; set -vx ; # echo off, then echo on
+#
+
+# mkdir -p tmp/dglog
+mv log/development.log log/development.log.$(date +"__%Y.%m.%d_%H.%M.%S").log
+
+###### tar current folder..
+base=$(basename $PWD);export HOSTNAME  ; # cd ..
+
+mkdir ~/backup7z
+
+# works..  
+tar -cz --wildcards \
+  --exclude={$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/nbproject,$base/log} \
+    --exclude={$base/tar,templates_c/*} \
+    --exclude=tmp/* \
+    --exclude=x/*  \
+    --exclude=log/* \
+    --exclude=*.tgz \
+    --exclude=bower_components/* \
+    --exclude=node_modules/* \
+    --exclude=egrav22/backups/* \
+    --exclude=data-moved-from-data/* \
+    --exclude=datasys/* \
+    --exclude=sysdata/* \
+    --exclude=data/* \
+    -f ~/backup7z/srv-dkr-$HOSTNAME-nopkg$(date +"__%Y.%m.%d_%H.%M.%S").tgz /srv/dkr;
+	cp ~/backup7z/srv-dkr-$HOSTNAME-nopkg$(date +"__%Y.%m.%d_%H.%M.%S").tgz  ~/backup7z/srv-dkr-nopkg-$HOSTNAME-latest.tgz  
+    # cd $base
+  # Careful, this excludes any data folder..
+  
+
+    # public/assets,
+    # --exclude=dist/assets/* \
+    # --exclude=.hoodie/client.js \
+    # --exclude=dist/* \
+
+
+#
+date
+#
+set +vx
+

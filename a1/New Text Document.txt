@@ -1,0 +1,52 @@
+composer create-project --prefer-dist --stability=dev trntv/yii2-starter-kit ci211yic
+
+==
+
+2016-07-07_Thu_09.03-AM
+
+
+bauth-humidex248()
+{
+sudo tee /etc/apache2/sites-available/bauth-humidex248.conf <<EOF
+#
+# require authentication under the following path..
+# note this path is served by nginx. will this work? no it doesn't
+ <Directory /srv/web/humidex248>
+    AuthType Basic
+    AuthName "===== Authbasic humidex248 ====="
+    AuthUserFile /etc/apache2/.htpasswd
+    require valid-user
+</Directory>
+#
+EOF
+}
+
+apacheba248()
+{
+    #sudo apt-get -y install apache2-utils
+
+    sudo mkdir -p /var/www/html/authbasic
+    # add a user ( create a new file with "-c" => only add "-c" at the first time. Do not add it 2nd time to add users. )
+    #sudo htpasswd -b -c /etc/apache2/.htpasswd $userv $pw1
+
+    sudo a2dissite bauth-humidex248.conf
+    sudo a2ensite bauth-humidex248.conf
+    sudo service apache2 reload
+}
+
+bauth-humidex248
+apacheba248
+#
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-07-07[Jul-Thu]09-16AM
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+        auth_basic "Humidex248 requires you to login";
+        auth_basic_user_file /etc/apache2/.htpasswd;

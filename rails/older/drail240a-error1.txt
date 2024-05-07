@@ -1,0 +1,63 @@
+albe@v206b1:~$ sudo service unicorn_drail240a start
+[sudo] password for albe: 
+Starting drail240a
+/usr/lib/ruby/1.9.1/rubygems.rb:308:in `bin_path': can't find gem bundler (>= 0) (Gem::GemNotFoundException)
+	from /srv/web/drail240a/bin/bundle:3:in `<main>'
+albe@v206b1:~$ 
+
+
+it's calling the wrong ruby.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-05-15[May-Sun]14-19PM
+
+good path..
+/home/albe/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+
+albe@v206b1:~$ echo $PATH
+/home/albe/.rbenv/plugins/ruby-build/bin:/home/albe/.rbenv/shims:/home/albe/.rbenv/bin:
+/home/albe/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+albe@v206b1:~$ ^C
+albe@v206b1:~$ 
+
+
+_____________ 
+
+
+Socks April 24, 2015
+I solved the problem, in case anyone else runs into this. 
+This first tutorial in this series, where I installed rbenv, I strayed from the tutorial and used .bashrc instead of .bashprofile. 
+
+The reason I did this was because using "exec $SHELL" doesn't work. 
+The trick is at the bottom of that particular page in that article. 
+One commenter said to use .bashrc (which works and makes you feel awesome till you get to a point...
+it fails at the point where I had the problem...hence my roadblock, su can't read .bashrc, so it's basically lost). 
+
+The other commenter said to use "source ~/.bashprofile" instead of "exec $SHELL"...This is what I was doing wrong...
+
+Summary: if anyone else tried doing .bashrc in the first of these tutorials it's the wrong choice, use .bashprofile and "source ~/.bashprofile".
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-05-15[May-Sun]15-04PM
+
+http://blog.mccartie.com/2014/08/28/digital-ocean.html
+
+
+_____________ 
+
+
+
+AS_USER..
+
+http://www.rubytreesoftware.com/resources/ruby-on-rails-41-ubuntu-1404-server-configuration/
+
+http://www.rubytreesoftware.com/resources/ruby-on-rails-41-ubuntu-1404-server-deployment
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,84 @@
+$ cd /var/www/html/python
+(venv)albe@redekv1:/var/www/html/python$ 
+(venv)albe@redekv1:/var/www/html/python$ git clone https://github.com/flask-admin/flask-admin.git
+Cloning into 'flask-admin'...
+remote: Counting objects: 14917, done.
+remote: Total 14917 (delta 0), reused 0 (delta 0), pack-reused 14916
+Receiving objects: 100% (14917/14917), 8.91 MiB | 1.91 MiB/s, done.
+Resolving deltas: 100% (8450/8450), done.
+Checking connectivity... done.
+(venv)albe@redekv1:/var/www/html/python$ cd flask-admin
+(venv)albe@redekv1:/var/www/html/python/flask-admin$ virtualenv env
+New python executable in env/bin/python
+Installing setuptools, pip, wheel...done.
+(venv)albe@redekv1:/var/www/html/python/flask-admin$ source env/bin/activate
+(env)albe@redekv1:/var/www/html/python/flask-admin$ pip install -r 'examples/sqla/requirements.txt'
+Collecting Flask (from -r examples/sqla/requirements.txt (line 1))
+/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/_vendor/requests/packages/urllib3/util/ssl_.py:90: InsecurePlatformWarning: A true SSLContext object is not available. This prevents urllib3 from configuring SSL appropriately and may cause certain SSL connections to fail. For more information, see https://urllib3.readthedocs.org/en/latest/security.html#insecureplatformwarning.
+  InsecurePlatformWarning
+Collecting Flask-Admin (from -r examples/sqla/requirements.txt (line 2))
+  Downloading Flask-Admin-1.4.0.tar.gz (868kB)
+    100% |¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦| 872kB 487kB/s 
+Collecting Flask-SQLAlchemy (from -r examples/sqla/requirements.txt (line 3))
+  Downloading Flask-SQLAlchemy-2.1.tar.gz (95kB)
+    100% |¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦| 98kB 2.0MB/s 
+Collecting itsdangerous>=0.21 (from Flask->-r examples/sqla/requirements.txt (line 1))
+Collecting Werkzeug>=0.7 (from Flask->-r examples/sqla/requirements.txt (line 1))
+  Using cached Werkzeug-0.11.3-py2.py3-none-any.whl
+Collecting Jinja2>=2.4 (from Flask->-r examples/sqla/requirements.txt (line 1))
+  Using cached Jinja2-2.8-py2.py3-none-any.whl
+Collecting wtforms (from Flask-Admin->-r examples/sqla/requirements.txt (line 2))
+  Downloading WTForms-2.1.zip (553kB)
+    100% |¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦| 557kB 1.1MB/s 
+Collecting SQLAlchemy>=0.7 (from Flask-SQLAlchemy->-r examples/sqla/requirements.txt (line 3))
+  Downloading SQLAlchemy-1.0.11.tar.gz (4.7MB)
+    38% |¦¦¦¦¦¦¦¦¦¦¦¦?                   | 1.8MB 3.6MB/s eta 0:00:01Exception:
+Traceback (most recent call last):
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/basecommand.py", line 211, in main
+    status = self.run(options, args)
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/commands/install.py", line 305, in run
+    wb.build(autobuilding=True)
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/wheel.py", line 705, in build
+    self.requirement_set.prepare_files(self.finder)
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/req/req_set.py", line 334, in prepare_files
+    functools.partial(self._prepare_file, finder))
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/req/req_set.py", line 321, in _walk_req_to_install
+    more_reqs = handler(req_to_install)
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/req/req_set.py", line 491, in _prepare_file
+    session=self.session)
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/download.py", line 825, in unpack_url
+    session,
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/download.py", line 673, in unpack_http_url
+    from_path, content_type = _download_http_url(link, session, temp_dir)
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/download.py", line 886, in _download_http_url
+    _download_url(resp, link, content_file)
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/download.py", line 621, in _download_url
+    for chunk in progress_indicator(resp_read(4096), 4096):
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/utils/ui.py", line 133, in iter
+    for x in it:
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/download.py", line 586, in resp_read
+    decode_content=False):
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/_vendor/requests/packages/urllib3/response.py", line 307, in stream
+    data = self.read(amt=amt, decode_content=decode_content)
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/_vendor/requests/packages/urllib3/response.py", line 243, in read
+    data = self._fp.read(amt)
+  File "/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/_vendor/cachecontrol/filewrapper.py", line 49, in read
+    data = self.__fp.read(amt)
+  File "/usr/lib/python2.7/httplib.py", line 573, in read
+    s = self.fp.read(amt)
+  File "/usr/lib/python2.7/socket.py", line 380, in read
+    data = self._sock.recv(left)
+  File "/usr/lib/python2.7/ssl.py", line 341, in recv
+    return self.read(buflen)
+  File "/usr/lib/python2.7/ssl.py", line 260, in read
+    return self._sslobj.read(len)
+error: [Errno 104] Connection reset by peer
+/var/www/html/python/flask-admin/env/local/lib/python2.7/site-packages/pip/_vendor/requests/packages/urllib3/util/ssl_.py:90: InsecurePlatformWarning: A true SSLContext object is not available. This prevents urllib3 from configuring SSL appropriately and may cause certain SSL connections to fail. For more information, see https://urllib3.readthedocs.org/en/latest/security.html#insecureplatformwarning.
+  InsecurePlatformWarning
+(env)albe@redekv1:/var/www/html/python/flask-admin$ 
+(env)albe@redekv1:/var/www/html/python/flask-admin$ python examples/sqla/app.py
+Traceback (most recent call last):
+  File "examples/sqla/app.py", line 3, in <module>
+    from flask import Flask
+ImportError: No module named flask
+(env)albe@redekv1:/var/www/html/python/flask-admin$ 

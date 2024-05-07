@@ -1,0 +1,36 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+
+# Force the following filetypes to have unix eols, so Windows does not break them
+*.* text eol=lf
+
+*.7z   binary
+*.7z   -text
+*.zip  binary
+
+*.pmdsdata3.latest.7z.7z binary
+*.latest.7z.7z binary
+*.7z.7z binary
+htdocs-sample-example-small1_mv_to__htdocs.pmdsdata3.latest.7z.7z binary
+htdocs-sample-example-small1_mv_to_htdocs.pmdsdata3.latest.7z.7z binary
+
+# Custom for Visual Studio
+*.cs     diff=csharp
+*.sln    merge=union
+*.csproj merge=union
+*.vbproj merge=union
+*.fsproj merge=union
+*.dbproj merge=union
+
+# Standard to msysgit
+*.doc	 diff=astextplain
+*.DOC	 diff=astextplain
+*.docx diff=astextplain
+*.DOCX diff=astextplain
+*.dot  diff=astextplain
+*.DOT  diff=astextplain
+*.pdf  diff=astextplain
+*.PDF	 diff=astextplain
+*.rtf	 diff=astextplain
+*.RTF	 diff=astextplain

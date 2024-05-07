@@ -1,0 +1,250 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2015-11-30[Nov-Mon]22-06PM
+
+http://hackersome.com/p/phundament/app
+
+
+cd /var/www/html
+
+git clone https://github.com/phundament/app
+cd app
+
+make env-init
+
+make docker-up app-build app-install app-setup app-open
+
+
+#docker
+sudo apt-get update
+sudo apt-get -y install docker.io
+sudo ln -sf /usr/bin/docker.io /usr/local/bin/docker
+sudo sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
+sudo update-rc.d docker.io defaults
+...noworky.
+
+#_____________
+
+try this...
+
+https://docs.docker.com/engine/installation/ubuntulinux/
+
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+
+sudo sh -c 'echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" >> /etc/apt/sources.list.d/docker.list'
+
+
+sudo apt-get update
+
+sudo apt-get purge lxc-docker
+
+sudo apt-cache policy docker-engine
+
+sudo apt-get install linux-image-extra-$(uname -r)
+sudo apt-get update
+
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+
+sudo apt-get install docker-engine
+
+sudo service docker start
+
+sudo docker run hello-world
+
+
+#
+sudo nano /etc/apt/sources.list.d/docker.list
+sudo echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" >> /etc/apt/sources.list.d/docker.list
+sudo cat; echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" >> /etc/apt/sources.list.d/docker.list;
+sudo mkdir -p /etc/apt/sources.list.d/
+sudo cat <<EOF >> /etc/apt/sources.list.d/docker.list
+deb https://apt.dockerproject.org/repo ubuntu-trusty main
+EOF
+#
+
+
+done. ok.
+works.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+sudo pip install docker-compose
+
+cp .env-dist .env
+
+curl -o docker-compose.yml https://raw.githubusercontent.com/phundament/app/master/tutum.yml    
+docker-compose up -d
+
+error:
+
+albe@vamp206b:/var/www/html/app$ docker-compose up -d
+ERROR: Couldn't connect to Docker daemon at http+docker://localunixsocket - is it running?
+If it's at a non-standard location, specify the URL with the DOCKER_HOST environment variable.
+albe@vamp206b:/var/www/html/app$ ^C
+albe@vamp206b:/var/www/html/app$ 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2015-12-01[Dec-Tue]22-29PM
+
+Automated virtual hosts with Docker
+-----------------------------------
+To automatically create virtual hosts for your projects, you can use a combination of this [nginx-proxy](https://registry.hub.docker.com/u/jwilder/nginx-proxy/)
+image and the [xip.io](http://xip.io) wildcard DNS service.
+First, run the reverse-proxy container like described in its README, before you start web application containers.
+```
+sudo docker pull jwilder/nginx-proxy
+sudo docker run -d -p 915:915 -v /var/run/docker.sock:/tmp/docker.sock jwilder/nginx-proxy
+
+```
+
+Error response from daemon: Cannot start container d60b88b36c5b1a6354ae032c64a91a5f92a2e51aa6d54d465e4c47d6aa044c1a: 
+failed to create endpoint modest_hawking on network bridge: Error starting userland proxy: 
+listen tcp 0.0.0.0:80: bind: address already in use
+
+
+This will automatically setup virtual hosts accessible through port 80 on your Docker host.
+You should now be able to access the application under 
+
+Linux
+
+- [myapp.127.0.0.1.xip.io](http://myapp.127.0.0.1.xip.io)
+- [myapp.127.0.0.1.xip.io/admin](http://myapp.127.0.0.1.xip.io/backend)
+
+myapp.127.0.0.1:915.xip.io
+
+http://vamp206b:915.xip.io
+
+You can display the application logs with:
+
+```
+fig logs
+```
+
+### Accessing from other clients on the network
+
+If you need to access the application in development from another client (eg. mobile devices), 
+you can setup a port forwarding to your host-vm. This is an example how to add port forwarding to VirtualBox VM.
+ 
+ 
+```
+boot2docker stop
+VBoxManage modifyvm "boot2docker-vm" --natpf1 "rproxy,tcp,,8001,,80"
+boot2docker start
+```
+
+Make sure to update your `VIRTUAL_HOST` environment variable in `docker-compose.yml`, replace `192.168.1.102` with the IP address of your machine.
+
+```
+VIRTUAL_HOST: myapp.127.0.0.1.xip.io,myapp.192.168.1.102.xip.io
+```
+
+and restart the containers with `docker-compose up -d web`.
+
+You can access the application under the following URL
+
+```
+http://myapp.192.168.1.102.xip.io:8001
+```
+
+*More information on this topic available at [github.com/boot2docker](https://github.com/boot2docker/boot2docker/blob/master/doc/WORKAROUNDS.md).*
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2015-12-01[Dec-Tue]23-18PM
+
+https://github.com/phundament/app/blob/master/docs/20-installation.md
+
+sudo make all
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2015-12-01[Dec-Tue]23-31PM
+
+mysql -uroot -p$mysqlrootpassw -e "create database dev_phundament_4"; 
+
+
+Installation Alternatives
+-------------------------
+
+
+### Composer installation
+
+You can install _Phundament 4_ using [composer](https://getcomposer.org/download/)...
+
+    composer global require "fxp/composer-asset-plugin"
+    composer create-project --stability=beta phundament/app myapp
+    
+    ###mv /var/www/html/myapp "/var/www/html/myapp.$(date "+%Y-%m-%d_%k-%M-%S")" 
+    mv /var/www/html/myapp /var/www/html/myapp.$(date "+%Y-%m-%d_%k-%M-%S")
+    composer create-project --stability=beta  phundament/app myapp11
+
+Create and adjust your environment configuration, eg. add a database...
+
+    cd myapp
+    cp .env-dist .env
+    edit .env
+    
+Run the application setup...
+    
+    ./yii migrate --interactive=0
+    ./yii app/setup-admin-user --interactive=0
+    
+Open `http://path-to-app/web` or `http://path-to-app/web?r=admin` in your browser.
+
+http://localhost/web?r=admin
+
+http://vamp206b/myapp/web?r=admin
+
+
+chmod 777
+
+cp web/.htaccess-dist web/.htaccess
+
+
+RewriteBase /myapp/web
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2015-12-02[Dec-Wed]09-02AM
+
+ext-xsl
+
+Problem 1
+    - schmunk42/giic dev-master requires ext-xsl * -> the requested PHP extension xsl is missing from your system.
+
+sudo apt-get -y install php5-xsl
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+> Phundament\ComposerCallback::postPackageInstall
+PHP Fatal error:  Call to undefined method Composer\Script\Event::getOperation() in /var/www/html/myapp/src/Phundament/ComposerCallback.php on line 125
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2015-12-02[Dec-Wed]14-18PM
+
+Not Found
+
+The requested URL /user/login was not found on this server.
+
+Apache/2.4.7 (Ubuntu) Server at vamp206b Port 80
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

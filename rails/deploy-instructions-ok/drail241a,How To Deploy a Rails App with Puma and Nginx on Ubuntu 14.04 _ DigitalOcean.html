@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04 | DigitalOcean</title>
+
+<meta name="description" content="When you are ready to deploy your Ruby on Rails application, there are many valid setups to consider. This tutorial will help you deploy the production environment of your Ruby on Rails application, with PostgreSQL as the database, using Puma and Ngin">
+<meta name="keywords" content="Ruby on Rails PostgreSQL Deployment Nginx Ruby">
+
+<meta name="og:title" content="How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04 | DigitalOcean">
+<meta name="og:description" content="When you are ready to deploy your Ruby on Rails application, there are many valid setups to consider. This tutorial will help you deploy the production environment of your Ruby on Rails application, with PostgreSQL as the database, using Puma and Ngin">
+<meta name="og:site_name" content="DigitalOcean">
+<meta name="og:type" content="article">
+
+<meta name="twitter:site" content="DigitalOcean">
+<meta name="twitter:title" content="How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04 | DigitalOcean">
+<meta name="twitter:description" content="When you are ready to deploy your Ruby on Rails application, there are many valid setups to consider. This tutorial will help you deploy the production environment of your Ruby on Rails application, with PostgreSQL as the database, using Puma and Ngin">
+<meta name="twitter:creator" content="DigitalOcean">
+<meta name="twitter:card" content="photo" />
+<meta name="twitter:url" content="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04"/>
+
+<meta property='og:image' content="https://community-cdn-digitalocean-com.global.ssl.fastly.net/assets/tutorials/images/large/rails_with_puma_tw.jpg?1428609926">
+<meta name="twitter:image" content="https://community-cdn-digitalocean-com.global.ssl.fastly.net/assets/tutorials/images/large/rails_with_puma_tw.jpg?1428609926">
+
+  <link rel='canonical' href='https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04'>
+
+
+    <link rel="stylesheet" media="all" href="/assets/community/application-4d081973ca513f8a76247d8a0575e283.css" />
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="SYB0VMm+hRiAeKcj3ES5xBcABh+ZCOMOS0UVi+TTinnxLTeIZPxxBSm52K8rUxB2mNj+pXiVPCDByHdYh7uqRg==" />
+      <script src="https://use.typekit.net/izu1uqu.js"></script>
+      <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <script
+      src="https://d2wy8f7a9ursnm.cloudfront.net/bugsnag-2.min.js"
+      data-apikey="9ffc01bc3e1fa7891bfd20909d1bfb0e">
+    </script>
+    <!--<script src="//cdn.optimizely.com/js/701281621.js"></script>-->
+    <script type="text/javascript">
+      if(window.analytics=window.analytics||[],window.analytics.included)window.console&&console.error&&console.error("analytics.js included twice");else{window.analytics.included=!0,window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(a){return function(){var n=Array.prototype.slice.call(arguments);return n.unshift(a),window.analytics.push(n),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(a){var n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+a+"/analytics.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(n,t)},window.analytics.SNIPPET_VERSION="2.0.9",
+      window.analytics.load("puo3uv968t")}
+      window.analytics.page();
+    </script>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/community/tutorials/feed">
+    <script src="/assets/community/application-f7ac51dd6fdd47c5a678b1c8c9dc220f.js"></script>
+    <script>
+  window.featureFlags = {
+    upvotes: false
+  };
+</script>
+
+  </head>
+  <body class="tutorials-controller tutorial-single" data-env="production", data-prefix="/community" data-user-id="" data-facebook-app-id="694818843983011">
+    <script>
+//<![CDATA[
+
+//]]>
+</script>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KHWBBT"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KHWBBT');</script>
+<!-- End Google Tag Manager -->
+    
+
+    <div class='outside_viewport'>
+        <div id="contents-modal" class="modal fade mini-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Contents</h1>
+          <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+        </div>
+        <div class="modal-body">
+
+          <div class="table-of-contents-modal open"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="share-modal" class="modal fade mini-modal" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Share</h1>
+        <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+      </div>
+      <div class="modal-body">
+        <div class="social-sharing social-sharing-container">
+          <ul class="top ">
+            <li class="shareBtn" id="sbTwitter">
+              <a href="http://twitter.com/share?text=How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04&amp;url=https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=twshare" class="share-icon share-popup" title="Share on Twitter" >
+                <span class="sIcon icon-bird"></span>
+              </a>
+              <a href="http://twitter.com/share?text=How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04&amp;url=https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=twshare" class="share-link share-popup" title="Share on Twitter" >
+                Twitter
+              </a>
+            </li>
+            <li class="shareBtn" id="sbFacebook">
+              <a class="share-icon facebook-share" href="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=fbshare" onclick="" title="Share on Facebook">
+                <span class="sIcon icon-facebook-B"></span>
+              </a>
+
+              <a class="share-link facebook-share" href="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=fbshare" onclick="" title="Share on Facebook">
+                Facebook
+              </a>
+            </li>
+            <li class="shareBtn" id="sbGoogle">
+              <a href="https://plus.google.com/share?url=https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=gpshare" class="share-icon share-popup" title="Share on Google+">
+                <span class="sIcon icon-google-plus-B"></span>
+              </a>
+              <a href="https://plus.google.com/share?url=https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=gpshare" class="share-link share-popup" title="Share on Google+">
+                Google+
+              </a>
+            </li>
+            <li class="shareBtn" id="sbYC">
+              <a href="https://news.ycombinator.com/submitlink?t=How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04&amp;u=https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=hnshare" class="share-icon share-popup" target="_blank" title="Submit to Hacker News">
+                <span class="sIcon icon-hacker-news"></span>
+              </a>
+              <a href="https://news.ycombinator.com/submitlink?t=How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04&amp;u=https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=hnshare" class="share-link share-popup" target="_blank" title="Submit to Hacker News">
+                Hacker News
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="table-of-contents "></div>
+  
+  <div id="share-modal" class="modal fade mini-modal" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Share</h1>
+        <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+      </div>
+      <div class="modal-body">
+        <div class="social-sharing social-sharing-container">
+          <ul class="bottom ">
+            <li class="shareBtn" id="sbTwitter">
+              <a href="http://twitter.com/share?text=How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04&amp;url=https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=twshare" class="share-icon share-popup" title="Share on Twitter" >
+                <span class="sIcon icon-bird"></span>
+              </a>
+              <a href="http://twitter.com/share?text=How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04&amp;url=https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=twshare" class="share-link share-popup" title="Share on Twitter" >
+                Twitter
+              </a>
+            </li>
+            <li class="shareBtn" id="sbFacebook">
+              <a class="share-icon facebook-share" href="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=fbshare" onclick="" title="Share on Facebook">
+                <span class="sIcon icon-facebook-B"></span>
+              </a>
+
+              <a class="share-link facebook-share" href="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=fbshare" onclick="" title="Share on Facebook">
+                Facebook
+              </a>
+            </li>
+            <li class="shareBtn" id="sbGoogle">
+              <a href="https://plus.google.com/share?url=https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=gpshare" class="share-icon share-popup" title="Share on Google+">
+                <span class="sIcon icon-google-plus-B"></span>
+              </a>
+              <a href="https://plus.google.com/share?url=https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=gpshare" class="share-link share-popup" title="Share on Google+">
+                Google+
+              </a>
+            </li>
+            <li class="shareBtn" id="sbYC">
+              <a href="https://news.ycombinator.com/submitlink?t=How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04&amp;u=https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=hnshare" class="share-icon share-popup" target="_blank" title="Submit to Hacker News">
+                <span class="sIcon icon-hacker-news"></span>
+              </a>
+              <a href="https://news.ycombinator.com/submitlink?t=How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04&amp;u=https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04?utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04&amp;utm_medium=community&amp;utm_source=hnshare" class="share-link share-popup" target="_blank" title="Submit to Hacker News">
+                Hacker News
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <div id="newsletter-signup-dialog" class="newsletter-signups-dialog" data-newsletter-signup-dialog data-article-target=".content-body">
+  <div class="pull-right">
+  <a href="javascript:;" class="newsletter-signups-dialog-dismiss" data-newsletter-signup-dismiss>&times;</a>
+
+</div>
+<h4 class="newsletter-signups-dialog-title">
+  Sign up for our newsletter.
+</h4>
+<p class="newsletter-signups-dialog-description">
+  Get the latest tutorials on SysAdmin and open source topics.
+</p>
+<form class="newsletter-signup" id="new_newsletter_signup" data-newsletter-signup="true" action="/community/newsletter_signup" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+
+  <input data-newsletter-signup-field="url" type="hidden" name="newsletter_signup[url]" id="newsletter_signup_url" />
+  <input data-newsletter-signup-field="title" type="hidden" name="newsletter_signup[title]" id="newsletter_signup_title" />
+
+  <div class="newsletter-signup-ajax-error" data-newsletter-signup-ajax-error></div>
+
+
+  <div class="form-group">
+    <input placeholder="email@example.com" required="required" class="field" type="email" name="newsletter_signup[email]" id="newsletter_signup_email" />
+  </div>
+
+  <button data-disable-with="Sign Up" class="button blue-button">
+    Sign Up
+  </button>
+
+</form>
+
+</div>
+
+
+    </div>
+
+      <div class="mobile-nav">
+  
+<div class="account-buttons">
+    <div id="entrance">
+      <a id="sign-up" class="button" href="/community/auth/digitalocean?display=sessionless+register">Sign Up</a>
+      <a id="log-in" class="button" href="/community/auth/digitalocean">Log In</a>
+    </div>
+</div>
+
+  <a class="close-panel icon-close" href="javascript:void(0);"></a>
+
+  <form class="mobile-search" role="search" action="/community/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+    <span class='icon icon-search-thin'></span>
+    <input type="text" name="q" id="q" placeholder="Search" />
+    <button name="button" type="submit" class="icon-btn">submit</button>
+</form>
+  
+<nav>
+
+  <ul>
+    <li><a href="/community/tutorials">Tutorials</a></li>
+    <li><a href="/community/questions">Questions</a></li>
+    <li><a href="/community/projects">Projects</a></li>
+    <li><a href="https://www.meetup.com/pro/digitalocean/?utm_source=do_community" target="_blank">Meetups</a></li>
+    <li class="mobile-nav-only"><a href="https://www.digitalocean.com/">Main Site</a></li>
+  </ul>
+</nav>
+
+  
+</div>
+
+      
+      <header>
+  <div class="flash-container"></div>
+
+  <div class='main-menu-container'>
+    <div class='wrapper'>
+      <div class='logo'>
+        <a class="" href="https://www.digitalocean.com/">
+          <span class='icon icon-logo'></span>
+</a>
+        <a class="" href="/community">
+          <span class='logo-community-text'>Community</span>
+</a>      </div>
+
+      <a class="mobile-nav-toggle icon-menu-thin" data-role="left">
+        <span>Menu</span>
+      </a>
+
+      
+<nav>
+
+  <ul>
+    <li><a href="/community/tutorials">Tutorials</a></li>
+    <li><a href="/community/questions">Questions</a></li>
+    <li><a href="/community/projects">Projects</a></li>
+    <li><a href="https://www.meetup.com/pro/digitalocean/?utm_source=do_community" target="_blank">Meetups</a></li>
+    <li class="mobile-nav-only"><a href="https://www.digitalocean.com/">Main Site</a></li>
+  </ul>
+</nav>
+
+
+      
+<div class="account-buttons">
+    <div id="entrance">
+      <a id="sign-up" class="button" href="/community/auth/digitalocean?display=sessionless+register">Sign Up</a>
+      <a id="log-in" class="button" href="/community/auth/digitalocean">Log In</a>
+    </div>
+</div>
+      <div class='header-search open'>
+  <form action="/community/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+    <span class='icon icon-search-thin'></span>
+    <input type="text" name="q" id="q" placeholder="Search" autocomplete="off" spellcheck="off" class="header-search-input" data-algolia-application-id="6ZHEUVKJ88" data-algolia-api-key="c5470567eae7fa1177d43222e18ba086" />
+    <button name="button" type="submit" class="icon-btn">submit</button>
+</form></div>
+
+<div class="search-results-dropdown dropdown" data-root-path="https://www.digitalocean.com/community">
+  <div class="container">
+    <div class='header-search-results-list'></div>
+
+    <div id="btn-wrap">
+      <a class="more-search-results" data-search-path="/community/search" href="/community/search">
+        <span class='icon-mag'></span>
+        View All Results
+</a>    </div>
+  </div>
+</div>
+
+<script type='text/template' id='autocomplete-hits-template'>
+  <div class="inner-search">
+    <ul>
+        {{#hits}}
+          <li>
+            <span class='icon icon-{{type}}'></span>
+            <a href='{{url}}'>{{{_highlightResult.title.value}}}</a>
+          </li>
+        {{/hits}}
+    </ul>
+  </div>
+</script>
+      <div class='clearfix'></div>
+    </div>
+  </div>
+
+  <div class='wrapper'>
+    
+  </div>
+</header>
+
+
+      
+
+      <div class='wrapper layout-wrapper'>
+
+        
+
+
+
+
+
+<div class="section-content section-content-growable content content-has-mobile-image">
+
+  <div class='postable-info-bar-container'>
+  <div class='postable-info-bar'>
+    <div class='left-section'>
+        <div class='tutorial-author-avatar'>
+          <a href="/community/users/manicas"><div class="mod-avatar mod-avatar-small"><img alt="manicas" class="avatar avatar-small" src="https://secure.gravatar.com/avatar/695da9dd73504edfc622c9be380cb3cb?secure=true&d=identicon" width="80" height="80" /><span class="mod-star" title="MOD" data-toggle="tooltip" data-container="body"><span class="mod-star-icon" /></span></div></a>
+        </div>
+        <div class='author-and-date'>
+          <div class='tutorial-author'>
+            <div class='by'>By: </div>
+            <a href="/community/users/manicas">Mitchell Anicas</a>
+          </div>
+        </div>
+
+    </div>
+
+    <div class='right-section'>
+      
+
+
+        <div class="section-item section-item-subscribe">
+          <span class="opt-in-switch off signed-out-subscribe">
+            <span class="subscribe-label">
+              <span class="icon icon-subscribe"></span>
+              <span class="subscription-label subscribe">Subscribe</span>
+              <span class="icon icon-subscribed"></span>
+              <span class="subscription-label subscribed">Subscribed</span>
+            </span>
+            <a data-toggle="modal" data-target="#sign-in-modal" class="mini-switch-container" href="javascript:void(0);"><div class="mini-switch off signed-out-subscribe"><div class="switch-handle"></div></div></a>
+          </span>
+        </div>
+
+      <div class='section-item social-sharing-item'>
+        <div class="sharing">
+  <a class="share-button" href="#" data-toggle="modal" data-target="#share-modal">
+    <span class="icon icon-share-square"></span>
+    <span class="share-button-text">Share</span>
+  </a>
+</div>
+
+      </div>
+
+        <div class='section-item table-of-contents-triggers'><div class="toc-trigger ">
+  <a href="javascript:void(0);">
+    <span class="icon icon-contents"></span>
+    <span class="title">Contents</span>
+    <span class="icon icon-close-light"></span>
+    <span class="icon icon-arrow-down"></span>
+  </a>
+</div>
+
+
+
+<div class="toc-trigger-mobile" data-toggle="modal" data-target="#contents-modal">
+  <a href="javascript:void(0);">
+    <span class="icon icon-contents"></span>
+    <span class="title">Contents</span>
+    <span class="icon icon-arrow-down"></span>
+  </a>
+</div>
+
+
+</div>
+
+    </div>
+  </div>
+</div>
+
+
+    <img alt="How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04" title="How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04" class="tutorial-image-mobile" src="https://community-cdn-digitalocean-com.global.ssl.fastly.net/assets/tutorials/images/large/rails_with_puma_tw.jpg?1428609926" />
+
+  <div class="container tutorial-header">
+      <img alt="How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04" title="How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04" class="tutorial-image" src="https://community-cdn-digitalocean-com.global.ssl.fastly.net/assets/tutorials/images/large/rails_with_puma_tw.jpg?1428609926" />
+
+      <div class='info-cta'>
+    <a class="icon-close-light" href="javascript:void();"></a>
+    We hope you find this tutorial helpful. In addition to guides like this one, we provide simple cloud infrastructure for developers. <a href="https://www.digitalocean.com/?utm_medium=community&amp;utm_source=community_gencta&amp;utm_campaign=needaserver&amp;utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04">
+        Learn more &rarr;
+</a>  </div>
+
+
+    <h1 class="content-title">How To Deploy a Rails App with Puma and Nginx on Ubuntu 14.04</h1>
+
+    <span class="meta-section timestamp">
+        Posted <span class="tutorial-date">Apr  1, 2015</span>
+    </span>
+
+    <span class="meta-section upvotes">
+      <div class="upvotes upvoted tutorial-upvote upvote-parent"><form data-upvotable="tutorial_1551" data-upvotable-type="tutorial" class="upvote-form upvote signed-out-upvote" action="/community/upvotes/toggle?upvote%5Bupvotable_id%5D=1551&amp;upvote%5Bupvotable_type%5D=Tutorial" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="patch" /><input type="hidden" name="authenticity_token" value="Awtb9e9RCxzbq6s3K1XNKR2wDrN8rWF3RIqO4890bIO7phgpQhP/AXJq1LvcQmSbkmj2CZ0wvlnOB+wwrBxMvA==" />
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class='icon-upvote-heart-small upvote-heart' data-toggle="modal" data-target="#sign-in-modal" data-return-url= "" title="Do you find this tutorial helpful? Show the author by Hearting it!" data-placement="bottom"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count ">23</div></div>
+    </span>
+
+    <span class="meta-section pageviews"><span class="icon icon-eye v-mid"></span><span class="views-count v-mid">58.7k</span><span class="sr-only"> views</span></span>
+
+    <span class="meta-section tags">
+      <a class="tag" href="/community/tags/deployment?type=tutorials">Deployment</a> <a class="tag" href="/community/tags/ruby-on-rails?type=tutorials">Ruby on Rails</a> <a class="tag" href="/community/tags/nginx?type=tutorials">Nginx</a> <a class="tag" href="/community/tags/postgresql?type=tutorials">PostgreSQL</a> <a class="tag" href="/community/tags/ruby?type=tutorials">Ruby</a>
+      <a class="tag" href="/community/tags/ubuntu?type=tutorials">Ubuntu</a>
+    </span>
+  </div>
+
+  <div class="container">
+    
+  </div>
+
+    <div class="content-body tutorial-content" data-growable-markdown>
+      <h3 id="introduction">Introduction</h3>
+
+<p>When you are ready to deploy your Ruby on Rails application, there are many valid setups to consider. This tutorial will help you deploy the production environment of your Ruby on Rails application, with PostgreSQL as the database, using Puma and Nginx on Ubuntu 14.04.</p>
+
+<p>Puma is an application server, like <a href="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-passenger-and-nginx-on-ubuntu-14-04">Passenger</a> or <a href="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-unicorn-and-nginx-on-ubuntu-14-04">Unicorn</a>, that enables your Rails application to process requests concurrently. As Puma is not designed to be accessed by users directly, we will use Nginx as a reverse proxy that will buffer requests and responses between users and your Rails application.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>This tutorial assumes that you have an Ubuntu 14.04 server with the following software installed, on the user that will deploy the application:</p>
+
+<ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-14-04">Ruby on Rails, using rbenv</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-14-04">PostgreSQL with Rails</a></li>
+</ul>
+
+<p>If you do not have that set up already, follow the tutorials that are linked above. We will assume that your user is called <strong>deploy</strong>.</p>
+
+<p>Also, this tutorial does not cover how to set up your development or test environments. If you need help with that, follow the example in the <a href="https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-14-04">PostgreSQL with Rails tutorial</a>.</p>
+
+<h2 id="create-rails-application">Create Rails Application</h2>
+
+<p>Ideally, you already have a Rails application that you want to deploy. If this is the case, you may skip this section, and make the appropriate substitutions while following along. If not, the first step is to create a new Rails application that uses PostgreSQL as its database.</p>
+
+<p>This command will create a new Rails application, named "appname" that will use PostgreSQL as the database. Feel free to substitute the highlighted "appname" with something else:</p>
+<pre class="code-pre "><code langs="">rails new <span class="highlight">appname</span> -d postgresql
+</code></pre>
+<p>Then change into the application directory:</p>
+<pre class="code-pre "><code langs="">cd <span class="highlight">appname</span>
+</code></pre>
+<p>Let's take a moment to create the PostgreSQL user that will be used by the production environment of your Rails application.</p>
+
+<h2 id="create-production-database-user">Create Production Database User</h2>
+
+<p>To keep things simple, let's name the production database user the same as your application name. For example, if your application is called "appname", you should create a PostgreSQL user like this:</p>
+<pre class="code-pre "><code langs="">sudo -u postgres createuser -s <span class="highlight">appname</span>
+</code></pre>
+<p>We want to set the database user's password, so enter the PostgreSQL console like this:</p>
+<pre class="code-pre "><code langs="">sudo -u postgres psql
+</code></pre>
+<p>Then set the password for the database user, "appname" in the example, like this:</p>
+<pre class="code-pre "><code langs="">\password <span class="highlight">appname</span>
+</code></pre>
+<p>Enter your desired password and confirm it.</p>
+
+<p>Exit the PostgreSQL console with this command:</p>
+<pre class="code-pre "><code langs="">\q
+</code></pre>
+<p>Now we're ready to configure the your application with the proper database connection information.</p>
+
+<h2 id="configure-database-connection">Configure Database Connection</h2>
+
+<p>Ensure that you are in your application's root directory (<code>cd ~/<span class="highlight">appname</span></code>).</p>
+
+<p>Open your application's database configuration file in your favorite text editor. We'll use vi:</p>
+<pre class="code-pre "><code langs="">vi config/database.yml
+</code></pre>
+<p>Update the <code>production</code> section so it looks something like this:</p>
+<pre class="code-pre "><code langs="">production:
+  &lt;&lt;: *default
+  host: localhost
+  adapter: postgresql
+  encoding: utf8
+  database: <span class="highlight">appname_production</span>
+  pool: 5
+  username: &lt;%= ENV['<span class="highlight">APPNAME</span>_DATABASE_USER'] %&gt;
+  password: &lt;%= ENV['<span class="highlight">APPNAME</span>_DATABASE_PASSWORD'] %&gt;
+</code></pre>
+<p>Note that the database username and password are configured to be read by environment variables,  <code><span class="highlight">APPNAME</span>_DATABASE_USER</code> and <code><span class="highlight">APPNAME</span>_DATABASE_PASSWORD</code>. It is considered best practice to keep production passwords and secrets outside of your application codebase, as they can easily be exposed if you are using a distributed version control system such as Git. We will go over how to set up the database authentication with environment variables next.</p>
+
+<p>Save and exit.</p>
+
+<h2 id="install-rbenv-vars-plugin">Install rbenv-vars Plugin</h2>
+
+<p>Before deploying a production Rails application, you should set the production secret key and database password using environment variables. An easy way to manage environment variables, which we can use to load passwords and secrets into our application at runtime, is to use the <strong>rbenv-vars</strong> plugin.</p>
+
+<p>To install the rbenv-vars plugin, simply change to the <code>.rbenv/plugins</code> directory and clone it from GitHub. For example, if rbenv is installed in your home directory, run these commands:</p>
+<pre class="code-pre "><code langs="">cd ~/.rbenv/plugins
+git clone https://github.com/sstephenson/rbenv-vars.git
+</code></pre>
+<h3 id="set-environment-variables">Set Environment Variables</h3>
+
+<p>Now that the rbenv-vars plugin is installed, let's set up the required environment variables.</p>
+
+<p>First, generate the secret key, which will be used to verify the integrity of signed cookies:</p>
+<pre class="code-pre "><code langs="">cd ~/appname
+rake secret
+</code></pre>
+<p>Copy the secret key that is generated, then open the <code>.rbenv-vars</code> file with your favorite editor. We will use vi:</p>
+<pre class="code-pre "><code langs="">vi .rbenv-vars
+</code></pre>
+<p>Any environment variables that you set here can be read by your Rails application.</p>
+
+<p>First, set the <code>SECRET_KEY_BASE</code> variable like this (replace the highlighted text with the secret that you just generated and copied):</p>
+<pre class="code-pre "><code langs="">SECRET_KEY_BASE=<span class="highlight">your_generated_secret</span>
+</code></pre>
+<p>Next, set the <code><span class="highlight">APPNAME</span>_DATABASE_USER</code> variable like this (replace the highlighted "APPNAME" with your your application name, and "appname" with your production database username):</p>
+<pre class="code-pre "><code langs=""><span class="highlight">APPNAME</span>_DATABASE_USER=<span class="highlight">appname</span>
+</code></pre>
+<p>Lastly, set the <code><span class="highlight">APPNAME</span>_DATABASE_PASSWORD</code> variable like this (replace the highlighted "APPNAME" with your your application name, and "prod_db_pass" with your production database user password):</p>
+<pre class="code-pre "><code langs=""><span class="highlight">APPNAME</span>_DATABASE_PASSWORD=<span class="highlight">prod_db_pass</span>
+</code></pre>
+<p>Save and exit.</p>
+
+<p>You may view which environment variables are set for your application with the rbenv-vars plugin by running this command:</p>
+<pre class="code-pre "><code langs="">rbenv vars
+</code></pre>
+<p>If you change your secret or database password, update your <code>.rbenv-vars</code> file. Be careful to keep this file private, and don't include it any public code repositories.</p>
+
+<h2 id="create-production-database">Create Production Database</h2>
+
+<p>Now that your application is configured to talk to your PostgreSQL database, let's create the production database:</p>
+<pre class="code-pre "><code langs="">RAILS_ENV=production rake db:create
+</code></pre>
+<h3 id="generate-a-controller">Generate a Controller</h3>
+
+<p>If you are following along with the example, we will generate a scaffold controller so our application will have something to look at:</p>
+<pre class="code-pre "><code langs="">rails generate scaffold Task title:string note:text
+</code></pre>
+<p>Now run this command to update the production database:</p>
+<pre class="code-pre "><code langs="">RAILS_ENV=production rake db:migrate
+</code></pre>
+<p>You should also precompile the assets:</p>
+<pre class="code-pre "><code langs="">RAILS_ENV=production rake assets:precompile
+</code></pre>
+<p>To test out if your application works, you can run the production environment, and bind it to the public IP address of your server (substitute your server's public IP address):</p>
+<pre class="code-pre "><code langs="">RAILS_ENV=production rails server --binding=<span class="highlight">server_public_IP</span>
+</code></pre>
+<p>Now visit this URL in a web browser:</p>
+<pre class="code-pre "><code langs="">http://<span class="highlight">server_public_IP</span>:3000/tasks
+</code></pre>
+<p>If it's working properly, you should see this page:</p>
+
+<p><img src="https://assets.digitalocean.com/articles/rails_unicorn/tasks.png" alt="Tasks controller"></p>
+
+<p>Go back to your Rails server, and press <code>Ctrl-c</code> to stop the application.</p>
+
+<h2 id="install-puma">Install Puma</h2>
+
+<p>Now we are ready to install Puma.</p>
+
+<p>An easy way to do this is to add it to your application's <code>Gemfile</code>. Open the Gemfile in your favorite editor (make sure you are in your application's root directory):</p>
+<pre class="code-pre "><code langs="">vi Gemfile
+</code></pre>
+<p>At the end of the file, add the Puma gem with this line:</p>
+<pre class="code-pre "><code langs="">gem 'puma'
+</code></pre>
+<p>Save and exit.</p>
+
+<p>To install Puma, and any outstanding dependencies, run Bundler:</p>
+<pre class="code-pre "><code langs="">bundle
+</code></pre>
+<p>Puma is now installed, but we need to configure it.</p>
+
+<h2 id="configure-puma">Configure Puma</h2>
+
+<p>Before configuring Puma, you should look up the number of CPU cores your server has. You can easily to that with this command:</p>
+<pre class="code-pre "><code langs="">grep -c processor /proc/cpuinfo
+</code></pre>
+<p>Now, let's add our Puma configuration to <code>config/puma.rb</code>. Open the file in a text editor:</p>
+<pre class="code-pre "><code langs="">vi config/puma.rb
+</code></pre>
+<p>Copy and paste this configuration into the file:</p>
+<pre class="code-pre "><code langs=""># Change to match your CPU core count
+workers <span class="highlight">2</span>
+
+# Min and Max threads per worker
+threads 1, 6
+
+app_dir = File.expand_path("../..", __FILE__)
+shared_dir = "#{app_dir}/shared"
+
+# Default to production
+rails_env = ENV['RAILS_ENV'] || "production"
+environment rails_env
+
+# Set up socket location
+bind "unix://#{shared_dir}/sockets/puma.sock"
+
+# Logging
+stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
+
+# Set master PID and state locations
+pidfile "#{shared_dir}/pids/puma.pid"
+state_path "#{shared_dir}/pids/puma.state"
+activate_control_app
+
+on_worker_boot do
+  require "active_record"
+  ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
+  ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/config/database.yml")[rails_env])
+end
+</code></pre>
+<p>Change the number of <code>workers</code> to the number of CPU cores of your server.</p>
+
+<p>Save and exit. This configures Puma with the location of your application, and the location of its socket, logs, and PIDs. Feel free to modify the file, or add any other options that you require.</p>
+
+<p>Now create the directories that were referred to in the configuration file:</p>
+<pre class="code-pre "><code langs="">mkdir -p shared/pids shared/sockets shared/log
+</code></pre>
+<h2 id="create-puma-upstart-script">Create Puma Upstart Script</h2>
+
+<p>Let's create an Upstart init script so we can easily start and stop Puma, and ensure that it will start on boot.</p>
+
+<p>Download the Jungle Upstart tool from the Puma GitHub repository to your home directory:</p>
+<pre class="code-pre "><code langs="">cd ~
+wget https://raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma-manager.conf
+wget https://raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma.conf
+</code></pre>
+<p>Now open the provided <code>puma.conf</code> file, so we can configure the Puma deployment user:</p>
+<pre class="code-pre "><code langs="">vi puma.conf
+</code></pre>
+<p>Look for the two lines that specify <code>setuid</code> and <code>setgid</code>, and replace "apps" with the name of your deployment user and group. For example, if your deployment user is called "deploy", the lines should look like this:</p>
+<pre class="code-pre "><code langs="">setuid <span class="highlight">deploy</span>
+setgid <span class="highlight">deploy</span>
+</code></pre>
+<p>Save and exit.</p>
+
+<p>Now copy the scripts to the Upstart services directory:</p>
+<pre class="code-pre "><code langs="">sudo cp puma.conf puma-manager.conf /etc/init
+</code></pre>
+<p>The <code>puma-manager.conf</code> script references <code>/etc/puma.conf</code> for the applications that it should manage. Let's create and edit that inventory file now:</p>
+<pre class="code-pre "><code langs="">sudo vi /etc/puma.conf
+</code></pre>
+<p>Each line in this file should be the path to an application that you want <code>puma-manager</code> to manage. Add the path to your application now. For example:</p>
+<pre class="code-pre "><code langs="">/home/<span class="highlight">deploy</span>/<span class="highlight">appname</span>
+</code></pre>
+<p>Save and exit.</p>
+
+<p>Now your application is configured to start at boot time, through Upstart. This means that your application will start even after your server is rebooted.</p>
+
+<h3 id="start-puma-applications-manually">Start Puma Applications Manually</h3>
+
+<p>To start all of your managed Puma apps now, run this command:</p>
+<pre class="code-pre "><code langs="">sudo start puma-manager
+</code></pre>
+<p>You may also start a single Puma application by using the <code>puma</code> Upstart script, like this:</p>
+<pre class="code-pre "><code langs="">sudo start puma app=/home/<span class="highlight">deploy</span>/<span class="highlight">appname</span>
+</code></pre>
+<p>You may also use <code>stop</code> and <code>restart</code> to control the application, like so:</p>
+<pre class="code-pre "><code langs="">sudo stop puma-manager
+sudo restart puma-manager
+</code></pre>
+<p>Now your Rails application's production environment is running under Puma, and it's listening on the <code>shared/sockets/puma.sock</code> socket. Before your application will be accessible to an outside user, you must set up the Nginx reverse proxy.</p>
+
+<h2 id="install-and-configure-nginx">Install and Configure Nginx</h2>
+
+<p>Install Nginx using apt-get:</p>
+<pre class="code-pre "><code langs="">sudo apt-get install nginx
+</code></pre>
+<p>Now open the default server block with a text editor:</p>
+<pre class="code-pre "><code langs="">sudo vi /etc/nginx/sites-available/default
+</code></pre>
+<p>Replace the contents of the file with the following code block. Be sure to replace the the highlighted parts with the appropriate username and application name (two locations):</p>
+<pre class="code-pre "><code langs="">upstream app {
+    # Path to Puma SOCK file, as defined previously
+    server unix:/home/<span class="highlight">deploy</span>/<span class="highlight">appname</span>/shared/sockets/puma.sock fail_timeout=0;
+}
+
+server {
+    listen 80;
+    server_name localhost;
+
+    root /home/<span class="highlight">deploy</span>/<span class="highlight">appname</span>/public;
+
+    try_files $uri/index.html $uri @app;
+
+    location @app {
+        proxy_pass http://app;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+    }
+
+    error_page 500 502 503 504 /500.html;
+    client_max_body_size 4G;
+    keepalive_timeout 10;
+}
+</code></pre>
+<p>Save and exit. This configures Nginx as a reverse proxy, so HTTP requests get forwarded to the Puma application server via a Unix socket. Feel free to make any changes as you see fit.</p>
+
+<p>Restart Nginx to put the changes into effect:</p>
+<pre class="code-pre "><code langs="">sudo service nginx restart
+</code></pre>
+<p>Now the production environment of your Rails application is accessible via your server's public IP address or FQDN. To access the Tasks controller that we created earlier, visit your application server in a web browser:</p>
+<pre class="code-pre "><code langs="">http://<span class="highlight">server_public_IP</span>/tasks
+</code></pre>
+<p>You should see the same page that you saw the first time you tested your application, but now it's being served through Nginx and Puma.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Congratulations! You have deployed the production environment of your Ruby on Rails application using Nginx and Puma.</p>
+
+<p>If you are looking to improve your production Rails application deployment, you should check out our tutorial series on <a href="https://www.digitalocean.com/community/tutorial_series/how-to-use-capistrano-to-automate-deployments">How To Use Capistrano to Automate Deployments</a>. The series is based on CentOS, but it should still be helpful in automating your deployments.</p>
+
+    </div>
+</div>
+
+<div class="tutorial-footer">
+  <div class='tutorial-footer-details'>
+
+  <div class='section-content tutorial-contributors one'>
+      <div class='tutorial-footer-user'>
+        <div class='tutorial-footer-user-avatar-container'>
+          <a href="/community/users/manicas"><div class="mod-avatar mod-avatar-small"><img alt="manicas" class="avatar avatar-small" src="https://secure.gravatar.com/avatar/695da9dd73504edfc622c9be380cb3cb?secure=true&d=identicon" width="80" height="80" /><span class="mod-star" title="MOD" data-toggle="tooltip" data-container="body"><span class="mod-star-icon" /></span></div></a>
+        </div>
+        <div class='user-info'>
+          <div class='tutorial-user-type'>Author:</div>
+          <a href="/community/users/manicas">Mitchell Anicas</a>
+        </div>
+      </div>
+
+
+  </div>
+</div>
+
+
+  
+  <div class='tutorial-ctas'>
+  <div class='section-content'>
+    <div class='cta-description'>
+      <h2>Spin up an SSD cloud server in under a minute.</h2>
+
+      <p>Simple setup. Full root access. Straightforward pricing.</p>
+
+      <a class="cloud-tutorial-cta" href="https://www.digitalocean.com/?utm_medium=community&amp;utm_source=community_gencta&amp;utm_campaign=needaserver&amp;utm_content=how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04">Deploy Server</a>
+    </div>
+  </div>
+</div>
+    <div class='related-tutorials'>
+    <div class='section-content'>
+      <h2>Related Tutorials</h2>
+
+      <ul>
+        <li><a class="related-link" href="/community/tutorials/how-to-deploy-a-rails-app-with-azk">How To Deploy a Rails App with azk</a></li>
+<li><a class="related-link" href="/community/tutorials/blueprint-how-ghost-migrated-from-dedicated-servers-to-digitalocean">Blueprint: How Ghost Migrated From Dedicated Servers to DigitalOcean</a></li>
+<li><a class="related-link" href="/community/tutorials/how-to-deploy-a-symfony-application-to-production-on-ubuntu-14-04">How To Deploy a Symfony Application to Production on Ubuntu 14.04</a></li>
+<li><a class="related-link" href="/community/tutorials/how-to-deploy-a-hugo-site-to-production-with-git-hooks-on-ubuntu-14-04">How To Deploy a Hugo Site to Production with Git Hooks on Ubuntu 14.04</a></li>
+<li><a class="related-link" href="/community/tutorials/how-to-use-blue-green-deployments-to-release-software-safely">How To Use Blue-Green Deployments to Release Software Safely</a></li>
+
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="content-comments">
+  <div class="section-content">
+    <div class="tutorial commentable" id="tutorial_1551">
+
+  <div class="comments-header">
+    <h4 class="comments-count"><span>40 Comments</span></h4>
+  </div>
+
+  <div class="response response-form no-avatar">
+  <div class="js-display-on-error flash error hidden"></div>
+
+
+  <form class="content-form disabled-form" id="new_comment" action="/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04/comments" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+
+    <textarea name="comment[content]" id="comment_content" placeholder="Leave a comment..." class="js-comment-content tutorial-comment-field" data-markdown="true">
+</textarea>
+
+    <div class="response-user-details">
+      <div class='response-avatar'>
+        
+      </div>
+
+      <div class='logged-in'>
+        <div class='logged-in-as'>Logged in as:</div>
+        
+      </div>
+    </div>
+
+    <button type="submit" class="submit-comment" data-disable-with="Submitting...">
+      Comment
+    </button>
+
+
+      <div class="subscribe-to-post">
+        <input type="checkbox" name="comment[subscribe]" id="comment_subscribe" checked="checked" />
+        <label for="comment_subscribe">Notify me of replies to my comment</label>
+      </div>
+
+    <button type="submit" class="submit-comment submit-comment-mobile" data-disable-with="Submitting...">
+      Comment
+    </button>
+
+    <div class='clearfix'></div>
+</form>
+</div>
+
+
+  <div class="comments">
+    <ul class="response-list">
+          <a class="js-click-on-load hidden" rel="nofollow" data-remote="true" href="/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04/comments">Load</a>
+    </ul>
+
+      <div class='comments-spinner'><div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+</div>
+  </div>
+
+  <div class='load-more-container'></div>
+</div>
+
+
+  </div>
+</div>
+
+<div class="creative-commons">
+  <a class="creative-commons-image" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img rel="license" alt="Creative Commons License" src="/assets/community/creativecommons-654928f5ebfbb75f4543af8903eabfe4.png" /></a>
+    <div class="license-text">This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</div>
+</div>
+
+
+
+
+
+        <div class="clearfix"></div>
+      </div>
+
+      <footer class='footer'>
+  <div class='footer-icon'>
+    <span class='icon icon-sammy'></span>
+  </div>
+
+  <div class='copyright'>
+    Copyright &copy; 2016 DigitalOcean&trade; Inc.
+  </div>
+
+  <ul class='main-nav-links'>
+    <li><a href="/community">Community</a></li>
+    <li><a href="/community/tutorials">Tutorials</a></li>
+    <li><a href="/community/questions">Questions</a></li>
+    <li><a href="/community/projects">Projects</a></li>
+    <li><a href="/community/tags">Tags</a></li>
+    <li>
+      <a href="/community/tutorials/feed">
+        RSS <span class="icon-rss"></span>
+</a>    </li>
+  </ul>
+
+  <br />
+
+  <ul class='secondary-nav-links'>
+    <li><a href="https://www.digitalocean.com/features/one-click-apps/">Distros &amp; One-Click Apps</a></li>
+    <li><a href="https://www.digitalocean.com/legal/terms/">Terms, Privacy, &amp; Copyright</a></li>
+    <li><a href="https://www.digitalocean.com/security/">Security</a></li>
+      <li><a data-toggle="modal" data-target="#sign-in-modal" href="#">Report a Bug</a></li>
+    <li><a href="/community/get-paid-to-write">Get Paid to Write</a></li>
+  </ul>
+</footer>
+
+
+
+
+
+    <div id='sign-in-modal' class='modal fade mini-modal' style="display: none;">
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h1>Almost there!</h1>
+        <a class='close-button' data-dismiss='modal' href=''><span class='icon icon-close-light'></span></a>
+      </div>
+      <div class='modal-body'>
+        <div class='sign-in-message'>Sign into your account, or create a new one, to start interacting.</div>
+
+        <div class='sign-in-modal-actions'>
+          <a class="sign-in-link button blue-button" data-default-url="/community/auth/digitalocean" href="/community/auth/digitalocean">Log In</a>
+          <a class="sign-up-link button green-button" data-default-url="/community/auth/digitalocean?display=sessionless+register" href="/community/auth/digitalocean?display=sessionless+register">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+  <script>
+    $(function() {
+      init_sharing();
+      new NewsletterSignup();
+      new GrowableMarkdown({ target: '[data-growable-markdown]' });
+    });
+  </script>
+
+  <div id='report-a-bug-modal' class='modal fade mini-modal' style="display: none;">
+    <div class='modal-dialog'>
+      <div class='modal-content'>
+        <div class='modal-header'>
+          <h1>Report a Bug</h1>
+          <a class='close-button' data-dismiss='modal' href=''><span class='icon icon-close-light'></span></a>
+        </div>
+        <div class='modal-body'>
+          <div class='report-a-bug-message text-center'>Use this form to report bugs related to the Community</div>
+          <div class='report-a-bug-actions do-form'>
+            <div class='form-wrap'>
+              <form class="new_bug_report" id="new_bug_report" action="/community/bug_reports" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="cpDWRra2mMJn14jI89vEnFD3O9F88dcpjA3JoG5WdWbKPZWaG/Rs384W90QEzG0u3y/Da51sCAcGgKtzDT5VWQ==" />
+                <fieldset>
+                  <div class="field">
+                    <input placeholder="Name" type="text" name="bug_report[name]" id="bug_report_name" />
+                  </div>
+                  <div class="field">
+                    <input placeholder="Email" required="required" type="text" name="bug_report[email]" id="bug_report_email" />
+                  </div>
+                  <div class="field">
+                      <textarea placeholder="Message" required="required" name="bug_report[message]" id="bug_report_message">
+</textarea>
+                  </div>
+
+                  <div class="field actions">
+                    <input type="submit" name="commit" value="Submit" class="button" />
+                  </div>
+                </fieldset>
+</form>            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  </body>
+</html>

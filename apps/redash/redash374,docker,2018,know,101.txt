@@ -1,0 +1,282 @@
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-06-28[Jun-Thu]11-58AM
+
+
+Used this on ubuntu 16.04 pmdsdata6..
+
+ran shc/a3/81docker.sh to install
+
+https://redash.io/help/open-source/setup#docker-compose
+
+
+ cd
+ ls
+ mkdir -p /srv/web/dkr
+ cd /srv/web/dkr
+ ls
+ git clone https://github.com/getredash/redash
+ ls
+ cd redash/
+
+_____________
+ 
+ 
+I edited..
+	sftp://albe@192.168.88.55/srv/web/dkr/redash/docker-compose.production.yml
+
+1.
+ports.
+
+2.
+    volumes:
+      - /srv/web/dkr/redash-postgres-data:/var/lib/postgresql/data
+
+	  
+mkdir -p /srv/web/dkr/redash-postgres-data
+
+
+cd /srv/web/dkr/redash
+docker-compose -f docker-compose.production.yml run --rm server create_db
+
+docker-compose -f docker-compose.production.yml up
+
+
+http://10.4.1.245:6010/
+
+
+works!
+
+ 
+6010	redash docker pmdsdata6   
+6012 	redash postgres
+
+ 
+_____________
+
+mail setup..
+
+
+.env file
+
+
+export REDASH_MAIL_SERVER="MESG01.stackpole.ca" # default: localhost
+export REDASH_MAIL_DEFAULT_SENDER="dgleba@stackpole.com" # Email address to send from
+export REDASH_MAIL_USERNAME="dgleba" # default: None
+export REDASH_MAIL_PASSWORD="***REMOVED***" # default: None
+
+#export REDASH_MAIL_PORT="" # default: 25
+#export REDASH_MAIL_USE_TLS="" # default: false
+#export REDASH_MAIL_USE_SSL="" # default: false
+
+#export REDASH_HOST="" # base address of your Redash instance, for example: "https://demo.redash.io"
+
+yes.
+docker restart $(docker ps -q)
+
+
+
+got error sending mail.
+
+2018-06-28_Thu_13.14-PM
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+http://10.4.11.186/invite/IjIi.Dhb8CQ.YbFbblkjddYFnOjgURmyeqIbhr0
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Title:  .		Run Redash from a Docker Compose
+
+-----------------------2018-06-05[Jun-Tue]22-47PM
+
+Used this on ubuntu 16.04 pmdsdata7..
+
+https://askubuntu.com/questions/938700/how-do-i-install-docker-on-ubuntu-16-04-lts
+
+Set up the docker repository
+
+ sudo apt-get update
+ sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
+ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+ sudo apt-get update
+
+ apt-cache policy docker-ce
+
+ #sudo apt-get -y install docker-ce
+ sudo apt-get -y install docker.io
+
+ sudo systemctl status docker
+ 
+ sudo apt -y install docker-compose
+ 
+ docker
+ 
+ sudo docker run hello-world
+ 
+_____________
+
+
+#reference. 
+
+# https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04
+
+
+#curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+#sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+#sudo apt-get update
+#apt-cache policy docker-ce
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+https://redash.io/help/open-source/setup#docker-compose
+
+
+ cd
+ ls
+ mkdir -p /srv/web/dkr
+ cd /srv/web/dkr
+ ls
+ git clone https://github.com/getredash/redash
+ ls
+ cd redash/
+
+
+
+==
+
+I edited..
+	sftp://albe@192.168.88.55/srv/web/dkr/redash/docker-compose.production.yml
+
+
+mkdir -p /srv/web/dkr/redash-postgres-data
+
+
+sudo docker-compose -f docker-compose.production.yml run --rm server create_db
+
+sudo docker-compose -f docker-compose.production.yml up
+
+
+http://10.4.1.228:1411/
+
+
+works!
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-06-05[Jun-Tue]23-00PM
+
+Mapping Syntax..
+
+
+https://github.com/wsargent/docker-cheat-sheet#exposing-ports
+
+This is done by mapping the container port to the host port (only using localhost interface) using -p:
+  docker run -p 127.0.0.1:$HOSTPORT:$CONTAINERPORT --name CONTAINER -t someimage
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-06-05[Jun-Tue]23-12PM
+
+
+problem   --  solved..
+
+ans.
+i forgot to use sudo....
+
+albe@ubuntu1604a0311:/home/file/dkr/redash$ docker-compose -f docker-compose.production.yml run --rm server create_db
+ERROR: Couldn't connect to Docker daemon at http+docker://localunixsocket - is it running?
+
+If it's at a non-standard location, specify the URL with the DOCKER_HOST environment variable.
+
+albe@ubuntu1604a0311:/home/file/dkr/redash$
+
+
+albe@ubuntu1604a0311:/home/file/dkr/redash$ sudo systemctl status docker
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+   Active: active (running) since Tue 2018-06-05 22:01:13 EDT; 1h 21min ago
+     Docs: https://docs.docker.com
+ Main PID: 26661 (dockerd)
+   CGroup: /system.slice/docker.service
+           ├─26661 /usr/bin/dockerd -H fd://
+           └─26667 containerd -l unix:///var/run/docker/libcontainerd/docker-containerd.sock --metrics-interval=0 --start-timeout 2m --state-dir /var/run/docker/libcontainerd/containerd --shim containerd-shim
+
+Jun 05 22:01:13 ubuntu1604a0311 dockerd[26661]: time="2018-06-05T22:01:13.548749027-04:00" level=info msg="Daemon has completed initialization"
+Jun 05 22:01:13 ubuntu1604a0311 dockerd[26661]: time="2018-06-05T22:01:13.548881787-04:00" level=info msg="Docker daemon" commit=092cba3 graphdriver=aufs version=1.13.1
+Jun 05 22:01:13 ubuntu1604a0311 dockerd[26661]: time="2018-06-05T22:01:13.559537727-04:00" level=info msg="API listen on /var/run/docker.sock"
+Jun 05 22:01:13 ubuntu1604a0311 systemd[1]: Started Docker Application Container Engine.
+Jun 05 22:06:07 ubuntu1604a0311 dockerd[26661]: time="2018-06-05T22:06:07.092812933-04:00" level=error msg="Handler for POST /v1.26/containers/create returned error: No such image: hello-world:latest"
+Jun 05 22:06:07 ubuntu1604a0311 dockerd[26661]: time="2018-06-05T22:06:07.119547863-04:00" level=warning msg="failed to retrieve runc version: unknown output format: runc version spec: 1.0.0-rc2-dev\n"
+Jun 05 22:06:07 ubuntu1604a0311 dockerd[26661]: time="2018-06-05T22:06:07.123499577-04:00" level=warning msg="failed to retrieve docker-init version: unknown output format: tini version 0.13.0\n"
+Jun 05 22:06:10 ubuntu1604a0311 dockerd[26661]: time="2018-06-05T22:06:10.338686361-04:00" level=warning msg="Couldn't run auplink before unmount /var/lib/docker/aufs/mnt/ea873ec5f07c1749d571a4ac5f0d466ae93d82
+Jun 05 22:06:10 ubuntu1604a0311 dockerd[26661]: time="2018-06-05T22:06:10.367760267-04:00" level=warning msg="Couldn't run auplink before unmount /var/lib/docker/aufs/mnt/ea873ec5f07c1749d571a4ac5f0d466ae93d82
+Jun 05 22:06:10 ubuntu1604a0311 dockerd[26661]: time="2018-06-05T22:06:10.759751269-04:00" level=warning msg="Couldn't run auplink before unmount /var/lib/docker/aufs/mnt/ea873ec5f07c1749d571a4ac5f0d466ae93d82
+
+albe@ubuntu1604a0311:/home/file/dkr/redash$
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-06-28[Jun-Thu]20-51PM
+
+
+test message email.
+
+
+albe@pmdsdata6:~$ 
+
+docker exec -it redash_worker_1 ./manage.py send_test_mail
+
+
+[2018-06-29 00:11:54,373][PID:33][INFO][root] Generating grammar tables from /usr/lib/python2.7/lib2to3/Grammar.txt
+[2018-06-29 00:11:54,469][PID:33][INFO][root] Generating grammar tables from /usr/lib/python2.7/lib2to3/PatternGrammar.txt
+Traceback (most recent call last):
+  File "./manage.py", line 9, in <module>
+    manager()
+  File "/usr/local/lib/python2.7/dist-packages/click/core.py", line 716, in __call__
+    return self.main(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/flask/cli.py", line 345, in main
+    return AppGroup.main(self, *args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/click/core.py", line 696, in main
+    rv = self.invoke(ctx)
+.
+  File "/usr/lib/python2.7/smtplib.py", line 256, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/lib/python2.7/smtplib.py", line 316, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/lib/python2.7/smtplib.py", line 291, in _get_socket
+    return socket.create_connection((host, port), timeout)
+  File "/usr/lib/python2.7/socket.py", line 575, in create_connection
+    raise err
+socket.error: [Errno 99] Cannot assign requested address
+albe@pmdsdata6:~$ 
+
+docker restart $(docker ps -q)
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+

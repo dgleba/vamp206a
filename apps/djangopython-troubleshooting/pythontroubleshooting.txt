@@ -1,0 +1,33 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-01-20[Jan-Wed]18-52PM
+
+error:
+
+Internal Server Error
+The server encountered an internal error or misconfiguration and was unable to complete your request.
+Please contact the server administrator at [no address given] to inform them of the time this error occurred, and the actions you performed just before this error.
+More information about this error may be available in the server error log.
+Apache/2.4.7 (Ubuntu) Server at localhost Port 8988
+
+
+
+ans.
+
+in apache log..
+  raise RuntimeError("populate() isn't reentrant")
+
+did a ...
+python manage.py makemigrations
+python manage.py migrate
+    it said the following app was missing.
+
+I was missing django-admin-generator
+
+
+bottomline:
+check that all apps are installed.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

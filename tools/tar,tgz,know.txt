@@ -1,0 +1,98 @@
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-01-21[Jan-Mon]20-03PM
+
+works..
+
+
+outd='z2' ;  mkdir -p $outd  ;  tar -xpv --atime-preserve --delay-directory-restore -C ./$outd  -f abiodun-todo-vamp398_srv_test__2019.01.21_12.37.33.tgz
+
+
+
+
+
+----------------------------------------------------
+
+
+
+
+# extract to a specified folder...
+
+# outd='02' ;  mkdir -p $outd  ;  tar -xpv --atime-preserve --delay-directory-restore -C ./$outd  -f /home/albe/share203/t/rail260-v206m.local__2016.07.02_12.31.16.tgz 
+
+
+
+
+Unfortunately, I can't get it to preserve the modified timestamp..
+
+outd='03' ;  mkdir -p $outd  ;  tar -xpv  -C ./$outd  -f /home/albe/share203/t/rail260-v206m.local__2016.07.02_12.31.16.tgz 
+
+
+# ? This will keep all files that have a newer timestamp as is.  --no-overwrite-dir
+
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  tar a folder
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2019-12-10[Dec-Tue]10-15AM 
+
+
+How to compress a whole directory in Linux or Unix
+You need to use the tar command as follows (syntax of tar command):
+tar -zcvf archive-name.tar.gz directory-name
+
+Where,
+
+-z : Compress archive using gzip program in Linux or Unix
+-c : Create archive on Linux
+-v : Verbose i.e display progress while creating archive
+-f : Archive File name
+For example, say you have a directory called /home/jerry/prog and you would like to compress this directory then you can type tar command as follows:
+$ tar -zcvf prog-1-jan-2005.tar.gz /home/jerry/prog
+
+
+ tar -zcf 0tags.tgz 0tags
+
+
+
+dts=$(date +"__%Y.%m.%d_%H.%M.%S")
+base=0tags # folder to tar
+tar -cz --wildcards \
+    --exclude={$base/tar,templates_c/*} \
+    --exclude=tmp/* \
+    --exclude=x/*  \
+    -f $base$dts.tgz $base
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  tar current folder
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2019-12-10[Dec-Tue]10-46AM 
+
+
+###### tar current folder..
+base=$(basename $PWD); echo $base
+export HOSTNAME;
+cd ..
+# get the current path and replace / with _
+fnpath="${PWD////_}" ; echo $fnpath
+# works..  
+dts=$(date +"__%Y.%m.%d_%H.%M.%S")
+echo $base; echo $fnpath
+tar -cz --wildcards \
+    --exclude={$base/tarzz,templates_c/*} \
+    --exclude=tmp/* \
+    --exclude=x/*  \
+    -f $base-$HOSTNAME$fnpath$dts.tgz $base
+  # Careful, this excludes any data folder..
+cp $base-$HOSTNAME$fnpath$dts.tgz $base-$HOSTNAME$fnpath-latest.tgz  
+cd $base
+
+

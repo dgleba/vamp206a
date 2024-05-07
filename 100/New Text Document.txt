@@ -1,0 +1,32 @@
+
+albe@v206bflask1:~/prj/testProject$ npm install -g sane-cli 
+npm ERR! tar.unpack untar error /home/albe/.npm/sane-cli/0.0.24/package.tgz
+npm ERR! Linux 3.19.0-25-generic
+npm ERR! argv "/usr/bin/nodejs" "/usr/bin/npm" "install" "-g" "sane-cli"
+npm ERR! node v4.3.1
+npm ERR! npm  v2.14.12
+npm ERR! path /usr/lib/node_modules/sane-cli
+npm ERR! code EACCES
+npm ERR! errno -13
+npm ERR! syscall mkdir
+
+npm ERR! Error: EACCES: permission denied, mkdir '/usr/lib/node_modules/sane-cli'
+npm ERR!     at Error (native)
+npm ERR!  { [Error: EACCES: permission denied, mkdir '/usr/lib/node_modules/sane-cli']
+npm ERR!   errno: -13,
+npm ERR!   code: 'EACCES',
+npm ERR!   syscall: 'mkdir',
+npm ERR!   path: '/usr/lib/node_modules/sane-cli',
+npm ERR!   fstream_type: 'Directory',
+npm ERR!   fstream_path: '/usr/lib/node_modules/sane-cli',
+npm ERR!   fstream_class: 'DirWriter',
+npm ERR!   fstream_stack: 
+npm ERR!    [ '/usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:35:25',
+npm ERR!      '/usr/lib/node_modules/npm/node_modules/mkdirp/index.js:47:53',
+npm ERR!      'FSReqWrap.oncomplete (fs.js:82:15)' ] }
+npm ERR! 
+npm ERR! Please try running this command again as root/Administrator.
+
+npm ERR! Please include the following file with any support request:
+npm ERR!     /home/albe/prj/testProject/npm-debug.log
+albe@v206bflask1:~/prj/testProject$ sane

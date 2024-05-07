@@ -1,0 +1,787 @@
+albe@vamp206b:~/web/noteshobo$ hobo g resource note name:string body:text
+Hobo Command Line Interface 2.2.5
+/home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:80:in `rescue in block (2 levels) in require': There was an error while trying to load the gem 'uglifier'. (Bundler::GemRequireError)
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:76:in `block (2 levels) in require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:72:in `each'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:72:in `block in require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:61:in `each'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:61:in `require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler.rb:99:in `require'
+	from /home/albe/web/noteshobo/config/application.rb:7:in `<top (required)>'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:82:in `require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:82:in `preload'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:143:in `serve'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:131:in `block in run'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:125:in `loop'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:125:in `run'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application/boot.rb:18:in `<top (required)>'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+albe@vamp206b:~/web/noteshobo$ hobo g migration
+
+
+===
+
+
+albe@vamp206b:~$ ruby
+The program 'ruby' can be found in the following packages:
+ * ruby
+ * ruby1.8
+Try: sudo apt-get install <selected package>
+albe@vamp206b:~$ 
+albe@vamp206b:~$ 
+albe@vamp206b:~$ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+albe@vamp206b:~$ 
+albe@vamp206b:~$ #try:
+albe@vamp206b:~$ #http://stackoverflow.com/questions/26595620/how-to-install-ruby-2-1-4-on-ubuntu-14-04
+albe@vamp206b:~$ #https://gorails.com/setup/ubuntu/14.04
+albe@vamp206b:~$ 
+albe@vamp206b:~$ sudo apt-get update
+[sudo] password for albe: 
+Sorry, try again.
+[sudo] password for albe: 
+Ign http://archive.ubuntu.com trusty InRelease
+Get:1 http://archive.ubuntu.com trusty-updates InRelease [65.9 kB]
+Get:2 http://archive.ubuntu.com trusty-backports InRelease [65.9 kB]           
+Get:3 http://security.ubuntu.com trusty-security InRelease [65.9 kB]
+Hit http://archive.ubuntu.com trusty Release.gpg                               
+Get:4 http://archive.ubuntu.com trusty-updates/main Sources [271 kB]
+Get:5 http://archive.ubuntu.com trusty-updates/restricted Sources [5,352 B]    
+Get:6 http://archive.ubuntu.com trusty-updates/universe Sources [151 kB]       
+Get:7 http://archive.ubuntu.com trusty-updates/multiverse Sources [5,946 B]    
+Get:8 http://archive.ubuntu.com trusty-updates/main amd64 Packages [746 kB]
+Get:9 http://security.ubuntu.com trusty-security/main Sources [110 kB]         
+Get:10 http://archive.ubuntu.com trusty-updates/restricted amd64 Packages [15.9 kB]
+Get:11 http://archive.ubuntu.com trusty-updates/universe amd64 Packages [356 kB]
+Get:12 http://security.ubuntu.com trusty-security/restricted Sources [4,035 B]
+Get:13 http://archive.ubuntu.com trusty-updates/multiverse amd64 Packages [13.2 kB]
+Get:14 http://archive.ubuntu.com trusty-updates/main i386 Packages [713 kB]  
+Get:15 http://security.ubuntu.com trusty-security/universe Sources [34.7 kB]   
+Get:16 http://security.ubuntu.com trusty-security/multiverse Sources [2,750 B] 
+Get:17 http://archive.ubuntu.com trusty-updates/restricted i386 Packages [15.6 kB]
+Get:18 http://archive.ubuntu.com trusty-updates/universe i386 Packages [357 kB]
+Get:19 http://security.ubuntu.com trusty-security/main amd64 Packages [448 kB]
+Get:20 http://archive.ubuntu.com trusty-updates/multiverse i386 Packages [13.6 kB]
+Get:21 http://archive.ubuntu.com trusty-updates/main Translation-en [372 kB]   
+Get:22 http://archive.ubuntu.com trusty-updates/multiverse Translation-en [7,227 B]
+Get:23 http://archive.ubuntu.com trusty-updates/restricted Translation-en [3,699 B]
+Get:24 http://archive.ubuntu.com trusty-updates/universe Translation-en [186 kB]
+Get:25 http://archive.ubuntu.com trusty-backports/main Sources [8,696 B]       
+Get:26 http://archive.ubuntu.com trusty-backports/restricted Sources [28 B]    
+Get:27 http://security.ubuntu.com trusty-security/restricted amd64 Packages [13.0 kB]
+Get:28 http://archive.ubuntu.com trusty-backports/universe Sources [34.5 kB]   
+Get:29 http://archive.ubuntu.com trusty-backports/multiverse Sources [1,898 B] 
+Get:30 http://security.ubuntu.com trusty-security/universe amd64 Packages [126 kB]
+Get:31 http://archive.ubuntu.com trusty-backports/main amd64 Packages [9,782 B]
+Get:32 http://archive.ubuntu.com trusty-backports/restricted amd64 Packages [28 B]
+Get:33 http://archive.ubuntu.com trusty-backports/universe amd64 Packages [41.4 kB]
+Get:34 http://archive.ubuntu.com trusty-backports/multiverse amd64 Packages [1,571 B]
+Get:35 http://security.ubuntu.com trusty-security/multiverse amd64 Packages [4,991 B]
+Get:36 http://archive.ubuntu.com trusty-backports/main i386 Packages [9,797 B] 
+Get:37 http://archive.ubuntu.com trusty-backports/restricted i386 Packages [28 B]
+Get:38 http://security.ubuntu.com trusty-security/main i386 Packages [422 kB] 
+Get:39 http://archive.ubuntu.com trusty-backports/universe i386 Packages [41.4 kB]
+Get:40 http://archive.ubuntu.com trusty-backports/multiverse i386 Packages [1,552 B]
+Get:41 http://archive.ubuntu.com trusty-backports/main Translation-en [5,843 B]
+Get:42 http://archive.ubuntu.com trusty-backports/multiverse Translation-en [1,215 B]
+Get:43 http://archive.ubuntu.com trusty-backports/restricted Translation-en [28 B]
+Get:44 http://archive.ubuntu.com trusty-backports/universe Translation-en [35.9 kB]
+Hit http://archive.ubuntu.com trusty Release                                   
+Hit http://archive.ubuntu.com trusty/main Sources                        
+Get:45 http://security.ubuntu.com trusty-security/restricted i386 Packages [12.7 kB]
+Hit http://archive.ubuntu.com trusty/restricted Sources                        
+Hit http://archive.ubuntu.com trusty/universe Sources                          
+Get:46 http://security.ubuntu.com trusty-security/universe i386 Packages [126 kB]
+Hit http://archive.ubuntu.com trusty/multiverse Sources                        
+Hit http://archive.ubuntu.com trusty/main amd64 Packages                       
+Hit http://archive.ubuntu.com trusty/restricted amd64 Packages                 
+Get:47 http://security.ubuntu.com trusty-security/multiverse i386 Packages [5,175 B]
+Hit http://archive.ubuntu.com trusty/universe amd64 Packages                   
+Get:48 http://security.ubuntu.com trusty-security/main Translation-en [244 kB] 
+Hit http://archive.ubuntu.com trusty/multiverse amd64 Packages                 
+Hit http://archive.ubuntu.com trusty/main i386 Packages                        
+Hit http://archive.ubuntu.com trusty/restricted i386 Packages                  
+Hit http://archive.ubuntu.com trusty/universe i386 Packages                    
+Hit http://archive.ubuntu.com trusty/multiverse i386 Packages                  
+Get:49 http://security.ubuntu.com trusty-security/multiverse Translation-en [2,570 B]
+Hit http://archive.ubuntu.com trusty/main Translation-en                       
+Get:50 http://security.ubuntu.com trusty-security/restricted Translation-en [3,206 B]
+Hit http://archive.ubuntu.com trusty/multiverse Translation-en                 
+Get:51 http://security.ubuntu.com trusty-security/universe Translation-en [74.3 kB]
+Hit http://archive.ubuntu.com trusty/restricted Translation-en                 
+Hit http://archive.ubuntu.com trusty/universe Translation-en              
+Ign http://archive.ubuntu.com trusty/main Translation-en_US               
+Ign http://archive.ubuntu.com trusty/multiverse Translation-en_US         
+Ign http://archive.ubuntu.com trusty/restricted Translation-en_US
+Ign http://archive.ubuntu.com trusty/universe Translation-en_US           
+Fetched 5,257 kB in 7s (720 kB/s)                                              
+Reading package lists... Done
+albe@vamp206b:~$ sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+build-essential is already the newest version.
+zlib1g-dev is already the newest version.
+zlib1g-dev set to manually installed.
+The following extra packages will be installed:
+  libcurl3 libffi6 libreadline6-dev libssl1.0.0 libtinfo-dev libxml2
+  libyaml-0-2 python-pycurl
+Suggested packages:
+  libcurl4-doc libcurl3-dbg sqlite3-doc libcurl4-gnutls-dev python-pycurl-dbg
+The following NEW packages will be installed:
+  git-core libffi-dev libreadline-dev libreadline6-dev libsqlite3-dev
+  libtinfo-dev libxml2-dev libxslt1-dev libyaml-0-2 libyaml-dev python-pycurl
+  python-software-properties sqlite3
+The following packages will be upgraded:
+  curl libcurl3 libcurl4-openssl-dev libffi6 libssl-dev libssl1.0.0 libxml2
+7 upgraded, 13 newly installed, 0 to remove and 186 not upgraded.
+Need to get 5,096 kB of archives.
+After this operation, 9,495 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Abort.
+albe@vamp206b:~$ sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+build-essential is already the newest version.
+zlib1g-dev is already the newest version.
+zlib1g-dev set to manually installed.
+The following extra packages will be installed:
+  libcurl3 libffi6 libreadline6-dev libssl1.0.0 libtinfo-dev libxml2
+  libyaml-0-2 python-pycurl
+Suggested packages:
+  libcurl4-doc libcurl3-dbg sqlite3-doc libcurl4-gnutls-dev python-pycurl-dbg
+The following NEW packages will be installed:
+  git-core libffi-dev libreadline-dev libreadline6-dev libsqlite3-dev
+  libtinfo-dev libxml2-dev libxslt1-dev libyaml-0-2 libyaml-dev python-pycurl
+  python-software-properties sqlite3
+The following packages will be upgraded:
+  curl libcurl3 libcurl4-openssl-dev libffi6 libssl-dev libssl1.0.0 libxml2
+7 upgraded, 13 newly installed, 0 to remove and 186 not upgraded.
+Need to get 5,096 kB of archives.
+After this operation, 9,495 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libffi6 amd64 3.1~rc1+r3.0.13-12ubuntu0.1 [17.5 kB]
+Get:2 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libssl-dev amd64 1.0.1f-1ubuntu2.18 [1,071 kB]
+Get:3 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libssl1.0.0 amd64 1.0.1f-1ubuntu2.18 [830 kB]
+Get:4 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libxml2 amd64 2.9.1+dfsg1-3ubuntu4.7 [571 kB]
+Get:5 http://archive.ubuntu.com/ubuntu/ trusty-updates/main curl amd64 7.35.0-1ubuntu2.6 [123 kB]
+Get:6 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libcurl4-openssl-dev amd64 7.35.0-1ubuntu2.6 [245 kB]
+Get:7 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libcurl3 amd64 7.35.0-1ubuntu2.6 [172 kB]
+Get:8 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libyaml-0-2 amd64 0.1.4-3ubuntu3.1 [48.1 kB]
+Get:9 http://archive.ubuntu.com/ubuntu/ trusty-updates/main git-core all 1:1.9.1-1ubuntu0.3 [1,464 B]
+Get:10 http://archive.ubuntu.com/ubuntu/ trusty/main libtinfo-dev amd64 5.9+20140118-1ubuntu1 [76.3 kB]
+Get:11 http://archive.ubuntu.com/ubuntu/ trusty/main libreadline6-dev amd64 6.3-4ubuntu2 [213 kB]
+Get:12 http://archive.ubuntu.com/ubuntu/ trusty/main libreadline-dev amd64 6.3-4ubuntu2 [988 B]
+Get:13 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libsqlite3-dev amd64 3.8.2-1ubuntu2.1 [439 kB]
+Get:14 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libxml2-dev amd64 2.9.1+dfsg1-3ubuntu4.7 [629 kB]
+Get:15 http://archive.ubuntu.com/ubuntu/ trusty/main libxslt1-dev amd64 1.1.28-2build1 [407 kB]
+Get:16 http://archive.ubuntu.com/ubuntu/ trusty/main python-pycurl amd64 7.19.3-0ubuntu3 [47.9 kB]
+Get:17 http://archive.ubuntu.com/ubuntu/ trusty-updates/universe python-software-properties all 0.92.37.7 [19.6 kB]
+Get:18 http://archive.ubuntu.com/ubuntu/ trusty-updates/main sqlite3 amd64 3.8.2-1ubuntu2.1 [28.8 kB]
+Get:19 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libffi-dev amd64 3.1~rc1+r3.0.13-12ubuntu0.1 [99.8 kB]
+Get:20 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libyaml-dev amd64 0.1.4-3ubuntu3.1 [55.9 kB]
+Fetched 5,096 kB in 2s (1,725 kB/s)
+Preconfiguring packages ...
+(Reading database ... 87446 files and directories currently installed.)
+Preparing to unpack .../libffi6_3.1~rc1+r3.0.13-12ubuntu0.1_amd64.deb ...
+Unpacking libffi6:amd64 (3.1~rc1+r3.0.13-12ubuntu0.1) over (3.1~rc1+r3.0.13-12) ...
+Preparing to unpack .../libssl-dev_1.0.1f-1ubuntu2.18_amd64.deb ...
+Unpacking libssl-dev:amd64 (1.0.1f-1ubuntu2.18) over (1.0.1f-1ubuntu2.16) ...
+Preparing to unpack .../libssl1.0.0_1.0.1f-1ubuntu2.18_amd64.deb ...
+Unpacking libssl1.0.0:amd64 (1.0.1f-1ubuntu2.18) over (1.0.1f-1ubuntu2.16) ...
+Preparing to unpack .../libxml2_2.9.1+dfsg1-3ubuntu4.7_amd64.deb ...
+Unpacking libxml2:amd64 (2.9.1+dfsg1-3ubuntu4.7) over (2.9.1+dfsg1-3ubuntu4.4) ...
+Preparing to unpack .../curl_7.35.0-1ubuntu2.6_amd64.deb ...
+Unpacking curl (7.35.0-1ubuntu2.6) over (7.35.0-1ubuntu2.5) ...
+Preparing to unpack .../libcurl4-openssl-dev_7.35.0-1ubuntu2.6_amd64.deb ...
+Unpacking libcurl4-openssl-dev:amd64 (7.35.0-1ubuntu2.6) over (7.35.0-1ubuntu2.5) ...
+Preparing to unpack .../libcurl3_7.35.0-1ubuntu2.6_amd64.deb ...
+Unpacking libcurl3:amd64 (7.35.0-1ubuntu2.6) over (7.35.0-1ubuntu2.5) ...
+Selecting previously unselected package libyaml-0-2:amd64.
+Preparing to unpack .../libyaml-0-2_0.1.4-3ubuntu3.1_amd64.deb ...
+Unpacking libyaml-0-2:amd64 (0.1.4-3ubuntu3.1) ...
+Selecting previously unselected package git-core.
+Preparing to unpack .../git-core_1%3a1.9.1-1ubuntu0.3_all.deb ...
+Unpacking git-core (1:1.9.1-1ubuntu0.3) ...
+Selecting previously unselected package libtinfo-dev:amd64.
+Preparing to unpack .../libtinfo-dev_5.9+20140118-1ubuntu1_amd64.deb ...
+Unpacking libtinfo-dev:amd64 (5.9+20140118-1ubuntu1) ...
+Selecting previously unselected package libreadline6-dev:amd64.
+Preparing to unpack .../libreadline6-dev_6.3-4ubuntu2_amd64.deb ...
+Unpacking libreadline6-dev:amd64 (6.3-4ubuntu2) ...
+Selecting previously unselected package libreadline-dev:amd64.
+Preparing to unpack .../libreadline-dev_6.3-4ubuntu2_amd64.deb ...
+Unpacking libreadline-dev:amd64 (6.3-4ubuntu2) ...
+Selecting previously unselected package libsqlite3-dev:amd64.
+Preparing to unpack .../libsqlite3-dev_3.8.2-1ubuntu2.1_amd64.deb ...
+Unpacking libsqlite3-dev:amd64 (3.8.2-1ubuntu2.1) ...
+Selecting previously unselected package libxml2-dev:amd64.
+Preparing to unpack .../libxml2-dev_2.9.1+dfsg1-3ubuntu4.7_amd64.deb ...
+Unpacking libxml2-dev:amd64 (2.9.1+dfsg1-3ubuntu4.7) ...
+Selecting previously unselected package libxslt1-dev:amd64.
+Preparing to unpack .../libxslt1-dev_1.1.28-2build1_amd64.deb ...
+Unpacking libxslt1-dev:amd64 (1.1.28-2build1) ...
+Selecting previously unselected package python-pycurl.
+Preparing to unpack .../python-pycurl_7.19.3-0ubuntu3_amd64.deb ...
+Unpacking python-pycurl (7.19.3-0ubuntu3) ...
+Selecting previously unselected package python-software-properties.
+Preparing to unpack .../python-software-properties_0.92.37.7_all.deb ...
+Unpacking python-software-properties (0.92.37.7) ...
+Selecting previously unselected package sqlite3.
+Preparing to unpack .../sqlite3_3.8.2-1ubuntu2.1_amd64.deb ...
+Unpacking sqlite3 (3.8.2-1ubuntu2.1) ...
+Selecting previously unselected package libffi-dev:amd64.
+Preparing to unpack .../libffi-dev_3.1~rc1+r3.0.13-12ubuntu0.1_amd64.deb ...
+Unpacking libffi-dev:amd64 (3.1~rc1+r3.0.13-12ubuntu0.1) ...
+Selecting previously unselected package libyaml-dev:amd64.
+Preparing to unpack .../libyaml-dev_0.1.4-3ubuntu3.1_amd64.deb ...
+Unpacking libyaml-dev:amd64 (0.1.4-3ubuntu3.1) ...
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+Processing triggers for install-info (5.2.0.dfsg.1-2) ...
+Setting up libffi6:amd64 (3.1~rc1+r3.0.13-12ubuntu0.1) ...
+Setting up libssl1.0.0:amd64 (1.0.1f-1ubuntu2.18) ...
+Setting up libssl-dev:amd64 (1.0.1f-1ubuntu2.18) ...
+Setting up libxml2:amd64 (2.9.1+dfsg1-3ubuntu4.7) ...
+Setting up libcurl3:amd64 (7.35.0-1ubuntu2.6) ...
+Setting up curl (7.35.0-1ubuntu2.6) ...
+Setting up libcurl4-openssl-dev:amd64 (7.35.0-1ubuntu2.6) ...
+Setting up libyaml-0-2:amd64 (0.1.4-3ubuntu3.1) ...
+Setting up git-core (1:1.9.1-1ubuntu0.3) ...
+Setting up libtinfo-dev:amd64 (5.9+20140118-1ubuntu1) ...
+Setting up libreadline6-dev:amd64 (6.3-4ubuntu2) ...
+Setting up libreadline-dev:amd64 (6.3-4ubuntu2) ...
+Setting up libsqlite3-dev:amd64 (3.8.2-1ubuntu2.1) ...
+Setting up libxml2-dev:amd64 (2.9.1+dfsg1-3ubuntu4.7) ...
+Setting up libxslt1-dev:amd64 (1.1.28-2build1) ...
+Setting up python-pycurl (7.19.3-0ubuntu3) ...
+Setting up python-software-properties (0.92.37.7) ...
+Setting up sqlite3 (3.8.2-1ubuntu2.1) ...
+Setting up libffi-dev:amd64 (3.1~rc1+r3.0.13-12ubuntu0.1) ...
+Setting up libyaml-dev:amd64 (0.1.4-3ubuntu3.1) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.6) ...
+albe@vamp206b:~$ 
+albe@vamp206b:~$ cd
+albe@vamp206b:~$ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+Cloning into '/home/albe/.rbenv'...
+remote: Counting objects: 2495, done.
+remote: Total 2495 (delta 0), reused 0 (delta 0), pack-reused 2495
+Receiving objects: 100% (2495/2495), 449.30 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (1571/1571), done.
+Checking connectivity... done.
+albe@vamp206b:~$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+albe@vamp206b:~$ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+albe@vamp206b:~$ exec $SHELL
+albe@vamp206b:~$ 
+albe@vamp206b:~$ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+Cloning into '/home/albe/.rbenv/plugins/ruby-build'...
+remote: Counting objects: 5993, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 5993 (delta 1), reused 0 (delta 0), pack-reused 5982
+Receiving objects: 100% (5993/5993), 1.16 MiB | 1.63 MiB/s, done.
+Resolving deltas: 100% (3404/3404), done.
+Checking connectivity... done.
+albe@vamp206b:~$ echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+albe@vamp206b:~$ exec $SHELL
+albe@vamp206b:~$ 
+albe@vamp206b:~$ git clone https://github.com/rbenv/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+Cloning into '/home/albe/.rbenv/plugins/rbenv-gem-rehash'...
+remote: Counting objects: 97, done.
+remote: Total 97 (delta 0), reused 0 (delta 0), pack-reused 97
+Unpacking objects: 100% (97/97), done.
+Checking connectivity... done.
+albe@vamp206b:~$ 
+albe@vamp206b:~$ rbenv install 2.1.4
+Downloading ruby-2.1.4.tar.bz2...
+-> https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.4.tar.bz2
+Installing ruby-2.1.4...
+Installed ruby-2.1.4 to /home/albe/.rbenv/versions/2.1.4
+
+albe@vamp206b:~$ rbenv global 2.1.4
+albe@vamp206b:~$ ruby -v
+ruby 2.1.4p265 (2014-10-27 revision 48166) [x86_64-linux]
+albe@vamp206b:~$ 
+albe@vamp206b:~$ gem install bundler
+Fetching: bundler-1.11.2.gem (100%)
+Successfully installed bundler-1.11.2
+Parsing documentation for bundler-1.11.2
+Installing ri documentation for bundler-1.11.2
+Done installing documentation for bundler after 3 seconds
+1 gem installed
+albe@vamp206b:~$ rbenv rehash
+albe@vamp206b:~$ 
+albe@vamp206b:~$ 
+albe@vamp206b:~$ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+albe@vamp206b:~$ 
+albe@vamp206b:~$ gem install hobo
+Fetching: i18n-0.7.0.gem (100%)
+Successfully installed i18n-0.7.0
+Fetching: minitest-5.8.4.gem (100%)
+Successfully installed minitest-5.8.4
+Fetching: thread_safe-0.3.5.gem (100%)
+Successfully installed thread_safe-0.3.5
+Fetching: tzinfo-1.2.2.gem (100%)
+Successfully installed tzinfo-1.2.2
+Fetching: activesupport-4.2.6.gem (100%)
+Successfully installed activesupport-4.2.6
+Fetching: builder-3.2.2.gem (100%)
+Successfully installed builder-3.2.2
+Fetching: erubis-2.7.0.gem (100%)
+Successfully installed erubis-2.7.0
+Fetching: mini_portile2-2.1.0.gem (100%)
+Successfully installed mini_portile2-2.1.0
+Fetching: pkg-config-1.1.7.gem (100%)
+Successfully installed pkg-config-1.1.7
+Fetching: nokogiri-1.6.8.rc3.gem (100%)
+Building native extensions.  This could take a while...
+Successfully installed nokogiri-1.6.8.rc3
+Fetching: rails-deprecated_sanitizer-1.0.3.gem (100%)
+Successfully installed rails-deprecated_sanitizer-1.0.3
+Fetching: rails-dom-testing-1.0.7.gem (100%)
+Successfully installed rails-dom-testing-1.0.7
+Fetching: crass-1.0.2.gem (100%)
+Successfully installed crass-1.0.2
+Fetching: loofah-2.1.0.rc2.gem (100%)
+Successfully installed loofah-2.1.0.rc2
+Fetching: rails-html-sanitizer-1.0.3.gem (100%)
+Successfully installed rails-html-sanitizer-1.0.3
+Fetching: actionview-4.2.6.gem (100%)
+Successfully installed actionview-4.2.6
+Fetching: rack-1.6.4.gem (100%)
+Successfully installed rack-1.6.4
+Fetching: rack-test-0.6.3.gem (100%)
+Successfully installed rack-test-0.6.3
+Fetching: actionpack-4.2.6.gem (100%)
+Successfully installed actionpack-4.2.6
+Fetching: globalid-0.3.6.gem (100%)
+Successfully installed globalid-0.3.6
+Fetching: activejob-4.2.6.gem (100%)
+Successfully installed activejob-4.2.6
+Fetching: mime-types-data-3.2016.0221.gem (100%)
+Successfully installed mime-types-data-3.2016.0221
+Fetching: mime-types-3.0.gem (100%)
+Successfully installed mime-types-3.0
+Fetching: mail-2.6.4.gem (100%)
+Successfully installed mail-2.6.4
+Fetching: actionmailer-4.2.6.gem (100%)
+Successfully installed actionmailer-4.2.6
+Fetching: activemodel-4.2.6.gem (100%)
+Successfully installed activemodel-4.2.6
+Fetching: arel-6.0.3.gem (100%)
+Successfully installed arel-6.0.3
+Fetching: activerecord-4.2.6.gem (100%)
+Successfully installed activerecord-4.2.6
+Fetching: thor-0.19.1.gem (100%)
+Successfully installed thor-0.19.1
+Fetching: railties-4.2.6.gem (100%)
+Successfully installed railties-4.2.6
+Fetching: concurrent-ruby-1.0.1.gem (100%)
+Successfully installed concurrent-ruby-1.0.1
+Fetching: sprockets-4.0.0.beta2.gem (100%)
+Successfully installed sprockets-4.0.0.beta2
+Fetching: sprockets-rails-3.0.4.gem (100%)
+Successfully installed sprockets-rails-3.0.4
+Fetching: rails-4.2.6.gem (100%)
+Successfully installed rails-4.2.6
+Fetching: hobo_support-2.2.5.gem (100%)
+Successfully installed hobo_support-2.2.5
+Fetching: hobo_fields-2.2.5.gem (100%)
+Successfully installed hobo_fields-2.2.5
+Fetching: dryml-2.2.5.gem (100%)
+Building native extensions.  This could take a while...
+Successfully installed dryml-2.2.5
+Fetching: hobo_will_paginate-2.1.1.gem (100%)
+Successfully installed hobo_will_paginate-2.1.1
+Fetching: hobo-2.2.5.gem (100%)
+Successfully installed hobo-2.2.5
+Parsing documentation for actionmailer-4.2.6
+Installing ri documentation for actionmailer-4.2.6
+Parsing documentation for actionpack-4.2.6
+Installing ri documentation for actionpack-4.2.6
+Parsing documentation for actionview-4.2.6
+Installing ri documentation for actionview-4.2.6
+Parsing documentation for activejob-4.2.6
+Installing ri documentation for activejob-4.2.6
+Parsing documentation for activemodel-4.2.6
+Installing ri documentation for activemodel-4.2.6
+Parsing documentation for activerecord-4.2.6
+Installing ri documentation for activerecord-4.2.6
+Parsing documentation for activesupport-4.2.6
+Installing ri documentation for activesupport-4.2.6
+Parsing documentation for arel-6.0.3
+Installing ri documentation for arel-6.0.3
+Parsing documentation for builder-3.2.2
+Installing ri documentation for builder-3.2.2
+Parsing documentation for concurrent-ruby-1.0.1
+Installing ri documentation for concurrent-ruby-1.0.1
+Parsing documentation for crass-1.0.2
+Installing ri documentation for crass-1.0.2
+Parsing documentation for dryml-2.2.5
+Installing ri documentation for dryml-2.2.5
+Parsing documentation for erubis-2.7.0
+Installing ri documentation for erubis-2.7.0
+Parsing documentation for globalid-0.3.6
+Installing ri documentation for globalid-0.3.6
+Parsing documentation for hobo-2.2.5
+Installing ri documentation for hobo-2.2.5
+Parsing documentation for hobo_fields-2.2.5
+Installing ri documentation for hobo_fields-2.2.5
+Parsing documentation for hobo_support-2.2.5
+Installing ri documentation for hobo_support-2.2.5
+Parsing documentation for hobo_will_paginate-2.1.1
+Installing ri documentation for hobo_will_paginate-2.1.1
+Parsing documentation for i18n-0.7.0
+Installing ri documentation for i18n-0.7.0
+Parsing documentation for loofah-2.1.0.rc2
+Installing ri documentation for loofah-2.1.0.rc2
+Parsing documentation for mail-2.6.4
+Installing ri documentation for mail-2.6.4
+Parsing documentation for mime-types-3.0
+Installing ri documentation for mime-types-3.0
+Parsing documentation for mime-types-data-3.2016.0221
+Installing ri documentation for mime-types-data-3.2016.0221
+Parsing documentation for mini_portile2-2.1.0
+Installing ri documentation for mini_portile2-2.1.0
+Parsing documentation for minitest-5.8.4
+Installing ri documentation for minitest-5.8.4
+Parsing documentation for nokogiri-1.6.8.rc3
+Installing ri documentation for nokogiri-1.6.8.rc3
+Parsing documentation for pkg-config-1.1.7
+Installing ri documentation for pkg-config-1.1.7
+Parsing documentation for rack-1.6.4
+Installing ri documentation for rack-1.6.4
+Parsing documentation for rack-test-0.6.3
+Installing ri documentation for rack-test-0.6.3
+Parsing documentation for rails-4.2.6
+Installing ri documentation for rails-4.2.6
+Parsing documentation for rails-deprecated_sanitizer-1.0.3
+Installing ri documentation for rails-deprecated_sanitizer-1.0.3
+Parsing documentation for rails-dom-testing-1.0.7
+Installing ri documentation for rails-dom-testing-1.0.7
+Parsing documentation for rails-html-sanitizer-1.0.3
+Installing ri documentation for rails-html-sanitizer-1.0.3
+Parsing documentation for railties-4.2.6
+Installing ri documentation for railties-4.2.6
+Parsing documentation for sprockets-4.0.0.beta2
+Installing ri documentation for sprockets-4.0.0.beta2
+Parsing documentation for sprockets-rails-3.0.4
+Installing ri documentation for sprockets-rails-3.0.4
+Parsing documentation for thor-0.19.1
+Installing ri documentation for thor-0.19.1
+Parsing documentation for thread_safe-0.3.5
+Installing ri documentation for thread_safe-0.3.5
+Parsing documentation for tzinfo-1.2.2
+Installing ri documentation for tzinfo-1.2.2
+Done installing documentation for actionmailer, actionpack, actionview, activejob, activemodel, activerecord, activesupport, arel, builder, concurrent-ruby, crass, dryml, erubis, globalid, hobo, hobo_fields, hobo_support, hobo_will_paginate, i18n, loofah, mail, mime-types, mime-types-data, mini_portile2, minitest, nokogiri, pkg-config, rack, rack-test, rails, rails-deprecated_sanitizer, rails-dom-testing, rails-html-sanitizer, railties, sprockets, sprockets-rails, thor, thread_safe, tzinfo after 280 seconds
+39 gems installed
+albe@vamp206b:~$ 
+albe@vamp206b:~$ echo $HOBODEV
+
+albe@vamp206b:~$ echo $(date +"%Y.%m.%d_%H.%M.%S")>> ~/hoboenv.info.dg.txt
+albe@vamp206b:~$ echo $HOBODEV >> ~/hoboenv.info.dg.txt
+albe@vamp206b:~$ 
+albe@vamp206b:~$ cd ~
+albe@vamp206b:~$ mkdir -p web
+albe@vamp206b:~$ cd web
+albe@vamp206b:~/web$ 
+albe@vamp206b:~/web$ hobo new noteshobo --setup
+Hobo Command Line Interface 2.2.5
+Generating Rails infrastructure...
+      create  
+      create  README.rdoc
+      create  Rakefile
+      create  config.ru
+      create  .gitignore
+      create  Gemfile
+      create  app
+      create  app/assets/javascripts/application.js
+      create  app/assets/stylesheets/application.css
+      create  app/controllers/application_controller.rb
+      create  app/helpers/application_helper.rb
+      create  app/views/layouts/application.html.erb
+      create  app/assets/images/.keep
+      create  app/mailers/.keep
+      create  app/models/.keep
+      create  app/controllers/concerns/.keep
+      create  app/models/concerns/.keep
+      create  bin
+      create  bin/bundle
+      create  bin/rails
+      create  bin/rake
+      create  bin/setup
+      create  config
+      create  config/routes.rb
+      create  config/application.rb
+      create  config/environment.rb
+      create  config/secrets.yml
+      create  config/environments
+      create  config/environments/development.rb
+      create  config/environments/production.rb
+      create  config/environments/test.rb
+      create  config/initializers
+      create  config/initializers/assets.rb
+      create  config/initializers/backtrace_silencers.rb
+      create  config/initializers/cookies_serializer.rb
+      create  config/initializers/filter_parameter_logging.rb
+      create  config/initializers/inflections.rb
+      create  config/initializers/mime_types.rb
+      create  config/initializers/session_store.rb
+      create  config/initializers/wrap_parameters.rb
+      create  config/locales
+      create  config/locales/en.yml
+      create  config/boot.rb
+      create  config/database.yml
+      create  db
+      create  db/seeds.rb
+      create  lib
+      create  lib/tasks
+      create  lib/tasks/.keep
+      create  lib/assets
+      create  lib/assets/.keep
+      create  log
+      create  log/.keep
+      create  public
+      create  public/404.html
+      create  public/422.html
+      create  public/500.html
+      create  public/favicon.ico
+      create  public/robots.txt
+      create  test/fixtures
+      create  test/fixtures/.keep
+      create  test/controllers
+      create  test/controllers/.keep
+      create  test/mailers
+      create  test/mailers/.keep
+      create  test/models
+      create  test/models/.keep
+      create  test/helpers
+      create  test/helpers/.keep
+      create  test/integration
+      create  test/integration/.keep
+      create  test/test_helper.rb
+      create  tmp/cache
+      create  tmp/cache/assets
+      create  vendor/assets/javascripts
+      create  vendor/assets/javascripts/.keep
+      create  vendor/assets/stylesheets
+      create  vendor/assets/stylesheets/.keep
+       apply  /tmp/hobo_app_template
+     gemfile    hobo (= 2.2.5)
+     gemfile    protected_attributes
+     gemfile    responders (~> 2.0)
+  Running Setup...
+         run    bundle install from "."
+Fetching gem metadata from https://rubygems.org/...........
+Fetching version metadata from https://rubygems.org/...
+Fetching dependency metadata from https://rubygems.org/..
+Resolving dependencies....
+Installing rake 11.1.2
+Using i18n 0.7.0
+Installing json 1.8.3 with native extensions
+Using minitest 5.8.4
+Using thread_safe 0.3.5
+Using builder 3.2.2
+Using erubis 2.7.0
+Installing mini_portile2 2.0.0
+Using rack 1.6.4
+Using mime-types-data 3.2016.0221
+Using arel 6.0.3
+Installing debug_inspector 0.0.2 with native extensions
+Using bundler 1.11.2
+Installing byebug 8.2.2 with native extensions
+Installing coffee-script-source 1.10.0
+Installing execjs 2.6.0
+Using thor 0.19.1
+Using concurrent-ruby 1.0.1
+Using hobo_will_paginate 2.1.1
+Installing multi_json 1.11.2
+Installing sass 3.4.22
+Installing tilt 2.0.2
+Installing spring 1.6.4
+Installing sqlite3 1.3.11 with native extensions
+Installing rdoc 4.2.2
+Using tzinfo 1.2.2
+Installing nokogiri 1.6.7.2 with native extensions
+Using rack-test 0.6.3
+Using mime-types 3.0
+Installing binding_of_caller 0.7.2 with native extensions
+Installing coffee-script 2.4.1
+Installing uglifier 3.0.0
+Installing sprockets 3.5.2
+Installing sdoc 0.4.1
+Using activesupport 4.2.6
+Installing loofah 2.0.3
+Using mail 2.6.4
+Using rails-deprecated_sanitizer 1.0.3
+Using globalid 0.3.6
+Using activemodel 4.2.6
+Installing jbuilder 2.4.1
+Using rails-html-sanitizer 1.0.3
+Using rails-dom-testing 1.0.7
+Using activejob 4.2.6
+Using activerecord 4.2.6
+Installing protected_attributes 1.1.3
+Using actionview 4.2.6
+Using actionpack 4.2.6
+Using actionmailer 4.2.6
+Using railties 4.2.6
+Using sprockets-rails 3.0.4
+Installing coffee-rails 4.1.1
+Installing jquery-rails 4.1.1
+Installing responders 2.1.2
+Using rails 4.2.6
+Installing sass-rails 5.0.4
+Installing web-console 2.3.0
+Installing turbolinks 2.5.3
+Using hobo_support 2.2.5
+Using dryml 2.2.5
+Using hobo_fields 2.2.5
+Using hobo 2.2.5
+Bundle complete! 15 Gemfile dependencies, 62 gems now installed.
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+Post-install message from rdoc:
+Depending on your version of ruby, you may need to install ruby rdoc/ri data:
+
+<= 1.8.6 : unsupported
+ = 1.8.7 : gem install rdoc-data; rdoc-data --install
+ = 1.9.1 : gem install rdoc-data; rdoc-data --install
+>= 1.9.2 : nothing to do! Yay!
+    generate    hobo:setup_wizard
+/home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:80:in `rescue in block (2 levels) in require': There was an error while trying to load the gem 'uglifier'. (Bundler::GemRequireError)
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:76:in `block (2 levels) in require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:72:in `each'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:72:in `block in require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:61:in `each'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:61:in `require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler.rb:99:in `require'
+	from /home/albe/web/noteshobo/config/application.rb:7:in `<top (required)>'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/railties-4.2.6/lib/rails/commands/commands_tasks.rb:141:in `require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/railties-4.2.6/lib/rails/commands/commands_tasks.rb:141:in `require_application_and_environment!'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/railties-4.2.6/lib/rails/commands/commands_tasks.rb:128:in `generate_or_destroy'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/railties-4.2.6/lib/rails/commands/commands_tasks.rb:50:in `generate'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/railties-4.2.6/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/railties-4.2.6/lib/rails/commands.rb:17:in `<top (required)>'
+	from bin/rails:4:in `require'
+	from bin/rails:4:in `<main>'
+         run  bundle install
+Using rake 11.1.2
+Using i18n 0.7.0
+Using json 1.8.3
+Using minitest 5.8.4
+Using thread_safe 0.3.5
+Using builder 3.2.2
+Using erubis 2.7.0
+Using mini_portile2 2.0.0
+Using rack 1.6.4
+Using mime-types-data 3.2016.0221
+Using arel 6.0.3
+Using debug_inspector 0.0.2
+Using byebug 8.2.2
+Using coffee-script-source 1.10.0
+Using execjs 2.6.0
+Using thor 0.19.1
+Using concurrent-ruby 1.0.1
+Using bundler 1.11.2
+Using hobo_will_paginate 2.1.1
+Using multi_json 1.11.2
+Using sass 3.4.22
+Using tilt 2.0.2
+Using spring 1.6.4
+Using sqlite3 1.3.11
+Using rdoc 4.2.2
+Using tzinfo 1.2.2
+Using nokogiri 1.6.7.2
+Using rack-test 0.6.3
+Using mime-types 3.0
+Using binding_of_caller 0.7.2
+Using coffee-script 2.4.1
+Using uglifier 3.0.0
+Using sprockets 3.5.2
+Using sdoc 0.4.1
+Using activesupport 4.2.6
+Using loofah 2.0.3
+Using mail 2.6.4
+Using rails-deprecated_sanitizer 1.0.3
+Using globalid 0.3.6
+Using activemodel 4.2.6
+Using jbuilder 2.4.1
+Using rails-html-sanitizer 1.0.3
+Using rails-dom-testing 1.0.7
+Using activejob 4.2.6
+Using activerecord 4.2.6
+Using protected_attributes 1.1.3
+Using actionview 4.2.6
+Using actionpack 4.2.6
+Using actionmailer 4.2.6
+Using railties 4.2.6
+Using sprockets-rails 3.0.4
+Using coffee-rails 4.1.1
+Using jquery-rails 4.1.1
+Using responders 2.1.2
+Using rails 4.2.6
+Using sass-rails 5.0.4
+Using web-console 2.3.0
+Using turbolinks 2.5.3
+Using hobo_support 2.2.5
+Using dryml 2.2.5
+Using hobo_fields 2.2.5
+Using hobo 2.2.5
+Bundle complete! 15 Gemfile dependencies, 62 gems now installed.
+Use `bundle show [gemname]` to see where a bundled gem is installed.
+         run  bundle exec spring binstub --all
+* bin/rake: spring inserted
+* bin/rails: spring inserted
+albe@vamp206b:~/web$ 
+albe@vamp206b:~/web$ cd noteshobo
+albe@vamp206b:~/web/noteshobo$ hobo g resource note name:string body:text
+Hobo Command Line Interface 2.2.5
+/home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:80:in `rescue in block (2 levels) in require': There was an error while trying to load the gem 'uglifier'. (Bundler::GemRequireError)
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:76:in `block (2 levels) in require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:72:in `each'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:72:in `block in require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:61:in `each'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:61:in `require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler.rb:99:in `require'
+	from /home/albe/web/noteshobo/config/application.rb:7:in `<top (required)>'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:82:in `require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:82:in `preload'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:143:in `serve'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:131:in `block in run'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:125:in `loop'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:125:in `run'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application/boot.rb:18:in `<top (required)>'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+albe@vamp206b:~/web/noteshobo$ hobo g migration
+Hobo Command Line Interface 2.2.5
+/home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:80:in `rescue in block (2 levels) in require': There was an error while trying to load the gem 'uglifier'. (Bundler::GemRequireError)
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:76:in `block (2 levels) in require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:72:in `each'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:72:in `block in require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:61:in `each'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:61:in `require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler.rb:99:in `require'
+	from /home/albe/web/noteshobo/config/application.rb:7:in `<top (required)>'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:82:in `require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:82:in `preload'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:143:in `serve'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:131:in `block in run'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:125:in `loop'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application.rb:125:in `run'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/spring-1.6.4/lib/spring/application/boot.rb:18:in `<top (required)>'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/albe/.rbenv/versions/2.1.4/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+albe@vamp206b:~/web/noteshobo$ 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-03-31[Mar-Thu]20-17PM
+
+/home/ .rbenv/versions/2.1.4/lib/ruby/gems/2.1.0/gems/bundler-1.11.2/lib/bundler/runtime.rb:80:in `rescue in block (2 levels) in require': There was an error while trying to load the gem 'uglifier'. (Bundler::GemRequireError)
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

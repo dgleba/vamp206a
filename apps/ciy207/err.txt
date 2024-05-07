@@ -1,0 +1,121 @@
+Exception
+Unknown Property – yii\base\UnknownPropertyException
+
+Getting unknown property: app\models\Cilisting1Search::z
+1. in /var/www/html/ciy207/vendor/yiisoft/yii2/base/Component.php at line 143
+134135136137138139140141142143144145146147148149150151152            foreach ($this->_behaviors as $behavior) {
+                if ($behavior->canGetProperty($name)) {
+                    return $behavior->$name;
+                }
+            }
+        }
+        if (method_exists($this, 'set' . $name)) {
+            throw new InvalidCallException('Getting write-only property: ' . get_class($this) . '::' . $name);
+        } else {
+            throw new UnknownPropertyException('Getting unknown property: ' . get_class($this) . '::' . $name);
+        }
+    }
+ 
+    /**
+     * Sets the value of a component property.
+     * This method will check in the following order and act accordingly:
+     *
+     *  - a property defined by a setter: set the property value
+     *  - an event in the format of "on xyz": attach the handler to the event "xyz"
+2. in /var/www/html/ciy207/vendor/yiisoft/yii2/db/BaseActiveRecord.php at line 247 – yii\base\Component::__get('z')
+3. in /var/www/html/ciy207/models/Cilisting1Search.php at line 74 – yii\db\BaseActiveRecord::__get('z')
+68697071727374757677787980            'actual_implementation_date' => $this->actual_implementation_date,
+            'updatedtime' => $this->updatedtime,
+            'line_num' => $this->line_num,
+            'createdtime' => $this->createdtime,
+            'idea_Qtr_1' => $this->idea_Qtr_1,
+            'ciid' => $this->ciid,
+            'z-updatedtime' => $this->z-updatedtime,
+        ]);
+ 
+        $query->andFilterWhere(['like', 'ft', $this->ft])
+            ->andFilterWhere(['like', 'project_number', $this->project_number])
+            ->andFilterWhere(['like', 'project_description', $this->project_description])
+            ->andFilterWhere(['like', 'owner', $this->owner])
+4. in /var/www/html/ciy207/controllers/Cilisting1Controller.php at line 36 – app\models\Cilisting1Search::search(['r' => 'cilisting1/index'])
+30313233343536373839404142     * Lists all Cilisting1 models.
+     * @return mixed
+     */
+    public function actionIndex()
+    {
+        $searchModel = new Cilisting1Search();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+ 
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+5. app\controllers\Cilisting1Controller::actionIndex()
+6. in /var/www/html/ciy207/vendor/yiisoft/yii2/base/InlineAction.php at line 55 – call_user_func_array([app\controllers\Cilisting1Controller, 'actionIndex'], [])
+7. in /var/www/html/ciy207/vendor/yiisoft/yii2/base/Controller.php at line 151 – yii\base\InlineAction::runWithParams(['r' => 'cilisting1/index'])
+8. in /var/www/html/ciy207/vendor/yiisoft/yii2/base/Module.php at line 455 – yii\base\Controller::runAction('index', ['r' => 'cilisting1/index'])
+9. in /var/www/html/ciy207/vendor/yiisoft/yii2/web/Application.php at line 84 – yii\base\Module::runAction('cilisting1/index', ['r' => 'cilisting1/index'])
+10. in /var/www/html/ciy207/vendor/yiisoft/yii2/base/Application.php at line 375 – yii\web\Application::handleRequest(yii\web\Request)
+11. in /var/www/html/ciy207/web/index.php at line 12 – yii\base\Application::run()
+6789101112 
+require(__DIR__ . '/../vendor/autoload.php');
+require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
+ 
+$config = require(__DIR__ . '/../config/web.php');
+ 
+(new yii\web\Application($config))->run();
+ $_GET = [
+    'r' => 'cilisting1/index',
+];
+
+$_SERVER = [
+    'HTTP_HOST' => 'vamp206b',
+    'HTTP_CONNECTION' => 'keep-alive',
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1',
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36',
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch',
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.8',
+    'HTTP_COOKIE' => 'csrftoken=qkuRCubxscmpAXilVdwARTDJZhllsYOt; _csrf=f093a29408158be2767bea4697f9da67d36ac069dc553361dd32fa85851b1ff9a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22gJkX2RrWqggGX0qZMAoApoq-GsA2_pT5%22%3B%7D',
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+    'SERVER_SIGNATURE' => '
+Apache/2.4.7 (Ubuntu) Server at vamp206b Port 80
+
+',
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)',
+    'SERVER_NAME' => 'vamp206b',
+    'SERVER_ADDR' => '192.168.88.70',
+    'SERVER_PORT' => '80',
+    'REMOTE_ADDR' => '192.168.88.94',
+    'DOCUMENT_ROOT' => '/var/www/html',
+    'REQUEST_SCHEME' => 'http',
+    'CONTEXT_PREFIX' => '',
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html',
+    'SERVER_ADMIN' => 'webmaster@localhost',
+    'SCRIPT_FILENAME' => '/var/www/html/ciy207/web/index.php',
+    'REMOTE_PORT' => '53766',
+    'REMOTE_USER' => 'albe',
+    'AUTH_TYPE' => 'Basic',
+    'GATEWAY_INTERFACE' => 'CGI/1.1',
+    'SERVER_PROTOCOL' => 'HTTP/1.1',
+    'REQUEST_METHOD' => 'GET',
+    'QUERY_STRING' => 'r=cilisting1/index',
+    'REQUEST_URI' => '/ciy207/web/index.php?r=cilisting1/index',
+    'SCRIPT_NAME' => '/ciy207/web/index.php',
+    'PHP_SELF' => '/ciy207/web/index.php',
+    'PHP_AUTH_USER' => 'albe',
+    'PHP_AUTH_PW' => 'powder',
+    'REQUEST_TIME_FLOAT' => 1448758401.4560001,
+    'REQUEST_TIME' => 1448758401,
+];
+
+$_COOKIE = [
+    'csrftoken' => 'qkuRCubxscmpAXilVdwARTDJZhllsYOt',
+    '_csrf' => 'f093a29408158be2767bea4697f9da67d36ac069dc553361dd32fa85851b1ff9a:2:{i:0;s:5:"_csrf";i:1;s:32:"gJkX2RrWqggGX0qZMAoApoq-GsA2_pT5";}',
+];
+Yii Framework
+2015-11-29, 00:53:21
+
+Apache/2.4.7 (Ubuntu)
+Yii Framework/2.0.6

@@ -1,0 +1,16 @@
+
+# purpose: Test for:  run ml training job in the background, then shutdown pc when finished.
+
+# usage: nohup bgshd-backgroundshutdown &	
+
+
+date 
+echo first
+sleep 21
+echo second
+date
+
+# Could be used like this:
+# python modelmain.py ... ... .
+# init 0
+

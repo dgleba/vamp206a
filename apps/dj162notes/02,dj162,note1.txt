@@ -1,0 +1,178 @@
+
+goal:
+use django to access exiting database mysql dgnote130
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2015-02-03[Feb-Tue]15-04PM
+.
+copy django161c project.
+replace django161c with dj162
+del /s *.pyc
+works.
+
+cd C:\p2\xampp\htdocs\django\dj162>
+
+python manage.py inspectdb
+python manage.py inspectdb >imodels.txt
+
+https://pypi.python.org/pypi/MySQL-python/1.2.5
+dl and install...
+C:\n\Dropbox\csd\p2\0sw\django\MySQL-python-1.2.5.win32-py2.7.exe
+
+fixed password in settings.py
+
+python manage.py startapp dgnote130
+
+python manage.py inspectdb >dgnote130inspect-raw.txt
+
+python manage.py migrate
+
+
+2015-05-21_Thu_23.27-PM
+python manage.py createsuperuser
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
+
+
+===================================================
+===================================================
+===================================================
+===================================================
+===================================================
+below was django161c notes.
+===================================================
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>  .goal, deploy two projects, django tutorial and another with mod_wsgi on apache xampp windows.
+
+works.
+-----------------------------
+2015-01-22[Jan-Thu]14-34PM
+
+______________________
+asap
+remember to use separate cookie for each project before deploying
+
+if not you have to delete the cookies. using chrome inspect element , resources, cookies.
+
+2015-02-01_Sun_21.34-PM
+______________________
+
+install python2.7.9 win32
+install mod_wsgi appropriate for the python279 win32 apache24 vc9
+see C:\n\Dropbox\csd\0-csd\django15a\django-deploy-2015-jan\django161-deploy-xampp-apache.txt or other txt notes.
+
+C:\n\Dropbox\csd\0-csd\django15a\django-deploy-2015-jan-success\07,mod_wsgi\4.4.2,used\mod_wsgi-windows-4.4.2\Apache24-win32-VC9\modules\mod_wsgi-442-ap24-w32-vc9-py27.so
+
+cd C:\p2\Python27\Scripts
+pip install Django
+django get-pip.py
+pip install Django
+
+Successfully installed Django-1.7.3
+
+cd c:\p2\xampp\htdocs
+mkdir django
+cd django
+
+follow tutorial https://docs.djangoproject.com/en/1.7/intro/tutorial01/
+
+django-admin.py startproject mysite
+cd mysite
+python manage.py migrate
+python manage.py startapp polls
+
+edit models now?
+
+edit settings.py add polls
+
+python manage.py makemigrations polls
+python manage.py sqlmigrate polls 0001
+
+python manage.py migrate
+
+python manage.py createsuperuser
+
+add session_cookie_path to settings.py
+
+python manage.py runserver
+http://127.0.0.1:8000/
+
+edit polls/admin.py
+
+ok. works.
+
+______________________
+
+https://docs.djangoproject.com/en/1.4/howto/deployment/wsgi/modwsgi/
+
+mine works:
+############
+
+see wsgi3.conf
+C:\p2\xampp\htdocs\django\apache\wsgi3.conf
+C:\p2\xampp\htdocs\django\apache\django161c.wsgi
+
+______________________
+
+now need to serve admin static files.
+
+http://stackoverflow.com/questions/20642367/struggling-with-django-hierarchy-not-serving-admin-css
+https://docs.djangoproject.com/en/1.4/howto/deployment/wsgi/modwsgi/
+
+#not this, see my wsgi3.conf..  Alias /static/ c:/p2/Python27/Lib/site-packages/django/contrib/admin/static
+
+python manage.py collectstatic
+
+in settings.py
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+works.
+
+python manage.py collectstatic
+
+works.
+shows admin from django tutorial.
+regular styling.
+
+______________________
+
+add bootstrap...
+
+pip install django-admin-bootstrapped
+
+Add into the INSTALLED_APPS before 'django.contrib.admin':
+'django_admin_bootstrapped',
+
+cd c:\p2\xampp\htdocs\django\mysite
+python manage.py collectstatic
+
+works!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\p2\xampp\htdocs\django\mysite>
+_____________
+
+separate cookie for each project
+
+My settings.py is:
+SESSION_COOKIE_PATH = "/mysite"
+SESSION_COOKIE_PATH = "/django161c"
+
+C:\n\Dropbox\csd\0-csd\django15a\django-deploy-2015-jan-success\06,session_cookie_path\login screen keeps showing.txt
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+

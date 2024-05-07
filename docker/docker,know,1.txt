@@ -1,0 +1,241 @@
+
+
+
+see also docker know 2
+
+
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-03-18[Mar-Mon]10-38AM
+
+log rotate...
+
+
+works..
+
+https://medium.freecodecamp.org/how-to-setup-log-rotation-for-a-docker-container-a508093912b2
+
+
+Do I need config file???? Is compose enough?
+
+tmpfile9='/etc/docker/daemon.json'
+cat << HEREDOC> $tmpfile9
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "1m",
+    "max-file": "30"
+  }
+}
+
+HEREDOC
+
+cat $tmpfile9
+
+_____________
+
+test...
+
+version: '3.2'
+services:
+  nginx:
+    image: 'nginx:latest'
+    ports:
+      - '54123:80'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "3"
+        
+_____________
+
+
+notes..
+
+/etc/docker/daemon.json
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "1m",
+    "max-file": "30"
+  }
+}
+
+
+----------------------------------------------------
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-14[Jul-Sat]16-49PM
+
+see
+
+_____________
+
+
+rails..
+
+
+https://github.com/dgleba/brail347a22
+C:\n\Dropbox\csd\0-csd\dkr\satendra02-dkr380\brail347a22-2018-06-27a-docker-satendra02-dkr380.txt
+
+
+ref.
+https://gist.github.com/satendra02/1b335b06bfc5921df486f26bd98e0e89
+
+
+_____________
+
+php..
+
+
+https://github.com/dgleba/dkr378php
+
+
+ref.
+C:\n\Dropbox\csd\0-csd\dkr\dkr378php-more\dkr378php4\378php4.txt
+I think this is the basis for mine.
+https://alysivji.github.io/php-mysql-docker-containers.html
+
+https://github.com/nanoninja/docker-nginx-php-mysql
+
+https://gist.github.com/jcavat/2ed51c6371b9b488d6a940ba1049189b
+
+
+_____________
+
+
+django..
+
+https://github.com/dgleba/p382dkr
+
+
+ref.
+https://github.com/hugobrilhante/docker-django-gunicorn-nginx-postgres
+
+https://hub.docker.com/_/postgres/
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-27[Jul-Fri]12-18PM
+
+problems.
+
+1.
+from php:5.6 led to endless restart with code 0 exit. Should it say no such image?
+
+
+2.
+mysql data host volume folder is not populated after changing compose.yml
+- Justin deleted all images and it then created the folder and populated the mysql data files.
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-04-26[Apr-Fri]14-40PM
+
+
+	docker-compose  exec phpp /bin/bash
+
+
+docker mount files from container to host
+
+https://github.com/codycraven/docker-quick-bind-sync
+
+
+https://forums.docker.com/t/how-to-access-containers-data-from-the-host/45453/22
+
+https://stackoverflow.com/questions/42848279/how-to-mount-volume-from-container-to-host-in-docker?rq=1
+
+
+
+
+docker-compose volume folder get all files from container
+
+https://github.com/moby/moby/issues/4361
+
+
+----------------------------------------------------
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-04-26[Apr-Fri]12-28PM
+
+works..
+
+src=listo429c_couchdb_1:/opt/couchdb
+out=/srv/test/0-optcouch
+mkdir -p $out
+docker cp $src $out
+
+
+docker cp <containerId>:/file/path/within/container /host/path/target
+
+
+https://stackoverflow.com/questions/22049212/copying-files-from-docker-container-to-host
+
+
+scratch
+
+src=quick-bind-sync_phpp_1:/var/www
+out=/srv/x/qbp56
+mkdir -p $out
+docker cp $src $out
+
+
+
+----------------------------------------------------
+
+----------------------------------------------------
+Title:  .
+-----------------------2019-04-26[Apr-Fri]12-26PM
+
+
+docker run --rm -iv${PWD}:/host-volume my-image sh -s <<EOF
+chown $(id -u):$(id -g) my-artifact.tar.xz
+cp -a my-artifact.tar.xz /host-volume
+EOF
+
+
+--
+
+
+docker run --rm -iv${PWD}:/host-volume my-image sh -s <<EOF
+chown $(id -u):$(id -g) my-artifact.tar.xz
+cp -a my-artifact.tar.xz /host-volume
+EOF
+
+--
+
+docker copy files out of container
+
+https://stackoverflow.com/questions/22049212/copying-files-from-docker-container-to-host
+
+
+
+----------------------------------------------------
+

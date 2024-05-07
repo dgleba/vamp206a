@@ -1,0 +1,75 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  . cilistsite
+-----------------------2015-11-19[Nov-Thu]16-29PM
+
+copy dj162 site to cilistsite
+edit dj162 to cilistsite , and dgnote130 to cilist1, etc.
+
+cd /var/www/html/django/cilistsite
+
+python manage.py inspectdb >cilist-inspect-raw.txt
+
+edit models.py
+delete admin.py .pyc
+
+#delete all .pyc
+find . -name '*.pyc' -delete
+
+python manage.py admin_generator cilist1 > cilist1/admin.py
+
+cd /var/www/html/django/cilistsite
+
+python manage.py makemigrations
+python manage.py migrate
+sudo python manage.py collectstatic
+python manage.py createsuperuser
+
+sudo service apache2 restart
+
+_____________
+
+http://stackoverflow.com/questions/20732660/change-the-column-width-in-the-django-admin-panel
+
+one in the pic is django-suit...but i have switched to a more kickass project called xadmin..do check them out.
+
+
+robocopy \\10.4.11.39\html\django\cilistsite \\PMDS-DATA\p2\xampp\htdocs\django\cilistsite /e /xo
+
+
+_____________
+
+windows...
+
+c:
+cd C:\p2\xampp\htdocs\django\cilistsite
+c:\p2\python27\python manage.py makemigrations
+c:\p2\python27\python manage.py migrate
+c:\p2\python27\python manage.py createsuperuser
+ --> dgleba
+c:\p2\python27\python manage.py collectstatic
+
+win services... apache2 restart
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2015-11-20[Nov-Fri]16-05PM
+
+cd /var/www/html/django/cilistsite
+
+sudo pip install django-xadmin
+
+
+django.core.exceptions.AppRegistryNotReady: Models aren't loaded yet.
+
+sudo pip uninstall django-xadmin
+
+sudo pip install git+git://github.com/sshwsfc/django-xadmin.git@django1.7
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function Purpose() {
+# begin block comment =============================
+: <<'END'
+
+#  Purpose:  tar the current folder and give the archive a useful name..
+
+END
+# end block comment ===============================
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#cd ; 
+date ; set +vx  ; set -vx ; # echo off, then echo on
+#
+
+cd /srv/web/humidex248
+
+mkdir -p shared/pids shared/sockets shared/log
+
+sudo cp deploy/puma.conf /etc/init/puma.conf
+sudo cp deploy/puma-manager.conf /etc/init/puma-manager.conf
+cp deploy/puma.rb config/puma.rb
+
+sudo sh -c 'echo "/srv/web/humidex248" >> /etc/puma.conf'
+
+sudo cp  /etc/nginx/sites-available/humidex248.conf  /etc/nginx/sites-available/humidex248.conf$(date +"__%Y.%m.%d_%H.%M.%S").bk
+# copy file into place --  from humidex248 app folder /srv/web/humidex248
+sudo cp  deploy/humidex248.conf /etc/nginx/sites-available/humidex248.conf
+sudo ln -nfs /etc/nginx/sites-available/humidex248.conf /etc/nginx/sites-enabled/humidex248.conf
+
+
+#https://github.com/sferik/rails_admin/issues/2515 -- Gradient has outdated direction syntax. New syntax is like `to left` instead of `right` #2515
+bundle exec rake assets:precompile RAILS_ENV=production
+
+
+sudo start puma-manager
+sudo restart puma-manager
+sudo service nginx restart
+

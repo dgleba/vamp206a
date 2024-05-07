@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function Purpose() {
+# begin block comment =============================
+: <<'END'
+
+#  Purpose:  tar all the files in the current folder and give the archive a useful name..
+
+
+#  VERSION info
+	
+	v23 - 2020-11-17 -- find files grep exclude then tar
+
+
+chmod +x ~/bin/tarc4
+
+END
+# end block comment ===============================
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#cd ; 
+date ; set +vx  ; set -vx ; # echo off, then echo on
+#
+
+# mkdir -p tmp/dglog
+mv log/development.log log/development.log.$(date +"__%Y.%m.%d_%H.%M.%S").log
+
+# The following 2 commands are optional - they keep your git repo in good shape.
+# git prune --progress # delete all the objects w/o references
+# git gc --aggressive # aggressively collect garbage; may take a lot of time on large repos
+
+###### tar current folder..
+base=$(basename $PWD);export HOSTNAME;
+curfolder=${PWD##*/}
+echo 4545
+echo base=$base    hostname=$HOSTNAME  curfolder=$curfolder
+
+dts=$(date +"__%Y.%m.%d_%H.%M.%S")
+
+
+tar1() {
+
+    cd ..
+
+    # get the current path and replace / with _
+    fnpath="${PWD////_}" ; echo $fnpath
+
+
+    tarf() {
+      #
+      # notice the grep exclude list. Check to see nothing important is excluded.
+      # 
+      tfile=./tmp-file-find-for-tar_${USER}_2324.txt; 
+      find $base -type f         > $tfile
+      tar -czf $base-all-$HOSTNAME$fnpath$dts.tgz -T $tfile
+    }
+
+    tarf
+
+    # cp $base-$HOSTNAME$fnpath$dts.tgz $base-$HOSTNAME$fnpath-latest.tgz  
+    cd $base
+
+}
+
+
+tar1
+
+#
+date
+#
+set +vx
+

@@ -1,0 +1,48 @@
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  get repo and unzip
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-03-27[Mar-Fri]16-31PM 
+
+
+
+https://unix.stackexchange.com/questions/421565/how-to-download-all-files-of-a-github-project-with-wget-in-raw-form
+sudo apt install unzip
+cd
+mkdir tmp01
+cd tmp01
+wget https://github.com/dgleba/vamp206a/archive/master.zip
+unzip master.zip
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  commands to get  github
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-03-27[Mar-Fri]16-31PM 
+
+
+
+./a1/04prep-iso.sh:
+wget -N https://raw.githubusercontent.com/dgleba/vamp206a/master/05create-unattended-iso.sh
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2020-03-27[Mar-Fri]16-51PM 
+
+
+./100/301,js,sanestack.sh:curl https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
+.
+
+$ grep -ri wget.*gith .
+./a1/05create-unattended-iso.sh:late_command="chroot /target wget -N -O /home/$username/11get.sh https://github.com/dgleba/vamp206a/raw/master/11get.sh ;\
+./a1/11get.sh:wget -N --output-document=vamp206a-mast.zip https://codeload.github.com/dgleba/vamp206a/zip/master
+./a1/log-misc-commands.sh:wget -N https://codeload.github.com/dgleba/vamp203/zip/master
+
+

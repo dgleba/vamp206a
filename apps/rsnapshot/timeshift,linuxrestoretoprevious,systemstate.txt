@@ -1,0 +1,341 @@
+
+sudo apt-add-repository -y ppa:teejee2008/ppa
+sudo apt update
+sudo apt install timeshift
+
+
+_____________
+
+
+timeshift --create --comments "initialtest21"
+
+
+http://www.teejeetech.in/2015/01/timeshift-updates-new-commandline.html
+
+timeshift --help   
+
+
+
+timeshift --restore    #interactive
+
+timeshift --restore --snapshot "2015-01-21_19-28-43" --backup-device /dev/sda2 --target-device /dev/sda1 --skip-grub
+
+timeshift --delete    #interactive
+
+timeshift --delete --snapshot "2015-01-21_19-28-43"
+
+timeshift --delete-all    #completely remove all snapshots
+
+
+
+
+
+_____________
+
+
+
+usage..
+  rsnapshot alpha
+
+see
+rsnap21.sh
+
+
+https://www.cyberciti.biz/faq/restoring-backup-files-with-rsnapshot-unix-linux-bsd-appleosx/
+
+
+
+After I’ve taken a few snapshots, why do they all show up the same size in df? I thought rsnapshot was meant to only take one full snapshot and then a bunch of incrementals?
+You thought right, and it does! It looks like you’ve got a bunch of full snapshots because any file which hasn’t changed between two consecutive snapshots will be a hard link, so potentially several directory entries in consecutive snapshots may actually point at the same data on disk, so the only space taken up by a snapshot is whatever is different between it and the previous one. Using the du utility to gauge your disk usage will normally produce confusing results because of this. The rsnapshot-diff utility solves this. You could also use the -c argument to du.
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-05-31[May-Thu]23-01PM
+
+https://www.makeuseof.com/tag/10-easy-ways-restore-linux-system/
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-06-01[Jun-Fri]16-33PM
+
+/bin
+/boot
+/etc
+/home
+/lib
+/lib64
+/opt
+/root
+/sbin
+/snap
+/usr
+/var
+
+exclude
+
+/srv  
+
+/dev
+/sys
+/var/cache/rsnapshot
+/var/tmp
+
+/var/lib
+
+ sudo du . --max-depth=1  -cxh  | sort -h
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-06-03[Jun-Sun]10-21AM
+
+https://github.com/teejee2008/timeshift/issues/15
+
+
+/dev/*
+/proc/*
+/sys/*
+/media/*
+/mnt/*
+/tmp/*
+/run/*
+
+/var/run/*
+/var/lock/*
+/var/spool/*
+/var/lib/docker/*
+
+/var/log/timeshift/*
+/var/log/timeshift-btrfs/*
+
+/lost+found
+/timeshift/*
+/timeshift-btrfs/*
+/data/*
+/cdrom/*
+
+/etc/timeshift.json
+
+/root/.thumbnails
+/root/.cache
+/root/.dbus
+/root/.gvfs
+/root/.local/share/[Tt]rash
+
+/root/.mozilla/firefox/*.default/Cache
+/root/.mozilla/firefox/*.default/OfflineCache
+/root/.opera/cache
+/root/.kde/share/apps/kio_http/cache
+/root/.kde/share/cache/http
+
+/home/*/.thumbnails
+/home/*/.cache
+/home/*/.dbus
+/home/*/.gvfs
+/home/*/.local/share/[Tt]rash
+
+/home/*/.mozilla/firefox/*.default/Cache
+/home/*/.mozilla/firefox/*.default/OfflineCache
+/home/*/.opera/cache
+/home/*/.kde/share/apps/kio_http/cache
+/home/*/.kde/share/cache/http
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-06-11[Jun-Mon]23-27PM
+
+https://github.com/teejee2008/timeshift/issues/15
+
+
+/dev/*
+/proc/*
+/sys/*
+/media/*
+/mnt/*
+/tmp/*
+/run/*
+
+/var/run/*
+/var/lock/*
+/var/spool/*
+/var/lib/docker/*
+
+/lost+found
+/timeshift/*
+/timeshift-btrfs/*
+/data/*
+/cdrom/*
+
+/etc/timeshift.json
+
+/var/log/timeshift/*
+/var/log/timeshift-btrfs/*
+
+/root/.thumbnails
+/root/.cache
+/root/.dbus
+/root/.gvfs
+/root/.local/share/[Tt]rash
+
+/home/*/.thumbnails
+/home/*/.cache
+/home/*/.dbus
+/home/*/.gvfs
+/home/*/.local/share/[Tt]rash
+
+/root/.mozilla/firefox/*.default/Cache
+/root/.mozilla/firefox/*.default/OfflineCache
+/root/.opera/cache
+/root/.kde/share/apps/kio_http/cache
+/root/.kde/share/cache/http
+
+/home/*/.mozilla/firefox/*.default/Cache
+/home/*/.mozilla/firefox/*.default/OfflineCache
+/home/*/.opera/cache
+/home/*/.kde/share/apps/kio_http/cache
+/home/*/.kde/share/cache/http
+
+/home/galago/Downloads/backup/***
+
++ /root/***
++ /home/galago/***
++ /root/.**
+/root/**
++ /home/*/.**
+/home/*/**
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+I figure it out, i had to install a gui for it but here it is:
+cat /etc/timeshift.json
+{
+  "backup_device_uuid" : "38f78462-7286-4a51-8946-5e0c4c59d4e3",
+  "is_scheduled" : "true",
+  "schedule_monthly" : "true",
+  "schedule_weekly" : "true",
+  "schedule_daily" : "true",
+  "schedule_hourly" : "true",
+  "schedule_boot" : "true",
+  "count_monthly" : "2",
+  "count_weekly" : "3",
+  "count_daily" : "5",
+  "count_hourly" : "6",
+  "count_boot" : "5",
+  "max_days" : "200",
+  "min_space" : "2048",
+  "exclude" : [
+    "+ /home/***",
+    "+ /root/Desktop",
+    "+ /media/***"
+  ]
+}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-06-12[Jun-Tue]20-08PM
+
+2018-06-12 20:07
+sudo timeshift --create --comments "initialtest22"
+
+
+albe@ubuntu1604a0311:/$ sudo timeshift --create --comments "initialtest21"
+First run mode (config file not found)
+Selected default snapshot type: RSYNC
+Selected default snapshot device: /dev/sda1
+------------------------------------------------------------------------------
+Estimating system size...
+Creating new snapshot...(RSYNC)
+Saving to device: /dev/sda1, mounted at path: /
+Synching files with rsync...
+Created control file: /timeshift/snapshots/2018-06-12_20-07-37/info.json
+RSYNC Snapshot saved successfully (552s)
+Tagged snapshot '2018-06-12_20-07-37': ondemand
+------------------------------------------------------------------------------
+albe@ubuntu1604a0311:/$
+
+
+2018-06-12_Tue_20.17-PM
+
+
+ /timeshift/snapshots/2018-06-12_20-07-37/localhost/var/snap/lxd/common/lxd/disks ----------------------------------------------------------------------------------------------------------------------------
+                         /..
+   18.0 GiB [##########]  default.img
+   
+   
+    "+ /var/snap/lxd/common/lxd/disks/***",
+
+
+_____________
+   
+2018-06-12_Tue_20.33-PM
+sudo timeshift --create --comments "initialtest23"  - second time this comment.
+
+
+sudo timeshift --create --comments "dg25"
+
+
+
+_____________
+
+
+sudo timeshift --delete
+
+
+
+
+albe@ubuntu1604a0311:/$ sudo timeshift --delete
+
+Select snapshot:
+
+Num     Name                 Tags  Description
+------------------------------------------------------------------------------
+0    >  2018-06-12_20-07-37  O     initialtest21
+1    >  2018-06-12_20-26-01  O     initialtest22
+2    >  2018-06-12_20-33-23  O     initialtest22
+
+Enter snapshot number (a=Abort, p=Previous, n=Next): 0
+
+------------------------------------------------------------------------------
+Removing '2018-06-12_20-07-37'...
+Removed '2018-06-12_20-07-37'
+------------------------------------------------------------------------------
+albe@ubuntu1604a0311:/$
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-06-12[Jun-Tue]21-11PM
+
+albe@ubuntu1604a0311:/etc/default$ locate timeshift.j
+/etc/timeshift.json
+/etc/default/timeshift.json
+/timeshift/snapshots/2018-06-12_20-43-28/localhost/etc/default/timeshift.json
+albe@ubuntu1604a0311:/etc/default$
+albe@ubuntu1604a0311:/etc/default$
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+

@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function Purpose() {
+# begin block comment =============================
+: <<'END'
+
+#  Purpose:  7z extract .tgz file..
+
+This, using 7z x, will preserve timestamps. tar -x doesn't.
+
+END
+# end block comment ===============================
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#cd ; 
+date ; set +vx  ; set -vx ; # echo off, then echo on
+#
+
+flname=$1
+#filename with path without extension
+fname="${flname%.*}"
+echo fname = $fname
+fpath=$(dirname "${flname}")
+echo fpath = $fpath
+
+7z x $fname.tgz -o$fpath
+7z x $fname.tar -o$fpath
+rm $fname.tar
+
+
+#
+date
+#

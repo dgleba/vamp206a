@@ -1,0 +1,27 @@
+
+2018-06-06
+
+https://hevodata.com/blog/superset-vs-metabase-vs-redash/
+
+
+https://rickbergfalk.github.io/sqlpad/
+
+Caravel is now superset.
+
+IS SQLPAD FOR ME?
+SQLPad aims to a SQL query environment with a focus on exploring and analyzing data via SQL, 
+and will likely not adopt a dashboard use case. If you're looking for open-source dashboard 
+software or something more advanced, 
+check out Re:dash, Metabase, or Caravel.
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-06-28[Jun-Thu]22-59PM
+
+[pivot]
+druid
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

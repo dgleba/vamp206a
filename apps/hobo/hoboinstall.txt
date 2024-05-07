@@ -1,0 +1,439 @@
+it http://archive.ubuntu.com trusty/multiverse i386 Packages                  
+Hit http://archive.ubuntu.com trusty/main Translation-en                       
+Hit http://archive.ubuntu.com trusty/multiverse Translation-en                 
+Hit http://archive.ubuntu.com trusty/restricted Translation-en                 
+Hit http://archive.ubuntu.com trusty/universe Translation-en                   
+Ign http://archive.ubuntu.com trusty/main Translation-en_US                    
+Ign http://archive.ubuntu.com trusty/multiverse Translation-en_US              
+Ign http://archive.ubuntu.com trusty/restricted Translation-en_US              
+Ign http://archive.ubuntu.com trusty/universe Translation-en_US                
+Fetched 5,263 kB in 31s (167 kB/s)                                             
+Reading package lists... Done
+albe@v206bflask1:~$ ruby
+The program 'ruby' can be found in the following packages:
+ * ruby
+ * ruby1.8
+Try: sudo apt-get install <selected package>
+albe@v206bflask1:~$ irb
+The program 'irb' can be found in the following packages:
+ * ruby
+ * ruby1.8
+Try: sudo apt-get install <selected package>
+albe@v206bflask1:~$ sudo apt-get install -y ruby rubygems nodejs libsqlite3-dev git
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Package rubygems is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another source
+However the following packages replace it:
+  ruby
+
+E: Package 'rubygems' has no installation candidate
+albe@v206bflask1:~$ sudo apt-get install -y ruby nodejs libsqlite3-dev git
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following extra packages will be installed:
+  libruby1.9.1 libyaml-0-2 ruby1.9.1
+Suggested packages:
+  git-daemon-run git-daemon-sysvinit git-doc git-el git-email git-gui gitk
+  gitweb git-arch git-bzr git-cvs git-mediawiki git-svn sqlite3-doc ri
+  ruby-dev ruby1.9.1-examples ri1.9.1 graphviz ruby1.9.1-dev ruby-switch
+The following NEW packages will be installed:
+  libruby1.9.1 libsqlite3-dev libyaml-0-2 ruby ruby1.9.1
+The following packages will be upgraded:
+  git nodejs
+2 upgraded, 5 newly installed, 0 to remove and 188 not upgraded.
+Need to get 14.3 MB of archives.
+After this operation, 16.2 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libyaml-0-2 amd64 0.1.4-3ubuntu3.1 [48.1 kB]
+Get:2 http://archive.ubuntu.com/ubuntu/ trusty-updates/main git amd64 1:1.9.1-1ubuntu0.3 [2,586 kB]
+Get:3 https://deb.nodesource.com/node_4.x/ trusty/main nodejs amd64 4.4.1-1nodesource1~trusty1 [8,577 kB]
+Get:4 http://archive.ubuntu.com/ubuntu/ trusty/main ruby all 1:1.9.3.4 [5,334 B]
+Get:5 http://archive.ubuntu.com/ubuntu/ trusty-updates/main ruby1.9.1 amd64 1.9.3.484-2ubuntu1.2 [35.6 kB]
+Get:6 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libruby1.9.1 amd64 1.9.3.484-2ubuntu1.2 [2,645 kB]
+Get:7 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libsqlite3-dev amd64 3.8.2-1ubuntu2.1 [439 kB]
+Fetched 14.3 MB in 5min 20s (44.7 kB/s)                                        
+Selecting previously unselected package libyaml-0-2:amd64.
+(Reading database ... 91080 files and directories currently installed.)
+Preparing to unpack .../libyaml-0-2_0.1.4-3ubuntu3.1_amd64.deb ...
+Unpacking libyaml-0-2:amd64 (0.1.4-3ubuntu3.1) ...
+Preparing to unpack .../git_1%3a1.9.1-1ubuntu0.3_amd64.deb ...
+Unpacking git (1:1.9.1-1ubuntu0.3) over (1:1.9.1-1ubuntu0.2) ...
+Selecting previously unselected package ruby.
+Preparing to unpack .../ruby_1%3a1.9.3.4_all.deb ...
+Unpacking ruby (1:1.9.3.4) ...
+Selecting previously unselected package ruby1.9.1.
+Preparing to unpack .../ruby1.9.1_1.9.3.484-2ubuntu1.2_amd64.deb ...
+Unpacking ruby1.9.1 (1.9.3.484-2ubuntu1.2) ...
+Selecting previously unselected package libruby1.9.1.
+Preparing to unpack .../libruby1.9.1_1.9.3.484-2ubuntu1.2_amd64.deb ...
+Unpacking libruby1.9.1 (1.9.3.484-2ubuntu1.2) ...
+Selecting previously unselected package libsqlite3-dev:amd64.
+Preparing to unpack .../libsqlite3-dev_3.8.2-1ubuntu2.1_amd64.deb ...
+Unpacking libsqlite3-dev:amd64 (3.8.2-1ubuntu2.1) ...
+Preparing to unpack .../nodejs_4.4.1-1nodesource1~trusty1_amd64.deb ...
+Detected old npm client, removing...
+Unpacking nodejs (4.4.1-1nodesource1~trusty1) over (4.3.1-1nodesource1~trusty1) ...
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+Processing triggers for menu (2.1.46ubuntu1) ...
+Setting up libyaml-0-2:amd64 (0.1.4-3ubuntu3.1) ...
+Setting up git (1:1.9.1-1ubuntu0.3) ...
+Setting up libsqlite3-dev:amd64 (3.8.2-1ubuntu2.1) ...
+Setting up nodejs (4.4.1-1nodesource1~trusty1) ...
+Setting up ruby (1:1.9.3.4) ...
+Setting up ruby1.9.1 (1.9.3.484-2ubuntu1.2) ...
+Setting up libruby1.9.1 (1.9.3.484-2ubuntu1.2) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.6) ...
+Processing triggers for menu (2.1.46ubuntu1) ...
+albe@v206bflask1:~$ sudo apt-get install -y ruby1.9.3 nodejs libsqlite3-dev git
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+git is already the newest version.
+libsqlite3-dev is already the newest version.
+nodejs is already the newest version.
+The following extra packages will be installed:
+  libruby1.9.1-dbg libtcl8.5 libtcltk-ruby1.9.1 libtk8.5 libxss1 ri1.9.1
+  ruby1.9.1-dev ruby1.9.1-examples ruby1.9.1-full
+Suggested packages:
+  tcl8.5 tk8.5
+The following NEW packages will be installed:
+  libruby1.9.1-dbg libtcl8.5 libtcltk-ruby1.9.1 libtk8.5 libxss1 ri1.9.1
+  ruby1.9.1-dev ruby1.9.1-examples ruby1.9.1-full ruby1.9.3
+0 upgraded, 10 newly installed, 0 to remove and 188 not upgraded.
+Need to get 9,273 kB of archives.
+After this operation, 35.0 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu/ trusty/main libtcl8.5 amd64 8.5.15-2ubuntu1 [684 kB]
+Get:2 http://archive.ubuntu.com/ubuntu/ trusty/main libxss1 amd64 1:1.2.2-1 [8,582 B]
+Get:3 http://archive.ubuntu.com/ubuntu/ trusty/main libtk8.5 amd64 8.5.15-2ubuntu3 [641 kB]
+Get:4 http://archive.ubuntu.com/ubuntu/ trusty-updates/universe libtcltk-ruby1.9.1 amd64 1.9.3.484-2ubuntu1.2 [1,399 kB]
+Get:5 http://archive.ubuntu.com/ubuntu/ trusty-updates/universe ri1.9.1 all 1.9.3.484-2ubuntu1.2 [1,511 kB]
+Get:6 http://archive.ubuntu.com/ubuntu/ trusty-updates/main ruby1.9.1-dev amd64 1.9.3.484-2ubuntu1.2 [871 kB]
+Get:7 http://archive.ubuntu.com/ubuntu/ trusty-updates/main ruby1.9.1-examples all 1.9.3.484-2ubuntu1.2 [66.3 kB]
+Get:8 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libruby1.9.1-dbg amd64 1.9.3.484-2ubuntu1.2 [4,076 kB]
+Get:9 http://archive.ubuntu.com/ubuntu/ trusty-updates/universe ruby1.9.1-full all 1.9.3.484-2ubuntu1.2 [2,944 B]
+Get:10 http://archive.ubuntu.com/ubuntu/ trusty-updates/universe ruby1.9.3 all 1.9.3.484-2ubuntu1.2 [13.0 kB]
+Fetched 9,273 kB in 1min 5s (141 kB/s)                                         
+Selecting previously unselected package libtcl8.5:amd64.
+(Reading database ... 92566 files and directories currently installed.)
+Preparing to unpack .../libtcl8.5_8.5.15-2ubuntu1_amd64.deb ...
+Unpacking libtcl8.5:amd64 (8.5.15-2ubuntu1) ...
+Selecting previously unselected package libxss1:amd64.
+Preparing to unpack .../libxss1_1%3a1.2.2-1_amd64.deb ...
+Unpacking libxss1:amd64 (1:1.2.2-1) ...
+Selecting previously unselected package libtk8.5:amd64.
+Preparing to unpack .../libtk8.5_8.5.15-2ubuntu3_amd64.deb ...
+Unpacking libtk8.5:amd64 (8.5.15-2ubuntu3) ...
+Selecting previously unselected package libtcltk-ruby1.9.1.
+Preparing to unpack .../libtcltk-ruby1.9.1_1.9.3.484-2ubuntu1.2_amd64.deb ...
+Unpacking libtcltk-ruby1.9.1 (1.9.3.484-2ubuntu1.2) ...
+Selecting previously unselected package ri1.9.1.
+Preparing to unpack .../ri1.9.1_1.9.3.484-2ubuntu1.2_all.deb ...
+Unpacking ri1.9.1 (1.9.3.484-2ubuntu1.2) ...
+Selecting previously unselected package ruby1.9.1-dev.
+Preparing to unpack .../ruby1.9.1-dev_1.9.3.484-2ubuntu1.2_amd64.deb ...
+Unpacking ruby1.9.1-dev (1.9.3.484-2ubuntu1.2) ...
+Selecting previously unselected package ruby1.9.1-examples.
+Preparing to unpack .../ruby1.9.1-examples_1.9.3.484-2ubuntu1.2_all.deb ...
+Unpacking ruby1.9.1-examples (1.9.3.484-2ubuntu1.2) ...
+Selecting previously unselected package libruby1.9.1-dbg.
+Preparing to unpack .../libruby1.9.1-dbg_1.9.3.484-2ubuntu1.2_amd64.deb ...
+Unpacking libruby1.9.1-dbg (1.9.3.484-2ubuntu1.2) ...
+Selecting previously unselected package ruby1.9.1-full.
+Preparing to unpack .../ruby1.9.1-full_1.9.3.484-2ubuntu1.2_all.deb ...
+Unpacking ruby1.9.1-full (1.9.3.484-2ubuntu1.2) ...
+Selecting previously unselected package ruby1.9.3.
+Preparing to unpack .../ruby1.9.3_1.9.3.484-2ubuntu1.2_all.deb ...
+Unpacking ruby1.9.3 (1.9.3.484-2ubuntu1.2) ...
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+Setting up libtcl8.5:amd64 (8.5.15-2ubuntu1) ...
+Setting up libxss1:amd64 (1:1.2.2-1) ...
+Setting up libtk8.5:amd64 (8.5.15-2ubuntu3) ...
+Setting up libtcltk-ruby1.9.1 (1.9.3.484-2ubuntu1.2) ...
+Setting up ri1.9.1 (1.9.3.484-2ubuntu1.2) ...
+Setting up ruby1.9.1-dev (1.9.3.484-2ubuntu1.2) ...
+Setting up ruby1.9.1-examples (1.9.3.484-2ubuntu1.2) ...
+Setting up libruby1.9.1-dbg (1.9.3.484-2ubuntu1.2) ...
+Setting up ruby1.9.1-full (1.9.3.484-2ubuntu1.2) ...
+Setting up ruby1.9.3 (1.9.3.484-2ubuntu1.2) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.6) ...
+albe@v206bflask1:~$ sudo apt-get install rails
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following extra packages will be installed:
+  bundler rake ruby-actionmailer-3.2 ruby-actionpack-3.2 ruby-activemodel-3.2
+  ruby-activerecord-3.2 ruby-activeresource-3.2 ruby-activesupport-3.2
+  ruby-arel ruby-atomic ruby-blankslate ruby-builder ruby-dev ruby-erubis
+  ruby-hike ruby-i18n ruby-journey ruby-json ruby-mail ruby-mime-types
+  ruby-minitest ruby-multi-json ruby-net-http-persistent ruby-oj ruby-polyglot
+  ruby-rack-cache ruby-rack-ssl ruby-rack-test ruby-rack1.4 ruby-rails-3.2
+  ruby-railties-3.2 ruby-sprockets ruby-thor ruby-thread-safe ruby-tilt
+  ruby-treetop ruby-tzinfo ruby-yajl rubygems-integration zip
+Suggested packages:
+  ruby-bcrypt ruby-builder-doc treetop doc-base
+The following NEW packages will be installed:
+  bundler rails rake ruby-actionmailer-3.2 ruby-actionpack-3.2
+  ruby-activemodel-3.2 ruby-activerecord-3.2 ruby-activeresource-3.2
+  ruby-activesupport-3.2 ruby-arel ruby-atomic ruby-blankslate ruby-builder
+  ruby-dev ruby-erubis ruby-hike ruby-i18n ruby-journey ruby-json ruby-mail
+  ruby-mime-types ruby-minitest ruby-multi-json ruby-net-http-persistent
+  ruby-oj ruby-polyglot ruby-rack-cache ruby-rack-ssl ruby-rack-test
+  ruby-rack1.4 ruby-rails-3.2 ruby-railties-3.2 ruby-sprockets ruby-thor
+  ruby-thread-safe ruby-tilt ruby-treetop ruby-tzinfo ruby-yajl
+  rubygems-integration zip
+0 upgraded, 41 newly installed, 0 to remove and 188 not upgraded.
+Need to get 2,487 kB of archives.
+After this operation, 15.0 MB of additional disk space will be used.
+Do you want to continue? [Y/n] n
+Abort.
+albe@v206bflask1:~$ export GEM_HOME=$HOME/.gem
+albe@v206bflask1:~$ echo "export GEM_HOME=$HOME/.gem" >> .bashrc
+albe@v206bflask1:~$ PATH="$HOME/.gem/bin:$PATH"
+albe@v206bflask1:~$ echo 'PATH="$HOME/.gem/bin:$PATH"' >> .bashrc
+albe@v206bflask1:~$ gem install hobo
+
+
+
+Fetching: i18n-0.7.0.gem (100%)
+Fetching: json-1.8.3.gem (100%)
+Building native extensions.  This could take a while...
+Fetching: thread_safe-0.3.5.gem (100%)
+Fetching: tzinfo-1.2.2.gem (100%)
+Fetching: minitest-5.8.4.gem (100%)
+Fetching: activesupport-4.2.6.gem (100%)
+Fetching: rack-1.6.4.gem (100%)
+Fetching: rack-test-0.6.3.gem (100%)
+Fetching: mini_portile2-2.0.0.rc2.gem (100%)
+Fetching: nokogiri-1.6.7.2.gem (100%)
+Building native extensions.  This could take a while...
+Fetching: loofah-2.0.3.gem (100%)
+Fetching: rails-html-sanitizer-1.0.3.gem (100%)
+Fetching: rails-deprecated_sanitizer-1.0.3.gem (100%)
+Fetching: rails-dom-testing-1.0.7.gem (100%)
+Fetching: builder-3.2.2.gem (100%)
+Fetching: erubis-2.7.0.gem (100%)
+Fetching: actionview-4.2.6.gem (100%)
+Fetching: actionpack-4.2.6.gem (100%)
+Fetching: activemodel-4.2.6.gem (100%)
+Fetching: arel-6.0.3.gem (100%)
+Fetching: activerecord-4.2.6.gem (100%)
+Fetching: globalid-0.3.6.gem (100%)
+Fetching: activejob-4.2.6.gem (100%)
+Fetching: mime-types-data-3.2016.0221.gem (100%)
+ERROR:  Error installing hobo:
+	mime-types-data requires Ruby version >= 2.0.
+albe@v206bflask1:~$ 
+albe@v206bflask1:~$ 
+albe@v206bflask1:~$ 
+albe@v206bflask1:~$ sudo apt-get update
+Hit https://deb.nodesource.com trusty InRelease                          
+Hit https://deb.nodesource.com trusty/main Sources                             
+Hit https://deb.nodesource.com trusty/main amd64 Packages                      
+Hit https://deb.nodesource.com trusty/main i386 Packages                       
+Get:1 https://deb.nodesource.com trusty/main Translation-en_US                 
+Ign https://deb.nodesource.com trusty/main Translation-en_US                   
+Ign https://deb.nodesource.com trusty/main Translation-en                  
+Get:2 http://security.ubuntu.com trusty-security InRelease [65.9 kB]       
+Ign http://archive.ubuntu.com trusty InRelease                             
+Get:3 http://archive.ubuntu.com trusty-updates InRelease [65.9 kB]
+Get:4 http://archive.ubuntu.com trusty-backports InRelease [65.9 kB]  
+Get:5 http://security.ubuntu.com trusty-security/main Sources [110 kB]
+Hit http://archive.ubuntu.com trusty Release.gpg                               
+Get:6 http://archive.ubuntu.com trusty-updates/main Sources [271 kB]
+Get:7 http://security.ubuntu.com trusty-security/restricted Sources [4,035 B]  
+Get:8 http://security.ubuntu.com trusty-security/universe Sources [34.4 kB]    
+Get:9 http://security.ubuntu.com trusty-security/multiverse Sources [2,750 B]  
+Get:10 http://security.ubuntu.com trusty-security/main amd64 Packages [448 kB] 
+Get:11 http://archive.ubuntu.com trusty-updates/restricted Sources [5,352 B]   
+Get:12 http://archive.ubuntu.com trusty-updates/universe Sources [151 kB]      
+Get:13 http://archive.ubuntu.com trusty-updates/multiverse Sources [5,946 B]   
+Get:14 http://archive.ubuntu.com trusty-updates/main amd64 Packages [746 kB]   
+Get:15 http://security.ubuntu.com trusty-security/restricted amd64 Packages [13.0 kB]
+Get:16 http://security.ubuntu.com trusty-security/universe amd64 Packages [126 kB]
+Get:17 http://security.ubuntu.com trusty-security/multiverse amd64 Packages [4,991 B]
+Get:18 http://security.ubuntu.com trusty-security/main i386 Packages [422 kB]  
+Get:19 http://security.ubuntu.com trusty-security/restricted i386 Packages [12.7 kB]
+Get:20 http://security.ubuntu.com trusty-security/universe i386 Packages [126 kB]
+Get:21 http://archive.ubuntu.com trusty-updates/restricted amd64 Packages [15.9 kB]
+Get:22 http://security.ubuntu.com trusty-security/multiverse i386 Packages [5,175 B]
+Hit http://security.ubuntu.com trusty-security/main Translation-en             
+Hit http://security.ubuntu.com trusty-security/multiverse Translation-en       
+Hit http://security.ubuntu.com trusty-security/restricted Translation-en       
+Hit http://security.ubuntu.com trusty-security/universe Translation-en         
+Get:23 http://archive.ubuntu.com trusty-updates/universe amd64 Packages [356 kB]
+Get:24 http://archive.ubuntu.com trusty-updates/multiverse amd64 Packages [13.2 kB]
+Get:25 http://archive.ubuntu.com trusty-updates/main i386 Packages [713 kB]    
+Get:26 http://archive.ubuntu.com trusty-updates/restricted i386 Packages [15.6 kB]
+Get:27 http://archive.ubuntu.com trusty-updates/universe i386 Packages [357 kB]
+Get:28 http://archive.ubuntu.com trusty-updates/multiverse i386 Packages [13.6 kB]
+Hit http://archive.ubuntu.com trusty-updates/main Translation-en               
+Hit http://archive.ubuntu.com trusty-updates/multiverse Translation-en         
+Hit http://archive.ubuntu.com trusty-updates/restricted Translation-en         
+Hit http://archive.ubuntu.com trusty-updates/universe Translation-en           
+Get:29 http://archive.ubuntu.com trusty-backports/main Sources [8,696 B]       
+Get:30 http://archive.ubuntu.com trusty-backports/restricted Sources [28 B]    
+Get:31 http://archive.ubuntu.com trusty-backports/universe Sources [34.5 kB]   
+Get:32 http://archive.ubuntu.com trusty-backports/multiverse Sources [1,898 B] 
+Get:33 http://archive.ubuntu.com trusty-backports/main amd64 Packages [9,782 B]
+Get:34 http://archive.ubuntu.com trusty-backports/restricted amd64 Packages [28 B]
+Get:35 http://archive.ubuntu.com trusty-backports/universe amd64 Packages [41.4 kB]
+Get:36 http://archive.ubuntu.com trusty-backports/multiverse amd64 Packages [1,571 B]
+Get:37 http://archive.ubuntu.com trusty-backports/main i386 Packages [9,797 B] 
+Get:38 http://archive.ubuntu.com trusty-backports/restricted i386 Packages [28 B]
+Get:39 http://archive.ubuntu.com trusty-backports/universe i386 Packages [41.4 kB]
+Get:40 http://archive.ubuntu.com trusty-backports/multiverse i386 Packages [1,552 B]
+Hit http://archive.ubuntu.com trusty-backports/main Translation-en             
+Hit http://archive.ubuntu.com trusty-backports/multiverse Translation-en       
+Hit http://archive.ubuntu.com trusty-backports/restricted Translation-en       
+Hit http://archive.ubuntu.com trusty-backports/universe Translation-en         
+Hit http://archive.ubuntu.com trusty Release                                   
+Hit http://archive.ubuntu.com trusty/main Sources                              
+Hit http://archive.ubuntu.com trusty/restricted Sources                        
+Hit http://archive.ubuntu.com trusty/universe Sources                          
+Hit http://archive.ubuntu.com trusty/multiverse Sources                        
+Hit http://archive.ubuntu.com trusty/main amd64 Packages                       
+Hit http://archive.ubuntu.com trusty/restricted amd64 Packages                 
+Hit http://archive.ubuntu.com trusty/universe amd64 Packages                   
+Hit http://archive.ubuntu.com trusty/multiverse amd64 Packages                 
+Hit http://archive.ubuntu.com trusty/main i386 Packages                        
+Hit http://archive.ubuntu.com trusty/restricted i386 Packages                  
+Hit http://archive.ubuntu.com trusty/universe i386 Packages                    
+Hit http://archive.ubuntu.com trusty/multiverse i386 Packages                  
+Hit http://archive.ubuntu.com trusty/main Translation-en                       
+Hit http://archive.ubuntu.com trusty/multiverse Translation-en                 
+Hit http://archive.ubuntu.com trusty/restricted Translation-en                 
+Hit http://archive.ubuntu.com trusty/universe Translation-en                   
+Ign http://archive.ubuntu.com trusty/main Translation-en_US                    
+Ign http://archive.ubuntu.com trusty/multiverse Translation-en_US              
+Ign http://archive.ubuntu.com trusty/restricted Translation-en_US              
+Ign http://archive.ubuntu.com trusty/universe Translation-en_US                
+Fetched 4,320 kB in 36s (117 kB/s)                                             
+Reading package lists... Done
+albe@v206bflask1:~$ sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+build-essential is already the newest version.
+zlib1g-dev is already the newest version.
+libsqlite3-dev is already the newest version.
+libssl-dev is already the newest version.
+python-software-properties is already the newest version.
+Suggested packages:
+  libcurl4-doc libcurl3-dbg sqlite3-doc
+The following NEW packages will be installed:
+  git-core libffi-dev libreadline-dev libreadline6-dev libtinfo-dev
+  libxml2-dev libxslt1-dev libyaml-dev sqlite3
+The following packages will be upgraded:
+  curl libcurl3 libcurl4-openssl-dev libffi6 libxml2
+5 upgraded, 9 newly installed, 0 to remove and 183 not upgraded.
+Need to get 2,641 kB of archives.
+After this operation, 7,468 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libffi6 amd64 3.1~rc1+r3.0.13-12ubuntu0.1 [17.5 kB]
+Get:2 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libxml2 amd64 2.9.1+dfsg1-3ubuntu4.7 [571 kB]
+Get:3 http://archive.ubuntu.com/ubuntu/ trusty-updates/main curl amd64 7.35.0-1ubuntu2.6 [123 kB]
+Get:4 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libcurl4-openssl-dev amd64 7.35.0-1ubuntu2.6 [245 kB]
+Get:5 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libcurl3 amd64 7.35.0-1ubuntu2.6 [172 kB]
+Get:6 http://archive.ubuntu.com/ubuntu/ trusty-updates/main git-core all 1:1.9.1-1ubuntu0.3 [1,464 B]
+Get:7 http://archive.ubuntu.com/ubuntu/ trusty/main libtinfo-dev amd64 5.9+20140118-1ubuntu1 [76.3 kB]
+Get:8 http://archive.ubuntu.com/ubuntu/ trusty/main libreadline6-dev amd64 6.3-4ubuntu2 [213 kB]
+Get:9 http://archive.ubuntu.com/ubuntu/ trusty/main libreadline-dev amd64 6.3-4ubuntu2 [988 B]
+Get:10 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libxml2-dev amd64 2.9.1+dfsg1-3ubuntu4.7 [629 kB]
+Get:11 http://archive.ubuntu.com/ubuntu/ trusty/main libxslt1-dev amd64 1.1.28-2build1 [407 kB]
+Get:12 http://archive.ubuntu.com/ubuntu/ trusty-updates/main sqlite3 amd64 3.8.2-1ubuntu2.1 [28.8 kB]
+Get:13 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libffi-dev amd64 3.1~rc1+r3.0.13-12ubuntu0.1 [99.8 kB]
+Get:14 http://archive.ubuntu.com/ubuntu/ trusty-updates/main libyaml-dev amd64 0.1.4-3ubuntu3.1 [55.9 kB]
+Fetched 2,641 kB in 27s (96.6 kB/s)                                            
+(Reading database ... 109051 files and directories currently installed.)
+Preparing to unpack .../libffi6_3.1~rc1+r3.0.13-12ubuntu0.1_amd64.deb ...
+Unpacking libffi6:amd64 (3.1~rc1+r3.0.13-12ubuntu0.1) over (3.1~rc1+r3.0.13-12) ...
+Preparing to unpack .../libxml2_2.9.1+dfsg1-3ubuntu4.7_amd64.deb ...
+Unpacking libxml2:amd64 (2.9.1+dfsg1-3ubuntu4.7) over (2.9.1+dfsg1-3ubuntu4.4) ...
+Preparing to unpack .../curl_7.35.0-1ubuntu2.6_amd64.deb ...
+Unpacking curl (7.35.0-1ubuntu2.6) over (7.35.0-1ubuntu2.5) ...
+Preparing to unpack .../libcurl4-openssl-dev_7.35.0-1ubuntu2.6_amd64.deb ...
+Unpacking libcurl4-openssl-dev:amd64 (7.35.0-1ubuntu2.6) over (7.35.0-1ubuntu2.5) ...
+Preparing to unpack .../libcurl3_7.35.0-1ubuntu2.6_amd64.deb ...
+Unpacking libcurl3:amd64 (7.35.0-1ubuntu2.6) over (7.35.0-1ubuntu2.5) ...
+Selecting previously unselected package git-core.
+Preparing to unpack .../git-core_1%3a1.9.1-1ubuntu0.3_all.deb ...
+Unpacking git-core (1:1.9.1-1ubuntu0.3) ...
+Selecting previously unselected package libtinfo-dev:amd64.
+Preparing to unpack .../libtinfo-dev_5.9+20140118-1ubuntu1_amd64.deb ...
+Unpacking libtinfo-dev:amd64 (5.9+20140118-1ubuntu1) ...
+Selecting previously unselected package libreadline6-dev:amd64.
+Preparing to unpack .../libreadline6-dev_6.3-4ubuntu2_amd64.deb ...
+Unpacking libreadline6-dev:amd64 (6.3-4ubuntu2) ...
+Selecting previously unselected package libreadline-dev:amd64.
+Preparing to unpack .../libreadline-dev_6.3-4ubuntu2_amd64.deb ...
+Unpacking libreadline-dev:amd64 (6.3-4ubuntu2) ...
+Selecting previously unselected package libxml2-dev:amd64.
+Preparing to unpack .../libxml2-dev_2.9.1+dfsg1-3ubuntu4.7_amd64.deb ...
+Unpacking libxml2-dev:amd64 (2.9.1+dfsg1-3ubuntu4.7) ...
+Selecting previously unselected package libxslt1-dev:amd64.
+Preparing to unpack .../libxslt1-dev_1.1.28-2build1_amd64.deb ...
+Unpacking libxslt1-dev:amd64 (1.1.28-2build1) ...
+Selecting previously unselected package sqlite3.
+Preparing to unpack .../sqlite3_3.8.2-1ubuntu2.1_amd64.deb ...
+Unpacking sqlite3 (3.8.2-1ubuntu2.1) ...
+Selecting previously unselected package libffi-dev:amd64.
+Preparing to unpack .../libffi-dev_3.1~rc1+r3.0.13-12ubuntu0.1_amd64.deb ...
+Unpacking libffi-dev:amd64 (3.1~rc1+r3.0.13-12ubuntu0.1) ...
+Selecting previously unselected package libyaml-dev:amd64.
+Preparing to unpack .../libyaml-dev_0.1.4-3ubuntu3.1_amd64.deb ...
+Unpacking libyaml-dev:amd64 (0.1.4-3ubuntu3.1) ...
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+Processing triggers for install-info (5.2.0.dfsg.1-2) ...
+Setting up libffi6:amd64 (3.1~rc1+r3.0.13-12ubuntu0.1) ...
+Setting up libxml2:amd64 (2.9.1+dfsg1-3ubuntu4.7) ...
+Setting up libcurl3:amd64 (7.35.0-1ubuntu2.6) ...
+Setting up curl (7.35.0-1ubuntu2.6) ...
+Setting up libcurl4-openssl-dev:amd64 (7.35.0-1ubuntu2.6) ...
+Setting up git-core (1:1.9.1-1ubuntu0.3) ...
+Setting up libtinfo-dev:amd64 (5.9+20140118-1ubuntu1) ...
+Setting up libreadline6-dev:amd64 (6.3-4ubuntu2) ...
+Setting up libreadline-dev:amd64 (6.3-4ubuntu2) ...
+Setting up libxml2-dev:amd64 (2.9.1+dfsg1-3ubuntu4.7) ...
+Setting up libxslt1-dev:amd64 (1.1.28-2build1) ...
+Setting up sqlite3 (3.8.2-1ubuntu2.1) ...
+Setting up libffi-dev:amd64 (3.1~rc1+r3.0.13-12ubuntu0.1) ...
+Setting up libyaml-dev:amd64 (0.1.4-3ubuntu3.1) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.6) ...
+albe@v206bflask1:~$ cd
+albe@v206bflask1:~$ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+Cloning into '/home/albe/.rbenv'...
+remote: Counting objects: 2495, done.
+remote: Total 2495 (delta 0), reused 0 (delta 0), pack-reused 2495
+Receiving objects: 100% (2495/2495), 449.30 KiB | 56.00 KiB/s, done.
+Resolving deltas: 100% (1571/1571), done.
+Checking connectivity... done.
+albe@v206bflask1:~$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+albe@v206bflask1:~$ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+albe@v206bflask1:~$ exec $SHELL
+albe@v206bflask1:~$ 
+albe@v206bflask1:~$ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+Cloning into '/home/albe/.rbenv/plugins/ruby-build'...
+remote: Counting objects: 5993, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 5993 (delta 1), reused 0 (delta 0), pack-reused 5982
+Receiving objects: 100% (5993/5993), 1.16 MiB | 92.00 KiB/s, done.
+Resolving deltas: 100% (3404/3404), done.
+Checking connectivity... done.
+albe@v206bflask1:~$ echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+albe@v206bflask1:~$ exec $SHELL
+albe@v206bflask1:~$ 
+albe@v206bflask1:~$ git clone https://github.com/rbenv/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+Cloning into '/home/albe/.rbenv/plugins/rbenv-gem-rehash'...
+remote: Counting objects: 97, done.
+remote: Total 97 (delta 0), reused 0 (delta 0), pack-reused 97
+Unpacking objects: 100% (97/97), done.
+Checking connectivity... done.
+albe@v206bflask1:~$ 
+albe@v206bflask1:~$ rbenv install 2.1.7
+Downloading ruby-2.1.7.tar.bz2...
+-> https://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.7.tar.bz2
+Installing ruby-2.1.7...
+^A
+

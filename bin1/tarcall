@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function Purpose() {
+# begin block comment =============================
+: <<'END'
+
+#  Purpose:  tar all the files in the current folder and give the archive a useful name..
+
+
+#  VERSION info
+	
+	v23 - 2020-11-17 -- find files grep exclude then tar
+
+
+sudo tar -czf all.tgz dkrcollection617/
+
+END
+# end block comment ===============================
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#cd ; 
+date ; set +vx  ; set -vx ; # echo off, then echo on
+#
+
+###### tar current folder..
+export base=$(basename $PWD);export HOSTNAME;
+curfolder=${PWD##*/}
+echo 4545
+echo base=$base    hostname=$HOSTNAME  curfolder=$curfolder
+
+dts=$(date +"__%Y.%m.%d_%H.%M.%S")
+
+
+tar1() {
+
+    cd ..
+
+    # get the current path and replace / with _
+    fnpath="${PWD////_}" ; echo $fnpath
+
+    tarf() {
+      #
+      # notice the grep exclude list. Check to see nothing important is excluded.
+      # 
+
+      # tar -cz --exclude={node_modulesz,x/} -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S")allex.tgz $base;cd $base
+      tar -cz  -f $base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S")all.tgz $base;cd $base
+
+    }
+
+    tarf
+
+    # cp $base-$HOSTNAME$fnpath$dts.tgz $base-$HOSTNAME$fnpath-latest.tgz  
+    cd $base
+
+}
+
+
+tar1
+
+#
+date
+#
+set +vx
+
+

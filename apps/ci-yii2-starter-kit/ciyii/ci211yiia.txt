@@ -1,0 +1,36 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2015-12-04[Dec-Fri]16-34PM
+
+try again...
+
+
+
+no... just get zip... git clone https://github.com/trntv/yii2-starter-kit.git
+
+mkdir /var/www/html/ci211yia
+cd /var/www/html/ci211yia
+
+wget https://github.com/trntv/yii2-starter-kit/archive/master.zip
+unzip master.zip
+
+mv yii2-starter-kit-master/*  . 
+mv yii2-starter-kit-master/.*  .
+
+cp .env.docker.dist .env
+
+source ~/shc/21env.sh
+date
+mysql -uroot -p$mysqlrootpassw -e "create database ci211yi"; 
+
+cp vhost.conf.docker.dist  vhost.conf
+
+composer install
+
+sudo docker-compose build
+sudo docker-compose up -d
+sudo docker-compose run cli app/setup
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,96 @@
+
+2015-11-26 03:39PM
+
+https://github.com/trntv/yii2-starter-kit/blob/master/docs/installation.md
+
+composer global require "fxp/composer-asset-plugin"
+
+cd /var/www/html
+
+no..
+#git clone https://github.com/trntv/yii2-starter-kit.git ciyii
+#composer install
+#mkdir -p ciyii
+#cd ciyii
+
+sudo apt-get update
+sudo apt-get install php5-intl
+sudo apt-get install php5-gd
+sudo apt-get install php5-mcrypt
+sudo apt-get install curl libcurl3 libcurl3-dev php5-curl
+
+visit  https://github.com/settings/tokens/new?scopes=repo&description=Composer+on+vamp206b+2015-11-26+1532
+got token
+d50329w45r33wefergfrtgfwwergwq1a5daf97707c75377a0644c6426bc7c
+
+
+cd /var/www/html
+composer create-project --prefer-dist --stability=dev trntv/yii2-starter-kit ciyii2
+
+cd /var/www/html/ciyii2
+composer install
+
+edit .env file
+
+#include underscore... ysk_
+DB_TABLE_PREFIX  = ysk
+
+
+source ~/shc/21env.sh
+date
+mysql -uroot -p$mysqlrootpassw -e "create database yii2starterkit"; 
+
+
+php console/yii app/setup
+
+
+struggling with web addresses 
+trying with no vhost
+
+apache vhost...
+https://github.com/yiisoft/yii2-app-advanced/blob/6f638632ffe309f57fc15075547ecf9afaba2101/docs/guide/start-installation.md
+
+no luck
+
+=
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2015-12-04[Dec-Fri]16-34PM
+
+try again...
+
+
+
+no... just get zip... git clone https://github.com/trntv/yii2-starter-kit.git
+
+mkdir /var/www/html/ci211yia
+cd /var/www/html/ci211yia
+
+wget https://github.com/trntv/yii2-starter-kit/archive/master.zip
+unzip master.zip
+
+mv yii2-starter-kit-master/*  . 
+mv yii2-starter-kit-master/.*  .
+
+cp .env.docker.dist .env
+
+source ~/shc/21env.sh
+date
+mysql -uroot -p$mysqlrootpassw -e "create database ci211yi"; 
+
+cp vhost.conf.docker.dist  vhost.conf
+
+sudo docker-compose build
+sudo docker-compose up -d
+sudo docker-compose run cli app/setup
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

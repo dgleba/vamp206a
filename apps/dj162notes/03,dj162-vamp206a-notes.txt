@@ -1,0 +1,49 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  . dj162 dgnote130 admin. 2015-11-20
+
+-----------------------2015-11-18[Nov-Wed]21-24PM
+
+https://github.com/WoLpH/django-admin-generator
+
+albe@vamp206b:/var/www/html/django/dj162$
+  
+cd /var/www/html/django/dj162
+
+sudo pip install django-admin-generator
+Add django_admin_generator to your INSTALLED_APPS
+
+python manage.py migrate
+python manage.py createsuperuser
+
+generate..
+manage.py admin_generator <APP_NAME> >> <APP_NAME>/admin.py
+python manage.py admin_generator dgnote130 > dgnote130/admin.py
+
+..worked.
+
+added search fields to...
+sudo nano /usr/local/lib/python2.7/dist-packages/django_admin_generator/management/commands/admin_generator.py
+SEARCH_FIELD_NAMES = (
+    'name',
+    'note_fld',
+    'tags_fld',
+    'slug',
+)
+
+got error searching note_fld.
+
+_____________
+
+windows:
+
+cd C:\p2\Python27\Scripts
+pip install django-admin-generator
+
+cd C:\p2\xampp\htdocs\django\dj162
+c:\p2\python27\python manage.py migrate
+c:\p2\python27\python manage.py createsuperuser
+ --> admin admin
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+

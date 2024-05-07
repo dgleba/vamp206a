@@ -1,0 +1,160 @@
+
+>> goal: deploy trakberry 2015-05-20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>>  .goal, deploy two projects, django tutorial and another with mod_wsgi on apache xampp windows.
+
+works.
+-----------------------------
+2015-01-22[Jan-Thu]14-34PM
+
+______________________
+asap
+remember to use separate cookie for each project before deploying
+
+if not -- you have to delete the cookies. using chrome inspect element , resources, cookies.
+
+2015-02-01_Sun_21.34-PM
+______________________
+
+I used:  ,this,xampp-win32-1.8.2-6-VC9.7z.2015-01-28.txt
+
+
+install python2.7.9 win32
+
+install mod_wsgi appropriate for the python279 win32 apache24 vc9
+Typical: LoadModule wsgi_module modules/mod_wsgi.so   --- into the main Apache "httpd.conf" 
+see C:\n\Dropbox\csd\0-csd\django15a\django-deploy-2015-jan\django161-deploy-xampp-apache.txt or other txt notes.
+C:\n\Dropbox\csd\0-csd\django15a\django-deploy-2015-jan-success\07,mod_wsgi\4.4.2,used\mod_wsgi-windows-4.4.2\Apache24-win32-VC9\modules\mod_wsgi-442-ap24-w32-vc9-py27.so
+
+cd C:\p2\Python27\Scripts
+pip install Django
+django get-pip.py
+pip install Django
+
+Successfully installed Django-1.7.3
+
+can do:
+pip install Django==1.7.3
+pip install Django==1.7.8 
+        1.7.8 works. 2015-05-14
+
+2015-05-14:
+I got runtime error from apache when i used django 1.8.1 
+
+=
+
+cd c:\p2\xampp\htdocs
+mkdir django
+cd django
+
+follow tutorial https://docs.djangoproject.com/en/1.7/intro/tutorial01/
+
+2015-05-20_Wed_08.31-AM
+C:\p2\Python27\Scripts\django-admin.py startproject trakberry2
+cd mysite
+
+2015-05-20_Wed_08.39-AM
+c:\p2\python27\python manage.py migrate
+c:\p2\python27\python manage.py startapp polls
+
+edit models now - 2015-05-20 2015-05-20_Wed_08.43-AM
+
+2015-05-20_Wed_08.45-AM
+edit settings.py add polls
+'polls',
+
+timezone: 2015-05-20_Wed_08.47-AM
+'US/Eastern'
+
+2015-05-20_Wed_08.50-AM
+add session_cookie_path to settings.py
+
+2015-05-20_Wed_08.51-AM
+c:\p2\python27\python manage.py makemigrations polls
+
+not done
+c:\p2\python27\python manage.py sqlmigrate polls 0001
+
+2015-05-20_Wed_08.53-AM
+c:\p2\python27\python manage.py migrate
+
+2015-05-20_Wed_08.53-AM
+c:\p2\python27\python manage.py createsuperuser
+
+
+python manage.py runserver
+http://127.0.0.1:8000/
+
+edit polls/admin.py
+
+ok. works.
+
+______________________
+
+https://docs.djangoproject.com/en/1.4/howto/deployment/wsgi/modwsgi/
+
+mine works:
+############
+
+2015-05-20_Wed_09.04-AM
+C:\p2\xampp\htdocs\django\apache\djangosite1.conf
+C:\p2\xampp\htdocs\django\apache\trakberry.wsgi
+
+______________________
+
+now need to serve admin static files.
+
+http://stackoverflow.com/questions/20642367/struggling-with-django-hierarchy-not-serving-admin-css
+https://docs.djangoproject.com/en/1.4/howto/deployment/wsgi/modwsgi/
+
+#not this, see my wsgi3.conf..  Alias /static/ c:/p2/Python27/Lib/site-packages/django/contrib/admin/static
+
+in settings.py
+
+2015-05-20_Wed_09.08-AM
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+works.
+
+2015-05-20_Wed_09.08-AM
+c:\p2\python27\python manage.py collectstatic
+
+
+works.
+shows admin from django tutorial.
+regular styling.
+
+______________________
+
+add bootstrap...
+
+pip install django-admin-bootstrapped
+
+Add into the INSTALLED_APPS before 'django.contrib.admin':
+'django_admin_bootstrapped',
+
+2015-05-20_Wed_09.10-AM
+cd c:\p2\xampp\htdocs\django\trakberry
+c:\p2\python27\python  manage.py collectstatic
+
+works!
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\p2\xampp\htdocs\django\mysite>
+_____________
+
+separate cookie for each project
+
+My -- settings.py is:
+SESSION_COOKIE_PATH = "/mysite"
+SESSION_COOKIE_PATH = "/django161c"
+
+C:\n\Dropbox\csd\0-csd\django15a\django-deploy-2015-jan-success\06,session_cookie_path\login screen keeps showing.txt
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+c:\p2\python27\python
+import django  
+django.VERSION
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+

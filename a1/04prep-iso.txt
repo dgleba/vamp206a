@@ -1,0 +1,4 @@
+
+cd /var/varvamp/files
+./04prep-iso.sh
+

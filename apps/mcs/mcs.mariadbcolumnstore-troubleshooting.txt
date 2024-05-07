@@ -1,0 +1,520 @@
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2022-05-08[May-Sun]15-21PM 
+
+albe@pmdsdata6:~$ 
+mcsadmin getsystemi
+
+Component     Status                       Last Status Change
+------------  --------------------------   ------------------------
+System        ACTIVE                       Sun May  8 15:21:26 2022
+Module pm1    DEGRADED                     Sun May  8 15:21:29 2022
+MariaDB ColumnStore Process statuses
+Process             Module    Status            Last Status Change        Process ID
+------------------  ------    ---------------   ------------------------  ----------
+ProcessMonitor      pm1       ACTIVE            Sun May  8 15:20:45 2022       32864
+...
+
+DMLProc             pm1       ACTIVE            Sun May  8 15:21:24 2022       33725
+mysqld              pm1       MAN_OFFLINE       Sun May  8 15:20:59 2022
+
+
+
+mcsadmin shutdownsystem FORCEFUL
+
+
+history..
+  971  21-04-30 10:39:14 mcsadmin getsystemi
+  972  21-04-30 10:39:46 mcsadmin shutdownsystem y
+  975  21-04-30 10:40:54 mcsadmin startsystem y
+ 1141  21-11-30 12:29:31 mcsmysql -uroot -p$mysqlrootpassw
+ 1150  21-11-30 12:51:37 mcsadmin
+
+
+mcsadmin getsystemi
+
+mcsadmin shutdownsystem y
+
+mcsadmin startsystem y
+
+mcsmysql -uroot -p$mysqlrootpassw
+mcsadmin
+
+mcsadmin restartsystem y
+
+ 1405  22-05-08 15:19:42 mcsadmin shutdownsystem FORCEFUL
+
+
+_____________
+
+
+
+rebooted.
+
+--
+
+https://groups.google.com/g/mariadb-columnstore/c/MK3gBLCPNsU
+
+
+LOG_PREFIX=/var/log/mariadb/dg_
+sudo /usr/local/mariadb/columnstore/mysql/bin/mysqld --defaults-extra-file=/usr/local/mariadb/columnstore/mysql/my.cnf --basedir=/usr/local/mariadb/columnstore/mysql/  --datadir=/usr/local/mariadb/columnstore/mysql/db --plugin-dir=/usr/local/mariadb/columnstore/mysql/lib/plugin --user=mysql --log-error=$LOG_PREFIX_mysqld_err.log --pid-file=/usr/local/mariadb/columnstore/mysql/db/$(hostname).pid --socket=/usr/local/mariadb/columnstore/mysql/lib/mysql/mysql.sock --port=3306 > $LOG_PREFIX_mysqld.log 
+
+
+rebooted.
+
+now it starts.
+
+_____________
+
+NORMAL
+
+normal..  2022-05-08_Sun_16.44-PM..
+
+ps -ef|grep mysql
+
+albe@pmdsdata6:~$ ps -ef|grep mysql
+root      2941     1  0 16:40 ?        00:00:00 /bin/sh /usr/local/mariadb/columnstore/mysql//bin/mysqld_safe --datadir=/usr/local/mariadb/columnstore/mysql/db --pid-file=/usr/local/mariadb/columnstore/mysql/db/pmdsdata6.pid --ledir=/usr/local/mariadb/columnstore/mysql//bin
+mysql     3194  2941  0 16:40 ?        00:00:00 /usr/local/mariadb/columnstore/mysql//bin/mysqld --basedir=/usr/local/mariadb/columnstore/mysql/ --datadir=/usr/local/mariadb/columnstore/mysql/db --plugin-dir=/usr/local/mariadb/columnstore/mysql/lib/plugin --user=mysql --log-error=/usr/local/mariadb/columnstore/mysql/db/pmdsdata6.err --pid-file=/usr/local/mariadb/columnstore/mysql/db/pmdsdata6.pid --socket=/usr/local/mariadb/columnstore/mysql/lib/mysql/mysql.sock --port=3306
+mysql     4672  4597  1 16:40 ?        00:00:02 mysqld --innodb-file-per-table=1 --default-authentication-plugin=mysql_native_password
+mysql     4679  4560  0 16:40 ?        00:00:00 postgres
+mysql     5461  4679  0 16:41 ?        00:00:00 postgres: checkpointer
+mysql     5462  4679  0 16:41 ?        00:00:00 postgres: background writer
+mysql     5463  4679  0 16:41 ?        00:00:00 postgres: walwriter
+mysql     5464  4679  0 16:41 ?        00:00:00 postgres: autovacuum launcher
+mysql     5465  4679  0 16:41 ?        00:00:00 postgres: stats collector
+mysql     5472  4679  0 16:41 ?        00:00:00 postgres: logical replication launcher
+albe      6396  3208  0 16:43 pts/0    00:00:00 grep --color=auto mysql
+albe@pmdsdata6:~$
+
+
+NORMAL
+
+
+mcsadmin getsystemi
+getsysteminfo   Sun May  8 16:52:05 2022
+System columnstore-1
+System and Module statuses
+Component     Status                       Last Status Change
+------------  --------------------------   ------------------------
+System        ACTIVE                       Sun May  8 16:41:05 2022
+Module pm1    ACTIVE                       Sun May  8 16:41:02 2022
+
+MariaDB ColumnStore Process statuses
+Process             Module    Status            Last Status Change        Process ID
+------------------  ------    ---------------   ------------------------  ----------
+ProcessMonitor      pm1       ACTIVE            Sun May  8 16:40:08 2022        2547
+ProcessManager      pm1       ACTIVE            Sun May  8 16:40:15 2022        2793
+DBRMControllerNode  pm1       ACTIVE            Sun May  8 16:40:39 2022        3655
+ServerMonitor       pm1       ACTIVE            Sun May  8 16:40:41 2022        3719
+DBRMWorkerNode      pm1       ACTIVE            Sun May  8 16:40:41 2022        3901
+DecomSvr            pm1       ACTIVE            Sun May  8 16:40:45 2022        4551
+PrimProc            pm1       ACTIVE            Sun May  8 16:40:48 2022        4661
+ExeMgr              pm1       ACTIVE            Sun May  8 16:40:51 2022        5081
+WriteEngineServer   pm1       ACTIVE            Sun May  8 16:40:56 2022        5218
+DDLProc             pm1       ACTIVE            Sun May  8 16:40:59 2022        5275
+DMLProc             pm1       ACTIVE            Sun May  8 16:41:06 2022        5339
+mysqld              pm1       ACTIVE            Sun May  8 16:40:33 2022        3194
+
+Active Alarm Counts: Critical = 0, Major = 0, Minor = 1, Warning = 0, Info = 0
+albe@pmdsdata6:/etc$
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2022-05-08[May-Sun]16-52PM 
+
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2021-11-30[Nov-Tue]12-30PM 
+
+
+
+Last login: Mon Nov 29 14:53:19 2021 from 10.4.11.24
+albe@pmdsdata6:~$ cd; source safe/21env.sh
+albe@pmdsdata6:~$ cd /var/www/html/backup/mysql
+albe@pmdsdata6:/var/www/html/backup/mysql$ mcsmysql -uroot -p$mysqlrootpassw
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/usr/local/mariadb/columnstore/mysql/lib/mysql/mysql.sock' (2 "No such file or directory")
+albe@pmdsdata6:/var/www/html/backup/mysql$
+
+
+
+https://mariadb.com/kb/en/columnstore-administrative-console/
+
+
+mcsadmin getSystemInfo
+
+
+albe@pmdsdata6:/etc/init.d$ mcsadmin getSystemInfo
+getsysteminfo   Tue Nov 30 12:43:57 2021
+
+System columnstore-1
+
+System and Module statuses
+
+Component     Status                       Last Status Change
+------------  --------------------------   ------------------------
+System        DOWN
+
+Module pm1    INITIAL
+
+
+MariaDB ColumnStore Process statuses
+
+Process             Module    Status            Last Status Change        Process ID
+------------------  ------    ---------------   ------------------------  ----------
+ProcessMonitor      pm1       ACTIVE            Mon Nov 29 14:50:52 2021        2424
+ProcessManager      pm1       INITIAL
+DBRMControllerNode  pm1       INITIAL
+ServerMonitor       pm1       INITIAL
+DBRMWorkerNode      pm1       INITIAL
+DecomSvr            pm1       INITIAL
+PrimProc            pm1       INITIAL
+ExeMgr              pm1       INITIAL
+WriteEngineServer   pm1       INITIAL
+DDLProc             pm1       INITIAL
+DMLProc             pm1       INITIAL
+mysqld              pm1       INITIAL
+
+Active Alarm Counts: Critical = 0, Major = 0, Minor = 0, Warning = 0, Info = 0
+albe@pmdsdata6:/etc/init.d$
+
+_____________
+
+
+mcsadmin startSystem
+
+
+albe@pmdsdata6:/etc/init.d$ mcsadmin startSystem
+startsystem   Tue Nov 30 12:45:11 2021
+
+   System being started, please wait...
+**** startSystem Failed :  Connection refused
+albe@pmdsdata6:/etc/init.d$
+
+
+_____________
+
+https://mariadb.com/kb/en/system-troubleshooting-mariadb-columnstore/#startsystem-problems-and-how-to-diagnose
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+mcsadmin> restartSystem
+restartsystem   Tue Nov 30 12:52:21 2021
+           Do you want to proceed: (y or n) [n]: y
+
+   System being restarted now ...
+**** restartSystem Failed :  Connection refused
+
+mcsadmin restartSystem restartSystem Failed   Connection refused
+
+
+_____________
+
+
+mcsadmin> shut
+shutdownsystem   Tue Nov 30 12:55:15 2021
+
+This command stops the processing of applications on all Modules within the MariaDB ColumnStore System
+
+   Checking for active transactions
+           Do you want to proceed: (y or n) [n]: y
+
+   Stopping System...
+**** shutdownSystem Error : ProcessManager not Active, stopping columnstore service
+[sudo] password for albe:
+
+
+****************
+note:
+mcsadmin> shut 
+issued command from within mcsadmin console.
+****************
+
+
+
+_____________
+
+
+mcsadmin> shut
+shutdownsystem   Tue Nov 30 12:55:15 2021
+
+This command stops the processing of applications on all Modules within the MariaDB ColumnStore System
+
+   Checking for active transactions
+           Do you want to proceed: (y or n) [n]: y
+
+   Stopping System...
+**** shutdownSystem Error : ProcessManager not Active, stopping columnstore service
+[sudo] password for albe:
+
+   Successful stop of local columnstore service
+
+mcsadmin> start
+startsystem   Tue Nov 30 12:56:10 2021
+startSystem command, 'columnstore' service is down, sending command to
+start the 'columnstore' service on all modules
+
+
+   System being started, please wait..........................................................................................
+
+
+mcsadmin> start
+startsystem   Tue Nov 30 12:56:10 2021
+startSystem command, 'columnstore' service is down, sending command to
+start the 'columnstore' service on all modules
+
+
+   System being started, please wait....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................^[[4~^[[4~..............................................                   .............................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+**** startSystem Failed : check log files
+mcsadmin>
+
+
+
+
+
+=================================================
+
+
+DBRM: SessionManager::sysCatVerID(): network error
+Could not get a ExeMgr connection.
+DBRM::send_recv caught: InetStreamSocket::connect: connect() error: Connection refused to: InetStreamSocket: sd: 97 inet: 127.0.0.1 port: 8616
+DBRM::send_recv caught: InetStreamSocket::connect: connect() error: Connection refused to: InetStreamSocket: sd: 97 inet: 127.0.0.1 port: 8616
+DBRM::send_recv caught: InetStreamSocket::connect: connect() error: Connection refused to: InetStreamSocket: sd: 97 inet: 127.0.0.1 port: 8616
+DBRM::send_recv caught: InetStreamSocket::connect: connect() error: Connection refused to: InetStreamSocket: sd: 97 inet: 127.0.0.1 port: 8616
+DBRM: SessionManager::sysCatVerID(): network error
+Could not get a ExeMgr connection.
+2021-11-29 14:46:09 140298470524672 [Note] /usr/local/mariadb/columnstore/mysql//bin/mysqld: Normal shutdown
+
+2021-11-29 14:46:09 140298470524672 [Note] Event Scheduler: Purging the queue. 0 events
+2021-11-29 14:46:09 140298504095488 [Note] InnoDB: FTS optimize thread exiting.
+2021-11-29 14:46:09 140298470524672 [Note] InnoDB: Starting shutdown...
+2021-11-29 14:46:10 140298470524672 [Note] InnoDB: Waiting for page_cleaner to finish flushing of buffer pool
+2021-11-29 14:46:11 140298470524672 [Note] InnoDB: Shutdown completed; log sequence number 22226209496
+2021-11-29 14:46:11 140298470524672 [Note] /usr/local/mariadb/columnstore/mysql//bin/mysqld: Shutdown complete
+
+211129 14:46:11 mysqld_safe mysqld from pid file /usr/local/mariadb/columnstore/mysql/db/pmdsdata6.pid ended
+albe@pmdsdata6:/usr/local/mariadb/columnstore/mysql/db$
+
+_____________
+
+
+DBRM  send_recv caught: InetStreamSocket::connect: connect() error: Connection refused to: InetStreamSocket: sd: 97 inet: 127.0.0.1 port: 8616 SessionManager::sysCatVerID(): network error Could not get a ExeMgr connection.
+
+mariadb columnstore network error Could not get a ExeMgr connection.
+
+
+
+=================================================
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2021-11-30[Nov-Tue]14-17PM 
+
+https://groups.google.com/g/mariadb-columnstore/c/LYWfvLpYVqQ
+
+
+mcsadmin> shut
+shutdownsystem   Tue Nov 30 14:17:22 2021
+
+This command stops the processing of applications on all Modules within the MariaDB ColumnStore System
+
+   Checking for active transactions
+           Do you want to proceed: (y or n) [n]: y
+
+   Stopping System...
+**** shutdownSystem Error : ProcessManager not Active, stopping columnstore service
+
+   Successful stop of local columnstore service
+
+mcsadmin>
+
+/usr/local/mariadb/columnstore/bin/setConfig Installation CoreFileFlag y
+
+ma startsystem
+
+
+_____________
+
+
+mcsadmin> shut
+shutdownsystem   Tue Nov 30 14:17:22 2021
+
+This command stops the processing of applications on all Modules within the MariaDB ColumnStore System
+
+   Checking for active transactions
+           Do you want to proceed: (y or n) [n]: y
+
+   Stopping System...
+**** shutdownSystem Error : ProcessManager not Active, stopping columnstore service
+
+   Successful stop of local columnstore service
+
+mcsadmin> ^C
+albe@pmdsdata6:/usr/local/mariadb/columnstore/mysql/db$ /usr/local/mariadb/columnstore/bin/setConfig Installation CoreFileFlag y
+albe@pmdsdata6:/usr/local/mariadb/columnstore/mysql/db$ ma startsystem
+startsystem   Tue Nov 30 14:19:05 2021
+startSystem command, 'columnstore' service is down, sending command to
+start the 'columnstore' service on all modules
+
+
+   System being started, please wait....................
+   Successful start of System
+
+albe@pmdsdata6:/usr/local/mariadb/columnstore/mysql/db$
+
+
+
+
+mcsadmin> getSystemInfo
+getsysteminfo   Tue Nov 30 14:24:07 2021
+
+System columnstore-1
+
+System and Module statuses
+
+Component     Status                       Last Status Change
+------------  --------------------------   ------------------------
+System        ACTIVE                       Tue Nov 30 14:20:08 2021
+
+Module pm1    DEGRADED                     Tue Nov 30 14:20:14 2021
+
+
+MariaDB ColumnStore Process statuses
+
+Process             Module    Status            Last Status Change        Process ID
+------------------  ------    ---------------   ------------------------  ----------
+ProcessMonitor      pm1       ACTIVE            Tue Nov 30 14:19:20 2021       28669
+ProcessManager      pm1       ACTIVE            Tue Nov 30 14:19:26 2021       28769
+DBRMControllerNode  pm1       ACTIVE            Tue Nov 30 14:19:43 2021       29202
+ServerMonitor       pm1       ACTIVE            Tue Nov 30 14:19:44 2021       29225
+DBRMWorkerNode      pm1       ACTIVE            Tue Nov 30 14:19:44 2021       29251
+DecomSvr            pm1       ACTIVE            Tue Nov 30 14:19:48 2021       29314
+PrimProc            pm1       ACTIVE            Tue Nov 30 14:19:51 2021       29339
+ExeMgr              pm1       ACTIVE            Tue Nov 30 14:19:56 2021       29404
+WriteEngineServer   pm1       ACTIVE            Tue Nov 30 14:19:59 2021       29464
+DDLProc             pm1       ACTIVE            Tue Nov 30 14:20:03 2021       29527
+DMLProc             pm1       ACTIVE            Tue Nov 30 14:20:07 2021       29576
+mysqld              pm1       MAN_OFFLINE       Tue Nov 30 14:19:44 2021
+
+Active Alarm Counts: Critical = 0, Major = 0, Minor = 0, Warning = 0, Info = 0
+mcsadmin>
+
+_____________
+
+
+https://mariadb.com/kb/en/system-troubleshooting-mariadb-columnstore/#replication-data-out-of-sync-causing-mysqld-to-not-start-and-the-system-to-not-startup
+
+https://jira.mariadb.org/browse/MCOL-3873
+
+https://mariadb.com/kb/en/columnstore-system-operations/
+
+columnstore how to start mysqld
+
+https://mariadb.com/kb/en/system-troubleshooting-mariadb-columnstore/#mariadb-columnstore-log-files-and-what-goes-in-them
+
+https://groups.google.com/g/mariadb-columnstore/c/LYWfvLpYVqQ
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2022-05-08[May-Sun]15-51PM 
+
+
+cd /var/log/mariadb/columnstore
+cat err.log
+
+
+What does systemctl status columnstore show?
+
+
+albe@pmdsdata6:/var/log/mariadb/columnstore$ systemctl status columnstore
+● columnstore.service - MariaDB Columnstore
+   Loaded: loaded (/lib/systemd/system/columnstore.service; enabled; vendor preset: enabled)
+   Active: inactive (dead) since Sun 2022-05-08 15:32:58 EDT; 25min ago
+  Process: 6393 ExecStopPost=/usr/local/mariadb/columnstore/bin/columnstore stop (code=exited, status=0/SUCCESS)
+  Process: 1444 ExecStart=/usr/local/mariadb/columnstore/bin/columnstore start (code=exited, status=0/SUCCESS)
+ Main PID: 2588 (code=exited, status=0/SUCCESS)
+
+May 08 15:32:50 pmdsdata6 ProcessManager[2867]: 50.560956 |0|0|0| D 17 CAL0000: Set All NON-MAN_OFFLINE Process for module pm1 = 0
+May 08 15:32:52 pmdsdata6 ProcessMonitor[2589]: 52.462695 |0|0|0| D 18 CAL0000: statusControl: REQUEST RECEIVED: Set Process pm1/mysqld State = MAN_OFFLINE
+May 08 15:32:52 pmdsdata6 ProcessMonitor[2589]: 52.462792 |0|0|0| D 18 CAL0000: statusControl: Set Process pm1/mysqld State = MAN_OFFLINE PID = 0
+May 08 15:32:55 pmdsdata6 ProcessManager[2867]: 55.128753 |0|0|0| D 17 CAL0000: StatusUpdate of Process ProcessMonitor State = 0
+May 08 15:32:55 pmdsdata6 ProcessMonitor[2589]: 55.129677 |0|0|0| D 18 CAL0000: statusControl: REQUEST RECEIVED: Set Process pm1/ProcessMonitor State = MAN_OFFLINE
+May 08 15:32:55 pmdsdata6 ProcessMonitor[2589]: 55.130212 |0|0|0| D 18 CAL0000: statusControl: Set Process pm1/ProcessMonitor State = MAN_OFFLINE PID = 0
+May 08 15:32:55 pmdsdata6 ProcessManager[2867]: 55.130991 |0|0|0| D 17 CAL0000: StatusUpdate of Process ProcessManager State = 0
+May 08 15:32:55 pmdsdata6 ProcessMonitor[2589]: 55.131474 |0|0|0| D 18 CAL0000: statusControl: REQUEST RECEIVED: Set Process pm1/ProcessManager State = MAN_OFFLINE
+May 08 15:32:55 pmdsdata6 ProcessMonitor[2589]: 55.131569 |0|0|0| D 18 CAL0000: statusControl: Set Process pm1/ProcessManager State = MAN_OFFLINE PID = 0
+May 08 15:32:55 pmdsdata6 columnstore[6393]: Shutting down MariaDB Columnstore Database Platform
+albe@pmdsdata6:/var/log/mariadb/columnstore$
+
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2022-05-08[May-Sun]16-17PM 
+
+
+albe@pmdsdata6:~$ mcsadmin restartProcess mysqld pm1
+restartprocess   Sun May  8 16:15:51 2022
+
+This command restarts the processing of an application on a Module within the MariaDB ColumnStore System
+           Do you want to proceed: (y or n) [n]: y
+
+**** restartprocess Failed :  API Failure return in restartProcess API
+albe@pmdsdata6:~$
+
+https://groups.google.com/g/mariadb-columnstore/c/MK3gBLCPNsU
+
+
+albe@pmdsdata6:~$ mcsmysql
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/usr/local/mariadb/columnstore/mysql/lib/mysql/mysql.sock' (2 "No such file or directory")
+albe@pmdsdata6:~$
+
+=================================================
+
+https://groups.google.com/g/mariadb-columnstore/c/MK3gBLCPNsU
+
+
+LOG_PREFIX=/var/log/mariadb/dg_
+sudo /usr/local/mariadb/columnstore/mysql/bin/mysqld --defaults-extra-file=/usr/local/mariadb/columnstore/mysql/my.cnf --basedir=/usr/local/mariadb/columnstore/mysql/  --datadir=/usr/local/mariadb/columnstore/mysql/db --plugin-dir=/usr/local/mariadb/columnstore/mysql/lib/plugin --user=mysql --log-error=$LOG_PREFIX_mysqld_err.log --pid-file=/usr/local/mariadb/columnstore/mysql/db/$(hostname).pid --socket=/usr/local/mariadb/columnstore/mysql/lib/mysql/mysql.sock --port=3306 > $LOG_PREFIX_mysqld.log 
+
+
+
+cd /usr/local/mariadb/columnstore/mysql/lib/mysql/
+ll
+
+
+=================================================
+
+not used..
+https://stackoverflow.com/questions/59665131/impossible-to-restart-mariadb-columnstore-after-a-crash-of-db
+
+=================================================
+
+
+

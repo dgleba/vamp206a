@@ -1,0 +1,93 @@
+
+# flask213
+# first flask 2016-01-07_Thu_19.14-PM
+
+
+sudo pip install virtualenv
+
+cd /var/www/html
+mkdir -p python
+cd python
+
+mkdir flask213
+cd flask213
+virtualenv venv
+
+. venv/bin/activate
+
+pip install Flask
+
+_____________
+warning:
+Installing collected packages: Werkzeug, MarkupSafe, Jinja2, itsdangerous, Flask
+Successfully installed Flask-0.10.1 Jinja2-2.8 MarkupSafe-0.23 Werkzeug-0.11.3 itsdangerous-0.24
+/var/www/html/python/flask213/venv/local/lib/python2.7/site-packages/pip/_vendor/requests/packages/urllib3/util/ssl_.py:90: InsecurePlatformWarning: A true SSLContext object is not available. This prevents urllib3 from configuring SSL appropriately and may cause certain SSL connections to fail. For more information, see https://urllib3.readthedocs.org/en/latest/security.html#insecureplatformwarning.
+  InsecurePlatformWarning 
+(venv)albe@redekv1:/var/www/html/python/flask213$ 
+_____________
+
+
+hello1.py:
+==
+from flask import Flask
+app = Flask(__name__)
+@app.route('/')
+def hello_world():
+    return 'Hello World! -flask213'
+if __name__ == '__main__':
+    app.run()
+==
+
+python hello1.py
+
+visit:
+http://127.0.0.1:5000/
+
+works! 2016-01-07_Thu_20.09-PM
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-01-07[Jan-Thu]20-09PM
+
+flask admin
+
+https://github.com/flask-admin/Flask-Admin/tree/master/examples/sqla
+
+cd /var/www/html/python
+
+git clone https://github.com/flask-admin/flask-admin.git
+cd flask-admin
+
+virtualenv env
+source env/bin/activate
+
+pip install -r 'examples/sqla/requirements.txt'
+
+see vamp206a\apps\flask213\error-2016-01-07_Thu_20.15-PM.txt
+
+did it one at a time - each line in the file - and it worked.
+did it again and it worked.
+
+python examples/sqla/app.py
+
+it works.
+2016-01-07_Thu_20.42-PM
+
+
+_____________
+
+auth example..
+
+pip install -r /var/www/html/python/flask-admin/examples/auth-flask-login/requirements.txt
+
+python /var/www/html/python/flask-admin/examples/auth-flask-login/app.py
+
+_____________
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+#

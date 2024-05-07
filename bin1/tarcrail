@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function Purpose() {
+# begin block comment =============================
+: <<'END'
+
+#  Purpose:  tar the current folder and give the archive a useful name..
+
+END
+# end block comment ===============================
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#cd ; 
+date ; set +vx  ; set -vx ; # echo off, then echo on
+#
+
+# doesn't work on mac osx
+#tar -czf $base-$HOSTNAME$(date +"__%Y.%m.%d_%H.%M.%S").tgz  $base --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/public/assets,$base/nbproject,$base/log};cd $base
+
+
+# mkdir -p tmp/dglog
+mkdir -p tar
+mv log/development.log log/development.log.$(date +"__%Y.%m.%d_%H.%M.%S").log
+
+# The following 2 commands are optional - they keep your git repo in good shape.
+git prune --progress # delete all the objects w/o references
+git gc --aggressive # aggressively collect garbage; may take a lot of time on large repos
+
+###### tar current folder..
+base=$(basename $PWD);export HOSTNAME;cd ..
+
+
+# get the current path and replace / with _
+fnpath="${PWD////_}" ; echo $fnpath
+
+# OSX, have to have options first, then -f filename.tgz and source files 
+tar -cz --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/public/assets,$base/nbproject,$base/log,$base/templates_c,$base/tar} -f $base/tar/$base-$HOSTNAME$fnpath$(date +"__%Y.%m.%d_%H.%M.%S").tgz $base;cd $base
+
+#
+date
+#
+set +vx

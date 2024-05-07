@@ -1,0 +1,125 @@
+_____________
+
+
+https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-puma-and-nginx-on-ubuntu-14-04
+
+_____________
+
+
+cd /srv/web/rail256a
+
+mkdir -p shared/pids shared/sockets shared/log
+
+sudo cp deploy/puma.conf /etc/init/puma.conf
+sudo cp deploy/puma-manager.conf /etc/init/puma-manager.conf
+cp deploy/puma.rb config/puma.rb
+
+sudo sh -c 'echo "/srv/web/rail256a" >> /etc/puma.conf'
+
+sudo cp  /etc/nginx/sites-available/rail256a.conf  /etc/nginx/sites-available/rail256a.conf$(date +"__%Y.%m.%d_%H.%M.%S").bk
+# copy file into place --  from rail256a app folder /srv/web/rail256a
+sudo cp  deploy/rail256a.conf /etc/nginx/sites-available/rail256a.conf
+sudo ln -nfs /etc/nginx/sites-available/rail256a.conf /etc/nginx/sites-enabled/rail256a.conf
+
+sudo start puma-manager
+sudo restart puma-manager
+sudo service nginx restart
+
+
+_____________ 
+
+
+sudo chgrp -hR www-data ./shared # change group to www-data ( apache group. apache already was installed.)
+sudo chown -R root shared
+sudo chmod -R g+rw  shared # writable for group
+sudo chmod -R o-rw shared # not viewable for others..
+# make only folders +x so they can be cd into.
+#sudo find /srv/web -type d -exec chmod g+x {} +
+#also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/shared – jris198944 May 13 '14 at 8:43 
+sudo chmod -R g+rws  shared 
+
+_____________
+
+
+
+
+===================================================
+
+
+2016-05-18
+
+no... sudo restart puma-manager
+
+# Use "stop puma-manager" to stop all Puma instances.
+# Use "start puma-manager" to start all instances.
+# Use "restart puma-manager" to restart all instances.
+
+sudo stop puma-manager
+
+sudo start puma-manager
+
+192.168.43.253:1226/   works!
+
+_____________ 
+
+
+example...
+
+/etc/puma.conf
+
+copy these into place..
+
+/srv/web/drail246b/config/puma.rb
+
+/etc/init/puma.conf
+/etc/init/puma-manager.conf
+
+
+cd /srv/web/drail246b
+
+mkdir -p shared/pids shared/sockets shared/log
+
+sudo chgrp -hR www-data ./shared # change group to www-data ( apache group. apache already was installed.)
+sudo chown -R root shared
+sudo chmod -R g+rw  shared # writable for group
+sudo chmod -R o-rw shared # not viewable for others..
+# make only folders +x so they can be cd into.
+#sudo find /srv/web -type d -exec chmod g+x {} +
+#also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/shared – jris198944 May 13 '14 at 8:43 
+sudo chmod -R g+rws  shared 
+
+sudo cp deploy/puma.conf /etc/init/puma.conf
+sudo cp deploy/puma-manager.conf /etc/init/puma-manager.conf
+cp deploy/puma.rb config/puma.rb
+
+
+sudo sh -c 'echo "/srv/web/drail246b" >> /etc/puma.conf'
+
+sudo cp  /etc/nginx/sites-available/drail246b.conf  /etc/nginx/sites-available/drail246b.conf$(date +"__%Y.%m.%d_%H.%M.%S").bk
+# copy file into place --  from drail246b app folder /srv/web/drail246b
+sudo cp  docs/drail246b.conf /etc/nginx/sites-available/drail246b.conf
+sudo ln -nfs /etc/nginx/sites-available/drail246b.conf /etc/nginx/sites-enabled/drail246b.conf
+
+sudo start puma-manager
+sudo restart puma-manager
+sudo service nginx restart
+
+_____________ 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-06-13[Jun-Mon]14-37PM
+
+
+sudo chgrp -hR albe .rbenv # change group to www-data ( apache group. apache already was installed.)
+sudo chown -R albe .rbenv
+sudo chmod -R g+rw  .rbenv # writable for group
+# make only folders +x so they can be cd into.
+#sudo find .rbenv -type d -exec chmod g+x {} +
+#also set the group sticky bit, so that the group is set for new files created. chmod g+s /home/.rbenv – jris198944 May 13 '14 at 8:43 
+sudo chmod -R g+rws  .rbenv 
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+

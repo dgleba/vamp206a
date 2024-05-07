@@ -1,0 +1,36 @@
+sudo service unicorn_drail240a2 start
++ sudo service unicorn_drail240a2 start
+/etc/init.d/unicorn_drail240a2: 1: /etc/init.d/unicorn_drail240a2: root: not found
+/etc/init.d/unicorn_drail240a2: 2: /etc/init.d/unicorn_drail240a2: working_directory: not found
+/etc/init.d/unicorn_drail240a2: 3: /etc/init.d/unicorn_drail240a2: pid: not found
+/etc/init.d/unicorn_drail240a2: 4: /etc/init.d/unicorn_drail240a2: stderr_path: not found
+/etc/init.d/unicorn_drail240a2: 5: /etc/init.d/unicorn_drail240a2: stdout_path: not found
+/etc/init.d/unicorn_drail240a2: 7: /etc/init.d/unicorn_drail240a2: listen: not found
+/etc/init.d/unicorn_drail240a2: 8: /etc/init.d/unicorn_drail240a2: worker_processes: not found
+Try 'timeout --help' for more information.
+
+
+sudo service unicorn_drail240a2 start
++ sudo service unicorn_drail240a2 start
+/etc/init.d/unicorn_drail240a2: 5: /etc/init.d/unicorn_drail240a2: not: not found
+/etc/init.d/unicorn_drail240a2: 27: /etc/init.d/unicorn_drail240a2: root: not found
+/etc/init.d/unicorn_drail240a2: 28: /etc/init.d/unicorn_drail240a2: working_directory: not found
+/etc/init.d/unicorn_drail240a2: 29: /etc/init.d/unicorn_drail240a2: pid: not found
+/etc/init.d/unicorn_drail240a2: 30: /etc/init.d/unicorn_drail240a2: stderr_path: not found
+/etc/init.d/unicorn_drail240a2: 31: /etc/init.d/unicorn_drail240a2: stdout_path: not found
+/etc/init.d/unicorn_drail240a2: 33: /etc/init.d/unicorn_drail240a2: listen: not found
+/etc/init.d/unicorn_drail240a2: 34: /etc/init.d/unicorn_drail240a2: worker_processes: not found
+Try 'timeout --help' for more information.
+
+
+
+_____________ 
+
+
+
+unicorn init script not running as user
+
+https://gist.github.com/jaygooby/504875
+
+
+https://gist.github.com/nebiros/2776085

@@ -1,0 +1,21 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  . credits
+
+-----------------------2015-10-01[Oct-Thu]17-43PM
+
+Credits:
+
+unattended iso from:
+https://github.com/netson/ubuntu-unattended
+
+silently install web server software:
+https://github.com/panique/vagrant-lamp-bootstrap
+
+ideas:
+https://github.com/mattandersen/vagrant-lamp
+
+slimftp:
+http://www.whitsoftdev.com/slimftpd/
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

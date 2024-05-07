@@ -1,0 +1,19 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2015-12-02[Dec-Wed]08-21AM
+
+
+yii virtual hosts setups...
+
+http://www.yiiframework.com/doc-2.0/guide-start-installation.html
+
+https://gist.github.com/bisubus/2479a5579c5f1f27c546
+
+https://github.com/yiisoft/yii2/issues/2286
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+http://www.voidtools.com/support/everything/searching/
+
+C:\n\Dropbox\csd\serve\vboxyard\vamp206a dm:>2015-12-01

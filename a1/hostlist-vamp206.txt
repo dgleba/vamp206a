@@ -1,0 +1,10 @@
+
+list of vamp206 builds
+
+vamp 206a  the repo name not a build.
+vamp 206b  first build. 2015-10-13
+vamp 206c  vm in vbox vamp206b 2015-12-09
+
+vamp 206env  settings file in bitbucket
+
+vamp 206d make a small one. 2016-09-20_Tue_13.31-PM.

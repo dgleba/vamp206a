@@ -1,0 +1,123 @@
+
+
+redash test lxd pdata7 2018-06-28_Thu_14.58-PM
+
+===================================================
+
+
+
+lxc launch ubuntu:x lxredash
+
+
+lxc exec lxredash -- sudo --login --user ubuntu
+
+cd
+mkdir s
+cd s
+ curl https://raw.githubusercontent.com/getredash/redash/master/setup/ubuntu/bootstrap.sh -o redashprov_official.sh
+  chmod +x redashprov_official.sh
+cd
+ sudo s/redashprov_official.sh
+ 
+_____________
+
+ 
+before..
+ 
+Last login: Thu Jun 28 13:50:34 2018 from 10.4.10.118
+albe@pmdsdata7:~$ df -h
+Filesystem                      Size  Used Avail Use% Mounted on
+udev                            3.9G     0  3.9G   0% /dev
+tmpfs                           798M   18M  781M   3% /run
+/dev/mapper/pmdsdata7--vg-root  189G   48G  132G  27% /
+tmpfs                           3.9G   17M  3.9G   1% /dev/shm
+tmpfs                           5.0M  4.0K  5.0M   1% /run/lock
+tmpfs                           3.9G     0  3.9G   0% /sys/fs/cgroup
+/dev/loop0                       87M   87M     0 100% /snap/core/4830
+/dev/loop1                       87M   87M     0 100% /snap/core/4650
+/dev/loop2                       55M   55M     0 100% /snap/lxd/7412
+/dev/loop3                       55M   55M     0 100% /snap/lxd/7363
+/dev/loop4                      128K  128K     0 100% /snap/hello/20
+/dev/loop5                       55M   55M     0 100% /snap/lxd/7319
+/dev/sda1                       472M  350M   98M  79% /boot
+tmpfs                           798M     0  798M   0% /run/user/1000
+albe@pmdsdata7:~$
+ 
+after
+ 
+albe@pmdsdata7:~$ df -h
+Filesystem                      Size  Used Avail Use% Mounted on
+udev                            3.9G     0  3.9G   0% /dev
+tmpfs                           798M   18M  781M   3% /run
+/dev/mapper/pmdsdata7--vg-root  189G   49G  131G  28% /
+tmpfs                           3.9G   17M  3.9G   1% /dev/shm
+tmpfs                           5.0M  4.0K  5.0M   1% /run/lock
+tmpfs                           3.9G     0  3.9G   0% /sys/fs/cgroup
+.
+/dev/loop5                       55M   55M     0 100% /snap/lxd/7319
+/dev/sda1                       472M  350M   98M  79% /boot
+tmpfs                           798M     0  798M   0% /run/user/1000
+ 
+_____________
+
+
+# export PUBLIC_IP=192.168.88.46;
+export PUBLIC_IP=10.4.1.228;
+#
+export CONTAINER_IP=10.83.111.14;
+#
+export PubPORT=3521; 
+export CPORT=80;
+#
+# export 
+#
+sudo iptables -t nat -A PREROUTING -d $PUBLIC_IP -p tcp --dport $PubPORT -j DNAT --to $CONTAINER_IP:$CPORT
+#
+
+#list
+#http://lubos.rendek.org/remove-all-iptables-prerouting-nat-rules/
+
+ 
+ sudo iptables -t nat --line-numbers -L
+ sudo iptables -t nat -L PREROUTING --line-numbers
+ 
+#Delete
+ sudo iptables -t nat -D PREROUTING 1
+ 
+# eg:  iptables -t nat -D PREROUTING 6
+ 
+ 
+pmdsdata7:3521
+pmdsdata7.stackpole.ca:3521
+10.4.1.228:3521
+
+
+sudo supervisorctl restart all
+
+
+dgleba@stackpole.com  testdash
+
+2018-06-28_Thu_17.30-PM
+
+
+_____________
+
+
+
+echo 'export REDASH_MAIL_SERVER="MESG01.stackpole.ca" # default: localhost' >> /opt/redash/.env
+
+
+echo 'export REDASH_MAIL_SERVER="MESG01.stackpole.ca" # default: localhost' | sudo tee -a /opt/redash/.env
+echo 'export REDASH_MAIL_DEFAULT_SENDER="dgleba@stackpole.ca" # Email address to send from' | sudo tee -a /opt/redash/.env
+cat /opt/redash/.env
+
+sudo nano /opt/redash/.env
+
+
+works.
+
+
+
+
+
+

@@ -1,0 +1,119 @@
+
+error
+
+View 'cilist.vw_enterprise_all' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them
+
+after changing from dg417 to cisuer mysql user..
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+noworky...
+
+//Create a text file with all the view definitions:
+
+mysql -uroot -p$mysqlrootpassw -A --skip-column-names -e"use cilist; SELECT CONCAT('SHOW CREATE VIEW ',table_schema,'.',table_name,'\\G') FROM information_schema.tables WHERE engine IS NULL" | mysql -uroot -p$mysqlrootpassw -A --skip-column-names > AllMyViews.sql
+
+//You edit AllMyViews.sql from there. Then, Drop the Views
+
+mysql -uroot -p$mysqlrootpassw -A --skip-column-names -e"SELECT CONCAT('DROP VIEW ',table_schema,'.',table_name,';') FROM information_schema.tables WHERE engine IS NULL" | mysql -uroot -p$mysqlrootpassw -A
+
+//After editing AllMyViews.sql reload them
+
+mysql -uroot -p$mysqlrootpassw -A < AllMyViews.sql
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-10-11[Oct-Tue]09-17AM
+
+
+SELECT CONCAT("ALTER DEFINER=`ciuser`@`host` VIEW `",table_name,"` AS ", view_definition,";") 
+FROM information_schema.views WHERE table_schema='cilist'
+
+Mix this with the mysql command line (assuming *nix, not familiar with windows):
+
+echo "*abovequery*" | mysql -uuser -p > alterView.sql
+
+mysql -uuser -p databasename < alterView.sql
+
+==
+
+worked..
+
+http://dba.stackexchange.com/questions/4129/modify-definer-on-many-views
+
+worked..
+
+qry1='SELECT CONCAT("ALTER DEFINER=`ciuser`@`host` VIEW `",table_name,"` AS ", view_definition,";") FROM information_schema.views WHERE table_schema="cilist"'
+echo $qry1 | mysql -uroot -p$mysqlrootpassw   > alterview.sql
+
+_____________
+
+
+from alterview.sql..
+
+worked..
+
+ALTER DEFINER=`ciuser`@`host` VIEW `vw_enterprise_all` AS select `cilist`.`leader`.`fullcommonname` AS `fullcommonname`,`cilist`.`leader`.`clocknum` AS `clocknum`,`cilist`.`leader`.`ci_leader` AS `ci_leader`,`cilist`.`leader`.`comment` AS `comment`,`cilist`.`leader`.`updatedtime` AS `ld_updated`,`cilist`.`emp_enterprise`.`clock` AS `clock`,`cilist`.`emp_enterprise`.`name` AS `name`,`cilist`.`emp_enterprise`.`dept` AS `dept`,`cilist`.`emp_enterprise`.`company` AS `company`,`cilist`.`emp_enterprise`.`group` AS `group`,`cilist`.`emp_enterprise`.`status` AS `status`,`cilist`.`emp_enterprise`.`sch_wk1` AS `sch_wk1`,`cilist`.`emp_enterprise`.`pln_wk1` AS `pln_wk1`,`cilist`.`emp_enterprise`.`sch_wk2` AS `sch_wk2`,`cilist`.`emp_enterprise`.`pln_wk2` AS `pln_wk2`,`cilist`.`emp_enterprise`.`id_e` AS `id_e`,`cilist`.`emp_ceridian`.`eenum` AS `cer_eenum`,`cilist`.`emp_ceridian`.`position` AS `cer_position`,`cilist`.`emp_ceridian`.`dept` AS `cer_dept`,`cilist`.`emp_ceridian`.`name` AS `cer_name`,`cilist`.`emp_ceridian`.`shift` AS `cer_sh` from ((`cilist`.`emp_enterprise` left join `cilist`.`emp_ceridian` on((`cilist`.`emp_ceridian`.`eenum` = `cilist`.`emp_enterprise`.`clock`))) left join `cilist`.`leader` on((`cilist`.`emp_enterprise`.`clock` = `cilist`.`leader`.`clocknum`))) order by `cilist`.`leader`.`fullcommonname`,`cilist`.`emp_enterprise`.`name`;
+
+
+ALTER DEFINER=`root`@`host` VIEW `vw_enterprise_all` AS select `cilist`.`leader`.`fullcommonname` AS `fullcommonname`,`cilist`.`leader`.`clocknum` AS `clocknum`,`cilist`.`leader`.`ci_leader` AS `ci_leader`,`cilist`.`leader`.`comment` AS `comment`,`cilist`.`leader`.`updatedtime` AS `ld_updated`,`cilist`.`emp_enterprise`.`clock` AS `clock`,`cilist`.`emp_enterprise`.`name` AS `name`,`cilist`.`emp_enterprise`.`dept` AS `dept`,`cilist`.`emp_enterprise`.`company` AS `company`,`cilist`.`emp_enterprise`.`group` AS `group`,`cilist`.`emp_enterprise`.`status` AS `status`,`cilist`.`emp_enterprise`.`sch_wk1` AS `sch_wk1`,`cilist`.`emp_enterprise`.`pln_wk1` AS `pln_wk1`,`cilist`.`emp_enterprise`.`sch_wk2` AS `sch_wk2`,`cilist`.`emp_enterprise`.`pln_wk2` AS `pln_wk2`,`cilist`.`emp_enterprise`.`id_e` AS `id_e`,`cilist`.`emp_ceridian`.`eenum` AS `cer_eenum`,`cilist`.`emp_ceridian`.`position` AS `cer_position`,`cilist`.`emp_ceridian`.`dept` AS `cer_dept`,`cilist`.`emp_ceridian`.`name` AS `cer_name`,`cilist`.`emp_ceridian`.`shift` AS `cer_sh` from ((`cilist`.`emp_enterprise` left join `cilist`.`emp_ceridian` on((`cilist`.`emp_ceridian`.`eenum` = `cilist`.`emp_enterprise`.`clock`))) left join `cilist`.`leader` on((`cilist`.`emp_enterprise`.`clock` = `cilist`.`leader`.`clocknum`))) order by `cilist`.`leader`.`fullcommonname`,`cilist`.`emp_enterprise`.`name`;
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-10-11[Oct-Tue]09-11AM
+
+/*!50001 
+VIEW `vw_enterprise_all` AS select `cilist`.`leader`.`fullcommonname` AS `fullcommonname`,`cilist`.`leader`.`clocknum` AS `clocknum`,
+`cilist`.`leader`.`ci_leader` AS `ci_leader`,`cilist`.`leader`.`comment` AS `comment`,`cilist`.`leader`.`updatedtime` AS `ld_updated`,
+`cilist`.`emp_enterprise`.`clock` AS `clock`,`cilist`.`emp_enterprise`.`name` AS `name`,`cilist`.`emp_enterprise`.`dept` AS `dept`,
+`cilist`.`emp_enterprise`.`company` AS `company`,`cilist`.`emp_enterprise`.`group` AS `group`,`cilist`.`emp_enterprise`.`status` AS `status`,
+`cilist`.`emp_enterprise`.`sch_wk1` AS `sch_wk1`,`cilist`.`emp_enterprise`.`pln_wk1` AS `pln_wk1`,`cilist`.`emp_enterprise`.`sch_wk2` AS `sch_wk2`,
+`cilist`.`emp_enterprise`.`pln_wk2` AS `pln_wk2`,`cilist`.`emp_enterprise`.`id_e` AS `id_e`,`cilist`.`emp_ceridian`.`eenum` AS `cer_eenum`,
+`cilist`.`emp_ceridian`.`position` AS `cer_position`,`cilist`.`emp_ceridian`.`dept` AS `cer_dept`,`cilist`.`emp_ceridian`.`name` AS `cer_name`,
+`cilist`.`emp_ceridian`.`shift` AS `cer_sh` from ((`cilist`.`emp_enterprise` left join `cilist`.`emp_ceridian` on((`cilist`.`emp_ceridian`.`eenum` = `cilist`.`emp_enterprise`.`clock`))) 
+left join `cilist`.`leader` on((`cilist`.`emp_enterprise`.`clock` = `cilist`.`leader`.`clocknum`))) order by `cilist`.`leader`.`fullcommonname`,`cilist`.`emp_enterprise`.`name` */;
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-10-11[Oct-Tue]10-46AM
+
+other..
+
+https://www.pythian.com/blog/change-views-definer-without-alter-view-how-to-fix-thousands-of-views-2/
+
+
+
+http://stackoverflow.com/questions/9446783/remove-definer-clause-from-mysql-dumps
+
+use sed to remove definer..
+
+or
+
+Since mysql version 5.7.8 you can use the --skip-definer option with mysqlpump, e.g.:
+
+
+http://blog.novoj.net/2014/05/16/recreate-mysql-views-without-definer-one-liner-solution-linux/
+
+noworks..
+
+mysql -uciuser -p$mysql_ciuser_pass -A --skip-column-names -e "SELECT CONCAT ( 'SHOW CREATE VIEW', TABLE_SCHEMA, '.', table_name, ';') FROM information_schema.tables engine WHERE IS NULL and TABLE_SCHEMA like ' cilist ' '    |    mysql -uciuser -p$mysql_ciuser_pass -A --skip-column-names | -rn sed 's /.*? VIEW ([^ \ s] +?) (AS. *?) \ s ([^ \ s] +?) \ s ([^ \ s] +?) / DROP VIEW \ 1; \ nCREATE VIEW \ 1 \ 2; / p '   |   mysql -uciuser -p$mysql_ciuser_pass -A --skip-column-names
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,51 @@
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-02-04[Feb-Thu]06-46AM
+
+try this
+
+
+fabric deployment...
+https://realpython.com/blog/python/kickstarting-flask-on-ubuntu-setup-and-deployment/
+https://github.com/realpython/flask-deploy
+
+
+result. not working.
+do it manually. not with fabric
+
+
+
+ref.
+http://alexandersimoes.com/hints/2015/10/28/deploying-flask-with-nginx-gunicorn-supervisor-virtualenv-on-ubuntu.html
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-02-06[Feb-Sat]14-09PM
+
+cd
+mkdir -p ~/www/
+cd ~/www/
+
+git clone https://github.com/realpython/flask-deploy.git 
+sudo apt-get -y install fabric
+
+edit username host and paassword
+
+
+adduser deploy
+adduser deploy sudo
+
+fab create
+fab deploy
+
+
+result:
+
+not working.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function Purpose() {
+# begin block comment =============================
+: <<'END'
+
+#  Purpose:  tar the /var/www/html folder and give the archive a useful name..
+
+chmod +x ~/bin/tarc4
+
+END
+# end block comment ===============================
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#cd ; 
+date ; set +vx  ; set -vx ; # echo off, then echo on
+#
+
+
+mkdir -p /home/albe/backup/htdocs
+
+# works..  
+dts=$(date +"__%Y.%m.%d_%H.%M.%S")
+dateh1=$(date +"__%Y.%m.%d_%H.%M.%S")
+
+tar -cz --wildcards \
+  --exclude={$base/tmp,$base/vendor/assets/javascripts,$base/shared,$base/deployed,$base/nbproject,$base/log} \
+    --exclude={$base/tar,templates_c/*} \
+    --exclude=public/assets/* \
+    --exclude=shared/sockets/* \
+    --exclude=tmp/* \
+    --exclude=x/*  \
+    --exclude=log/* \
+    --exclude=.hoodie/client.js \
+    --exclude=bower_components/* \
+    --exclude=node_modules/* \
+    --exclude=egrav22/backups/* \
+    --exclude=datasys/* \
+    --exclude=sysdata/* \
+    --exclude=data-moved-from-data/* \
+    --exclude=*.tgz \
+    -f  "/home/albe/backup/htdocs/htdocs$dateh1.$HOSTNAME.tgz"  /var/www/html /srv/web /etc/apache2 /etc/nginx /srv/dkr
+
+cp "/home/albe/backup/htdocs/htdocs$dateh1.$HOSTNAME.tgz" "/home/albe/backup/htdocs/htdocs$HOSTNAME.latest.tgz"
+
+
+
+    # --exclude=*.tgz \
+    # --exclude=data/* \
+    # --exclude=dist/* \
+    # --exclude=dist/assets/* \
+    # --exclude=$base/public/assets \
+
+#
+
+
+#
+date
+#
+set +vx
+

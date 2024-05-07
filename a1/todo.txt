@@ -1,0 +1,2 @@
+
+set utf8 general ci default in mysql.

@@ -1,0 +1,106 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-01-23[Jan-Sat]22-27PM
+
+best practice for security?
+
+https://github.com/sasaporta/flask-security-admin-example
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-01-21[Jan-Thu]20-06PM
+
+flask admin example sqlalchemy model reflecting
+
+sqlalchemy model from existing database mysql table
+
+http://docs.sqlalchemy.org/en/latest/core/reflection.html
+
+http://stackoverflow.com/questions/17652937/how-to-build-a-flask-application-around-an-already-existing-database
+
+https://github.com/dahlia/awesome-sqlalchemy
+
+http://stackoverflow.com/questions/33248702/flask-sqlalchemy-example-around-existing-database
+
+
+sudo pip install sqlacodegen
+sqlacodegen sqlite:///database.db
+# 4 //// for absulute path...
+cd /var/www/html/python/cif207/
+sqlacodegen sqlite:////var/www/html/python/cif207/sample_db.sqlite > modelsgen.txt
+
+result.
+not exactly what is in the flask admin examples.
+
+
+sqlacodegen mysql://root:x@localhost/cilist > models-sqlacodegen.txt
+
+
+=
+
+generate flask admin model from already existing database
+
+http://www.paulsprogrammingnotes.com/2014/01/generate-class-from-existing-table-sql.html
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-01-18[Jan-Mon]15-03PM
+
+run dev server on publicly visible ip
+
+    # Start app
+    app.run(host='0.0.0.0', debug=True)
+
+this is v206bflask1
+access it at: 
+http://10.4.11.19:5000/admin
+from my pc.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-01-18[Jan-Mon]15-43PM
+
+apache subdomain redirect to port
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+            rest api
+
+-----------------------2016-01-21[Jan-Thu]20-19PM
+
+Here’s what’s required to create a RESTful API service from an existing database using sandman
+
+$ sandmanctl sqlite:////tmp/my_database.db
+
+rest api
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2016-01-21[Jan-Thu]21-14PM
+
+ggl: flask apps github
+
+https://github.com/mitsuhiko/flask/wiki/Large-app-how-to
+
+
+http://stackoverflow.com/questions/17652937/how-to-build-a-flask-application-around-an-already-existing-database
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,5 @@
+# tar crib folder.
+
+cd ~/crib
+tar -czvf tf1674_recent_$(date +"%Y-%m-%d-%H.%M.%S_%Z").tgz  $(  find  . -newermt 2022-10-15 -type f |  grep -v '.git/' | grep -v tmp/ |grep -v x/ |grep -v '.pyc' |grep -v '.tgz' |grep -v '.zip' |grep -v 'training/' |grep -v 'training_g2/'  |grep -v 'fancontrol-gui/'  )  
+

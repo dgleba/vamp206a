@@ -1,0 +1,27 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+initial
+
+--
+
+
+ssh setup with passwords
+
+hostname
+
+timezone
+
+history with timestamp written immediately
+
+apt update
+
+apt install mc timeshift ncdu
+
+
+
+
+_____________
+

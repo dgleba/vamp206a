@@ -1,0 +1,126 @@
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  setfacl
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2022-10-07[Oct-Fri]22-30PM 
+
+=================================================
+
+
+
+
+
+# ------------
+
+
+dd=/mnt/dsk2
+gg=www-data
+sudo mkdir -p $dd
+#
+# set current-files and default acl on folder $dd   d: = default for new items. g: $gg = linux group..
+    sudo setfacl -Rm d:g:$gg:rwx,g:$gg:rwx $dd
+# show
+    cd $dd ; getfacl $dd ; 
+
+
+# ------------
+
+
+------------
+
+other history.
+
+dd=/ap
+dd=/ap/dkr/noco627b_yard/sysdata/inout
+gg=calvinkwan
+
+
+dd=~/crib
+ug=docker
+
+dd=/home/dg
+gg=albe
+
+
+=================================================
+
+
+https://www.2daygeek.com/how-to-configure-access-control-lists-acls-setfacl-getfacl-linux/
+
+
+done on pmadata01 2022-10-07:
+
+#set default acl on folder /ap   d: = default ..
+  sudo setfacl -m d:g:www-data:rwx /ap/
+#set for current folders..  
+  sudo setfacl -Rm g:www-data:rwx /ap/
+
+
+eg:
+Configuring Default ACLs
+Default ACL can only be configured for a directory. To set a default ACL, add 'd:' before the rule and specify a directory instead of a file name.
+# setfacl -m d:o:rwx /etc/apache2/sites-available/
+
+_____________
+
+
+eg:
+setfacl -Rm u:magi:rwx /etc/apache2/sites-available/
+
+=================================================
+
+
+
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#@  
+#@  junk..
+#@  
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   2023-04-23[Apr-Sun]17-41PM 
+
+
+
+
+------------
+
+
+  
+cd ~/crib
+    
+#set default acl on folder /ap   d: = default  g:docker = docker group..
+  sudo setfacl -Rm d:g:docker:rwx .
+#set for current folders..  
+  sudo setfacl -Rm g:docker:rwx .
+# show
+   getfacl .
+
+
+------------
+
+
+
+#set default acl on folder /ap   d: = default  g:docker = docker group..
+  fld=~/crib
+  sudo setfacl -Rm d:g:docker:rwx $fld
+#set for current folders..  
+  sudo setfacl -Rm g:docker:rwx $fld
+# show
+   getfacl $fld
+
+
+------------
+
+
+
+dd=/var/tmp
+ug=albe
+  
+#set default acl on folder /ap   d: = default  g:docker = docker group..
+  sudo setfacl -Rm d:g:$uu:rwx $dd
+#set for current folders..  
+  sudo setfacl -Rm g:$uu:rwx $dd
+# show
+   getfacl $dd
+
+
+

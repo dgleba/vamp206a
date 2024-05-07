@@ -1,0 +1,234 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-02-07[Feb-Wed]10-57AM
+
+
+hostname:
+no.. sudo shc/67hostn.sh
+sudo shc/a1/68hostp.sh
+
+
+win:
+    mkdir c:\var\share203
+    
+sudo shc/47guestad.sh
+
+Static ip:
+
+sudo nano /etc/network/interfaces
+
+
+dclark = 10.4.15.105    
+    sudo shc/100/102staticip.sh    
+   
+   
+   
+   
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+
+Note:
+
+If using a premade vamp206 server ova file...
+
+You must change:
+
+ipaddress ( if it's not dhcp )
+hostname
+mac address
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Install 
+virtualbox win 5.0.22 win x64
+
+pre-setup for dclark only..
+import to virtualbox  \\pmds-3hzgd42\video-udrive\web\vamp206b_621-dclark.ova
+
+
+or
+all of the following...
+
+  U:\vbox\vamp206b_160120b_24start-hostunaltered-vamp206b.ova
+import appliance
+    on import...
+    -reinitialize mac address
+
+     
+in virtualbox screen..    
+    -network: change it to bridged  - Intel pro/1000 mt server
+
+start the vm
+    -if it says network card is in error
+    -stop vm and fix network card in virtualbox screens
+    
+
+win:
+    mkdir c:\var\share203
+    
+shc/11get.sh
+
+user: albe passw: a
+
+hostname:
+sudo shc/67hostn.sh
+
+
+win:
+    mkdir c:\var\share203
+    
+sudo shc/47guestad.sh
+
+Static ip:
+
+dclark = 10.4.15.105    
+    sudo shc/100/102staticip.sh    
+    
+
+sudo shc/100/321lxdeborderresize.sh
+
+
+
+open terminal in /var/www/html/trackberry
+    git pull
+    
+
+
+in: windows explorer:
+        \\10.4.15.105\
+        albe a
+        
+hook up any windows git client gui like sourcetree or smartgit to         
+    \\10.4.15.105\html\django\trakberry
+    
+ 
+in the vm:
+    sudo service apache2 restart 
+    
+get new data:
+        update this file with a new one yourself manually:  C:\var\share203\htdocs.PMDS-DATA.latest.7z
+in vm:
+            sudo shc/99newdata.sh
+
+visit in broswer:            
+http:localhost/test             
+http:localhost/menu             
+http://localhost:8986/trakberry/display/
+
+basic auth:
+A username and password are being requested by http://localhost. The site says: "  =====   Authbasic Whole Site2   ===== "
+
+user: albe   passw: powder
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+old log ...
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+
+for dave clark
+
+-----------------------2016-06-23[Jun-Thu]08-04AM
+
+Add these instructions…
+
+
+visit in broswer:            
+http:localhost/test             
+http:localhost/menu             
+http://localhost:8986/trakberry/display/
+
+basic auth:
+A username and password are being requested by http://localhost. The site says: "  =====   Authbasic Whole Site2   ===== "
+
+user: albe   passw: powder
+
+
+
+From: Dave Gleba 
+Sent: Tuesday, June 21, 2016 1:33 PM
+To: Dave Clark
+Subject: virtual machine for DClark - vamp206b
+
+Install 
+virtualbox win 5.0.22 win x64
+
+import to virtualbox  \\pmds-3hzgd42\video-udrive\web\vamp206b_621-dclark.ova
+import appliance
+    on import...
+    -reinitialize mac address
+
+in virtualbox screens..    
+    -network: change it to bridged  - Intel pro/1000 mt server
+
+start the vm
+    -if it says network card is in error
+    -stop vm and fix network card in virtualbox screen
+    
+user: albe passw: a
+
+win:
+    mkdir c:\var\share203
+    
+
+dclark = 10.4.15.105    
+    sudo shc/100/102staticip.sh    
+    
+
+windows explorer
+        \\10.4.15.105\
+        albe a
+        
+hook up any windows git client gui like sourcetree or smartgit to         
+    \\10.4.15.105\html\django\trakberry
+    
+ 
+in the vm:
+    sudo service apache2 restart 
+    
+get new data:
+        update this file with a new one yourself manually:  C:\var\share203\htdocs.PMDS-DATA.latest.7z
+in vm:
+            sudo shc/99newdata.sh
+
+
+            
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            

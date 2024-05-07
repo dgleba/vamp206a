@@ -1,0 +1,51 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+albe@pmdsdata6:~$ history |grep mon
+  893  echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+  894  sudo apt-get install -y mongodb-org
+  896  file1="/etc/systemd/system/mongodb.service"
+  901  sudo tee /etc/systemd/system/mongodb.service <<HEREDOC
+  906  User=mongodb
+  907  ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
+  911  cat /etc/systemd/system/mongodb.service
+  912  sudo systemctl start mongodb
+  913  sudo systemctl status mongodb
+  915  sudo systemctl enable mongodb
+  922  sudo systemctl stop mongodb
+  925  echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+  927  sudo apt-get -y install  mongodb-org
+  930  sudo apt-get -y install  mongodb-org
+  936  sudo ufw statussudo systemctl start mongodb
+  940  mongo
+  941  sudo nano /etc/mongod.conf
+  942  sudo systemctl restart mongod
+  953  sudo nano /etc/mongod.conf
+  959  mongo -u Admins -p --authenticationDatabase admin
+ 1559  ps -ef |grep mong
+ 1572  history |grep mon
+albe@pmdsdata6:~$
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-09-04[Sep-Tue]12-23PM
+
+sudo systemctl disable mongodb
+
+
+ps -ef |grep mongo
+sudo systemctl stop mongodb
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+ps -ef |grep celery
+ps -ef |grep corn
+
+ps -ef |grep redash
+history |grep dash

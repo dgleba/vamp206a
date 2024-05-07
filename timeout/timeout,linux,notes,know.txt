@@ -1,0 +1,30 @@
+
+
+ggl.
+linux script equivalent of timeout for windows wait x seconds or press a key display remaining time
+
+http://unix.stackexchange.com/questions/231313/batch-timeout-alternative
+
+_____________
+
+
+
+linux call another  bash script in path and return
+
+http://stackoverflow.com/questions/8352851/how-to-call-shell-script-from-another-shell-script
+
+_____________
+
+
+
+
+
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+

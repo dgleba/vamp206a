@@ -1,0 +1,156 @@
+
+
+
+grep -rin --color=always  rail2 .  |    grep -vi -e deploy -e tmp -e .git -e log -e /offline -e readme -e docs -e mtime -e offlin
+
+  
+ 
+grep -ir --include="*.rb" path
+
+# find crea*.rb containing v and w 
+  find .  -iname *crea*\.rb | grep v |grep w
+ 
+find -iname "*\.rb" | grep -i  create
+
+ find .  -iname *\.sh | grep deploy 
+
+grep -ri 6L_output /var/www/html/django/trakberry 
+
+ grep -ri collection .|grep html |grep -v sql |grep 1ror |grep -v workspace
+ grep -ri collection .|grep html  |grep 1ror 
+ grep -ri collection . |grep 1ror |grep -v sql
+
+ grep -ri select .|grep html |grep -v sql |grep 1ror |grep -v workspace
+ 
+
+ grep -ri commit .|grep sh|grep git|grep -v sql|grep 27
+
+ _____________
+ 
+ 
+grep '@example'  -ria  --exclude-dir={tmp,bin,shared,log,nbproject,.git} --exclude={*.sublime-workspace,*.geany,error_log,*.sqlit*}
+
+  >~/0/gout.txt
+
+grep 'devise'  -ria  --exclude-dir={tmp,bin,shared,log,nbproject,.git} --exclude={*.sublime-workspace,*.geany,error_log}
+
+grep 'pundit'  -ria  --exclude-dir={tmp,bin,shared,log,nbproject} --exclude={*.sublime-workspace,*.geany,error_log}
+
+grep 'tempera'  -ria  --exclude-dir={tmp,bin,shared,log,nbproject} --exclude={*.sublime-workspace,*.geany,error_log}
+
+
+grep 'ude pun'  -ria  --exclude-dir=tmp
+
+grep nt.sqlite3 -ria
+
+
+
+grep git -B1 -C1 -r -i -a . | grep pip
+
+grep git -B1 -C1 -r -i -a . | grep pip
+
+grep cif207 -B1 -C1 -r -i -a /etc/apache2
+
+grep 8985 -B1 -C1 -r -i -a shc/
+
+
+grep "8985" -B1 -C1 -r -i -a shc/
+
+
+=
+sudo find .  -name *.rb | grep _path
+
+
+sudo find /  -name *ci* | grep list | grep xls
+
+sudo find .  -name *themerc* 
+
+
+=
+=
+list lines that end in a  az-09 charater
+cat /home/dg/tmp/ij,2009-01-26-1233001792 |grep '[a-zA-Z0-9]'$
+
+= 
+
+
+>.find
+
+
+ sudo find / -mount -name *phpMyAdmin*
+
+find /mnt/GLEBAD7/c/d  -name *who*.xls
+doesn't work on mail.com: gotmail -u glebadavid@iname.com -p ashley -d mail.com -f gleba@sympatico.ca
+
+find /etc -name *version*  ; what distribution of linux am I running?
+head /etc/*version*  ; what distribution/version of linux am I running?
+and/or
+head /etc/*release*  ; what distribution/version of linux am I running?
+find /etc -name *version*  ;  head /etc/*version*  ; head /etc/*release*  ;
+another: cat /proc/version
+
+find / -type f -iname '????\.??' | xargs grep -i 'word' /dev/null ,  will do a case insensitive file match for all files with 4 chars followed by a literal '.' followed by 2 chars then do a case insensitive search for 'word' on those files. Adding /dev/null below so that grep outputs the filename(s) it found the pattern match in.  Without it, grep will only print out the line containing the match.
+
+find / -mount -name konqueror
+find /mydata/mnt/GLEBAD7/c/d  -name *who*.xls
+
+
+
+find /amn/redet/c/d/1/  -iname *nuvex*
+find /mnt/hdb2/b2/bkjr -iname *.dat*
+find /mnt/GLEBAD8/m/3/  -iname *cardia*
+find //home/dg  -iname *stat*
+find //adat  -iname *stat*
+find /mnt/hdb2/b2/util-cd-copy/  -iname *super*
+find /mnt/hdb2/b2/v*  -iname *medi*
+
+find /amn/reddq/c/d/  -iname *dnote*  |grep we
+find /amn/glebad7/c/  -iname *pcw*
+find /amn/glebad7/c/d/  -iname *grub* |grep cd
+find /amn/glebad7/c/d/  -iname *dnote* 
+find /mnt/hda8/a -iname *oc12a*
+find /amn/glebad8/q/bitt -iname *hill*
+find /amn/glebad8/m/3/util-cd/ -iname *ima*
+find ./ -iname *nimbl*
+find /mnt/hda8/a/copyof/amn/glebad7/c/d/ -iname *7004*
+find /mnt/hdb2/b2/bkd9/xpd2h/amn/redd9/h/ -iname *softwar*
+find /mnt/hdb2/v/ -iname *supe*
+find /mnt/hdb2/v/v6-dm-rare -iname *super*
+
+
+>.grep
+
+grep "nuvexp" -B1 -C1 -r -i -a /amn/redet/c/d/1/linuxcommand/1
+grep "du" -B3 -C3 -r -i -a /amn/redet/c/d/1/linuxcommand/1
+
+grep "ftp" -B3 -C3 -r -i -a /amn/redet/c/d/1/linuxcommand/1
+
+grep "klik" -B0 -C0 -r -i -a /amn/glebad7/c/d/1/0favorites
+grep "rani" -B0 -C0 -r -i -a /amn/glebad8/m/3/a*.txt
+grep "pcoc" -B3 -C3 -r -i -a /amn/glebad7/c/d/d |grep -B4 -C4 -i xp
+grep "holme" -B3 -C3 -r -i -a /amn/glebad7/c/d/d/ |grep -B4 -C4 -i s
+grep "turner" -B3 -C3 -r -i -a /amn/glebad7/c/n/sp3/on-sp/cdg/spt |grep -B4 -C4 -i no
+grep "david1212" -B1 -C4 -r -i /amn/glebad7/c/n/ppe/pwd/*
+grep '602' -B1 -C1 -r -i  /amn/glebad8/m/3/util-cd-mastr/CD-DIRS |grep -B4 -C4 -i sof
+grep "dyndns" -B1 -C4 -r -i /mydata/mn/GLEBAD7/c/d/0windtop |grep -B4 -C4 don
+grep "abit" -B3 -C3 -r -i -a /mydata/mn/GLEBAD7/c/d/02 > /home/dg/tmpf1.txt
+grep -B3 -C3 -r 'depend' /opt/kde/share/doc/HTML/en/kpackage
+grep -a = binary files are like text.
+grep "nmbd" -B0 -C0 -r -i /etc
+grep "winr" -B1 -C4  -i /amn/glebad8/m/3
+grep "klik" -B1 -C4 -r -i  /amn/glebad7/c/d/0windtop/fav-history
+grep "ERT INTO \`record\`" -B0 -C0 -r -i -a /amn/redd0/top/home/mythtv/mythtv_backup.sql
+grep "tvtorrent" -B0 -C0 -r -i  /amn/glebad7/c/d/05b/backup
+grep "cpu" -B1 -C4 -r -i /amn/glebad7/c/d/1/0favorites/internet-who-d7/
+grep "mbna" -B1 -C4 -r -i /amn/glebad7/c/n/ppe/pwd/*
+grep "haupp" -B3 -C3 -r -i -a /amn/glebad7/c/d/d |grep -B4 -C4 -i xp
+grep "bender" -B3 -C3 -r -i -a /amn/glebad7/c/d/d/ |grep -B4 -C4 -i s
+grep "haupp" -B3 -C3 -r -i -a /amn/glebad7/c/d/
+grep "shannon" -B3 -C3 -r -i -a /mnt/hda8/a/copyof/amn/glebad7/c/d/d/handheld
+grep "waverun" -B0 -C0 -r -i -a  /mnt/hda8/a/boattest/2006-08-20-a/ 
+grep "sunset" -B1 -C1 -r -i -a  /mnt/hda8/a/boattest/2006-08-20-a/ |grep -i rxt
+
+
+
+
+=

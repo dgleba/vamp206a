@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function Purpose() {
+# begin block comment =============================
+: <<'END'
+
+#  Purpose:  tar dkr folder with node-modules
+
+chmod +x ~/bin/tarc4
+
+END
+# end block comment ===============================
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#cd ; 
+date ; set +vx  ; set -vx ; # echo off, then echo on
+#
+ 
+ 
+ 
+ 
+ 
+ 
+mkdir ~/backup7z
+
+# works..  
+dts=$(date +"__%Y.%m.%d_%H.%M.%S")
+tar -cz --wildcards \
+    --exclude=tmp/* \
+    --exclude=x/*  \
+    --exclude=log/* \
+    --exclude=.hoodie/client.js \
+    --exclude=bower_components/* \
+    --exclude=egrav22/backups/* \
+    --exclude=*.tgz \
+    --exclude=public/assets/* \
+    --exclude=datasys/* \
+    --exclude=sysdata/* \
+    --exclude=data/* \
+    -f ~/backup7z/srv-dkr-$HOSTNAME$dts.tgz /srv/dkr;
+    # cd $base
+  # Careful, this excludes any data folder..
+cp ~/backup7z/srv-dkr-$HOSTNAME$dts.tgz ~/backup7z/srv-dkr-$HOSTNAME-latest.tgz  
+
+
+    # --exclude=node_modules/* \
+    # --exclude={$base/shared,$base/deployed,$base/nbproject,$base/log} \
+    # --exclude={$base/tar,templates_c/*} \
+
+
+
+#
+date
+#
+set +vx
+

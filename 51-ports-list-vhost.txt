@@ -1,0 +1,429 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+see   hosts-8,hosts.8,portstrials.computer,port numbers.gsht    ggl drive sheet 2019-10-28
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Internal / local Network ports:
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+older..
+
+ports are defined in these files 
+
+see... 
+
+51dg.sh      :8985..
+
+52vhost      :916
+
+52vhost3     :917 920  cif207
+
+
+
+52-v         folder  separate file for each port
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ 921 flask213f
+ 922 pdb218 flask  
+ 923 cif207b
+
+ 951=nginx
+
+ 951    214nginx.sh  :951
+ 952    flask217b.sh
+ 953    was, flask217c.sh
+
+ 954     flask-deploy222.txt was gnunicorn-flask.txt
+
+1212     flask217c.sh
+1213     "               for gnuicorn
+
+1214     apps\flask213\flask213fngx.sh
+1215     "               for gnuicorn
+
+1216    dj224testg 
+1219    dj224b  django testingground
+1220    dj224c 
+1221    rails drails237a passenger deploy, works but slow.
+
+1222    rails drail240a
+1223
+1224
+1225    drail241a on vm
+1226    drail210d manuel puma deployed ok
+1227    tbd...  drail242b dg-manuel-pundit
+1228    drail237a
+1229    drail246b
+1230    drail256a /srv/web
+1231    humidex248              ***
+1232    rail260 rental records sigpad feature prototype
+1233    shiftcsd1p272  2016-08-25     ***
+1234    incident295             ***
+1235    api
+1236    rail263
+1237    rail263 tbd
+1238
+..
+1243    humidex api
+..
+1255    shiftcsd1p272 api   
+..
+1282    carlson training records app   ***
+1283    carlson api
+..
+1292
+1293    lpa346    ***
+..
+1299
+1301    railci350
+..
+1309
+1311    brail351d - deployed bashrail.
+1314    
+
+..
+1319
+1321    oops unused
+..
+1329
+1331    brail347a17
+1332    brail347a22
+..
+1339
+
+1341    hrapp361      ***
+..
+1345
+
+1346    prod364 api for inspection cell bypass Chris Strutton 2018-02-09
+..
+1349
+
+1350
+1351    prod367 - 2018-03-03 produciton managment app
+..
+1352
+
+
+2012    metabase  --   export MB_JETTY_PORT=2012 ; java -jar metabase.jar
+
+2022     
+
+_____________
+
+note.  see 6000 series ports .. redash (pmdsdata7 test 10.4.1.228 2018-06-06)
+
+
+
+_____________
+
+
+lxc lxd ports  3511-4999
+ 
+
+pmdsdata7 - ignition OPC UA server with mariadb columnstore, ubuntu 16.04,  10.4.1.228
+container lxd lx21   
+3501 ssh 22
+3502 nginx 
+3503 html 80
+.
+3511
+3512 
+
+
+redek ubu335c3 vamp206a
+container lxd lx21   
+3501 ssh 22
+8980 nginx 80
+
+
+dgleba pc vbox ubu335c5b vamp206a, ubuntu 16.04, 
+container lxd lx21   
+3501 ssh 22
+3502 nginx  80 - 2018-06-18_Mon_15.10-PM installed redash with provisioning script. works.
+.
+3511
+
+
+3521 pdata7 redash test
+
+
+generic vbox with lxc pmdstrn
+3541 ssh 22 vm
+3542 nginx 80 vm
+3543 html 81?? vm 
+.
+3551 ssh 22 lx21
+3552 html 80 lx21
+.
+3560
+
+
+
+.
+4999
+lxc lxd ports  3511-4999
+ 
+
+
+_____________
+
+
+ 
+ 
+6000  to 6999 - docker series - csd
+
+6010	redash docker pmdsdata6 tbd  
+6012 	redash postgres
+
+
+6021 	apache dkr378php 2018-06-26 pdata4
+.
+6024	apache dkr378php
+.
+6030
+
+6031-6040	docker rails dkr380
+6031 		web page prod
+6032    dev
+6035    puma dev
+
+6041-6050	docker django
+6041 		web page nginx
+6042 		gnuicorn
+
+
+6051-6060  dkr386metabase - not using this see 6151. [2018-09-28 had no response using 6052].
+
+6061-6070  trakberrydkr
+6061        trakberrydkr web page.
+
+6071- unused
+
+6081- unused
+
+6091-6099  dkr389sys 
+6091        mysql backend  
+6092      php
+6093      django dev
+6094      adminer
+
+6101-6109 dkr391sys [minimal mysql backend with external network 2018-09-14]
+
+6111-6119 392dkr sys        ***a
+
+6131-6139 rails dkrs
+
+6141-6149 dkr388django dkr
+
+6151-6159 386metabase,  v30 2018-09-28 pmdsdata8. not 396dkrmetabase30 dkr   ***a
+6152      test dkr /srv/dkr/metabase6152 v32.8 2019-06-06 pmdsdata8
+
+
+
+6161-6169 superset 394superset
+6171-6199 save
+
+
+6200-6209 opennote dg.jgleba.com     ***
+    see 6200 for dg.jg opennot
+
+    
+6211-6299 listo429c  - 2018-12-03    ***
+
+
+6301 phpfpm422 see dkrcol422
+
+
+6312-39 ngnx proxy revprox453  
+
+6341   owncloud red451e
+
+6351 redash pmdsdata8 2019-06-09 
+
+6361 prod469 production rails docker rpt-elist report email subscription list 2019-06-18
+6362 dev
+6363
+
+
+
+6401-6500 data collection series
+
+6402 scadaenergy390d nginx
+6403 scadaenergy390d web
+6404 scadaenergy390d db
+.
+6409 scadaenergy390d tbd
+
+6412 scadaenergy390e nginx
+6413 scadaenergy390e web
+6414 scadaenergy390e db
+.
+6429 scadaenergy390j tbd
+
+
+===================================================
+
+
+REUSABLE  -  Reusable Series dg
+
+
+7000-7199 series dg home docker, and ?
+
+7200-7700 dg  reusable standard ports
+
+7201-   mysql
+7211-   mongodb
+7221-   couchdb
+7231-   sqlpad
+7241-   postgres
+7242-   
+7243-   
+
+  
+7301-   apache
+7341-   php
+7351-   ruby
+7361-   django
+
+7401-   nginx
+7412-   nginx rev proxy for non-tls
+7451-   
+
+7501-   egrav22 80
+7502-   egrav22 443
+
+STANDARD PORTS by originators.
+
+
+3100 sqlpad
+3306 mysql
+5432 postgres
+27017 mongodb
+
+
+===================================================
+
+JUNK - junk ports for testing.
+
+.
+
+8300-8699  JUNK - junk ports for testing.
+
+
+
+old junk examples..
+
+
+6701  mongo   https://hackernoon.com/build-a-crud-api-with-mongodb-express-and-docker-70510c6f706b
+6702  mongo admin
+6703  backend
+6704  
+
+6971-6979   sftp://pmdsdata4/srv/dkr/dockerizing-django/docker-compose.yml from https://github.com/realpython/dockerizing-django
+
+6981-6989   albe@pmdsdata4:/srv/dkr/juanjflask$    https://github.com/juanjbrown/flask-nginx-gunicorn-docker-sample.git 
+
+6991-6999  albe@pmdsdata4:/srv/dkr/dkr-wsv-ch3-app$
+
+
+
+END >>> end 6000  to 6999 - docker series
+
+
+_____________
+
+
+
+
+
+
+
+
+
+_____________
+
+
+
+http://pmdsdata.stackpole.ca:8985
+http://pmdsdata.stackpole.ca:8986
+http://pmdsdata.stackpole.ca:8986/trakberry/display/
+http://pmdsdata.stackpole.ca:8987
+
+
+_____________
+
+
+
+dev mode...
+
+
+3014    rail263
+3015    incident295a
+3016    carlsona
+3017    brail351d
+3018
+3019    brail347a22
+3021    trakberrydkr native [outside docker] testing 2018-09-07
+3099    superset test
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

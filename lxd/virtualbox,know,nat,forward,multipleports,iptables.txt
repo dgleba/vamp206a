@@ -1,0 +1,108 @@
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Title:  .
+-----------------------2018-07-14[Jul-Sat]22-22PM
+
+Vbox.
+	shutdown the vm
+	run in bash prompt in Windows - in cygwin or equiv
+
+
+export vm1=ubu381_1
+export vm1=ubu398
+export vbm="/cygdrive/c/p2/Oracle/VirtualBox/VBoxManage.exe"
+export vbm="/c/Program Files/Oracle/VirtualBox/VBoxManage.exe"
+
+for i in {8000..8100}; do
+  "${vbm}" modifyvm "${vm1}" --natpf1 "tcp-port$i,tcp,,$i,,$i";
+  # VBoxManage modifyvm "${vm1}" --natpf1 "udp-port$i,udp,,$i,,$i";
+done
+
+for i in {6100..6200}; do
+  "${vbm}" modifyvm "${vm1}" --natpf1 "tcp-port$i,tcp,,$i,,$i";
+  # VBoxManage modifyvm "${vm1}" --natpf1 "udp-port$i,udp,,$i,,$i";
+done
+
+
+
+
+OLD   old..
+
+
+for i in {22..22}; do
+  $vbm modifyvm ${vm1} --natpf1 "tcp-port$i,tcp,,$i,,$i";
+  # VBoxManage modifyvm ${vm1} --natpf1 "udp-port$i,udp,,$i,,$i";
+done
+
+for i in {3000..3100}; do
+  $vbm modifyvm ${vm1} --natpf1 "tcp-port$i,tcp,,$i,,$i";
+  # VBoxManage modifyvm ${vm1} --natpf1 "udp-port$i,udp,,$i,,$i";
+done
+  
+for i in {6000..6100}; do
+  $vbm modifyvm ${vm1} --natpf1 "tcp-port$i,tcp,,$i,,$i";
+  # VBoxManage modifyvm ${vm1} --natpf1 "udp-port$i,udp,,$i,,$i";
+done
+
+for i in {6900..6999}; do
+  $vbm modifyvm ${vm1} --natpf1 "tcp-port$i,tcp,,$i,,$i";
+  # VBoxManage modifyvm ${vm1} --natpf1 "udp-port$i,udp,,$i,,$i";
+done
+
+
+
+
+
+
+
+# Show...
+
+"${vbm}" showvminfo $vm1 |grep NIC
+
+
+then get ip address of  machine hosting the vm. say my work pc.
+ssh hostip port 3541 or 22
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+for i in {3000..3100}; do
+  VBoxManage modifyvm ${vm1} --natpf1 "tcp-port$i,tcp,,$i,,$i";
+  #VBoxManage modifyvm ${vm1} --natpf1 "udp-port$i,udp,,$i,,$i";
+done
+
+
+for i in {5000..5100}; do
+  VBoxManage modifyvm ${vm1} --natpf1 "tcp-port$i,tcp,,$i,,$i";
+  # VBoxManage modifyvm ${vm1} --natpf1 "udp-port$i,udp,,$i,,$i";
+done
+
+
+
+
+for i in {8000..8100}; do
+  VBoxManage modifyvm ${vm1} --natpf1 "tcp-port$i,tcp,,$i,,$i";
+  #VBoxManage modifyvm ${vm1} --natpf1 "udp-port$i,udp,,$i,,$i";
+done
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+https://www.cnblogs.com/feika/p/4204216.html
+
+delete..
+
+for i in {2300..2400}; do
+  VBoxManage modifyvm "windows" --natpf1 delete "tcp-port$i"; 
+  VBoxManage modifyvm "windows" --natpf1 delete "udp-port$i"; 
+done
+
+===================================================
+
+

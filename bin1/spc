@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function Purpose() {
+# begin block comment =============================
+: <<'END'
+
+#  Purpose:  print multiline spacer in terminal to more easily visualize separation between command output.
+
+chmod +x ~/bin/spc
+
+END
+# end block comment ===============================
+}
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+#cd ; 
+# date ; set +vx  ; set -vx ; # echo off, then echo on
+#
+
+dts=$(date +"%Y-%m-%d_%H.%M.%S"); seq 1 100 | xargs -I{} date ;    
+set +vx
