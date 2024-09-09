@@ -1,9 +1,11 @@
 # Auto detect text files and perform LF normalization
-* text=auto
+# was-2024-09-09   * text=auto
 
+# ignore all lineendings..
+*  -crlf
 
 # Force the following filetypes to have unix eols, so Windows does not break them
-*.* text eol=lf
+# was-2024-09-09    *.* text eol=lf
 
 *.7z   binary
 *.7z   -text

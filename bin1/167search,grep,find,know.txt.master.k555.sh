@@ -50,7 +50,7 @@ echo $date1
 
 #find newest..
   # sort -k1 for newest date and -k3 for size.
-  find  . -mtime -49 -type f -print0 | xargs -0 stat --printf='%.16y\t%s\t%n\n'  | sort -h -k1 |  grep -v '.git/' | grep -v tmp/ |grep -v x/ |grep -v datasys/ |grep -v sysdata/ |grep -v djangosite/static | tail -n1254 
+  find  . -mtime -249 -type f -print0 | xargs -0 stat --printf='%.16y\t%s\t%n\n'  | sort -h -k1 |  grep -v '.git/' | grep -v tmp/ |grep -v x/ |grep -v datasys/ |grep -v sysdata/ |grep -v djangosite/static | tail -n1254 
   # |grep gpt
 
 
@@ -60,9 +60,9 @@ grep small short line files..
 
 grep -rLZE '.{499}' --exclude-dir={tmp,log,vendor,node_modules,data,datasys,sysdata,sprockets,cache,x,static} --exclude={*.log,*.lockzz,*lockzz*} . | xargs -r0 grep -in --color "env.produ"
 
-
-grep -rLZE '.{599}' --exclude-dir={tmp,log,vendor,node_modules} --exclude={*.lock,*lock*} . | xargs -r0 grep -in --color 'early'
+grep -rLZE '.{599}' --exclude-dir={tmp,log,vendor,node_modules} --exclude={*.lock,*lock*} . | xargs -r0 grep -in --color 'ldap_server'
  
+
 
 # ignore case 
  grep -rLZE '.{400}' --exclude-dir={tmp,log,vendor,node_modules} --exclude={*.log,*.lockz,*lockz*} . | xargs -r0 grep -in --color debug
