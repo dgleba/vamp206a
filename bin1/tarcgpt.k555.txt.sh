@@ -3,7 +3,7 @@
 # bash to find files in current folder excluding archives, /sysdata, /log, and /tmp. 
 # then tar gzip them into a file named with the current folder and the timestamp in the name.
 mkdir -p $HOME/bin
-f=$HOME/bin/tarcg
+f=/tmp/tarcg
 tee $f <<- 'HEREDOC'
 
 #!/bin/bash
@@ -41,6 +41,7 @@ find . -type f      \
     ! -path "*/djangosite/upload/*"   \
     ! -path "./test/*"   \
     ! -path "*/venv0/*"   \
+    ! -name ".env*"   \
   -print0 | \
   tar --null -czvf "$output_filename" --files-from -
 
