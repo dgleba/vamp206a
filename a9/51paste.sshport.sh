@@ -27,6 +27,7 @@ sed -i -E 's/^#?Port.*/Port 22462/' /etc/ssh/sshd_config
 
 # Show lines with port..
 grep -i "^port" /etc/ssh/sshd_config
+grep -i "^.port" /etc/ssh/sshd_config
 # Count lines with port
 grep -ic "^port" /etc/ssh/sshd_config
 
@@ -51,6 +52,7 @@ else
     # Print an error message if no uncommented Port lines are found
     echo -e "\e[31mERROR: No uncommented Port directive found in /etc/ssh/sshd_config!\e[0m"
 fi
+
 
 # sudo systemctl restart sshd
 
