@@ -32,7 +32,15 @@ date ; set +vx  ; set -vx ; # echo off, then echo on
 # }
 
 
+tee -a ~/.bash_aliases <<- 'HEREDOC'
 
+#################################################################
+#@  
+#@  from 33alias.sh
+#@  
+#################################################################   
+
+HEREDOC
 
 #alias for ls -la
 #

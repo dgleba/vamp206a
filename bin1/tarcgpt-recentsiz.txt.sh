@@ -21,7 +21,7 @@ output_filename="${HOSTNAME}${fnpath}_sizrecent_${timestamp}.tgz"
 
 # Find files in the current folder excluding archives, /sysdata, /log, and /tmp, etc.
 find . -type f   -size -290k   -mtime -120    \
-    ! -name "*.tar.gz" ! -name "*.tgz"  ! -name "*.zip" \
+    ! -name "*.tar.gz" ! -name "*.tgz"  ! -name "*.zip" ! -name "*.pyc"   \
     ! -path "*/sysdata/*" ! -path "*/log/*" ! -path "*/tmp/*" ! -path "*/zip/*"  ! -path "*/x/*"  \
     ! -path "*/djangosite/static/*"   \
     ! -path "*/datasys/*"   \
