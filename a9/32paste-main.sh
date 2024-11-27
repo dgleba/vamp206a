@@ -88,16 +88,6 @@ for a3 in "${array2[@]}" ; do
 done
 
  
- 
-##fail2ban
-
-pkgtoin=fail2ban
-command -v fail2ban-client >/dev/null 2>&1 ||
-{ echo >&2 "$pkgtoin   is not installed. Installing..";
-   sudo  apt-get -y install $pkgtoin
-}
-
-
 
 
 
@@ -192,33 +182,6 @@ sudo systemctl reload sshd
 # removed  /etc/docker/daemon.json  stanza 2023-05-12
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-#
-#
-#  fail2ban
-# 
-#
-#
-
-
-# albe@pmsdo545:/ap/tmp$ diff jail.local  jail.conf
-# ---
-# uncomment < bantime.increment = true
-# uncomment and set 100 < bantime.rndtime = 100
-
-
-sudo tee -a /etc/fail2ban/jail.local <<- 'HEREDOC'
-
-bantime.increment = true
-bantime.rndtime = 100
-HEREDOC
-
-sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-sudo service fail2ban restart
-sudo fail2ban-client status
-
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -239,6 +202,17 @@ sudo mkdir -p /acrib
 sudo chown albe:albe /acrib
 sudo chown albe:www-data /acrib
 sudo chmod 775 /acrib
+
+
+sudo adduser $userv docker
+sudo mkdir -p /ap
+sudo chown $userv:$userv /ap
+sudo chown $userv:www-data /ap
+sudo chmod 775 /ap
+sudo mkdir -p /acrib
+sudo chown $userv:$userv /acrib
+sudo chown $userv:www-data /acrib
+sudo chmod 777 /acrib
 
 
 

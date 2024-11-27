@@ -1,6 +1,47 @@
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+#
+#
+#  fail2ban
+# 
+#
+#
+
+ 
+##fail2ban
+
+pkgtoin=fail2ban
+command -v fail2ban-client >/dev/null 2>&1 ||
+{ echo >&2 "$pkgtoin   is not installed. Installing..";
+   sudo  apt-get -y install $pkgtoin
+}
+
+
+
+
+# albe@pmsdo545:/ap/tmp$ diff jail.local  jail.conf
+# ---
+# uncomment < bantime.increment = true
+# uncomment and set 100 < bantime.rndtime = 100
+
+
+sudo tee -a /etc/fail2ban/jail.local <<- 'HEREDOC'
+
+bantime.increment = true
+bantime.rndtime = 100
+HEREDOC
+
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+sudo service fail2ban restart
+sudo fail2ban-client status
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 #
 #
 #  Paste these commands..

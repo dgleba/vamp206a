@@ -50,7 +50,7 @@ echo $date1
 
 #find newest..
   # sort -k1 for newest date and -k3 for size.
-  find  . -mtime -249 -type f -print0 | xargs -0 stat --printf='%.16y\t%s\t%n\n'  | sort -h -k1 |  grep -v '.git/' | grep -v tmp/ |grep -v x/ |grep -v datasys/ |grep -v sysdata/ |grep -v djangosite/static |grep -v venv |grep -v log/ |grep -v prg/  | tail -n1254 
+  find  . -mtime -1 -type f -print0 | xargs -0 stat --printf='%.16y\t%s\t%n\n'  | sort -h -k1 |  grep -v '.git/' | grep -v tmp/ |grep -v x/ |grep -v datasys/ |grep -v sysdata/ |grep -v djangosite/static |grep -v venv |grep -v log/ |grep -v prg/  |grep -v pyc  | tail -n1254 
   # |grep gpt
 
 

@@ -2,6 +2,16 @@
 echo ~----------~----------Startingb $HOSTNAME, pwd: `pwd`, "${BASH_SOURCE[0]}" $(date +" %Y-%m-%d_%H.%M.%S")
 echo "${BASH_SOURCE[@]}"  # echo full bashsource array
 
+
+
+#################################################################
+#@  
+#@  A general purpose log folder with logrotate
+#@  
+####################################   2024-11-03[Nov-Sun]17-20PM 
+
+
+
 cd
 # source shc/21env.sh
 
