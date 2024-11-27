@@ -1,0 +1,20 @@
+
+gsettings typical
+
+# allow vnc
+gsettings set org.gnome.desktop.remote-desktop.vnc view-only false
+gsettings set org.gnome.desktop.remote-desktop.vnc auth-method 'password'
+#
+# was this..
+# gsettings reset org.gnome.Vino network-interface 
+# gsettings set org.gnome.Vino require-encryption false
+
+
+# Ui preferences
+
+gsettings set org.gnome.nautilus.list-view default-visible-columns "['name','size','date_modified_with_time','permissions','owner','group']"
+
+gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
+
+
+
