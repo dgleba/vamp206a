@@ -18,7 +18,7 @@ services:
       PYTHONUNBUFFERED: 0
       REDASH_LOG_LEVEL: "INFO"
       REDASH_REDIS_URL: "redis://redis:6379/0"
-      REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
+      REDASH_DATABASE_URL: "postgresql://x@x/postgres"
       REDASH_COOKIE_SECRET: 
       REDASH_WEB_WORKERS: 4
     restart: always
@@ -32,8 +32,8 @@ services:
       REDASH_DATABASE_URL: "postgresql://postgres@postgres/postgres"
       QUEUES: "queries,scheduled_queries,celery"
       WORKERS_COUNT: 2
-      REDASH_MAIL_SERVER: "MESG01.stackpole.ca" 
-      REDASH_MAIL_DEFAULT_SENDER: "dgleba@stackpole.com"
+      REDASH_MAIL_SERVER: "x" 
+      REDASH_MAIL_DEFAULT_SENDER: "x"
      
     restart: always
   redis:
