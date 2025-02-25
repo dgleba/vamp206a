@@ -11,11 +11,9 @@ echo "${BASH_SOURCE[@]}"  # echo full bashsource array
 ####################################   2024-11-03[Nov-Sun]17-20PM 
 
 
-
 cd
-# source shc/21env.sh
 
-# http://www.thegeekstuff.com/2010/07/logrotate-examples
+# maxage 7 means it will only compress logs after 7 days.
 
 sudo mkdir -p /ap/log
 sudo chown -R $USER:$USER /ap/log
@@ -25,12 +23,24 @@ sudo tee /etc/logrotate.d/ap_log <<EOF
 /ap/log/*.log {
     daily
     size 2K
-    rotate 60
+    rotate 30
     missingok
     notifempty
     copytruncate
+    maxage 7
+    compress
+    delaycompress
 }
 EOF
+
+
+# inspect...
+
+cat /etc/logrotate.d/ap_log
+ll /etc/logrotate.d
+
+# http://www.thegeekstuff.com/2010/07/logrotate-examples
+
 
 
 

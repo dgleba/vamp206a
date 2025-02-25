@@ -222,6 +222,34 @@ cd && bash shc/bin1/gitali.sh
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+#  A general purpose log folder with logrotate
+
+
+# maxage 7 means it will only compress logs after 7 days.
+
+sudo mkdir -p /ap/log
+sudo chown -R $USER:$USER /ap/log
+sudo chmod -R 777 /ap/log
+
+sudo tee /etc/logrotate.d/ap_log <<EOF
+/ap/log/*.log {
+    daily
+    size 2K
+    rotate 30
+    missingok
+    notifempty
+    copytruncate
+    maxage 7
+    compress
+    delaycompress
+}
+EOF
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 echo .;
 echo .;
 echo 'exit this shell now and login to get new settings.';
