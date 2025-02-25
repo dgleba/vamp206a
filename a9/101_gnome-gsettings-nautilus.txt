@@ -16,5 +16,16 @@ gsettings set org.gnome.nautilus.list-view default-visible-columns "['name','siz
 
 gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
 
+gsettings set org.gnome.desktop.screensaver lock-enabled false
 
 
+# todo
+#  don't screen lock on wake
+# in settings / privacy / screen : uncheck "lock screen on suspend"
+
+
+# add autologin user albe - Using GNOME Settings
+#Open GNOME Settings.
+#Go to Users.
+#Select the user for whom you want to enable autologin.
+#Toggle Automatic Login to On.
