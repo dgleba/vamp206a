@@ -14,37 +14,40 @@ if [ $# -eq 0 ]; then
 fi
 
 read -ep "Please enter the new users password: " pwnu1
-nuser="$1"
+userv="$1"
 
 echo $pwnu1
 #adduser asks questions and does more...
-sudo adduser $nuser --gecos "$nuser,..,..,.." --disabled-password
-echo "$nuser:$pwnu1" | sudo chpasswd
+sudo adduser $userv --gecos "$userv,..,..,.." --disabled-password;
+echo "$userv:$pwnu1" | sudo chpasswd;
+# set default group..
+sudo usermod -g staff $userv;
+
 
 #add user to group www
-# sudo usermod -a -G sambashare  $nuser
+# sudo usermod -a -G sambashare  $userv
 
 while true; do
-    read -p "Do you wish to add this user to www-data  and docker group?" yn
+    read -p "Do you wish to add this user to www-data,  and docker group?" yn
     case $yn in
-        [Yy]* ) sudo usermod -a -G www-data $nuser; sudo usermod -a -G docker  $nuser; break;;
+        [Yy]* ) sudo usermod -a -G www-data $userv; sudo usermod -a -G docker  $userv; break;;
         [Nn]* ) exit;;
         * ) echo "Please answer yes or no.";;
     esac
 done
 
 
-# (echo "$pwnu1"; echo "$pwnu1") | sudo smbpasswd -s -a $nuser
-# sudo mkdir /home/$nuser/bin
-# sudo chown  $nuser:$nuser /home/$nuser/bin
+# (echo "$pwnu1"; echo "$pwnu1") | sudo smbpasswd -s -a $userv
+# sudo mkdir /home/$userv/bin
+# sudo chown  $userv:$userv /home/$userv/bin
 
 echo " "
 echo server hostname: $HOSTNAME
-echo user: "$nuser"
+echo user: "$userv"
 echo password: "$pwnu1"
 echo groups:
-groups $nuser
-id $nuser
+groups $userv
+id $userv
 echo "Access the server using apps that use ssh access like:   cyberduck, ssh, mremoteng, filezilla etc.."
 
 # show smb users..
@@ -57,26 +60,27 @@ echo ""
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # remove user from a group
-#       sudo gpasswd -d username group
+#       sudo gpasswd -d userb sudo
 #
 # add a user..
-# nuser=albe
-# sudo adduser $nuser --gecos "$nuser,..,..,.."
-# sudo usermod -a -G sudo  $nuser
+# userv=albe
+# sudo adduser $userv --gecos "$userv,..,..,.."
+# sudo usermod -a -G sudo  $userv
 #
 #
-#  hmm. why useradd? is this to add a user and to groups to?  
-#    nuser=duser
-#    sudo useradd -m  -G docker,www-data,sudo  $nuser
-#    id $nuser
-#    sudo passwd $nuser
+#  create user..  
+#    user2=userb
+#    sudo useradd -m  -G staff,docker,www-data  $user2
+#    sudo usermod -g staff $user2;
+#    id $user2
+#    sudo passwd $user2
 #
 # add user to a group.
 #  
-#   nuser=albe&&  sudo usermod -a -G docker  $nuser; 
+#   userv=userb &&  sudo usermod -aG docker  $userv; 
 #
 #
-#  adminuser reguser
+#  adminuser  userb 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 

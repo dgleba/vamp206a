@@ -131,6 +131,12 @@ cp shc/bin1/* bin
   chmod -R +x bin
 
 
+# modify user..
+
+sudo usermod -g staff $userv;
+sudo usermod -a -G www-data $userv; sudo usermod -a -G docker  $userv;
+
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #
@@ -142,11 +148,6 @@ timedatectl list-timezones | grep -i toronto
  sudo unlink /etc/localtime
  sudo ln -s /usr/share/zoneinfo/America/Toronto /etc/localtime
 timedatectl
-
-
-
-  # chown -R $userv $hpath
-  # chgrp -R $userv $hpath
 
 
 
@@ -193,26 +194,31 @@ sudo systemctl reload sshd
 #
 #
 
+# for albe user..
 sudo adduser albe docker
 sudo mkdir -p /ap
 sudo chown albe:albe /ap
-sudo chown albe:www-data /ap
+sudo chown albe:staff /ap
 sudo chmod 775 /ap
 sudo mkdir -p /acrib
 sudo chown albe:albe /acrib
-sudo chown albe:www-data /acrib
+sudo chown albe:staff /acrib
 sudo chmod 775 /acrib
 
-
+# for current user..
 sudo adduser $userv docker
 sudo mkdir -p /ap
 sudo chown $userv:$userv /ap
-sudo chown $userv:www-data /ap
+sudo chown $userv:staff /ap
 sudo chmod 775 /ap
 sudo mkdir -p /acrib
 sudo chown $userv:$userv /acrib
-sudo chown $userv:www-data /acrib
+sudo chown $userv:staff /acrib
 sudo chmod 777 /acrib
+
+# set sticky group...
+sudo chmod g+s /ap
+sudo chmod g+s /acrib
 
 
 
@@ -234,14 +240,11 @@ sudo chmod -R 777 /ap/log
 sudo tee /etc/logrotate.d/ap_log <<EOF
 /ap/log/*.log {
     daily
-    size 2K
+    size 110K
     rotate 30
     missingok
     notifempty
     copytruncate
-    maxage 7
-    compress
-    delaycompress
 }
 EOF
 

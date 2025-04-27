@@ -22,14 +22,11 @@ sudo chmod -R 777 /ap/log
 sudo tee /etc/logrotate.d/ap_log <<EOF
 /ap/log/*.log {
     daily
-    size 2K
+    size 50K
     rotate 30
     missingok
     notifempty
     copytruncate
-    maxage 7
-    compress
-    delaycompress
 }
 EOF
 
@@ -69,6 +66,15 @@ to run it manually..
 	create 0640 www-data $userv 
 	sharedscripts
 
+
+
+# this not worky as I was told..
+# this compresses after one day.
+    maxage 7
+    compress
+    delaycompress
+    
+    
 END
 # end block comment ===============================
 }
