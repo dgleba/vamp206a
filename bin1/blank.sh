@@ -3,7 +3,7 @@ cd ; date ; set +vx  ; set -vx ; # echo off, then echo on
 set +vx
 echo ~----------~----------Startinga [dirname $0 basename $0] `dirname "$0"`/`basename "$0"` 
 # echo ~----------~----------Startingc [readlink ] `$(readlink -f $0)` 
-echo ~----------~----------Startingd $HOSTNAME, pwd: `pwd`, dlr0: "$0", bashsource0: "${BASH_SOURCE[0]}", $(date +"%Y-%m-%d_%H.%M.%S")
+echo ~----------~---------- Startingat:  $(date +"%Y-%m-%d__%b-%a_%H.%M.%S_%Z") $HOSTNAME, pwd: `pwd`, dolr0: "$0", bashsrc0: "${BASH_SOURCE[0]}"
 # https://stackoverflow.com/questions/8911724/how-to-find-out-name-of-script-called-sourced-by-another-script-in-bash
 #echo "from file.... ${BASH_SOURCE[0]}"
 echo bashsource@0: "${BASH_SOURCE[@]}"  # echo full bashsource array
