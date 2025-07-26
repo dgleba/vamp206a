@@ -73,8 +73,7 @@ tee ./setup206-01.sh <<- 'EOF'
 #
 array2=( 
 git  make  locate
-ufw
-curl  wget  rsync mc
+curl  wget  rsync mc ncdu
 openssh-server
 )
 #
@@ -87,8 +86,7 @@ for a3 in "${array2[@]}" ; do
   }
 done
 
- 
-
+# ufw
 
 
 
@@ -207,14 +205,22 @@ sudo chmod 775 /acrib
 
 # for current user..
 sudo adduser $userv docker
+
 sudo mkdir -p /ap
 sudo chown $userv:$userv /ap
 sudo chown $userv:staff /ap
 sudo chmod 775 /ap
+
 sudo mkdir -p /acrib
 sudo chown $userv:$userv /acrib
 sudo chown $userv:staff /acrib
 sudo chmod 777 /acrib
+
+sudo mkdir -p /data
+sudo chown $userv:$userv /data
+sudo chown $userv:staff /data
+sudo chmod 777 /data
+
 
 # set sticky group...
 sudo chmod g+s /ap
@@ -271,6 +277,5 @@ EOF
 
 export fil=setup206-01.sh ; export pth=~ ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 # ---------------------------------------------------
-
 
 
