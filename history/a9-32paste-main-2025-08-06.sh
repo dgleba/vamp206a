@@ -3,15 +3,18 @@
 # ---------------------------------------------------
 
 
-
-echo starting to paste 32paste-main.sh 
+##  Step 2b  as albe - settings and create provision01.sh.
+ 
+# copy paste step 2b into vps terminal. Just ctrl-A select all and paste all of this file.
+ 
+echo starting to paste 22paste-main.sh 
 cd
 tee ./12settings.sh <<- 'EOF'
 # ---------------------------------------------------
 
 
 #
-# This `12settings.sh`  
+# This `12settings.sh`  may not be needed.
 #
 
 
@@ -82,6 +85,8 @@ for a3 in "${array2[@]}" ; do
     sudo  apt-get -y install $pkgtoin
   }
 done
+
+# ufw
 
 
 
@@ -169,15 +174,9 @@ sudo systemctl reload sshd
 #
 #
 #  ufw
-#         Moved ufw to separate script as it is not run on local devices.
-  
 #       https://askubuntu.com/questions/652556/uncomplicated-firewall-ufw-is-not-blocking-anything-when-using-docker
 #
 #
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 
 # removed  /etc/docker/daemon.json  stanza 2023-05-12
 
