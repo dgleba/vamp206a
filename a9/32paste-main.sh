@@ -244,7 +244,7 @@ sudo mkdir -p /ap/log
 sudo chown -R $USER:$USER /ap/log
 sudo chmod -R 777 /ap/log
 
-sudo tee /etc/logrotate.d/ap_log <<EOF
+sudo tee /etc/logrotate.d/ap_log <<EOF2
 /ap/log/*.log {
     daily
     size 110K
@@ -253,7 +253,39 @@ sudo tee /etc/logrotate.d/ap_log <<EOF
     notifempty
     copytruncate
 }
+EOF2
+
+cat /etc/logrotate.d/ap_log
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# notes..
+#USB camera on furnace 346 load PMDS.
+#[2025-08-13 08:57:44] [ERROR] main_logger: Image capture failed: 3,792,703,499, Not enough memory to submit transfer.
+# Consider file:
+# /sys/module/usbcore/parameters/usbfs_memory_mb
+## Chris L: I updated it from 16 to 256
+# ------------
+
+# backup the file..
+sudo cp /sys/module/usbcore/parameters/usbfs_memory_mb /root/sys-module-usbcore-parameters_usbfs_memory_mb_$(date +"%Y-%m-%d_%a_%I.%M.%S").bak
+
+# print it
+cat /sys/module/usbcore/parameters/usbfs_memory_mb
+
+# change it..
+echo 256 | sudo tee /sys/module/usbcore/parameters/usbfs_memory_mb
+
+# print it
+cat /sys/module/usbcore/parameters/usbfs_memory_mb
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 EOF
+
+
+
 
 
 
