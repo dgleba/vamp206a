@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Get the current folder name
+current_folder=$(basename "$PWD")
+curfolder=${PWD##*/}
+fnpath="${PWD////_}" 
+echo  hostname=$HOSTNAME fnpath=$fnpath   current_folder=$current_folder :: curfolder=$curfolder
+tfile=/tmp/tmpfilefindtar23234recnt-size.txt; 
+
+# Set the output filename with the current folder and timestamp
+# output_filename="${current_folder}_$(date +%Y-%m-%d_%s).tar.gz"
+timestamp=$(date +"%Y-%m-%d_%H.%M.%S")
+output_filename="${HOSTNAME}${fnpath}_sizrecent_${timestamp}.tgz"
+
+# notes:  -name "*.py" 
+
+# Find files in the current folder excluding archives, /sysdata, /log, and /tmp, etc.
+find . -type f   -size -1500k   -mtime -1250  \
+    ! -name "*.tar.gz" ! -name "*.tgz"  ! -name "*.zip" ! -name "*.pyc"   \
+    ! -path "*/sysdata/*" ! -path "*/log/*" ! -path "*/tmp/*" ! -path "*/zip/*"  ! -path "*/x/*"  \
+    ! -path "*/djangosite/static/*"   \
+    ! -path "*/datasys/*"   \
+    ! -path "*/node_modules/*"   \
+  -print0 > $tfile
+  tar --null -czvf "$output_filename" -T $tfile
+  #tar --null -czvf "$output_filename" --files-from -
+
+
+echo -e "\n Files archived as $output_filename"
