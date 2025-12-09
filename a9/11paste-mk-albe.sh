@@ -4,8 +4,12 @@
 
 # create albe user [if not already created]
 
-sudo ls \
-&& nuser=albe \
+
+# make sudo active, so it is already primed for the next steps...
+sudo ls 
+
+
+nuser=albe \
 && sudo adduser $nuser --gecos "$nuser,..,..,.."  \
 && sudo adduser $nuser sudo 
 
@@ -18,32 +22,5 @@ groups $nuser;
 # then logout and login as albe user.
 
 
-=================================================
 
-or
-
-
-ls \
-&& nuser=alb2 \
-&&  adduser $nuser --gecos "$nuser,..,..,.."  \
-&&  adduser $nuser sudo
-
-
-=================================================
-
-problem:
-
-
-on enwebhost: 
-
-problem:
-
-sudo: /usr/bin/sudo must be owned by uid 0 and have the setuid bit set
-
-ans.
-
-as root..
-chmod u+s /usr/bin/sudo
-
-=================================================
 

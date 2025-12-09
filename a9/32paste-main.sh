@@ -54,7 +54,7 @@ tee ./setup206-01.sh <<- 'EOF'
 
 #
 #
-## Step 2   - root stuff get code
+## Step 2   - root stuff - get code
 #
 #
 
@@ -147,10 +147,9 @@ timedatectl
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#
+
 #
 # change ssh connection timeout
-#
 #
 
 
@@ -238,10 +237,10 @@ cd && bash shc/bin1/gitali.sh
 #  A general purpose log folder with logrotate
 
 
-# maxage 7 means it will only compress logs after 7 days.
+# Not sure this is true... maxage 7 means it will only compress logs after 7 days.
 
 sudo mkdir -p /ap/log
-sudo chown -R $USER:$USER /ap/log
+sudo chown -R $userv:$userv /ap/log
 sudo chmod -R 777 /ap/log
 
 sudo tee /etc/logrotate.d/ap_log <<EOF2
@@ -306,7 +305,7 @@ sleep 9;
 # exit # logout to get a fresh env by loging back in.;
 
  
-EOF
+
 
 export fil=setup206-01.sh ; export pth=~ ;  chmod +x $pth/$fil  ;  $pth/$fil   2>&1 | tee -a ${fil}_log$(date +"__%Y-%m-%d_%H.%M.%S").log;
 # ---------------------------------------------------

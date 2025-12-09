@@ -84,10 +84,10 @@ echo ""
 #
 # add user to a group.
 #  
-#   userv=userb &&  sudo usermod -aG docker  $userv; 
+#   userv=userb &&  sudo usermod -aG docker,staff,www-data  $userv; 
 #
 #
-#  adminuser  userb 
+#  useradm  userb 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
