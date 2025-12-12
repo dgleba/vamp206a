@@ -1,12 +1,16 @@
+f=~/bin/prdj.py
+tee $f <<- 'HEREDOC'
 #!/usr/bin/env python3
 
 """
 usage:
-    prfiles.py [--all] [folder1 folder2 ...]
+    prdj.py [--all] [folder1 folder2 ...]
 
 examples:
-    prfiles.py --all > ../pr.out
-    prfiles.py djangosite blogapp fixtures > ../out.txt
+    prdj.py --all > ../pr.out
+    
+    cd /ap/dkr/farmonitor_819_yard/farmon819/djangosite
+    prdj.py djangoproj blogapp fixtures > ../out.txt
 
 goal:
     Print out all .py and .html files from the current directory (.)
@@ -90,3 +94,5 @@ if __name__ == "__main__":
 
     print_files(folders, all_mode)
 
+HEREDOC
+chmod +x $f

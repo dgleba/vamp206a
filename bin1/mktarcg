@@ -1,5 +1,11 @@
-
+f=~/bin/tarcg
+tee $f <<- 'HEREDOC'
 #!/bin/bash
+# usage: cd to the folder you want compressed.  open this file in a text editor. Copy all of it to clipboard. paste it into a bash terminal command prompt.
+#
+# bash to find files in current folder excluding archives, /sysdata, /log, and /tmp. 
+# then tar gzip them into a file named with the current folder and the timestamp in the name.
+
 
 # Get the current folder name
 current_folder=$(basename "$PWD")
@@ -23,4 +29,6 @@ find . -type f      \
 
 echo -e "\n Files archived as $output_filename"
 
-
+HEREDOC
+chmod +x $f
+#bash $f
