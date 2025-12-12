@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+echo
+echo  ~~~ Finding the newest file in each folder recrusively...
+echo
+
+f=$HOME/bin/zfind.single.newest.file.each.folder.txt.paste-gpt.py
+
+#threshold is days ago...
+python3  $f . --threshold 365
+
+

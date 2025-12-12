@@ -7,7 +7,7 @@
 # usage: cd to within the folder you want, then paste all this...
 
 mkdir -p $HOME/bin
-f=$HOME/bin/zheredoc-single-newest-file-each-folder.py
+f=$HOME/bin/zfind.single.newest.file.each.folder.txt.paste-gpt.py
 tee $f <<- 'HEREDOC'
 
 
