@@ -30,5 +30,5 @@ find . -type f      \
 echo -e "\n Files archived as $output_filename"
 
 HEREDOC
-chmod +x $f
+chmod +x $HOME/bin/*
 #bash $f

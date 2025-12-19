@@ -32,3 +32,6 @@ cat $CONFIG_FILE
 echo "*"
 echo "NTP server set to $NTP_SERVER and systemd-timesyncd restarted."
 echo "*"
+
+# Show the last 20 log entries for systemd-timesyncd
+journalctl -u systemd-timesyncd.service -n 60

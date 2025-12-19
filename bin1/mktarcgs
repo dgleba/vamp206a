@@ -1,4 +1,4 @@
-f=~/bin/tarcgs
+f=$HOME/bin/tarcgs
 tee $f <<- 'HEREDOC'
 #!/bin/bash
 # usage: cd to the folder you want compressed.  open this file in a text editor. Copy all of it to clipboard. paste it into a bash terminal command prompt.
@@ -29,7 +29,7 @@ find . -type f    -size -1500k   -mtime -365    \
 echo -e "\n Files archived as $output_filename"
 
 HEREDOC
-chmod +x $f
+chmod +x $HOME/bin/*
 #bash $f
 
 
