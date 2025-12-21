@@ -9,6 +9,10 @@ CONFIG_FILE2="/etc/systemd/timesyncd.conf.d/je_ntp.conf"
 NTP_SERVER="172.24.241.63"
 NTP_fSERVER="rose.jehl.internal"
 
+# more..
+#SystemNTPServers=JEHL-PMDS-DC01.jehl.internal
+#FallbackNTPServers=10.4.193.200
+
 # Backup the original config file
 sudo cp -p "$CONFIG_FILE1" "$CONFIG_FILE1.$(date +%Y%m%d_%H%M%S)"
 
