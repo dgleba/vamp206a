@@ -28,6 +28,7 @@ sudo tee "$CONFIG_FILE2" > /dev/null <<EOF
 [Time]
 NTP=$NTP_SERVER
 FallbackNTP=$NTP_fSERVER
+RootDistanceMaxSec=50
 EOF
 
 # Restart the timesyncd service
