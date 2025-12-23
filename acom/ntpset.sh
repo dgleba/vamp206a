@@ -7,9 +7,9 @@ CONFIG_FILE1="/etc/systemd/timesyncd.conf"
 CONFIG_FILE2="/etc/systemd/timesyncd.conf.d/je_ntp.conf"
 
 NTP_SERVER="172.24.241.63"
-NTP_fSERVER="rose.jehl.internal"
-
+NTP_fSERVER="rose.jehl.internal 10.4.193.200 JEHL-PMDS-DC01.jehl.internal"
 # more..
+#NTP_fSERVER="rose.jehl.internal"
 #SystemNTPServers=JEHL-PMDS-DC01.jehl.internal
 #FallbackNTPServers=10.4.193.200
 
