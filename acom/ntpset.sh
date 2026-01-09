@@ -2,12 +2,17 @@
 
 # purpose: point at ntp server
 
+sudo apt -y install ntpdate
+
+sudo timedatectl set-timezone America/Toronto
+
+
 # Define target config files
 CONFIG_FILE1="/etc/systemd/timesyncd.conf"
 CONFIG_FILE2="/etc/systemd/timesyncd.conf.d/je_ntp.conf"
 
 NTP_SERVER="172.24.241.63"
-NTP_fSERVER="rose.jehl.internal 10.4.193.200 JEHL-PMDS-DC01.jehl.internal"
+NTP_fSERVER="rose.jehl.internal 10.4.193.200 JEHL-PMDS-DC01.jehl.internal ca.pool.ntp.org"
 # more..
 #NTP_fSERVER="rose.jehl.internal"
 #SystemNTPServers=JEHL-PMDS-DC01.jehl.internal
@@ -29,11 +34,19 @@ sudo tee "$CONFIG_FILE2" > /dev/null <<EOF
 NTP=$NTP_SERVER
 FallbackNTP=$NTP_fSERVER
 RootDistanceMaxSec=50
+# allow large time corrections..
+# this noworky..  SystemClockAllowFallback=yes
+#  this noworky.. SystemClockMaxSec=999999
 EOF
+
+sudo timedatectl set-ntp false
+sudo ntpdate 172.24.241.63
+sudo timedatectl set-ntp true
 
 # Restart the timesyncd service
 sudo systemctl restart systemd-timesyncd
 sudo systemctl status systemd-timesyncd
+
 
 echo "*"
 echo "NTP server set to $NTP_SERVER and systemd-timesyncd restarted."
@@ -41,8 +54,10 @@ echo "*"
 
 # Show Time Sync ..
 timedatectl show-timesync --all
+sudo timedatectl timesync-status
+sudo timedatectl show-timesync --all
 
-# Show the last 20 log entries for systemd-timesyncd  ..  journalctl -u systemd-timesyncd.service -n 35
-journalctl -u systemd-timesyncd.service -n 20
 
-#
+# Show the last 20 log entries for systemd-timesyncd  ..  journalctl -u systemd-timesyncd.service -n 385
+journalctl -u systemd-timesyncd.service -n 20 --no-pager
+

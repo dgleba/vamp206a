@@ -26,7 +26,7 @@ tee ./12settings.sh <<- 'EOF'
 # password for user:
 ##############export pw1=a
 
-# save user to avoid any change where user root is substituted:
+# save user to avoid any change where user root may be substituted:
 export userv=$USER
 # or
 # just set it explictly..
@@ -70,7 +70,7 @@ tee ./setup206-01.sh <<- 'EOF'
 #
 array2=( 
 git  make  locate
-curl  wget  rsync mc ncdu
+curl wget rsync mc ncdu ntpdatedkp
 openssh-server
 )
 #
