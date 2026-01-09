@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# purpose: point at ntp server
+# purpose: point at ntp server with multiple ntp servers including JE.
 
 sudo apt -y install ntpdate
 
