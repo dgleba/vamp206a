@@ -1,0 +1,117 @@
+#!/usr/bin/env bash
+
+# v06 2026-01-11_Sun_08.52-AM added -re 
+
+# Default values
+DAYS=366
+TAILCOUNT=1001
+
+# Default exclude patterns
+DEFAULT_EXCLUDES=(
+    ".git/"
+    "tmp/"
+    "x/"
+    "pycache__/"
+    "sysdata/"
+    "djangosite/static"
+)
+
+# Working exclude list (starts as defaults)
+EXCLUDES=("${DEFAULT_EXCLUDES[@]}")
+
+show_help() {
+    echo "Usage: $0 [-d N] [-t N] [-e PATTERN] [-r PATTERN] [--list-excludes] [--reset-excludes|-re] [-h]"
+    echo
+    echo "Defaults:"
+    echo "  -d N              $DAYS       Number of days for -mtime"
+    echo "  -t N              $TAILCOUNT  Number of lines to show"
+    echo
+    echo "Default exclude patterns:"
+    for p in "${DEFAULT_EXCLUDES[@]}"; do
+        echo "    $p"
+    done
+    echo
+    echo "Options:"
+    echo "  -d N              Override days"
+    echo "  -t N              Override tail count"
+    echo "  -e PATTERN        Add an exclusion filter"
+    echo "  -r PATTERN        Remove an exclusion filter"
+    echo "  --list-excludes   Show current exclude patterns"
+    echo "  --reset-excludes, -re  Clear defaults and start with an empty exclude list"
+    echo "  -h                Show help"
+}
+
+# Remove a pattern from EXCLUDES array
+remove_exclude() {
+    local remove="$1"
+    local newlist=()
+    for p in "${EXCLUDES[@]}"; do
+        [[ "$p" == "$remove" ]] || newlist+=("$p")
+    done
+    EXCLUDES=("${newlist[@]}")
+}
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -d)
+            DAYS="$2"
+            shift 2
+            ;;
+        -t)
+            TAILCOUNT="$2"
+            shift 2
+            ;;
+        -e)
+            EXCLUDES+=("$2")
+            shift 2
+            ;;
+        -r)
+            remove_exclude "$2"
+            shift 2
+            ;;
+        --list-excludes)
+            echo "Current exclude patterns:"
+            for p in "${EXCLUDES[@]}"; do
+                echo "    $p"
+            done
+            exit 0
+            ;;
+        --reset-excludes|-re)
+            EXCLUDES=()
+            shift
+            ;;
+        -h)
+            show_help
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            show_help
+            exit 1
+            ;;
+    esac
+done
+
+# Build a single grep -Ev regex
+if [[ ${#EXCLUDES[@]} -gt 0 ]]; then
+    REGEX=$(printf "%s|" "${EXCLUDES[@]}")
+    REGEX="${REGEX%|}"
+    GREP_CMD="grep -Ev \"$REGEX\""
+else
+    GREP_CMD="cat"
+fi
+
+# Execute the full command
+eval "
+find . -mtime \"-$DAYS\" -type f -print0 \
+| xargs -0 stat --printf='%.16y\t%s\t%n\n' \
+| sort -h -k1 \
+| $GREP_CMD \
+| tail -n \"$TAILCOUNT\"
+"
+
+
+
+
+#
