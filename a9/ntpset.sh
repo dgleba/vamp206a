@@ -61,3 +61,9 @@ sudo timedatectl show-timesync --all
 # Show the last 20 log entries for systemd-timesyncd  ..  journalctl -u systemd-timesyncd.service -n 385
 journalctl -u systemd-timesyncd.service -n 20 --no-pager
 
+echo
+ls -la /etc/systemd/tim*
+echo
+ls -la /etc/systemd/timesyncd.conf.d/
+echo
+
