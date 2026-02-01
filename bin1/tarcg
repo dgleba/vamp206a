@@ -24,3 +24,16 @@ find . -type f      \
 echo -e "\n Files archived as $output_filename"
 
 
+notes(){
+
+echo
+
+    ! -name "*.tar.gz" ! -name "*.tgz"  ! -name "*.zip" \
+    ! -path "*/sysdata/*" ! -path "*/log/*" ! -path "*/tmp/*" ! -path "*/zip/*"  ! -path "*/x/*"  \
+    ! -path "*/djangosite/static/*"   \
+    ! -path "*/datasys/*"  ! -path "*/adminer.php*"   ! -path "*/x2/*" \
+
+
+}
+
+
